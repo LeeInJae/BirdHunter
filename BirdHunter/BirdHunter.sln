@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BirdHunter", "BirdHunter\BirdHunter.vcxproj", "{C98A96FE-211C-43A0-910B-F5B25FC3159B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C98A96FE-211C-43A0-910B-F5B25FC3159B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C98A96FE-211C-43A0-910B-F5B25FC3159B}.Debug|Win32.Build.0 = Debug|Win32
+		{C98A96FE-211C-43A0-910B-F5B25FC3159B}.Release|Win32.ActiveCfg = Release|Win32
+		{C98A96FE-211C-43A0-910B-F5B25FC3159B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
