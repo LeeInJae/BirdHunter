@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NNApplication" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gEADMiAAQAAAAQgAmEQACAIQRAIAICAAARQCQRAAAAY=</HashCode>
+      <FileName>NNApplication.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNAudioSystem" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAICAAAABAAgAIAAAEAAAABgAhEAAQhAAAIAAAAww=</HashCode>
+      <FileName>NNAudioSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNSound" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAEAAAAAAAAAAAARAAEgA4AQAAAgAAAA=</HashCode>
+      <FileName>NNSound.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNPoint" Collapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAgAAAAYAAAAAAAAAQAAAACAAYAAgAAAAAAA=</HashCode>
+      <FileName>NNPoint.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNSize" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAACIAABAAAQAAACAAAAgAEAAAAQ=</HashCode>
+      <FileName>NNSize.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNInputSystem" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACAACAAAAAAA0AAAAAAABAAAAAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>NNInputSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNLabel" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ARAYiggACEAAAAAgkEEBBBAqIABhAEAAABoCAAAEACg=</HashCode>
+      <FileName>NNLabel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NND2DLabel" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBICAAAIAAIAAAgEAEAAEAAAABBAAAAAJgAwAAAACg=</HashCode>
+      <FileName>NNLabel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNObject" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAQAAABAACCKEAQEEAEACAMAOAIAAggAIFAAIhcgAiE=</HashCode>
+      <FileName>NNObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNScene" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAIAAAAAAIAAEAAABAAAAAAAAA=</HashCode>
+      <FileName>NNScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNSprite" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAgAAAAAQEACAAAiAABAAAAhFAEAAABIAAAAEAAA=</HashCode>
+      <FileName>NNSprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NND2DSprite" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAABAAAAAABQAgAAAAAA=</HashCode>
+      <FileName>NNSprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNRenderer" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABACABBAAAA=</HashCode>
+      <FileName>NNRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NND2DRenderer" Collapsed="true">
+    <Position X="3.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAgAAACAAAAAAAAAAAAEAAAAEAAAAEQCABBAACA=</HashCode>
+      <FileName>NND2DRenderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNResourceManager" Collapsed="true">
+    <Position X="11.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADAAAAAAAAAAgBAAAAAABAAAAAAgAAAAAAAAAAQ=</HashCode>
+      <FileName>NNResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNTexture" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAABBAEAAAAAACAAAAAA=</HashCode>
+      <FileName>NNTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NND2DTexture" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACEAAAAAAAAAAAQAAAIAABAAAAAAAAAAgAAAEA=</HashCode>
+      <FileName>NNTexture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NNSceneDirector" Collapsed="true">
+    <Position X="13.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACgAAAAAAIAAAAAAAAAIBgAAAAAAAAACABAAIgQ=</HashCode>
+      <FileName>NNSceneDirector.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpriteExampleScene" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAQAAAAAAAAAAAAgAAgAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>SpriteExampleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="C2DFighterScene" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADQAACAAAAAAAAAAAAAAAAAABACAIGAAADAAAAAAAAA=</HashCode>
+      <FileName>C2DFighterScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="KeyState" Collapsed="true">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAEAAAAAABAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>NNInputSystem.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RendererStatus" Collapsed="true">
+    <Position X="11.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NNRenderer.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
