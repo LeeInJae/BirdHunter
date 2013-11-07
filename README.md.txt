@@ -1,2 +1,0 @@
-#Bird Hunter
-* ¿Ã¿Œ¡¶
