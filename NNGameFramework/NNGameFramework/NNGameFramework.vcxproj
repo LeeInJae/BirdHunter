@@ -104,7 +104,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NNAnimation.cpp" />
     <ClCompile Include="NNApplication.cpp" />
-    <ClCompile Include="NNAudioSystem.cpp" />
+    <ClCompile Include="NNAudioSystem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="NNCamera.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
@@ -156,7 +158,9 @@
     <ClInclude Include="Library\TinyXML\xpath_syntax.h" />
     <ClInclude Include="NNAnimation.h" />
     <ClInclude Include="NNApplication.h" />
-    <ClInclude Include="NNAudioSystem.h" />
+    <ClInclude Include="NNAudioSystem.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="NNCamera.h" />
     <ClInclude Include="NNConfig.h" />
     <ClInclude Include="NND2DRenderer.h" />

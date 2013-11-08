@@ -5,6 +5,8 @@
 NNMap::NNMap(void)
 {
 	m_pMap = NNSprite::Create( L"Image/map.png" );
+	m_pMap -> SetImageWidth( 716 );
+	m_pMap -> SetImageHeight( 384 );
 	AddChild( m_pMap );
 }
 

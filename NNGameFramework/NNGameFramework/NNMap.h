@@ -9,12 +9,11 @@ public:
 	NNMap(void);
 	~NNMap(void);
 	
-	virtual void Render();
-	virtual void Update( float dTime );
 	NNCREATE_FUNC( NNMap );
 
 protected:
 	NNSprite* m_pMap;
-	
+	virtual void Render();
+	virtual void Update( float dTime );
 };
 
