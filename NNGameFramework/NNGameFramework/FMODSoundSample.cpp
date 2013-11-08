@@ -26,8 +26,6 @@ void FMODSoundSample::Render()
 void FMODSoundSample::Update( float dTime )
 {
 	NNScene::Update(dTime);
-
-	
 }
 
 #endif
