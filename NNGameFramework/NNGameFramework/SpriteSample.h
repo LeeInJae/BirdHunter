@@ -13,7 +13,7 @@ public:
 	void Render();
 	void Update( float dTime );
 
-	NNCREATE_FUNC(SpriteSample);
+	NNCREATE_FUNC( SpriteSample );
 
 private:
 	NNSprite* m_Sprite;

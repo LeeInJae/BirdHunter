@@ -109,6 +109,7 @@
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNLabel.cpp" />
+    <ClCompile Include="NNMap.cpp" />
     <ClCompile Include="NNObject.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="NNLabel.h" />
     <ClInclude Include="NNLibSet.h" />
     <ClInclude Include="NNMacroSet.h" />
+    <ClInclude Include="NNMap.h" />
     <ClInclude Include="NNObject.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNRenderer.h" />

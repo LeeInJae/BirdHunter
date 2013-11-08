@@ -6,6 +6,8 @@
 #include "SpriteAtlasSample.h"
 #include "CameraSample.h"
 #include "FMODSoundSample.h"
+#include "SpriteSample.h"
+#include "NNMap.h"
 
 /*
 void main()
@@ -25,11 +27,13 @@ int main()
 
 	Application->Init( L"D2D Test", 800, 600, D2D );
 
-	// NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
-	// NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
-	// NNSceneDirector::GetInstance()->ChangeScene( SpriteAtlasSample::Create() );
-	// NNSceneDirector::GetInstance()->ChangeScene( CameraSample::Create() );
-	// NNSceneDirector::GetInstance()->ChangeScene( FMODSoundSample::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( NNMap::Create() );
+     NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( SpriteAtlasSample::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( CameraSample::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( FMODSoundSample::Create() );
 
 	Application->Run();
 	Application->Release();
