@@ -106,7 +106,10 @@
     <Filter Include="Framework\Node\Scene\Camera">
       <UniqueIdentifier>{4225039e-7778-4b09-88ce-f1b445d5e740}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneFolder">
+    <Filter Include="BirdHunter">
+      <UniqueIdentifier>{5f143092-5ad2-4062-8789-6f04adfdc755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BirdHunter\Scene">
       <UniqueIdentifier>{9f3d1bd0-61f8-4ec8-b223-d4d79a7d3fa3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -235,8 +238,11 @@
     <ClCompile Include="SpriteSample.cpp">
       <Filter>Example\SpriteSample</Filter>
     </ClCompile>
-    <ClCompile Include="NNMap.cpp">
-      <Filter>SceneFolder</Filter>
+    <ClCompile Include="NNGameScene.cpp">
+      <Filter>BirdHunter\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NNPlayerCharacter.cpp">
+      <Filter>BirdHunter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -402,8 +408,18 @@
     <ClInclude Include="SpriteSample.h">
       <Filter>Example\SpriteSample</Filter>
     </ClInclude>
-    <ClInclude Include="NNMap.h">
-      <Filter>SceneFolder</Filter>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="BHDefine.h">
+      <Filter>BirdHunter</Filter>
     </ClInclude>
+    <ClInclude Include="NNGameScene.h">
+      <Filter>BirdHunter\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NNPlayerCharacter.h">
+      <Filter>BirdHunter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NNGameFramework.rc" />
   </ItemGroup>
 </Project>

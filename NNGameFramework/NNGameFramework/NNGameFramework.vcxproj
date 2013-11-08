@@ -44,6 +44,7 @@
     <LibraryPath>.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <OutDir>$(SolutionDir)Bin\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -51,8 +52,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -111,8 +111,9 @@
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNLabel.cpp" />
-    <ClCompile Include="NNMap.cpp" />
+    <ClCompile Include="NNGameScene.cpp" />
     <ClCompile Include="NNObject.cpp" />
+    <ClCompile Include="NNPlayerCharacter.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
     <ClCompile Include="NNScene.cpp" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationSample.h" />
+    <ClInclude Include="BHDefine.h" />
     <ClInclude Include="CameraSample.h" />
     <ClInclude Include="FMODSoundSample.h" />
     <ClInclude Include="Library\FMOD\inc\fmod.h" />
@@ -169,8 +171,9 @@
     <ClInclude Include="NNLabel.h" />
     <ClInclude Include="NNLibSet.h" />
     <ClInclude Include="NNMacroSet.h" />
-    <ClInclude Include="NNMap.h" />
+    <ClInclude Include="NNGameScene.h" />
     <ClInclude Include="NNObject.h" />
+    <ClInclude Include="NNPlayerCharacter.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNRenderer.h" />
     <ClInclude Include="NNResourceManager.h" />
@@ -183,9 +186,13 @@
     <ClInclude Include="NNSpriteNode.h" />
     <ClInclude Include="NNTexture.h" />
     <ClInclude Include="NNXML.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SpriteAtlasSample.h" />
     <ClInclude Include="SpriteSample.h" />
     <ClInclude Include="XMLSample.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NNGameFramework.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

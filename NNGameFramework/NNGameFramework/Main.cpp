@@ -7,7 +7,8 @@
 #include "CameraSample.h"
 //#include "FMODSoundSample.h"
 #include "SpriteSample.h"
-#include "NNMap.h"
+#include "NNGameScene.h"
+#include "BHDefine.h"
 
 /*
 void main()
@@ -25,9 +26,9 @@ int main()
 
 	NNApplication* Application = NNApplication::GetInstance();
 
-	Application->Init( L"D2D Test", 800, 600, D2D );
+	Application->Init( L"D2D Test", RESOLUTION_WIDTH, RESOLUTION_HEIGHT, D2D );
 
-	 NNSceneDirector::GetInstance()->ChangeScene( NNMap::Create() );
+	 NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //  NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
 // 	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
 // 	 //NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
