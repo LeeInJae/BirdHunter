@@ -18,8 +18,9 @@ public:
 protected:
 	NNSprite* m_pMap;
 	NNPlayerCharacter m_pCharacter;
-
+	
 	virtual void Render();
 	virtual void Update( float dTime );
+	void MovePlayerCharacter( float dTime );
 };
 

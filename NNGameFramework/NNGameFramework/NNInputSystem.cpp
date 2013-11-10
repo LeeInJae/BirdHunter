@@ -23,6 +23,7 @@ NNInputSystem* NNInputSystem::GetInstance()
 
 	return m_pInstance;
 }
+
 void NNInputSystem::ReleaseInstance()
 {
 	if ( m_pInstance != nullptr )
@@ -64,6 +65,23 @@ KeyState NNInputSystem::GetKeyState( int key )
 	}
 	
 	return KEY_NOTPRESSED;
+}
+
+PlayerCharacterDirection NNInputSystem::CheckWhichPressedKey()
+{
+	if( GetInstance() -> GetKeyState( VK_LEFT ) == KEY_PRESSED )
+		return LEFT;
+	else if( GetInstance() -> GetKeyState( VK_RIGHT ) == KEY_PRESSED )
+		return RIGHT;
+
+	return NONE;
+
+	// 	if( GetInstance() -> GetKeyState( VK_LEFT ) == KEY_PRESSED ) 싱글톤 구조 질문. 함수만들어서 함수값을 받아오려고 했는데 에러남
+// 		m_Direction = LEFT;
+// 	else if( GetInstance() -> GetKeyState( VK_RIGHT ) == KEY_PRESSED )
+// 		m_Direction = RIGHT;
+// 
+// 	m_Direction = NONE;
 }
 
 NNPoint NNInputSystem::GetMousePosition()

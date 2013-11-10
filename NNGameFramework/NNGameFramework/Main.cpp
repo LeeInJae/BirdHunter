@@ -9,6 +9,7 @@
 #include "SpriteSample.h"
 #include "NNGameScene.h"
 #include "BHDefine.h"
+#include <stdio.h>
 
 /*
 void main()
@@ -27,6 +28,11 @@ int main()
 	NNApplication* Application = NNApplication::GetInstance();
 
 	Application->Init( L"D2D Test", RESOLUTION_WIDTH, RESOLUTION_HEIGHT, D2D );
+	
+	// 콘솔창 띄우기
+	AllocConsole();
+	FILE* pStream;
+	freopen_s(  &pStream, "CONOUT$", "wt", stdout );
 
 	 NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //  NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
@@ -39,5 +45,7 @@ int main()
 	Application->Run();
 	Application->Release();
 
+	//디버그 후 콘솔창 없앨 것
+	FreeConsole();
 	return 0;
 }

@@ -17,27 +17,34 @@ enum KeyState
 	KEY_NOTPRESSED,
 };
 
+enum PlayerCharacterDirection
+{
+	LEFT,
+	RIGHT,
+	NONE,
+};
+
 class NNInputSystem
 {
-private:
-	static NNInputSystem* m_pInstance;
-
-private:
-	NNInputSystem();
-	~NNInputSystem();
-
-private:
-	bool m_PrevKeyState[256];
-	bool m_NowKeyState[256];
-
 public:
 	static NNInputSystem* GetInstance();
 	static void ReleaseInstance();
-
-public:
+	
 	void UpdateKeyState();
 	KeyState GetKeyState( int key );
 	NNPoint GetMousePosition();
+	PlayerCharacterDirection GetDirection() { return m_Direction; }
+	PlayerCharacterDirection CheckWhichPressedKey();
+private:
+	NNInputSystem();
+	~NNInputSystem();
+	
+	
+	static NNInputSystem* m_pInstance;
+
+	PlayerCharacterDirection m_Direction;
+	bool m_PrevKeyState[256];
+	bool m_NowKeyState[256];
 };
 
 
