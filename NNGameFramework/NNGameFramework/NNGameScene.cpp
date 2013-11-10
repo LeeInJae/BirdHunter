@@ -10,15 +10,12 @@ NNGameScene::NNGameScene(void )
 	m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 	m_pMap ->SetZindex( 0 );
 
-	m_pCharacter.m_pChar = NNSprite::Create( L"Image/character.png" );
-	m_pCharacter.m_pChar -> SetImageWidth( PLAYER_WIDTH );
-	m_pCharacter.m_pChar -> SetImageHeight( PLAYER_HEIGHT );
-	m_pCharacter.m_pChar -> SetZindex( 1 );
-	m_pCharacter.m_pChar -> SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
+	
 
 
 	AddChild( m_pMap );
-	AddChild( m_pCharacter.m_pChar );
+	AddChild( m_Character.GetCharacterSprite() );
+	AddChild( m_Bird.GetBirdSprite() );
 }
 
 
@@ -32,6 +29,7 @@ void NNGameScene::Update( float dTime )
 	//printf(" %f ", dTime );
 	//dTime의 활용 질문하기
 	MovePlayerCharacter( dTime );
+	MoveBird( dTime );
 }
 
 void NNGameScene::Render()
@@ -41,6 +39,9 @@ void NNGameScene::Render()
 
 void NNGameScene::MovePlayerCharacter( float dTime )
 {
+	m_Character.Move( dTime );
+	
+	/*
 	NNPoint CharacterNowPoint = m_pCharacter.m_pChar -> GetPosition();
 
 	switch( NNInputSystem::GetInstance() -> CheckWhichPressedKey() )
@@ -59,4 +60,10 @@ void NNGameScene::MovePlayerCharacter( float dTime )
 	}
 	
 	//m_pCharacter.m_Direction = NNInputSystem::GetInstance -> GetDirection();
+	*/
+}
+
+void NNGameScene::MoveBird( float dTime )
+{
+	m_Bird.Move( dTime );
 }

@@ -112,6 +112,12 @@
     <Filter Include="BirdHunter\Scene">
       <UniqueIdentifier>{9f3d1bd0-61f8-4ec8-b223-d4d79a7d3fa3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BirdHunter\PlayerCharacter">
+      <UniqueIdentifier>{8f8e37d1-57e0-4165-af79-3ebb05d7019c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BirdHunter\Bird">
+      <UniqueIdentifier>{04745e54-df8b-4d83-a945-46ead24cc8ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -242,7 +248,13 @@
       <Filter>BirdHunter\Scene</Filter>
     </ClCompile>
     <ClCompile Include="NNPlayerCharacter.cpp">
-      <Filter>BirdHunter</Filter>
+      <Filter>BirdHunter\PlayerCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="NNBird.cpp">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClCompile>
+    <ClCompile Include="NNBird_A.cpp">
+      <Filter>BirdHunter\Bird</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -416,7 +428,13 @@
       <Filter>BirdHunter\Scene</Filter>
     </ClInclude>
     <ClInclude Include="NNPlayerCharacter.h">
-      <Filter>BirdHunter</Filter>
+      <Filter>BirdHunter\PlayerCharacter</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBird.h">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBird_A.h">
+      <Filter>BirdHunter\Bird</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
