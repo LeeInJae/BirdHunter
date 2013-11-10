@@ -3,6 +3,7 @@
 
 NNPlayerCharacter::NNPlayerCharacter(void)
 {
+	m_CheckByPoo = false;
 }
 
 

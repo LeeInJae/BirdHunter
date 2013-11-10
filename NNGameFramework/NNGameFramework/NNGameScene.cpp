@@ -9,15 +9,15 @@ NNGameScene::NNGameScene(void )
 	m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 	m_pMap ->SetZindex( 0 );
 
-	m_pCharacter = NNSprite::Create( L"Image/character.png" );
-	m_pCharacter ->SetImageWidth( 100 );
-	m_pCharacter ->SetImageHeight( 100 );
-	m_pCharacter -> SetZindex( 1 );
-	m_pCharacter ->SetPosition( 350, 500 );
+	m_pCharacter.m_pChar = NNSprite::Create( L"Image/character.png" );
+	m_pCharacter.m_pChar -> SetImageWidth( 100 );
+	m_pCharacter.m_pChar -> SetImageHeight( 100 );
+	m_pCharacter.m_pChar -> SetZindex( 1 );
+	m_pCharacter.m_pChar -> SetPosition( 350, 500 );
 
 
 	AddChild( m_pMap );
-	AddChild( m_pCharacter );
+	AddChild( m_pCharacter.m_pChar );
 }
 
 
