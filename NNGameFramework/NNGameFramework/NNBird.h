@@ -22,14 +22,12 @@ public:
 	void	SetBirdDirection( GoingDirection newDirection ) { m_BirdDirection = newDirection; }
 	GoingDirection GetBirdDirection() { return m_BirdDirection; }
 	
-	NNSprite* GetBirdSprite() { return m_pBird; }
-	virtual void Move( float dTime );
+	NNSprite* GetBirdSprite( ) { return m_pBird; }
+	void Move( float dTime );
 
 protected:
 	int		m_BirdSpeed;
 	GoingDirection m_BirdDirection;
-	NNSprite* m_pBird; //좌 우 이미지 2개 저장
-	NNSprite* m_pLeftBird;
-	NNSprite* m_pRightBird;
-	//bool	m_CheckEdge;
+	
+	NNSprite* m_pBird; //좌 우 이미지는 반전으로
 };
