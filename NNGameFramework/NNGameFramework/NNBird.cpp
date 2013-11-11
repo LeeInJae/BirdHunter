@@ -5,6 +5,8 @@
 NNBird::NNBird(void)
 {
 	m_Toggle = -1;
+	m_DeadCheck = false;
+	m_CheckByBullet = false;
 }
 
 

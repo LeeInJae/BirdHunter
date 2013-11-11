@@ -13,8 +13,6 @@ class NNPlayerCharacter : public NNObject
 public:
 	NNPlayerCharacter(void);
 	~NNPlayerCharacter(void);
-
-	bool m_CheckByPoo;
 	
 	NNSprite* GetCharacterSprite() { return m_pChar; }
 	void SetPlayerSpeed( int speed ) { m_PlayerSpeed = speed; }
@@ -22,8 +20,8 @@ public:
 	void Move( float dTime );
 private:
 	NNSprite* m_pChar;
+	bool m_CheckByPoo;
 	int m_PlayerSpeed; //이속증가, 감소 아이템시 사용
 	//좌우가 바뀌는 아이템 사용시 사용
 	//PlayerCharacterDirection m_Direction;
 };
-
