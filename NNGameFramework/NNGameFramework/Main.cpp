@@ -36,7 +36,12 @@ int main()
 	AllocConsole();
 	FILE* pStream;
 	freopen_s(  &pStream, "CONOUT$", "wt", stdout );
-
+// 	while(1)
+// 	{
+// 		NNPoint pos = NNInputSystem::GetInstance() ->GetMousePosition();
+// 		printf_s("%f %f\n", pos );
+// 
+// 	}
 	 NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //  NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
 // 	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );

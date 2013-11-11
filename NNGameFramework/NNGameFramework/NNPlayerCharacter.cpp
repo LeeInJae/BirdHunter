@@ -11,6 +11,8 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	m_pChar -> SetImageHeight( PLAYER_HEIGHT );
 	m_pChar -> SetZindex( 1 );
 	m_pChar -> SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
+	
+	
 }
 
 
@@ -36,6 +38,5 @@ void NNPlayerCharacter::Move( float dTime )
 	default:
 		break;
 	}
-
 	//m_pCharacter.m_Direction = NNInputSystem::GetInstance -> GetDirection();
 }
