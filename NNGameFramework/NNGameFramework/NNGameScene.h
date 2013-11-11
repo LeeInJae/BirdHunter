@@ -2,6 +2,7 @@
 #include "NNScene.h"
 #include "NNPlayerCharacter.h"
 #include "NNBird_A.h"
+#include "NNBIRD_B.h"
 
 class NNSprite;
 //class NNPlayerCharacter; 왜이렇게 하면 안되지?
@@ -19,7 +20,7 @@ public:
 protected:
 	NNSprite* m_pMap;
 	NNPlayerCharacter m_Character;
-	NNBird_A m_Bird;
+	NNBIRD_B m_Bird;
 
 	virtual void Render();
 	virtual void Update( float dTime );

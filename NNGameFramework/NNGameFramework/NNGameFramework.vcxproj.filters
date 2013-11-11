@@ -256,6 +256,12 @@
     <ClCompile Include="NNBird_A.cpp">
       <Filter>BirdHunter\Bird</Filter>
     </ClCompile>
+    <ClCompile Include="NNBIRD_B.cpp">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClCompile>
+    <ClCompile Include="NNBird_C.cpp">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -434,6 +440,12 @@
       <Filter>BirdHunter\Bird</Filter>
     </ClInclude>
     <ClInclude Include="NNBird_A.h">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBIRD_B.h">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBird_C.h">
       <Filter>BirdHunter\Bird</Filter>
     </ClInclude>
   </ItemGroup>

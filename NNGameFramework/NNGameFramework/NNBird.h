@@ -28,6 +28,7 @@ public:
 protected:
 	int		m_BirdSpeed;
 	GoingDirection m_BirdDirection;
-	UINT	firstCheck;
+	int		m_Toggle;
+	bool	m_DeadCheck;
 	NNSprite* m_pBird; //좌 우 이미지는 반전으로
 };
