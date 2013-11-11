@@ -58,6 +58,7 @@ bool NNSceneDirector::ChangeScene( NNScene* scene )
 
 	return true;
 }
+
 bool NNSceneDirector::RenderScene()
 {
 	if ( m_NowScene == nullptr )

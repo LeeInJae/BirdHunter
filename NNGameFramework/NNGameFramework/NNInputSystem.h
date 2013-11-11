@@ -15,6 +15,7 @@ enum KeyState
 	KEY_PRESSED,
 	KEY_UP,
 	KEY_NOTPRESSED,
+	
 };
 
 enum PlayerCharacterDirection
@@ -22,6 +23,14 @@ enum PlayerCharacterDirection
 	LEFT,
 	RIGHT,
 	NONE,
+};
+
+enum SpecialKeyInput
+{
+	ATTACk,
+	ITEM1,
+	ITEM2,
+	NO,
 };
 
 class NNInputSystem
@@ -35,6 +44,7 @@ public:
 	NNPoint GetMousePosition();
 	PlayerCharacterDirection GetDirection() { return m_Direction; }
 	PlayerCharacterDirection CheckWhichPressedKey();
+	SpecialKeyInput			 CheckSpecialPressedKey();
 private:
 	NNInputSystem();
 	~NNInputSystem();

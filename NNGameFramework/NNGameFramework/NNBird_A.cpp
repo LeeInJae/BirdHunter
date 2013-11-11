@@ -7,7 +7,7 @@ NNBird_A::NNBird_A(void)
 {
 	m_BirdSpeed = INIT_BIRD_A_SPEED;
 	InitBirdDirection();
-	sumTime = 0;
+	m_SumTime = 0;
 }
 
 NNBird_A::~NNBird_A(void)
@@ -42,11 +42,11 @@ void NNBird_A::Move( float dTime )
 	
 	//review ¹ÞÀ» °Í
 	/////////////////////////
-	sumTime += dTime;
-	if( sumTime >= 0.5)
+	m_SumTime += dTime;
+	if( m_SumTime >= 0.5)
 	{
 		MakePoo();
-		sumTime = 0;
+		m_SumTime = 0;
 	}
 
 // 	while(1)

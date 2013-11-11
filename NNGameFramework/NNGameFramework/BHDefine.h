@@ -28,3 +28,7 @@
 #define POO_B_SPEED		1
 #define POO_B_WIDTH		150
 #define POO_B_HEIGHT	150
+
+#define BULLET_A_WIDTH  30
+#define BULLET_A_HEIGHT 30
+#define BULLET_A_SPEED  100

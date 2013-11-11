@@ -121,6 +121,9 @@
     <Filter Include="BirdHunter\Poo">
       <UniqueIdentifier>{987cdbdd-efc8-466b-9747-6001740b60b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BirdHunter\Bullet">
+      <UniqueIdentifier>{16302db4-9969-4372-8831-8b330b86a1bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -270,6 +273,12 @@
     </ClCompile>
     <ClCompile Include="NNPoo_A.cpp">
       <Filter>BirdHunter\Poo</Filter>
+    </ClCompile>
+    <ClCompile Include="NNBullet.cpp">
+      <Filter>BirdHunter\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="NNBullet_A.cpp">
+      <Filter>BirdHunter\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -462,6 +471,12 @@
     </ClInclude>
     <ClInclude Include="NNPoo_A.h">
       <Filter>BirdHunter\Poo</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBullet.h">
+      <Filter>BirdHunter\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBullet_A.h">
+      <Filter>BirdHunter\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,8 +13,12 @@ NNGameScene::NNGameScene(void )
 	AddChild( m_pMap );
 	AddChild( m_Character.GetCharacterSprite() );
 	AddChild( m_Bird.GetBirdSprite() );
+
 	if( m_Bird.GetPooSprite() )
 		AddChild( m_Bird.GetPooSprite() );
+
+	if( m_Character.GetBulletSprite() )
+		AddChild( m_Character.GetBulletSprite() );
 }
 
 
@@ -30,6 +34,9 @@ void NNGameScene::Update( float dTime )
 	
 	if( m_Bird.GetPooSprite() )
 		AddChild( m_Bird.GetPooSprite() );
+
+	if( m_Character.GetBulletSprite() )
+		AddChild( m_Character.GetBulletSprite() );
 
 // 	while(1)
 // 	{

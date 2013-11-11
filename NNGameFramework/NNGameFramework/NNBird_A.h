@@ -11,13 +11,13 @@ public:
 	~NNBird_A(void);
 	void Move( float dTime );
 	NNSprite* GetPooSprite();
-	std::list< NNPoo_A* > m_Bird_A_Poo;
+	//std::list< NNPoo_A* > m_Bird_A_Poo;
 	bool IsCheckPooEdge();
 private:
 	void		InitBirdDirection();
 	void		MakePoo();
-	//std::list< NNPoo_A* > m_Bird_A_Poo;
-	float sumTime;
+	std::list< NNPoo_A* > m_Bird_A_Poo;
+	float m_SumTime;
 	//NNPoo_A		m_Bird_A_Poo;
 //	void BirdUpdate( float dTime );
 };
