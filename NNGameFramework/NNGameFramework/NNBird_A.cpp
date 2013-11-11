@@ -43,7 +43,7 @@ void NNBird_A::Move( float dTime )
 	//review ¹ÞÀ» °Í
 	/////////////////////////
 	sumTime += dTime;
-	if( sumTime >= 1)
+	if( sumTime >= 0.5)
 	{
 		MakePoo();
 		sumTime = 0;
