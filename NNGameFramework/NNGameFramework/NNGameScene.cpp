@@ -27,9 +27,31 @@ void NNGameScene::Update( float dTime )
 	NNScene::Update( dTime );
 	//printf(" %f ", dTime );
 	//dTime의 활용 질문하기
-
+	
 	if( m_Bird.GetPooSprite() )
 		AddChild( m_Bird.GetPooSprite() );
+
+// 	while(1)
+// 	{
+// 		bool flag = false;
+// 
+// 		std::list< NNPoo_A* >::iterator pooIter;
+// 		for( pooIter = m_Bird.m_Bird_A_Poo.begin(); pooIter != m_Bird.m_Bird_A_Poo.end(); ++pooIter )
+// 		{
+// 			if ( (( (*pooIter)->GetPooSprite() ) -> GetPositionY() ) >= 100 )
+// 			{
+// 				RemoveChild( (*pooIter)->GetPooSprite(), true );
+// 				m_Bird.m_Bird_A_Poo.erase( pooIter );
+// 				flag = true;
+// 				break;
+// 			}
+// 		}
+// 
+// 		if( flag == false )
+// 		{
+// 			break;
+// 		}
+// 	}
 	MovePlayerCharacter( dTime );
 	MoveBird( dTime );
 }
