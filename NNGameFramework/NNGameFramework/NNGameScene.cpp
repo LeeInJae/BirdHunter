@@ -13,7 +13,8 @@ NNGameScene::NNGameScene(void )
 	AddChild( m_pMap );
 	AddChild( m_Character.GetCharacterSprite() );
 	AddChild( m_Bird.GetBirdSprite() );
-
+	if( m_Bird.GetPooSprite() )
+		AddChild( m_Bird.GetPooSprite() );
 }
 
 
@@ -26,6 +27,9 @@ void NNGameScene::Update( float dTime )
 	NNScene::Update( dTime );
 	//printf(" %f ", dTime );
 	//dTime의 활용 질문하기
+
+	if( m_Bird.GetPooSprite() )
+		AddChild( m_Bird.GetPooSprite() );
 	MovePlayerCharacter( dTime );
 	MoveBird( dTime );
 }

@@ -11,11 +11,12 @@ public:
 
 	void SetPoo( NNPoint BirdPosition );
 	void Move( float dTime );
-private:
+	NNSprite* GetPooSprite() { return m_pPoo; }
+protected:
 	bool m_CheckByPlayer;
 	bool m_CheckByBullet;
 
-	NNSprite*	m_Poo;
+	NNSprite*	m_pPoo;
 	int			m_PooSpeed;
 	int			m_PooLife;
 };

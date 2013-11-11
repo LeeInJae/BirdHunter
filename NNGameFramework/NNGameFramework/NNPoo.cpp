@@ -14,15 +14,15 @@ NNPoo::~NNPoo(void)
 
 void NNPoo::SetPoo( NNPoint BirdPosition )
 {
-	m_Poo->SetPosition( BirdPosition );
+	m_pPoo->SetPosition( BirdPosition );
 }
 
 void NNPoo::Move( float dTime )
 {
-	NNPoint nowPooPosition = m_Poo->GetPosition();
+	NNPoint nowPooPosition = m_pPoo->GetPosition();
 
 	if( nowPooPosition.GetY() <= 600 ) 
 	{
-		m_Poo -> SetPosition( nowPooPosition.GetX, nowPooPosition.GetY() + m_PooSpeed * dTime );
+		m_pPoo -> SetPosition( nowPooPosition.GetX(), nowPooPosition.GetY() + m_PooSpeed * dTime );
 	}
 }

@@ -20,7 +20,7 @@ public:
 protected:
 	NNSprite* m_pMap;
 	NNPlayerCharacter m_Character;
-	NNBIRD_B m_Bird;
+	NNBird_A m_Bird;
 
 	virtual void Render();
 	virtual void Update( float dTime );

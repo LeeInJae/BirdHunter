@@ -1,5 +1,6 @@
 #include "NNBird_A.h"
 #include "BHDefine.h"
+#include "NNGameScene.h"
 
 
 NNBird_A::NNBird_A(void)
@@ -37,4 +38,31 @@ void NNBird_A::InitBirdDirection()
 void NNBird_A::Move( float dTime )
 {
 	NNBird::Move( dTime );
+	
+	MakePoo();
+	std::list< NNPoo_A* >::iterator pooIter;
+
+	for( pooIter = m_Bird_A_Poo.begin(); pooIter != m_Bird_A_Poo.end(); ++pooIter )
+	{
+		(*pooIter)->Move( dTime );
+	}
+}
+
+void NNBird_A::MakePoo()
+{
+	NNPoo_A* newPoo = new NNPoo_A;
+	NNPoint nowBirdPosition = m_pBird->GetPosition();
+	newPoo->SetPosition( nowBirdPosition );
+	newPoo->SetZindex( 4 );
+	m_Bird_A_Poo.push_back( newPoo );
+}
+
+NNSprite* NNBird_A::GetPooSprite()
+{
+	std::list< NNPoo_A* >::iterator pooIter;
+	for( pooIter = m_Bird_A_Poo.begin(); pooIter != m_Bird_A_Poo.end(); ++pooIter )
+	{
+		return (*pooIter)->GetPooSprite();
+	}
+	return false;
 }
