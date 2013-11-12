@@ -8,7 +8,6 @@ NNBIRD_B::NNBIRD_B(void)
 	InitBirdDirection();
 }
 
-
 NNBIRD_B::~NNBIRD_B(void)
 {
 
