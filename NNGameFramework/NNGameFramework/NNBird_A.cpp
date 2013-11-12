@@ -1,11 +1,12 @@
 #include "NNBird_A.h"
 #include "BHDefine.h"
+#include "NNPooManager.h"
 
 NNBird_A::NNBird_A(void)
 {
 	m_BirdSpeed = INIT_BIRD_A_SPEED;
 	InitBirdDirection();
-	//m_SumTime = 0;
+	m_SumTime = 0;
 }
 
 NNBird_A::~NNBird_A(void)
@@ -44,11 +45,11 @@ void NNBird_A::Move( float dTime )
 	
 	//review ¹ÞÀ» °Í
 	/////////////////////////
-//	m_SumTime += dTime;
+	m_SumTime += dTime;
 	
-	//if( m_SumTime >= 0.5)
+	if( m_SumTime >= 0.5)
 	{
-		//MakePoo();
-		//m_SumTime = 0;
+		NNPooManager::GetInstance()->MakePoo( POO_A, GetPosition() );
+		m_SumTime = 0;
 	}
 }

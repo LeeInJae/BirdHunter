@@ -18,6 +18,7 @@ NNGameScene::NNGameScene(void )
 	//AddChild( m_Bird );
 	AddChild( NNPooManager::GetInstance() );
 	AddChild( NNBulletManager::GetInstance() );
+	AddChild( NNBirdFactory::GetInstance() );
 }
 
 
@@ -33,11 +34,11 @@ void NNGameScene::Update( float dTime )
 	m_SumTime += dTime;
 	
 	
-	if( m_SumTime <= 50 )
+	if( m_SumTime >= 2 )
  	{
  		NNBirdFactory::GetInstance() -> MakeBird( Bird_A );
 
-		//m_SumTime = 0;
+		m_SumTime = 0;
  	}
 
 

@@ -16,4 +16,5 @@ public:
 	void Move( float dTime );
 private:
 	void		InitBirdDirection();
+	float		m_SumTime;
 };
