@@ -11,8 +11,8 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	m_pChar -> SetImageHeight( PLAYER_HEIGHT );
 	m_pChar -> SetZindex( 1 );
 	m_pChar -> SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
-
 	m_SumTime = 0;
+	AddChild( m_pChar );
 }
 
 
@@ -61,28 +61,4 @@ void NNPlayerCharacter::Move( float dTime )
 		m_SumTime = 0;
 	}
 
-	std::list< NNBullet_A* >::iterator bulletIter;
-	for( bulletIter = m_Player_Bullet_A.begin(); bulletIter != m_Player_Bullet_A.end(); ++bulletIter )
-	{
-		(*bulletIter)->Move( dTime );
-	}
-}
-
-void NNPlayerCharacter::MakeBullet()
-{
-	NNBullet_A* newBullet = new NNBullet_A;
-
-	NNPoint nowCharacterPosition = m_pChar->GetPosition();
-	( newBullet->GetBulletSprite() )->SetPosition( nowCharacterPosition );
-	( newBullet->GetBulletSprite() )->SetZindex( 4 );
-	m_Player_Bullet_A.push_back( newBullet );
-}
-
-NNSprite* NNPlayerCharacter::GetBulletSprite()
-{
-	if( m_Player_Bullet_A.empty() )
-		return false;
-	return (m_Player_Bullet_A.back())->GetBulletSprite();
-
-	return false;
 }

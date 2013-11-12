@@ -5,21 +5,13 @@
 
 NNGameScene::NNGameScene(void )
 {
-	m_pMap = NNSprite::Create( L"Image/map.png" );
-	m_pMap -> SetImageWidth( RESOLUTION_WIDTH );
-	m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
-	m_pMap ->SetZindex( 0 );
+	m_Map = new NNMap_A;
+	m_Character = new NNPlayerCharacter;
+	m_Bird	=	new NNBird_A;
 
-	AddChild( m_pMap );
-	AddChild( m_Character.GetCharacterSprite() );
-	//AddChild( m_Character.GetCharacterSprite() );
-	AddChild( m_Bird.GetBirdSprite() );
-
-// 	if( m_Bird.GetPooSprite() )
-// 		AddChild( m_Bird.GetPooSprite() );
-// 
-// 	if( m_Character.GetBulletSprite() )
-// 		AddChild( m_Character.GetBulletSprite() );
+	AddChild( m_Map );
+	AddChild( m_Character );
+	AddChild( m_Bird );
 }
 
 
@@ -30,15 +22,7 @@ NNGameScene::~NNGameScene(void)
 void NNGameScene::Update( float dTime )
 {
 	NNScene::Update( dTime );
-	//printf(" %f ", dTime );
-	//dTime의 활용 질문하기
 	
-	if( m_Bird.GetPooSprite() )
-		AddChild( m_Bird.GetPooSprite() );
-
-	if( m_Character.GetBulletSprite() )
-		AddChild( m_Character.GetBulletSprite() );
-
 	MovePlayerCharacter( dTime );
 	MoveBird( dTime );
 }
@@ -50,10 +34,10 @@ void NNGameScene::Render()
 
 void NNGameScene::MovePlayerCharacter( float dTime )
 {
-	m_Character.Move( dTime );
+	m_Character -> Move( dTime );
 }
 
 void NNGameScene::MoveBird( float dTime )
 {
-	m_Bird.Move( dTime );
+	m_Bird -> Move( dTime );
 }

@@ -8,7 +8,6 @@ class NNBullet : public NNObject
 public:
 	NNBullet(void);
 	virtual ~NNBullet(void);
-	NNSprite* GetBulletSprite() { return m_pBullet; }
 	void Move( float dTime );
 protected:
 	bool		m_CheckByPoo;

@@ -33,6 +33,7 @@ void NNBird_A::InitBirdDirection()
 	m_pBird->SetImageHeight( BIRD_HEIGHT );
 	m_pBird->SetImageWidth( BIRD_WIDTH );
 	m_pBird->SetZindex( 2 );
+	AddChild( m_pBird );
 }
 
 void NNBird_A::Move( float dTime )
@@ -45,59 +46,7 @@ void NNBird_A::Move( float dTime )
 	
 	if( m_SumTime >= 0.5)
 	{
-	//	MakePoo();
+		//MakePoo();
 		m_SumTime = 0;
 	}
-
-// 	while(1)
-// 	{
-// 		bool flag = false;
-// 
-// 		std::list< NNPoo_A* >::iterator pooIter;
-// 		for( pooIter = m_Bird_A_Poo.begin(); pooIter != m_Bird_A_Poo.end(); ++pooIter )
-// 		{
-// 			if ( (( (*pooIter)->GetPooSprite() ) -> GetPositionY() ) >= 100 )
-// 			{
-// 				m_Bird_A_Poo.erase( pooIter );
-// 				flag = true;
-// 				break;
-// 			}
-// 		}
-// 
-// 		if( flag == false )
-// 		{
-// 			break;
-// 		}
-// 	}
-	std::list< NNPoo_A* >::iterator pooIter;
-	for( pooIter = m_Bird_A_Poo.begin(); pooIter != m_Bird_A_Poo.end(); ++pooIter )
-	{
-		(*pooIter)->Move( dTime );
-	}
-}
-
-void NNBird_A::MakePoo()
-{
-	NNPoo_A* newPoo = new NNPoo_A;
-	
-	NNPoint nowBirdPosition = m_pBird->GetPosition();
-	( newPoo->GetPooSprite() )->SetPosition( nowBirdPosition );
-	( newPoo->GetPooSprite() )->SetZindex( 4 );
-	m_Bird_A_Poo.push_back( newPoo );
-
-//	delete newPoo;
-}
-
-NNSprite* NNBird_A::GetPooSprite()
-{
-	if( m_Bird_A_Poo.empty())
-		return false;
-	return (m_Bird_A_Poo.back())->GetPooSprite();
-
-	return false;
-}
-
-bool NNBird_A::IsCheckPooEdge()
-{
-	return false;
 }

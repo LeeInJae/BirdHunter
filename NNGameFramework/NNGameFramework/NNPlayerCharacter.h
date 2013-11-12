@@ -20,7 +20,6 @@ public:
 	int GetPlayerSpeed() { return m_PlayerSpeed; }
 	void Move( float dTime );
 	void BulletMove( float dTime );
-	NNSprite* GetBulletSprite();
 private:
 	NNSprite* m_pChar;
 	bool m_CheckByPoo;
@@ -28,7 +27,4 @@ private:
 	//좌우가 바뀌는 아이템 사용시 사용
 	//PlayerCharacterDirection m_Direction;
 	float m_SumTime;
-	void MakeBullet();
-	std::list< NNBullet_A* > m_Player_Bullet_A;
-	float sumTime;
 };

@@ -11,7 +11,6 @@ public:
 
 	void SetPoo( NNPoint BirdPosition );
 	void Move( float dTime );
-	NNSprite* GetPooSprite() { return m_pPoo; }
 
 protected:
 	bool m_CheckByPlayer;

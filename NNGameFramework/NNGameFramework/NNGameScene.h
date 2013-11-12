@@ -3,6 +3,7 @@
 #include "NNPlayerCharacter.h"
 #include "NNBird_A.h"
 #include "NNBIRD_B.h"
+#include "NNMap_A.h"
 
 class NNSprite;
 //class NNPlayerCharacter; 왜이렇게 하면 안되지?
@@ -16,11 +17,11 @@ public:
 	~NNGameScene(void);
 	
 	NNCREATE_FUNC( NNGameScene );
-
+	
 protected:
-	NNSprite* m_pMap;
-	NNPlayerCharacter m_Character;
-	NNBird_A m_Bird;
+	NNMap_A*			m_Map;
+	NNPlayerCharacter*	m_Character;
+	NNBird_A*			m_Bird;
 
 	virtual void Render();
 	virtual void Update( float dTime );

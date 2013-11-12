@@ -14,7 +14,7 @@ class NNBird : public NNObject
 {
 public:
 	NNBird(void);
-	virtual ~NNBird(void);
+	~NNBird(void);
 	
 	void	SetBirdSpeed( int speed )	{ m_BirdSpeed = speed; }
 	int		GetBirdSpeed()				{ return m_BirdSpeed; }

@@ -124,6 +124,9 @@
     <Filter Include="BirdHunter\Bullet">
       <UniqueIdentifier>{16302db4-9969-4372-8831-8b330b86a1bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BirdHunter\Map">
+      <UniqueIdentifier>{22d76370-a30c-41d8-8a12-2926045027d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -279,6 +282,12 @@
     </ClCompile>
     <ClCompile Include="NNBullet_A.cpp">
       <Filter>BirdHunter\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="NNMap.cpp">
+      <Filter>BirdHunter\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="NNMap_A.cpp">
+      <Filter>BirdHunter\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -477,6 +486,12 @@
     </ClInclude>
     <ClInclude Include="NNBullet_A.h">
       <Filter>BirdHunter\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="NNMap.h">
+      <Filter>BirdHunter\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="NNMap_A.h">
+      <Filter>BirdHunter\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
