@@ -21,6 +21,6 @@ private:
 	void RemoveCheck();
 
 	std::list< NNBird_A* > m_Bird_A;
-	std::list< NNBIRD_B*  > m_Bird_B;
-	std::list< NNBird_C*  > m_Bird_C;
+	std::list< NNBIRD_B* > m_Bird_B;
+	std::list< NNBird_C* > m_Bird_C;
 };

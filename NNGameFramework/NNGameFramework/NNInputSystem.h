@@ -49,7 +49,6 @@ private:
 	NNInputSystem();
 	~NNInputSystem();
 	
-	
 	static NNInputSystem* m_pInstance;
 
 	PlayerCharacterDirection m_Direction;

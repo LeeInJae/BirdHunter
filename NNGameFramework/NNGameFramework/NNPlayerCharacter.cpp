@@ -52,7 +52,7 @@ void NNPlayerCharacter::Move( float dTime )
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
 		case ATTACK:
-			NNBulletManager::GetInstance()->MakeBullet( Bullet_A, GetPosition() );
+ 	  		NNBulletManager::GetInstance()->MakeBullet( Bullet_A, GetPosition() );
 			break;
 
 		case ITEM1:
