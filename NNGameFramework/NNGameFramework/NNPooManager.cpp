@@ -1,6 +1,26 @@
 #include "NNPooManager.h"
 #include "NNPoo_A.h"
 
+NNPooManager* NNPooManager::m_pInstance = nullptr;
+
+NNPooManager* NNPooManager::GetInstance()
+{
+	if ( m_pInstance == nullptr )
+	{
+		m_pInstance = new NNPooManager();
+	}
+
+	return m_pInstance;
+}
+
+void NNPooManager::ReleaseInstance()
+{
+	if ( m_pInstance != nullptr )
+	{
+		delete m_pInstance;
+		m_pInstance = nullptr;
+	}
+}
 
 NNPooManager::NNPooManager(void)
 {
@@ -17,7 +37,7 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 	{
 	case POO_A:
 		NNPoo_A* newPoo;
-		newPoo = new NNPoo_A;
+		newPoo = new NNPoo_A();
 		m_Poo_A.push_back( newPoo );
 		newPoo->SetPosition( birdPosition );
 		AddChild( newPoo );
@@ -40,4 +60,9 @@ void NNPooManager::Move( float dTime )
 	{
 		(*poo_A_Iter) -> Move( dTime );
 	}
+}
+
+void NNPooManager::RemoveCheck()
+{
+
 }

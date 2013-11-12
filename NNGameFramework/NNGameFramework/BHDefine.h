@@ -39,3 +39,10 @@ enum BulletType
 	Bullet_B,
 	Bullet_C,
 };
+
+enum BirdType
+{
+	Bird_A,
+	Bird_B,
+	Bird_C,
+};

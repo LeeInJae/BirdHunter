@@ -295,6 +295,9 @@
     <ClCompile Include="NNBulletManager.cpp">
       <Filter>BirdHunter\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="NNBirdFactory.cpp">
+      <Filter>BirdHunter\Bird</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -504,6 +507,9 @@
     </ClInclude>
     <ClInclude Include="NNBulletManager.h">
       <Filter>BirdHunter\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBirdFactory.h">
+      <Filter>BirdHunter\Bird</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

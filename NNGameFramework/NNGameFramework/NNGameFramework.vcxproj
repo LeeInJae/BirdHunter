@@ -108,6 +108,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="NNBird.cpp" />
+    <ClCompile Include="NNBirdFactory.cpp" />
     <ClCompile Include="NNBird_A.cpp" />
     <ClCompile Include="NNBIRD_B.cpp" />
     <ClCompile Include="NNBird_C.cpp" />
@@ -176,6 +177,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="NNBird.h" />
+    <ClInclude Include="NNBirdFactory.h" />
     <ClInclude Include="NNBird_A.h" />
     <ClInclude Include="NNBIRD_B.h" />
     <ClInclude Include="NNBird_C.h" />
