@@ -30,5 +30,6 @@ protected:
 	void MovePlayerCharacter( float dTime );
 	void MoveBird( float dTime );
 	void MovePoo( float dTime );
+	void MoveBullet( float dTime );
 	float m_SumTime;
 };

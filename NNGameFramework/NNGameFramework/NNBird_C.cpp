@@ -28,10 +28,12 @@ void NNBird_C::InitBirdDirection()
 	else
 		m_pBird = NNSprite::Create( L"Image/BIRD_C_RIGHT.png" );
 
-	m_pBird->SetPosition( BirdSetPosition );
+	SetPosition( BirdSetPosition );
+
 	m_pBird->SetImageHeight( BIRD_HEIGHT );
-	m_pBird->SetImageWidth( BIRD_WIDTH );
-	m_pBird->SetZindex( 2 );
+	m_pBird->SetImageWidth( BIRD_WIDTH );	
+	SetZindex( 2 );
+	AddChild( m_pBird );
 }
 
 void NNBird_C::Move( float dTime )

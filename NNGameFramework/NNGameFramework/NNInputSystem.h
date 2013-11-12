@@ -27,7 +27,7 @@ enum PlayerCharacterDirection
 
 enum SpecialKeyInput
 {
-	ATTACk,
+	ATTACK,
 	ITEM1,
 	ITEM2,
 	NO,

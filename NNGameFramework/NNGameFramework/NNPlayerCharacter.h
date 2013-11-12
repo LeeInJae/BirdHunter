@@ -3,11 +3,14 @@
 #include "NNSprite.h"
 #include "NNInputSystem.h"
 #include "NNBullet_A.h"
+#include "BHDefine.h"
 
 //class NNSptie;
 //이렇게 하니 m_pchar 에러
 
 //캐릭터 클래스, has a Bullet 추가 요망
+
+
 
 class NNPlayerCharacter : public NNObject
 {
@@ -20,6 +23,7 @@ public:
 	int GetPlayerSpeed() { return m_PlayerSpeed; }
 	void Move( float dTime );
 	void BulletMove( float dTime );
+
 private:
 	NNSprite* m_pChar;
 	bool m_CheckByPoo;

@@ -19,10 +19,10 @@ void NNPoo::SetPoo( NNPoint BirdPosition )
 
 void NNPoo::Move( float dTime )
 {
+	if( GetPositionY() <= 600 ) 
+	{
+		SetPosition( GetPositionX(), GetPositionY() + m_PooSpeed * dTime );
+	}
 	NNPoint nowPooPosition = m_pPoo->GetPosition();
 
-	if( nowPooPosition.GetY() <= 600 ) 
-	{
-		m_pPoo -> SetPosition( nowPooPosition.GetX(), nowPooPosition.GetY() + m_PooSpeed * dTime );
-	}
 }

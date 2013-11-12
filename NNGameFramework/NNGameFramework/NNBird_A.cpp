@@ -21,7 +21,7 @@ void NNBird_A::InitBirdDirection()
 	BirdSetPosition.SetX( (float) (rand() % 800) );
 	BirdSetPosition.SetY( (float) (rand() % 50) );
 	
-		( checkDirection == 0 ) ? m_BirdDirection = LEFT_GO : m_BirdDirection = RIGHT_GO;
+	( checkDirection == 0 ) ? m_BirdDirection = LEFT_GO : m_BirdDirection = RIGHT_GO;
 
 	
 	if( m_BirdDirection == LEFT_GO )
@@ -29,10 +29,11 @@ void NNBird_A::InitBirdDirection()
 	else
 		m_pBird = NNSprite::Create( L"Image/BIRD_A_RIGHT.png" );
 	
-	m_pBird->SetPosition( BirdSetPosition );
+	SetPosition( BirdSetPosition );
+
 	m_pBird->SetImageHeight( BIRD_HEIGHT );
-	m_pBird->SetImageWidth( BIRD_WIDTH );
-	m_pBird->SetZindex( 2 );
+	m_pBird->SetImageWidth( BIRD_WIDTH );	
+	SetZindex( 2 );
 	AddChild( m_pBird );
 }
 

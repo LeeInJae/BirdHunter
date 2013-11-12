@@ -32,3 +32,10 @@
 #define BULLET_A_WIDTH  30
 #define BULLET_A_HEIGHT 30
 #define BULLET_A_SPEED  100
+
+enum BulletType
+{
+	Bullet_A,
+	Bullet_B,
+	Bullet_C,
+};

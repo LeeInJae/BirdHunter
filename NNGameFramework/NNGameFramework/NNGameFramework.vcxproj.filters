@@ -292,6 +292,9 @@
     <ClCompile Include="NNPooManager.cpp">
       <Filter>BirdHunter\Poo</Filter>
     </ClCompile>
+    <ClCompile Include="NNBulletManager.cpp">
+      <Filter>BirdHunter\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -498,6 +501,9 @@
     </ClInclude>
     <ClInclude Include="NNPooManager.h">
       <Filter>BirdHunter\Poo</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBulletManager.h">
+      <Filter>BirdHunter\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

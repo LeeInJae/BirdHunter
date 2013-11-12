@@ -2,6 +2,7 @@
 #include "NNSprite.h"
 #include "BHDefine.h"
 #include "NNInputSystem.h"
+#include "NNBulletManager.h"
 
 NNGameScene::NNGameScene(void )
 {
@@ -16,6 +17,7 @@ NNGameScene::NNGameScene(void )
 	AddChild( m_Character );
 	AddChild( m_Bird );
 	AddChild( m_PooManager );
+	AddChild( NNBulletManager::GetInstance() );
 }
 
 
@@ -29,14 +31,17 @@ void NNGameScene::Update( float dTime )
 	
 
 	m_SumTime += dTime;
+	
 	if( m_SumTime >= 5 )
 	{
-		NNPoint birdPosition = (m_Bird->GetBirdSprite()) -> GetPosition();
+		NNPoint birdPosition = (m_Bird-> GetPosition() );
 
 		m_PooManager->MakePoo( POO_A, birdPosition );
 		m_SumTime = 0;
 	}
+
 	MovePlayerCharacter( dTime );
+	MoveBullet( dTime );
 	MoveBird( dTime );
 	MovePoo( dTime );
 }
@@ -59,4 +64,9 @@ void NNGameScene::MoveBird( float dTime )
 void NNGameScene::MovePoo( float dTime )
 {
 	m_PooManager -> Move( dTime );
+}
+
+void NNGameScene::MoveBullet( float dTime )
+{
+	NNBulletManager::GetInstance()->Move( dTime );
 }

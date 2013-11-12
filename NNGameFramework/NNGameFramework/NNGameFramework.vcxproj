@@ -112,6 +112,7 @@
     <ClCompile Include="NNBIRD_B.cpp" />
     <ClCompile Include="NNBird_C.cpp" />
     <ClCompile Include="NNBullet.cpp" />
+    <ClCompile Include="NNBulletManager.cpp" />
     <ClCompile Include="NNBullet_A.cpp" />
     <ClCompile Include="NNCamera.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="NNBIRD_B.h" />
     <ClInclude Include="NNBird_C.h" />
     <ClInclude Include="NNBullet.h" />
+    <ClInclude Include="NNBulletManager.h" />
     <ClInclude Include="NNBullet_A.h" />
     <ClInclude Include="NNCamera.h" />
     <ClInclude Include="NNConfig.h" />

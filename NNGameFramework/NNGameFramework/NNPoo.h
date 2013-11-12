@@ -7,7 +7,7 @@ class NNPoo : public NNObject
 {
 public:
 	NNPoo(void);
-	virtual ~NNPoo(void);
+	~NNPoo(void);
 
 	void SetPoo( NNPoint BirdPosition );
 	void Move( float dTime );
