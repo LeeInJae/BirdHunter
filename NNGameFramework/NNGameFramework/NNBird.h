@@ -23,6 +23,9 @@ public:
 	GoingDirection GetBirdDirection() { return m_BirdDirection; }
 	
 	NNSprite* GetBirdSprite( ) { return m_pBird; }
+
+	// agebreak : Move 함수가 아니라 Update()를 오버라이딩 할것. 
+	// Update는 자동으로 Object에서 호출되기 때문에 추가 호출할 필요가 없음
 	void Move( float dTime );
 
 protected:

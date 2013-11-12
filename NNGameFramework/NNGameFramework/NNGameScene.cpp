@@ -39,6 +39,10 @@ void NNGameScene::Update( float dTime )
 // 		m_SumTime = 0;
 // 	}
 
+
+	// agebreak : Move()가 아니라 각각 클래스에서 Update()를 오버라이딩하면, 
+	// 부모 오브젝트에서 자동으로 호출되기 때문에, 따로 이렇게 Move를 처리해주지 않아도 됨. 
+
 	MovePlayerCharacter( dTime );
 	MoveBullet( dTime );
 	MoveBird( dTime );
@@ -52,6 +56,7 @@ void NNGameScene::Render()
 
 void NNGameScene::MovePlayerCharacter( float dTime )
 {
+	// agebreak : 포인터 연산자(->)를 사용할때는 공백을 뛰우지 않음!
 	m_Character -> Move( dTime );
 }
 

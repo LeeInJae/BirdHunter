@@ -31,6 +31,8 @@ void NNPlayerCharacter::Move( float dTime )
 	switch( NNInputSystem::GetInstance() -> CheckWhichPressedKey() )
 	{
 	case LEFT:
+		// agebreak : 0, 700 같은 상수를 사용하지 말고, Define을 사용하여 명확하게 할것. 
+
 		if( GetPositionX() - m_PlayerSpeed * dTime >= 0 )
 			SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
 		break;

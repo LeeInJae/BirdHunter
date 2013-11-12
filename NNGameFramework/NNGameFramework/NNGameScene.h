@@ -11,6 +11,8 @@ class NNSprite;
 //헤더파일 추가하니까 됨
 //리뷰 받을 것
 
+// agebreak : CPP에 헤더 파일을 추가할것. 전방 선언하고 cpp에서 헤더파일을 추가하지 않으면, 참조할 수 없음
+
 class NNGameScene : public NNScene
 {
 public:

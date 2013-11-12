@@ -14,6 +14,9 @@ NNBIRD_B::~NNBIRD_B(void)
 
 }
 
+// agebreak : 각각 이미지와 속도만 다른 Bird를 상속받을 필요가 있을까? 
+// 그냥 객체로 생성해서, 다르게 만들면 되지 않을까? 
+// 수업 시간에 팩토리 패턴에 대해서 강의를 요청할 것
 void NNBIRD_B::InitBirdDirection()
 {
 	int checkDirection = rand() % 2;

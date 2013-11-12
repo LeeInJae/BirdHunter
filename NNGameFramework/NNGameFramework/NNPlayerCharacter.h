@@ -7,6 +7,7 @@
 
 //class NNSptie;
 //이렇게 하니 m_pchar 에러
+// agebreak : 클래스의 전방 선언을 하고 나서는 CPP에서 헤더파일을 추가하지 않으면, 에러가 발생함
 
 //캐릭터 클래스, has a Bullet 추가 요망
 
