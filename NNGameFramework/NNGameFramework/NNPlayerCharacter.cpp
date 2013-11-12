@@ -41,12 +41,12 @@ void NNPlayerCharacter::Move( float dTime )
 
 
 	m_SumTime += dTime;
-	//if( m_SumTime >= 0.5)
+	if( m_SumTime >= 0.5)
 	{
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
 		case ATTACk:
-			MakeBullet();
+			//MakeBullet();
 			break;
 
 		case ITEM1:
@@ -58,17 +58,14 @@ void NNPlayerCharacter::Move( float dTime )
 		default:
 			break;
 		}
-		//MakeBullet();
 		m_SumTime = 0;
 	}
-	//m_pCharacter.m_Direction = NNInputSystem::GetInstance -> GetDirection();
 
 	std::list< NNBullet_A* >::iterator bulletIter;
 	for( bulletIter = m_Player_Bullet_A.begin(); bulletIter != m_Player_Bullet_A.end(); ++bulletIter )
 	{
 		(*bulletIter)->Move( dTime );
 	}
-	////////////////////////////////////
 }
 
 void NNPlayerCharacter::MakeBullet()
@@ -79,8 +76,6 @@ void NNPlayerCharacter::MakeBullet()
 	( newBullet->GetBulletSprite() )->SetPosition( nowCharacterPosition );
 	( newBullet->GetBulletSprite() )->SetZindex( 4 );
 	m_Player_Bullet_A.push_back( newBullet );
-
-	//	delete newPoo;
 }
 
 NNSprite* NNPlayerCharacter::GetBulletSprite()

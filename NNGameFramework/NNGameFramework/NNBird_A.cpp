@@ -2,7 +2,6 @@
 #include "BHDefine.h"
 #include "NNGameScene.h"
 
-
 NNBird_A::NNBird_A(void)
 {
 	m_BirdSpeed = INIT_BIRD_A_SPEED;
@@ -43,9 +42,10 @@ void NNBird_A::Move( float dTime )
 	//review ¹ÞÀ» °Í
 	/////////////////////////
 	m_SumTime += dTime;
+	
 	if( m_SumTime >= 0.5)
 	{
-		MakePoo();
+	//	MakePoo();
 		m_SumTime = 0;
 	}
 
@@ -74,7 +74,6 @@ void NNBird_A::Move( float dTime )
 	{
 		(*pooIter)->Move( dTime );
 	}
-	////////////////////////////////////
 }
 
 void NNBird_A::MakePoo()

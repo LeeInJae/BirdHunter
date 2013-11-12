@@ -27,4 +27,3 @@ protected:
 	void MovePlayerCharacter( float dTime );
 	void MoveBird( float dTime );
 };
-

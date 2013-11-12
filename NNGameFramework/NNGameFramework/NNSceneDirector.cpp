@@ -1,8 +1,6 @@
 
 #include "NNSceneDirector.h"
 
-
-
 NNSceneDirector* NNSceneDirector::m_pInstance = nullptr;
 
 NNSceneDirector::NNSceneDirector()
