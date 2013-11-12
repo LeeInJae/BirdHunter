@@ -9,4 +9,3 @@ public:
 	~NNBullet_A(void);
 	void Move( float dTime );
 };
-

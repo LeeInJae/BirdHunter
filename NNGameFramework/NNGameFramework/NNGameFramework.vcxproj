@@ -124,6 +124,7 @@
     <ClCompile Include="NNPlayerCharacter.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNPoo.cpp" />
+    <ClCompile Include="NNPooManager.cpp" />
     <ClCompile Include="NNPoo_A.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
     <ClCompile Include="NNScene.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="NNPlayerCharacter.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNPoo.h" />
+    <ClInclude Include="NNPooManager.h" />
     <ClInclude Include="NNPoo_A.h" />
     <ClInclude Include="NNRenderer.h" />
     <ClInclude Include="NNResourceManager.h" />

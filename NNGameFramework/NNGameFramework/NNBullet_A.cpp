@@ -9,6 +9,7 @@ NNBullet_A::NNBullet_A(void)
 	m_pBullet -> SetImageHeight( BULLET_A_HEIGHT );
 	m_pBullet -> SetZindex( 4 );
 	m_BulletSpeed = BULLET_A_SPEED;
+	AddChild( m_pBullet );
 }
 
 

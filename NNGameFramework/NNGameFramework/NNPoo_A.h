@@ -9,4 +9,3 @@ public:
 
 	void Move( float dTime );
 };
-

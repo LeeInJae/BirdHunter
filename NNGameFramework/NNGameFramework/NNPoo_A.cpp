@@ -1,7 +1,6 @@
 #include "NNPoo_A.h"
 #include "BHDefine.h"
 
-
 NNPoo_A::NNPoo_A(void)
 {
 	m_PooSpeed = POO_A_SPEED;
@@ -9,6 +8,7 @@ NNPoo_A::NNPoo_A(void)
 	m_pPoo -> SetImageWidth( POO_A_WIDTH );
 	m_pPoo -> SetImageHeight( POO_A_HEIGHT );
 	m_pPoo -> SetZindex( 3 );
+	AddChild( m_pPoo );
 }
 
 
