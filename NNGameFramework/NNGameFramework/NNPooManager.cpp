@@ -1,5 +1,6 @@
 #include "NNPooManager.h"
 #include "NNPoo_A.h"
+#include "BHDefine.h"
 
 NNPooManager* NNPooManager::m_pInstance = nullptr;
 
@@ -64,9 +65,30 @@ void NNPooManager::Move( float dTime )
 	{
 		(*poo_A_Iter) -> Move( dTime );
 	}
+	RemoveCheck();
 }
 
 void NNPooManager::RemoveCheck()
 {
+	std::list< NNPoo_A* >::iterator poo_A_Iter = m_Poo_A.begin();
 
+	//반복자 이용 리스트에서 원소 삭제하는 것 에러 질문.(삭제하고 난 뒤 반복자가 바뀌는 듯)
+	for( poo_A_Iter = m_Poo_A.begin(); poo_A_Iter != m_Poo_A.end(); )
+	{
+		if( (*poo_A_Iter) -> GetPositionY() >= RESOLUTION_HEIGHT )
+		{
+			auto pBullet = *poo_A_Iter;
+
+			// 리스트에서 삭제. 반환값은 다음 원소이다.
+			//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
+			poo_A_Iter =  m_Poo_A.erase( poo_A_Iter );	
+
+			// 객체 해제
+			RemoveChild(pBullet);
+		}
+		else
+		{
+			++poo_A_Iter;
+		}
+	}
 }
