@@ -2,7 +2,6 @@
 #include "BHDefine.h"
 #include "NNBulletManager.h"
 
-
 NNPlayerCharacter::NNPlayerCharacter(void)
 {
 	m_CheckByPoo = false;
@@ -14,20 +13,24 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	//m_pChar -> SetZindex( 1 );
 	//m_pChar -> SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
 	
+	//WS_POPUPWINDOW : 타이틀바를 없앰
+	//dTime을 이용하여 프레임 자체를 빠르게 또는 느리게( 전체 속도를 조절 가능)
+	
 	SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
 	SetZindex( 1 );
 	m_SumTime = 0;
 	AddChild( m_pChar );
 }
 
-
 NNPlayerCharacter::~NNPlayerCharacter(void)
 {
+
 }
 
 void NNPlayerCharacter::Move( float dTime )
 {
 	NNPoint wich = GetPosition();
+	
 	switch( NNInputSystem::GetInstance() -> CheckWhichPressedKey() )
 	{
 	case LEFT:
@@ -47,7 +50,7 @@ void NNPlayerCharacter::Move( float dTime )
 
 	m_SumTime += dTime;
 
-	if( m_SumTime >= 0.5)
+	if( m_SumTime >= 0.1)
 	{
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{

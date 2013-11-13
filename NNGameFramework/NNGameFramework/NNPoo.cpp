@@ -1,10 +1,10 @@
 #include "NNPoo.h"
+#include "BHDefine.h"
 
 
 NNPoo::NNPoo(void)
 {
-	m_CheckByBullet = false;
-	m_CheckByPlayer = false;
+	
 }
 
 
@@ -24,6 +24,17 @@ void NNPoo::Move( float dTime )
 	{
 		SetPosition( GetPositionX(), GetPositionY() + m_PooSpeed * dTime );
 	}
-	NNPoint nowPooPosition = m_pPoo->GetPosition();
+}
 
+void NNPoo::SetProperty( POO_PROPERTY poo_property )
+{
+	m_CheckByBullet = false;
+	m_CheckByPlayer = false;
+
+	m_PooSpeed = poo_property.speed;
+	m_pPoo = NNSprite::Create( poo_property.sprite_path );
+	m_pPoo -> SetImageWidth( poo_property.setImageWidth );
+	m_pPoo -> SetImageHeight( poo_property.setImageHeight );
+	m_pPoo -> SetZindex( poo_property.zindex );
+	AddChild( m_pPoo );
 }

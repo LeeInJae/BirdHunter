@@ -1,6 +1,7 @@
 #pragma once
 #include "NNSprite.h"
 #include "NNObject.h"
+#include "BHDefine.h"
 
 
 class NNPoo : public NNObject
@@ -10,6 +11,7 @@ public:
 	~NNPoo(void);
 
 	void SetPoo( NNPoint BirdPosition );
+	void SetProperty( POO_PROPERTY poo_property );
 	void Move( float dTime );
 
 protected:

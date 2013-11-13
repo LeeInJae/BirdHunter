@@ -4,11 +4,12 @@ NNBirdFactory* NNBirdFactory::m_pInstance = nullptr;
 
 NNBirdFactory::NNBirdFactory(void)
 {
-}
 
+}
 
 NNBirdFactory::~NNBirdFactory(void)
 {
+
 }
 
 NNBirdFactory* NNBirdFactory::GetInstance()
@@ -33,22 +34,43 @@ void NNBirdFactory::ReleaseInstance()
 void NNBirdFactory::MakeBird( BirdType type )
 {
 	NNPoint BirdSetPosition;
-	BirdSetPosition.SetX( (float) (rand() % 800) );
-	BirdSetPosition.SetY( (float) (rand() % 50) );
+
+	BIRD_PROPERTY bird_Property;
+
+	BirdSetPosition.SetX( (float) (rand() % BIRD_SET_MAX_WIDTH ) );
+	BirdSetPosition.SetY( (float) (rand() % BIRD_SET_MAX_HEIGHT) );
+
+	int checkDirection = rand() % 2;
+
+	( checkDirection == 0 ) ? bird_Property.goingDirection = LEFT_GO : bird_Property.goingDirection = RIGHT_GO;
 
 	switch ( type )
 	{
-	case Bird_A:
-		NNBird_A* newBird;
-		newBird = new NNBird_A();
-		newBird->SetPosition( BirdSetPosition );
-		m_Bird_A.push_back( newBird );
-		AddChild( newBird );
+	case NORMAL_BIRD:
+		if( bird_Property.goingDirection == LEFT_GO )
+			bird_Property.sprite_path =  NORMAL_BIRD_LEFT_SPRITE;
+		else
+			bird_Property.sprite_path = NORMAL_BIRD_RIGHT_SPRITE;
+
+		bird_Property.speed = NORMAL_BIRD_SPEED;
+		bird_Property.setImageHeight = NORMAL_BIRD_HEIGHT;
+		bird_Property.setImageWidth = NORMAL_BIRD_WIDTH;
+		bird_Property.zindex = 2;
+
+		NNBird* p_newBird;
+
+		p_newBird = new NNBird();
+		p_newBird->SetBirdProperty( bird_Property );
+		p_newBird->SetPosition( BirdSetPosition );
+		m_Bird.push_back( p_newBird );
+		
+		AddChild( p_newBird );
+
 		break;
-	case Bird_B:
-		break;
-	case Bird_C:
-		break;
+	//case Bird_B:
+		//break;
+	//case Bird_C:
+		//break;
 	default:
 		break;
 	}
@@ -56,10 +78,10 @@ void NNBirdFactory::MakeBird( BirdType type )
 
 void NNBirdFactory::Move( float dTime )
 {
-	if( !m_Bird_A.empty() )
+	if( !m_Bird.empty() )
 	{
-		std::list< NNBird_A* >::iterator bird_A_Iter = m_Bird_A.begin();
-		for( bird_A_Iter = m_Bird_A.begin(); bird_A_Iter != m_Bird_A.end(); ++bird_A_Iter )
+		std::list< NNBird* >::iterator bird_A_Iter = m_Bird.begin();
+		for( bird_A_Iter = m_Bird.begin(); bird_A_Iter != m_Bird.end(); ++bird_A_Iter )
 		{
 			(*bird_A_Iter) -> Move( dTime );
 		}

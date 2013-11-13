@@ -36,7 +36,7 @@ void NNGameScene::Update( float dTime )
 	
 	if( m_SumTime >= 2 )
  	{
- 		NNBirdFactory::GetInstance() -> MakeBird( Bird_A );
+ 		NNBirdFactory::GetInstance() -> MakeBird( NORMAL_BIRD );
 
 		m_SumTime = 0;
  	}

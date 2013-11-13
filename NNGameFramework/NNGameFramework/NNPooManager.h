@@ -22,7 +22,7 @@ private:
 	NNPooManager(void);
 	~NNPooManager(void);
 
-	std::list< NNPoo_A* > m_Poo_A;
+	std::list< NNPoo* > m_Poo;
 	static NNPooManager* m_pInstance;
 	void RemoveCheck();
 // 	std::list< NNPoo_B * > m_Poo_B;
