@@ -38,7 +38,7 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 
 	switch ( type )
 	{
-	case Bullet_A:
+	case NORMAL_BULLET:
 		bullet_property.setImageHeight	=	NORMAL_BULLET_HEIGHT;
 		bullet_property.setImageWidth	=	NORMAL_BULLET_WIDTH;
 		bullet_property.speed			=	NORMAL_BULLET_SPEED;

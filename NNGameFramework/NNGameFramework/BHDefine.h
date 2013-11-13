@@ -43,6 +43,13 @@
 #define WINDOW_HEIGHT_UP_EDGE	0
 #define WINDOW_HEIGHT_DOWN_EDGE	600
 
+enum BulletType
+{
+	NORMAL_BULLET,
+	FIRE_BULLET,
+	STORM_BULLET,
+};
+
 enum BirdType
 {
 	EASY_BIRD,

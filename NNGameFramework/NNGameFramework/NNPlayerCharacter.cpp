@@ -55,7 +55,7 @@ void NNPlayerCharacter::Update( float dTime )
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
 		case ATTACK: 
- 	  		NNBulletManager::GetInstance()->MakeBullet( Bullet_A, GetPosition() );
+ 	  		NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, GetPosition() );
 			break;
 
 		case ITEM1:
