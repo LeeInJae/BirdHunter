@@ -49,7 +49,7 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 		poo_Property.setImageWidth	= NORMAL_BIRD_POO_WIDTH;
 		poo_Property.speed			= NORMAL_BIRD_SPEED;
 		poo_Property.sprite_path	= NORMAL_BIRD_POO_SPRITE;
-		poo_Property.zindex			= 2;
+		poo_Property.zindex			= NORMAL_BIRD_POO_ZINDEX;
 		NNPoo* newPoo;
 		newPoo = new NNPoo();
 		newPoo->SetProperty( poo_Property );
@@ -68,13 +68,13 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 	}
 }
 
-void NNPooManager::Move( float dTime )
+void NNPooManager::Update( float dTime )
 {
 	// agebreak : auto 키워드를 이용하여, 훤씬 간결하게 만들 수 있음.
 	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); ++poo_Iter )
 	{
-		(*poo_Iter) -> Move( dTime );
+		(*poo_Iter) -> Update( dTime );
 	}
 	RemoveCheck();
 }
@@ -86,7 +86,7 @@ void NNPooManager::RemoveCheck()
 	//반복자 이용 리스트에서 원소 삭제하는 것 에러 질문.(삭제하고 난 뒤 반복자가 바뀌는 듯)
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
 	{
-		if( (*poo_Iter) -> GetPositionY() >= RESOLUTION_HEIGHT )
+		if( (*poo_Iter) -> GetPositionY() >= RESOLUTION_HEIGHT - NORMAL_BIRD_POO_HEIGHT )
 		{
 			auto pBullet = *poo_Iter;
 

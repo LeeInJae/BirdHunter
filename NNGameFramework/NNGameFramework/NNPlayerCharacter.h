@@ -20,7 +20,7 @@ public:
 	void SetPlayerSpeed( int speed ) { m_PlayerSpeed = speed; }
 	int GetPlayerSpeed() { return m_PlayerSpeed; }
 	void Move( float dTime );
-	void BulletMove( float dTime );
+	void Update( float dTime );
 
 private:
 	NNSprite* m_pChar;

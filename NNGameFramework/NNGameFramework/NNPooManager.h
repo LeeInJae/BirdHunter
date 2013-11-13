@@ -15,7 +15,7 @@ class NNPooManager : public NNObject
 public:
 	static NNPooManager* GetInstance();
 	static void				ReleaseInstance();
-	void Move( float dTime );
+	void Update( float dTime );
 	void MakePoo( PooType WhichPoo, NNPoint birdPosition );
 
 private:

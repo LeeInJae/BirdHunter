@@ -11,7 +11,7 @@ public:
 	static NNBirdFactory* GetInstance();
 	static void ReleaseInstance();
 	void MakeBird( BirdType type );
-	void Move( float dTime );
+	void Update( float dTime );
 
 private:
 	NNBirdFactory(void);
@@ -20,6 +20,5 @@ private:
 	static NNBirdFactory* m_pInstance;
 	void RemoveCheck();
 
-	//std::list< NNBird_A* > m_Bird_A;
 	std::list< NNBird* > m_Bird;
 };

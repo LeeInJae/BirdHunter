@@ -17,10 +17,10 @@ void NNPoo::SetPoo( NNPoint BirdPosition )
 	m_pPoo->SetPosition( BirdPosition );
 }
 
-void NNPoo::Move( float dTime )
+void NNPoo::Update( float dTime )
 {
 	// agebreak : 600 같은 상수를 사용하지 말것, 명확하게 Define해서 사용할 것.
-	if( GetPositionY() <= 600 ) 
+	if( GetPositionY() <= WINDOW_HEIGHT_DOWN_EDGE ) 
 	{
 		SetPosition( GetPositionX(), GetPositionY() + m_PooSpeed * dTime );
 	}

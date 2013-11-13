@@ -17,7 +17,7 @@
 #define INIT_BIRD_D_SPEED		90
 #define INIT_BIRD_E_SPEED		100
 #define BIRD_SET_MAX_WIDTH		800
-#define BIRD_SET_MAX_HEIGHT		50
+#define BIRD_SET_MAX_HEIGHT		100
 #define POO_SPEED		30
 #define POO_WIDTH		30
 #define POO_HEIGHT		30
@@ -36,16 +36,27 @@
 
 #define NORMAL_BIRD_LEFT_SPRITE	 L"Image/BIRD_A_LEFT.png"
 #define NORMAL_BIRD_RIGHT_SPRITE L"Image/BIRD_A_RIGHT.png"
-#define NORMAL_BIRD_WIDTH	30
-#define NORMAL_BIRD_HEIGHT	30
+#define NORMAL_BIRD_WIDTH	30.f
+#define NORMAL_BIRD_HEIGHT	30.f
 #define NORMAL_BIRD_ZINDEX	2
 #define NORMAL_BIRD_SPEED	100;
 
-#define NORMAL_BIRD_POO_WIDTH	30
-#define NORMAL_BIRD_POO_HEIGHT	30
+#define NORMAL_BIRD_POO_WIDTH	30.f
+#define NORMAL_BIRD_POO_HEIGHT	30.f
 #define NORMAL_BIRD_POO_ZINDEX	2
 #define NORMAL_BIRD_POO_SPEED	50
 #define NORMAL_BIRD_POO_SPRITE L"Image/poo.png"
+
+#define NORMAL_BULLET_WIDTH		30.f
+#define NORMAL_BULLET_HEIGHT	30.f
+#define NORMAL_BULLET_SPEED		100
+#define NORMAL_BULLET_ZINDEX	2
+#define NORMAL_BULLET_SPRITE	L"Image/BULLET_A.png"
+
+#define WINDOW_WIDTH_LEFT_EDGE	0
+#define WINDOW_WIDTH_RIGHT_EDGE 800
+#define WINDOW_HEIGHT_UP_EDGE	0
+#define WINDOW_HEIGHT_DOWN_EDGE	600
 
 enum BulletType
 {
@@ -71,8 +82,8 @@ struct BIRD_PROPERTY
 {
 	int				speed;
 	std::wstring	sprite_path;
-	int				setImageWidth;
-	int				setImageHeight;
+	float			setImageWidth;
+	float			setImageHeight;
 	GoingDirection	goingDirection;
 	int				zindex;
 };
@@ -81,7 +92,16 @@ struct POO_PROPERTY
 {
 	int				speed;
 	std::wstring	sprite_path;
-	int				setImageWidth;
-	int				setImageHeight;
+	float				setImageWidth;
+	float				setImageHeight;
+	int				zindex;
+};
+
+struct Bullet_PROPERTY
+{
+	int				speed;
+	std::wstring	sprite_path;
+	float			setImageWidth;
+	float			setImageHeight;
 	int				zindex;
 };

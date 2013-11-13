@@ -55,7 +55,7 @@ void NNBirdFactory::MakeBird( BirdType type )
 		bird_Property.speed = NORMAL_BIRD_SPEED;
 		bird_Property.setImageHeight = NORMAL_BIRD_HEIGHT;
 		bird_Property.setImageWidth = NORMAL_BIRD_WIDTH;
-		bird_Property.zindex = 2;
+		bird_Property.zindex = NORMAL_BIRD_ZINDEX;
 
 		NNBird* p_newBird;
 
@@ -76,14 +76,14 @@ void NNBirdFactory::MakeBird( BirdType type )
 	}
 }
 
-void NNBirdFactory::Move( float dTime )
+void NNBirdFactory::Update( float dTime )
 {
 	if( !m_Bird.empty() )
 	{
 		std::list< NNBird* >::iterator bird_A_Iter = m_Bird.begin();
 		for( bird_A_Iter = m_Bird.begin(); bird_A_Iter != m_Bird.end(); ++bird_A_Iter )
 		{
-			(*bird_A_Iter) -> Move( dTime );
+			(*bird_A_Iter) -> Update( dTime );
 		}
 	}
 	RemoveCheck();

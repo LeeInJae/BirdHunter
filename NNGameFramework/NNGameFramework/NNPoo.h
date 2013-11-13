@@ -12,7 +12,7 @@ public:
 
 	void SetPoo( NNPoint BirdPosition );
 	void SetProperty( POO_PROPERTY poo_property );
-	void Move( float dTime );
+	void Update( float dTime );
 
 protected:
 	bool m_CheckByPlayer;

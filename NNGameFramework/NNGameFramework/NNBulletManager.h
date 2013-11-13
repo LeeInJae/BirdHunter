@@ -17,7 +17,7 @@ public:
 	static NNBulletManager* GetInstance();
 	static void				ReleaseInstance();
 	void MakeBullet( BulletType type, NNPoint PlayerPosition );
-	void Move( float dTime );
+	void Update( float dTime );
 
 private:
 	NNBulletManager(void);
@@ -26,5 +26,5 @@ private:
 	void RemoveCheck();
 	static NNBulletManager* m_pInstance;
 
-	std::list< NNBullet_A* > m_Bullet_A;
+	std::list< NNBullet* > m_Bullet;
 };

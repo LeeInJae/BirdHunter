@@ -11,7 +11,7 @@ public:
 	NNBird(void);
 	~NNBird(void);
 	
-	void	SetBirdProperty( BIRD_PROPERTY bird_Property );
+	void	SetBirdProperty( BIRD_PROPERTY bird_property );
 	void	SetBirdSpeed( int speed )	{ m_BirdSpeed = speed; }
 	int		GetBirdSpeed()				{ return m_BirdSpeed; }
 	
@@ -23,8 +23,8 @@ public:
 	// agebreak : Move 함수가 아니라 Update()를 오버라이딩 할것. 
 	// Update는 자동으로 Object에서 호출되기 때문에 추가 호출할 필요가 없음
 
-	void Move( float dTime );
-
+	//void Move( float dTime );
+	void Update( float dTime );
 protected:
 	int				m_BirdSpeed;
 	GoingDirection	m_BirdDirection;

@@ -109,12 +109,20 @@
     </ClCompile>
     <ClCompile Include="NNBird.cpp" />
     <ClCompile Include="NNBirdFactory.cpp" />
-    <ClCompile Include="NNBird_A.cpp" />
-    <ClCompile Include="NNBIRD_B.cpp" />
-    <ClCompile Include="NNBird_C.cpp" />
+    <ClCompile Include="NNBird_A.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="NNBIRD_B.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="NNBird_C.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="NNBullet.cpp" />
     <ClCompile Include="NNBulletManager.cpp" />
-    <ClCompile Include="NNBullet_A.cpp" />
+    <ClCompile Include="NNBullet_A.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="NNCamera.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
@@ -127,7 +135,9 @@
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNPoo.cpp" />
     <ClCompile Include="NNPooManager.cpp" />
-    <ClCompile Include="NNPoo_A.cpp" />
+    <ClCompile Include="NNPoo_A.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="NNResourceManager.cpp" />
     <ClCompile Include="NNScene.cpp" />
     <ClCompile Include="NNSceneDirector.cpp" />
@@ -178,12 +188,20 @@
     </ClInclude>
     <ClInclude Include="NNBird.h" />
     <ClInclude Include="NNBirdFactory.h" />
-    <ClInclude Include="NNBird_A.h" />
-    <ClInclude Include="NNBIRD_B.h" />
-    <ClInclude Include="NNBird_C.h" />
+    <ClInclude Include="NNBird_A.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="NNBIRD_B.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="NNBird_C.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="NNBullet.h" />
     <ClInclude Include="NNBulletManager.h" />
-    <ClInclude Include="NNBullet_A.h" />
+    <ClInclude Include="NNBullet_A.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="NNCamera.h" />
     <ClInclude Include="NNConfig.h" />
     <ClInclude Include="NND2DRenderer.h" />
@@ -200,7 +218,9 @@
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNPoo.h" />
     <ClInclude Include="NNPooManager.h" />
-    <ClInclude Include="NNPoo_A.h" />
+    <ClInclude Include="NNPoo_A.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="NNRenderer.h" />
     <ClInclude Include="NNResourceManager.h" />
     <ClInclude Include="NNScene.h" />

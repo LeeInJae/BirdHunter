@@ -27,7 +27,7 @@ NNPlayerCharacter::~NNPlayerCharacter(void)
 
 }
 
-void NNPlayerCharacter::Move( float dTime )
+void NNPlayerCharacter::Update( float dTime )
 {
 	NNPoint wich = GetPosition();
 	
@@ -36,12 +36,12 @@ void NNPlayerCharacter::Move( float dTime )
 	case LEFT:
 		// agebreak : 0, 700 같은 상수를 사용하지 말고, Define을 사용하여 명확하게 할것. 
 
-		if( GetPositionX() - m_PlayerSpeed * dTime >= 0 )
+		if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE )
 			SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
 		break;
 
 	case RIGHT:
-		if( GetPositionX() + m_PlayerSpeed * dTime <= 700 )
+		if( GetPositionX() + m_PlayerSpeed * dTime <= WINDOW_WIDTH_RIGHT_EDGE - PLAYER_WIDTH )
 			SetPosition( GetPositionX() + m_PlayerSpeed * dTime, GetPositionY() );
 		break;
 	default:

@@ -34,14 +34,25 @@ NNBulletManager::~NNBulletManager(void)
 
 void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 {
+	Bullet_PROPERTY bullet_property;
+
 	switch ( type )
 	{
 	case Bullet_A:
-		NNBullet_A* newBullet;
-		newBullet = new NNBullet_A();
+		bullet_property.setImageHeight	=	NORMAL_BULLET_HEIGHT;
+		bullet_property.setImageWidth	=	NORMAL_BULLET_WIDTH;
+		bullet_property.speed			=	NORMAL_BULLET_SPEED;
+		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
+		bullet_property.zindex			=	NORMAL_BULLET_ZINDEX;
+
+		NNBullet* newBullet;
+		newBullet = new NNBullet();
+
+		newBullet->SetBulletProperty( bullet_property);
 		newBullet -> SetPosition( PlayerPosition );
-		m_Bullet_A.push_back( newBullet );
+		m_Bullet.push_back( newBullet );
 		AddChild( newBullet );
+
 		break;
 	default:
 		break;
@@ -49,37 +60,37 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 
 }
 
-void NNBulletManager::Move( float dTime )
+void NNBulletManager::Update( float dTime )
 {
-	std::list< NNBullet_A* >::iterator bullet_A_Iter = m_Bullet_A.begin();
-	for( bullet_A_Iter = m_Bullet_A.begin(); bullet_A_Iter != m_Bullet_A.end(); ++bullet_A_Iter )
+	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); ++bullet_Iter )
 	{
-		(*bullet_A_Iter) -> Move( dTime );
+		(*bullet_Iter) -> Update( dTime );
 	}
 	RemoveCheck();
 }
 
 void NNBulletManager::RemoveCheck()
 {
-	std::list< NNBullet_A* >::iterator bullet_A_Iter = m_Bullet_A.begin();
+	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
 	
 	//반복자 이용 리스트에서 원소 삭제하는 것 에러 질문.(삭제하고 난 뒤 반복자가 바뀌는 듯)
-	for( bullet_A_Iter = m_Bullet_A.begin(); bullet_A_Iter != m_Bullet_A.end(); )
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); )
 	{
-		if( (*bullet_A_Iter) -> GetPositionY() <= 0 )
+		if( (*bullet_Iter) -> GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )
 		{
-			auto pBullet = *bullet_A_Iter;
+ 			auto pBullet = *bullet_Iter;
 
 			// 리스트에서 삭제. 반환값은 다음 원소이다.
 			//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
-			bullet_A_Iter =  m_Bullet_A.erase( bullet_A_Iter );	
+			bullet_Iter =  m_Bullet.erase( bullet_Iter );	
 
 			// 객체 해제
-			RemoveChild(pBullet);
+			RemoveChild(pBullet,true);
 		}
 		else
 		{
-			++bullet_A_Iter;
+			++bullet_Iter;
 		}
 	}
 }
