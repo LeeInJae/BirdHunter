@@ -14,6 +14,9 @@ public:
 	void	SetBirdProperty( BIRD_PROPERTY bird_property );
 	void	SetBirdSpeed( int speed )	{ m_BirdSpeed = speed; }
 	int		GetBirdSpeed()				{ return m_BirdSpeed; }
+
+	float GetSpriteHeight() { return m_SpriteHeight; }
+	float GetSpriteWidth() { return m_SpriteWidth; }
 	
 	//void			SetBirdDirection( GoingDirection newDirection ) { m_BirdDirection = newDirection; }
 	//GoingDirection	GetBirdDirection() { return m_BirdDirection; }
@@ -32,6 +35,8 @@ protected:
 	float			m_SumTime;
 	bool			m_DeadCheck;
 	bool			m_CheckByBullet;
+	float			m_SpriteHeight;
+	float			m_SpriteWidth;
 	NNSprite*		m_pBird; //좌 우 이미지는 반전으로
-
+	BirdType		m_Type;
 };

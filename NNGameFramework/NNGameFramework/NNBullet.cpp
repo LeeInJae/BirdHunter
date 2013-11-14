@@ -27,6 +27,10 @@ void NNBullet::SetBulletProperty( Bullet_PROPERTY bullet_property )
 	m_CheckByPoo  = false;
 
 	m_pBullet = NNSprite::Create( bullet_property.sprite_path );
+	m_SpriteHeight = bullet_property.setImageHeight;
+	m_SpriteWidth = bullet_property.setImageWidth;
+	m_Type = bullet_property.type;
+
 	m_pBullet -> SetImageWidth( bullet_property.setImageWidth );
 	m_pBullet -> SetImageHeight( bullet_property.setImageHeight );
 	m_pBullet -> SetZindex( bullet_property.zindex );

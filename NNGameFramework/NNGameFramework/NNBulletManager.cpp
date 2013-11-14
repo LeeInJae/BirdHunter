@@ -44,12 +44,13 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 		bullet_property.speed			=	NORMAL_BULLET_SPEED;
 		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
 		bullet_property.zindex			=	NORMAL_BULLET_ZINDEX;
+		bullet_property.type			=	NORMAL_BULLET;
 
 		NNBullet* newBullet;
 		newBullet = new NNBullet();
 
 		newBullet->SetBulletProperty( bullet_property);
-		newBullet -> SetPosition( PlayerPosition );
+		newBullet -> SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY()  );
 		m_Bullet.push_back( newBullet );
 		AddChild( newBullet );
 
@@ -74,7 +75,6 @@ void NNBulletManager::RemoveCheck()
 {
 	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
 	
-	//반복자 이용 리스트에서 원소 삭제하는 것 에러 질문.(삭제하고 난 뒤 반복자가 바뀌는 듯)
 	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); )
 	{
 		if( (*bullet_Iter) -> GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )

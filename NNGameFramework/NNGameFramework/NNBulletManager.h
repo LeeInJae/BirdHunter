@@ -4,13 +4,6 @@
 #include "BHDefine.h"
 #include "NNBullet_A.h"
 
-// enum BulletType
-// {
-// 	Bullet_A,
-// 	Bullet_B,
-// 	Bullet_C,
-// };
-
 class NNBulletManager : public NNObject
 {
 public:
@@ -18,6 +11,7 @@ public:
 	static void				ReleaseInstance();
 	void MakeBullet( BulletType type, NNPoint PlayerPosition );
 	void Update( float dTime );
+	std::list< NNBullet* > GetBulletList() { return m_Bullet; }
 
 private:
 	NNBulletManager(void);
