@@ -11,7 +11,8 @@ public:
 	static void				ReleaseInstance();
 	void MakeBullet( BulletType type, NNPoint PlayerPosition );
 	void Update( float dTime );
-	std::list< NNBullet* > GetBulletList() { return m_Bullet; }
+
+	std::list< NNBullet* >& GetBulletList() { return m_Bullet; }
 
 private:
 	NNBulletManager(void);

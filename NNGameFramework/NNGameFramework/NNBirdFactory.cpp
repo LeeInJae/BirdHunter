@@ -112,7 +112,7 @@ void NNBirdFactory::RemoveCheck() //충돌체크 구현하면서 없애 주어야 함
 {
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBullet* >::iterator bullet_Iter;
-	std::list< NNBullet* > &bullet_list = NNBulletManager::GetInstance()->GetBulletList();
+	std::list< NNBullet* >& bullet_list = NNBulletManager::GetInstance()->GetBulletList();
 
 	struct Hit_Rect bird_rect, bullet_rect;
 
@@ -151,7 +151,7 @@ void NNBirdFactory::RemoveCheck() //충돌체크 구현하면서 없애 주어야 함
 				bullet_Iter = bullet_list.erase( bullet_Iter );
 
 				//RemoveChild( pbird_Iter );
-				RemoveChild( pbullet_Iter, true );
+				NNBulletManager::GetInstance()->RemoveChild( pbullet_Iter, true );
 				hitCheck = true;
 			}
 		}
