@@ -25,6 +25,7 @@ private:
 	std::list< NNPoo* > m_Poo;
 	static NNPooManager* m_pInstance;
 	void RemoveCheck();
+
 // 	std::list< NNPoo_B * > m_Poo_B;
 // 	std::list< NNPoo_C * > m_Poo_C;
 // 	std::list< NNPoo_D * > m_Poo_D;

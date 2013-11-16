@@ -4,6 +4,8 @@
 #include "NNInputSystem.h"
 #include "NNBulletManager.h"
 #include "NNBirdFactory.h"
+#include "NNLabel.h"
+#include "NNApplication.h"
 
 NNGameScene::NNGameScene(void )
 {
@@ -19,6 +21,10 @@ NNGameScene::NNGameScene(void )
 	AddChild( NNPooManager::GetInstance() );
 	AddChild( NNBulletManager::GetInstance() );
 	AddChild( NNBirdFactory::GetInstance() );
+
+	m_PlayTimeLabel = NNLabel::Create(L"TIME : ", L"¸¼Àº °íµñ", 15.f);
+	m_PlayTimeLabel->SetPosition(1.f, 1.f);
+	AddChild(m_PlayTimeLabel);
 }
 
 
@@ -50,6 +56,9 @@ void NNGameScene::Update( float dTime )
 	NNBulletManager::GetInstance()-> Update( dTime );
 	NNPooManager::GetInstance()-> Update( dTime );
 	NNBirdFactory::GetInstance()->Update( dTime );
+
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.0f sec", NNApplication::GetInstance()->GetElapsedTime());
+	m_PlayTimeLabel->SetString(m_PlayTimeString);
 }
 
 void NNGameScene::Render()
