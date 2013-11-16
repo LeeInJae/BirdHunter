@@ -23,7 +23,7 @@ void NNPooManager::ReleaseInstance()
 	}
 }
 
-NNPooManager::NNPooManager(void)
+NNPooManager::NNPooManager(void) : m_LandedPoo(0)
 {
 }
 
@@ -96,6 +96,7 @@ void NNPooManager::RemoveCheck()
 
 			// ∞¥√º «ÿ¡¶
 			RemoveChild(pBullet);
+			++m_LandedPoo;
 		}
 		else
 		{

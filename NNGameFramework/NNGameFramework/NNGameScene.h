@@ -29,6 +29,7 @@ protected:
 	NNPooManager*		m_PooManager;
 
 	NNLabel*			m_PlayTimeLabel;
+	NNLabel*			m_LandedPooLabel;
 
 	virtual void Render();
 	virtual void Update( float dTime );
@@ -38,4 +39,5 @@ protected:
 	void MoveBullet( float dTime );
 	float m_SumTime;
 	wchar_t m_PlayTimeString[20];
+	wchar_t m_LandedPooString[20];
 };
