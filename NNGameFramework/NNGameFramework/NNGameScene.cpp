@@ -9,7 +9,7 @@
 #include "NNPooManager.h"
 
 NNGameScene::NNGameScene(void )
-{
+{ 
 	m_Map = new NNMap_A();
 	m_Character = new NNPlayerCharacter();
 	//m_Bird	=	new NNBird_A();
