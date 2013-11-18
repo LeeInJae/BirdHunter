@@ -298,6 +298,9 @@
     <ClCompile Include="NNBirdFactory.cpp">
       <Filter>BirdHunter\Bird</Filter>
     </ClCompile>
+    <ClCompile Include="NNMapManager.cpp">
+      <Filter>BirdHunter\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -510,6 +513,9 @@
     </ClInclude>
     <ClInclude Include="NNBirdFactory.h">
       <Filter>BirdHunter\Bird</Filter>
+    </ClInclude>
+    <ClInclude Include="NNMapManager.h">
+      <Filter>BirdHunter\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

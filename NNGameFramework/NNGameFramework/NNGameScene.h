@@ -6,6 +6,7 @@
 #include "NNMap_A.h"
 #include "NNPooManager.h"
 
+class NNMapManager;
 class NNLabel;
 class NNSprite;
 //class NNPlayerCharacter; 왜이렇게 하면 안되지?
@@ -23,7 +24,8 @@ public:
 	NNCREATE_FUNC( NNGameScene );
 	
 protected:
-	NNMap_A*			m_Map;
+
+	NNMapManager*		m_Map;
 	NNPlayerCharacter*	m_Character;
 	NNBird_A*			m_Bird;
 	NNPooManager*		m_PooManager;
@@ -31,6 +33,8 @@ protected:
 	NNLabel*			m_PlayTimeLabel;
 	NNLabel*			m_LandedPooLabel;
 	NNLabel*			m_GameOverLabel;
+	NNLabel*			m_FPSLabel;
+
 	virtual void Render();
 	virtual void Update( float dTime );
 	void MovePlayerCharacter( float dTime );
@@ -41,6 +45,7 @@ protected:
 	
 	wchar_t m_PlayTimeString[20];
 	wchar_t m_LandedPooString[20];
+	wchar_t m_FPSString[200];
 	wchar_t	m_GameOverString[20];
 
 private:

@@ -8,17 +8,19 @@
 #include "NNApplication.h"
 #include "NNPooManager.h"
 #include <assert.h>
+#include "NNMapManager.h"
 
 NNGameScene::NNGameScene(void )
 {
 	m_CheckGameOver = false;
-	m_Map = new NNMap_A();
+//	m_Map = new NNMap_A();
+//	m_Map = NNMapManager::GetInstance()->MakeMap();
 	m_Character = new NNPlayerCharacter();
 	//m_Bird	=	new NNBird_A();
 
 	m_SumTime = 0;
 
-	AddChild( m_Map );
+	AddChild( NNMapManager::GetInstance() );
 	AddChild( m_Character );
 	//AddChild( m_Bird );
 	AddChild( NNPooManager::GetInstance() );
@@ -29,11 +31,13 @@ NNGameScene::NNGameScene(void )
 	m_PlayTimeLabel->SetPosition(1.f, 1.f);
 	AddChild(m_PlayTimeLabel);
 
-	m_LandedPooLabel = NNLabel::Create(L"POLLuTION : ", L"¸¼Àº °íµñ", 15.f);
+	m_LandedPooLabel = NNLabel::Create(L"POLLUTION : ", L"¸¼Àº °íµñ", 15.f);
 	m_LandedPooLabel->SetPosition(1.f, 30.f);
 	AddChild(m_LandedPooLabel);
 
-	
+	m_FPSLabel = NNLabel::Create(L"FPS : ", L"¸¼Àº °íµñ", 15.f);
+	m_FPSLabel->SetPosition(670.f, 1.f);
+	AddChild(m_FPSLabel);
 }
 
 
@@ -82,11 +86,16 @@ void NNGameScene::Update( float dTime )
 	NNPooManager::GetInstance()-> Update( dTime );
 	NNBirdFactory::GetInstance()->Update( dTime );
 
+	NNMapManager::GetInstance()->Update( dTime );
+
 	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime());
 	m_PlayTimeLabel->SetString(m_PlayTimeString);
 
 	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L"POLLUTION : %d ", NNPooManager::GetInstance()->GetLandedPoo());
 	m_LandedPooLabel->SetString(m_LandedPooString);
+
+	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());
+	m_FPSLabel->SetString(m_FPSString);
 }
 
 void NNGameScene::Render()

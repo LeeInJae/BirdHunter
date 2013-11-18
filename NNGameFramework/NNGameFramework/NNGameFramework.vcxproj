@@ -129,6 +129,7 @@
     <ClCompile Include="NNLabel.cpp" />
     <ClCompile Include="NNGameScene.cpp" />
     <ClCompile Include="NNMap.cpp" />
+    <ClCompile Include="NNMapManager.cpp" />
     <ClCompile Include="NNMap_A.cpp" />
     <ClCompile Include="NNObject.cpp" />
     <ClCompile Include="NNPlayerCharacter.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="NNMacroSet.h" />
     <ClInclude Include="NNGameScene.h" />
     <ClInclude Include="NNMap.h" />
+    <ClInclude Include="NNMapManager.h" />
     <ClInclude Include="NNMap_A.h" />
     <ClInclude Include="NNObject.h" />
     <ClInclude Include="NNPlayerCharacter.h" />
