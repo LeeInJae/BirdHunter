@@ -17,5 +17,6 @@ protected:
 
 private:
 	static NNMapManager* m_pInstance;
+	int m_CurrentWarningLV;
 };
 

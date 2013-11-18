@@ -6,7 +6,7 @@
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
-NNMapManager::NNMapManager(void)
+NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0)
 {	
 	m_pMap = NNSprite::Create( L"Image/map.png" );
 	m_pMap -> SetImageWidth( RESOLUTION_WIDTH );
@@ -31,7 +31,7 @@ NNMapManager* NNMapManager::GetInstance()
 void NNMapManager::Update(float dTime)
 {
 	int pollution = NNPooManager::GetInstance()->GetLandedPoo();
-	if (pollution > POLLUTION_WARNING_LV_04)
+	if (pollution > POLLUTION_WARNING_LV_04 && m_CurrentWarningLV != POLLUTION_WARNING_LV_04)
 	{
 		RemoveChild(m_pMap);
 		m_pMap = NNSprite::Create( L"Image/mapWarning004.png" );
@@ -39,8 +39,9 @@ void NNMapManager::Update(float dTime)
 		m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 		m_pMap ->SetZindex( 0 );
 		AddChild( m_pMap );
+		m_CurrentWarningLV = POLLUTION_WARNING_LV_04;
 	}
-	else if (pollution > POLLUTION_WARNING_LV_03)
+	else if (pollution > POLLUTION_WARNING_LV_03 && m_CurrentWarningLV != POLLUTION_WARNING_LV_03)
 	{
 		RemoveChild(m_pMap);
 		m_pMap = NNSprite::Create( L"Image/mapWarning003.png" );
@@ -48,8 +49,9 @@ void NNMapManager::Update(float dTime)
 		m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 		m_pMap ->SetZindex( 0 );
 		AddChild( m_pMap );
+		m_CurrentWarningLV = POLLUTION_WARNING_LV_03;
 	}
-	else if (pollution > POLLUTION_WARNING_LV_02)
+	else if (pollution > POLLUTION_WARNING_LV_02 && m_CurrentWarningLV != POLLUTION_WARNING_LV_02)
 	{
 		RemoveChild(m_pMap);
 		m_pMap = NNSprite::Create( L"Image/mapWarning002.png" );
@@ -57,8 +59,9 @@ void NNMapManager::Update(float dTime)
 		m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 		m_pMap ->SetZindex( 0 );
 		AddChild( m_pMap );
+		m_CurrentWarningLV = POLLUTION_WARNING_LV_02;
 	}
-	else if (pollution > POLLUTION_WARNING_LV_01)
+	else if (pollution > POLLUTION_WARNING_LV_01 && m_CurrentWarningLV != POLLUTION_WARNING_LV_01)
 	{
 		RemoveChild(m_pMap);
 		m_pMap = NNSprite::Create( L"Image/mapWarning001.png" );
@@ -66,5 +69,16 @@ void NNMapManager::Update(float dTime)
 		m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 		m_pMap ->SetZindex( 0 );
 		AddChild( m_pMap );
+		m_CurrentWarningLV = POLLUTION_WARNING_LV_01;
+	}
+	else if (pollution < POLLUTION_WARNING_LV_01 && m_CurrentWarningLV != 0)
+	{
+		RemoveChild(m_pMap);
+		m_pMap = NNSprite::Create( L"Image/map.png" );
+		m_pMap -> SetImageWidth( RESOLUTION_WIDTH );
+		m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
+		m_pMap ->SetZindex( 0 );
+		AddChild( m_pMap );
+		m_CurrentWarningLV = 0;
 	}
 }
