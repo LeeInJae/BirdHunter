@@ -42,8 +42,10 @@ int main()
 // 		printf_s("%f %f\n", pos );
 // 
 // 	}
-	 NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
-//   //NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
+	 
+	NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
+
+	//   //NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
 // 	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
 // 	 //NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
 // 	 NNSceneDirector::GetInstance()->ChangeScene( SpriteAtlasSample::Create() );
