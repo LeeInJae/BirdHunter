@@ -48,12 +48,12 @@ void NNBird::Update( float dTime )
 void NNBird::SetBirdProperty( BIRD_PROPERTY bird_property )
 {
 	m_Toggle = -1;
-	m_DeadCheck = false;
-	m_CheckByBullet = false;
+	m_SumTime = 0;
+	//m_BirdProperty	=	bird_property;
 
 	m_BirdSpeed = bird_property.speed;
 	m_BirdDirection = bird_property.goingDirection;
-	m_SumTime = 0;
+	
 	m_Type = bird_property.type;
 	m_pBird = NNSprite::Create( bird_property.sprite_path );
 	m_SpriteHeight = bird_property.setImageHeight;

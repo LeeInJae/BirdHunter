@@ -12,7 +12,7 @@ public:
 	static void ReleaseInstance();
 	void MakeBird( BirdType type );
 	void Update( float dTime );
-
+	std::list< NNBird* >& GetBirdList() { return m_Bird; }
 private:
 	NNBirdFactory(void);
 	~NNBirdFactory(void);

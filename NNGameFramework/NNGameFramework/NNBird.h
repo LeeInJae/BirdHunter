@@ -29,12 +29,13 @@ public:
 	//void Move( float dTime );
 	void Update( float dTime );
 protected:
-	int				m_BirdSpeed;
-	GoingDirection	m_BirdDirection;
 	float			m_Toggle;
 	float			m_SumTime;
-	bool			m_DeadCheck;
-	bool			m_CheckByBullet;
+
+	//BIRD_PROPERTY	m_BirdProperty;
+
+	int				m_BirdSpeed;
+	GoingDirection	m_BirdDirection;
 	float			m_SpriteHeight;
 	float			m_SpriteWidth;
 	NNSprite*		m_pBird; //좌 우 이미지는 반전으로
