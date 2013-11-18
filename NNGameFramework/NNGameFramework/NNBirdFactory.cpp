@@ -136,7 +136,7 @@ void NNBirdFactory::RemoveCheck() //충돌체크 구현하면서 없애 주어야 함
 
 			bullet_rect.left	=	pbullet_Iter->GetPositionX();
 			bullet_rect.right	=	pbullet_Iter->GetPositionX() + pbullet_Iter->GetSpriteWidth();
-			bullet_rect.up		=	pbullet_Iter->GetPositionY();
+			bullet_rect.up	=	pbullet_Iter->GetPositionY();
 			bullet_rect.down	=	pbullet_Iter->GetPositionY() + pbullet_Iter->GetSpriteHeight();
 			
 			if( bird_rect.right < bullet_rect.left || bullet_rect.right < bird_rect.left || bullet_rect.down < bird_rect.up || bullet_rect.up > bird_rect.down )

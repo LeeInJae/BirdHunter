@@ -95,11 +95,11 @@ NNPoint NNInputSystem::GetMousePosition()
 
 SpecialKeyInput NNInputSystem::CheckSpecialPressedKey()
 {
-	if( GetInstance() -> GetKeyState( VK_SPACE ) == KEY_PRESSED )
+	if( GetInstance() -> GetKeyState( VK_SPACE ) == KEY_DOWN )
 		return ATTACK;
-	else if( GetInstance() -> GetKeyState( 'Z' ) == KEY_PRESSED )
+	else if( GetInstance() -> GetKeyState( 'Z' ) == KEY_DOWN )
 		return ITEM1;
-	else if( GetInstance() -> GetKeyState( 'X' ) == KEY_PRESSED )
+	else if( GetInstance() -> GetKeyState( 'X' ) == KEY_DOWN )
 		return ITEM2;
 
 	return NO;
