@@ -13,8 +13,6 @@ public:
 
 protected:
 	NNMapManager(void);
-
-
 	NNSprite* m_pMap;
 
 private:

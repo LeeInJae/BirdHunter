@@ -13,16 +13,12 @@
 NNGameScene::NNGameScene(void )
 {
 	m_CheckGameOver = false;
-//	m_Map = new NNMap_A();
-//	m_Map = NNMapManager::GetInstance()->MakeMap();
 	m_Character = new NNPlayerCharacter();
-	//m_Bird	=	new NNBird_A();
 
 	m_SumTime = 0;
 
 	AddChild( NNMapManager::GetInstance() );
 	AddChild( m_Character );
-	//AddChild( m_Bird );
 	AddChild( NNPooManager::GetInstance() );
 	AddChild( NNBulletManager::GetInstance() );
 	AddChild( NNBirdFactory::GetInstance() );
@@ -47,17 +43,13 @@ NNGameScene::~NNGameScene(void)
 
 void NNGameScene::Update( float dTime )
 {
-
 	if(m_CheckGameOver)
 		return;
 
 	NNScene::Update( dTime );
 
-	
-
 	m_SumTime += dTime;
-	
-	
+		
 	if( m_SumTime >= 5 )
  	{
  		NNBirdFactory::GetInstance() -> MakeBird( NORMAL_BIRD );
@@ -65,7 +57,6 @@ void NNGameScene::Update( float dTime )
 		NNBirdFactory::GetInstance() -> MakeBird( EASY_BIRD );
 		m_SumTime = 0;
  	}
-
 
 	// agebreak : Move()가 아니라 각각 클래스에서 Update()를 오버라이딩하면, 
 	// 부모 오브젝트에서 자동으로 호출되기 때문에, 따로 이렇게 Move를 처리해주지 않아도 됨. 

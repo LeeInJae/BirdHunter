@@ -26,7 +26,6 @@ NNMapManager* NNMapManager::GetInstance()
 		m_pInstance = new NNMapManager;
 	}
 	return m_pInstance;
-	
 }
 
 void NNMapManager::Update(float dTime)
