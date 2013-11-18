@@ -12,13 +12,17 @@ public:
 
 	void SetPoo( NNPoint BirdPosition );
 	void SetProperty( POO_PROPERTY poo_property );
+	
 	void Update( float dTime );
+	float GetSpriteHeight() { return m_SpriteHeight; }
+	float GetSpriteWidth() { return m_SpriteWidth; }
 
 protected:
-	bool m_CheckByPlayer;
-	bool m_CheckByBullet;
-
 	NNSprite*	m_pPoo;
 	int			m_PooSpeed;
 	int			m_PooLife;
+	int			m_Zindex;
+	PooType		m_Type;
+	float		m_SpriteHeight;
+	float		m_SpriteWidth;
 };

@@ -16,11 +16,12 @@ public:
 	NNPlayerCharacter(void);
 	~NNPlayerCharacter(void);
 	
-	NNSprite* GetCharacterSprite() { return m_pChar; }
-	void SetPlayerSpeed( int speed ) { m_PlayerSpeed = speed; }
-	int GetPlayerSpeed() { return m_PlayerSpeed; }
 	void Move( float dTime );
 	void Update( float dTime );
+	float GetSpriteHeight() { return m_SpriteHeight; }
+	float GetSpriteWidth() { return m_SpriteWidth; }
+
+	//NNPlayerCharacter* GetMine(){ return this; }
 
 private:
 	NNSprite* m_pChar;
@@ -29,4 +30,6 @@ private:
 	//좌우가 바뀌는 아이템 사용시 사용
 	//PlayerCharacterDirection m_Direction;
 	float m_SumTime; 
+	float m_SpriteHeight;
+	float m_SpriteWidth;
 };

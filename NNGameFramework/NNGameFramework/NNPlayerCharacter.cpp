@@ -7,9 +7,13 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	m_CheckByPoo = false;
 	m_PlayerSpeed = INIT_PLAYERSPEED;
 	m_pChar = NNSprite::Create( L"Image/character.png" );
+	
+	m_SpriteHeight	=	PLAYER_HEIGHT;
+	m_SpriteWidth	=	PLAYER_WIDTH;
 
 	m_pChar -> SetImageWidth( PLAYER_WIDTH );
 	m_pChar -> SetImageHeight( PLAYER_HEIGHT );
+
 	//m_pChar -> SetZindex( 1 );
 	//m_pChar -> SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
 	

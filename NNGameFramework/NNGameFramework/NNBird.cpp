@@ -5,6 +5,9 @@
 
 NNBird::NNBird(void)
 {
+	m_Toggle = -1;
+	m_SumTime = 0;
+	//SetBird();
 }
 
 
@@ -37,9 +40,9 @@ void NNBird::Update( float dTime )
 
 	m_SumTime += dTime;
 
-	if( m_SumTime >= 0.5)
+	if( m_SumTime >= 5)
 	{
-		NNPooManager::GetInstance()->MakePoo( POO_A, GetPosition() );
+		NNPooManager::GetInstance()->MakePoo( NORMAL_POO, GetPosition() );
 		m_SumTime = 0;
 	}
 
@@ -47,10 +50,7 @@ void NNBird::Update( float dTime )
 
 void NNBird::SetBirdProperty( BIRD_PROPERTY bird_property )
 {
-	m_Toggle = -1;
-	m_SumTime = 0;
 	//m_BirdProperty	=	bird_property;
-
 	m_BirdSpeed = bird_property.speed;
 	m_BirdDirection = bird_property.goingDirection;
 	
@@ -58,9 +58,16 @@ void NNBird::SetBirdProperty( BIRD_PROPERTY bird_property )
 	m_pBird = NNSprite::Create( bird_property.sprite_path );
 	m_SpriteHeight = bird_property.setImageHeight;
 	m_SpriteWidth = bird_property.setImageWidth;
+	m_Zindex	=	bird_property.zindex;
 
 	m_pBird->SetImageHeight( bird_property.setImageHeight );
 	m_pBird->SetImageWidth( bird_property.setImageWidth );	
 	SetZindex( bird_property.zindex );
 	AddChild( m_pBird );
 }
+
+// void NNBird::SetBird( BirdType bir_type )
+// {
+// 	WCHAR	wszBuf[ 20 ] = {0, };
+// 
+// }

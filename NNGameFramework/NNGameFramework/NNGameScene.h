@@ -30,7 +30,7 @@ protected:
 
 	NNLabel*			m_PlayTimeLabel;
 	NNLabel*			m_LandedPooLabel;
-
+	NNLabel*			m_GameOverLabel;
 	virtual void Render();
 	virtual void Update( float dTime );
 	void MovePlayerCharacter( float dTime );
@@ -38,6 +38,11 @@ protected:
 	void MovePoo( float dTime );
 	void MoveBullet( float dTime );
 	float m_SumTime;
+	
 	wchar_t m_PlayTimeString[20];
 	wchar_t m_LandedPooString[20];
+	wchar_t	m_GameOverString[20];
+
+private:
+	bool m_CheckGameOver;
 };

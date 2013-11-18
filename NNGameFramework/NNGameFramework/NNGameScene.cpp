@@ -7,9 +7,11 @@
 #include "NNLabel.h"
 #include "NNApplication.h"
 #include "NNPooManager.h"
+#include <assert.h>
 
 NNGameScene::NNGameScene(void )
 {
+	m_CheckGameOver = false;
 	m_Map = new NNMap_A();
 	m_Character = new NNPlayerCharacter();
 	//m_Bird	=	new NNBird_A();
@@ -30,6 +32,8 @@ NNGameScene::NNGameScene(void )
 	m_LandedPooLabel = NNLabel::Create(L"POLLuTION : ", L"맑은 고딕", 15.f);
 	m_LandedPooLabel->SetPosition(1.f, 30.f);
 	AddChild(m_LandedPooLabel);
+
+	
 }
 
 
@@ -39,7 +43,12 @@ NNGameScene::~NNGameScene(void)
 
 void NNGameScene::Update( float dTime )
 {
+
+	if(m_CheckGameOver)
+		return;
+
 	NNScene::Update( dTime );
+
 	
 
 	m_SumTime += dTime;
@@ -57,6 +66,17 @@ void NNGameScene::Update( float dTime )
 	// agebreak : Move()가 아니라 각각 클래스에서 Update()를 오버라이딩하면, 
 	// 부모 오브젝트에서 자동으로 호출되기 때문에, 따로 이렇게 Move를 처리해주지 않아도 됨. 
 
+	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) )
+	{ 
+		m_GameOverLabel = NNLabel::Create(L"GameOver ", L"맑은 고딕", 50.f);
+		m_GameOverLabel->SetPosition(RESOLUTION_WIDTH * 0.5f, RESOLUTION_HEIGHT * 0.5f );
+		m_GameOverLabel->SetCenter(800,400);
+		AddChild(m_GameOverLabel);
+		m_CheckGameOver = true;
+		//assert( !m_CheckGameOver );
+		//getchar();
+	}
+	
 	m_Character->Update( dTime );
 	NNBulletManager::GetInstance()-> Update( dTime );
 	NNPooManager::GetInstance()-> Update( dTime );
@@ -72,6 +92,10 @@ void NNGameScene::Update( float dTime )
 void NNGameScene::Render()
 {
 	NNScene::Render();
+	if( m_CheckGameOver )
+	{
+		//getchar();
+	}
 }
 
 //  

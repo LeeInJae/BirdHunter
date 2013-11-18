@@ -1,6 +1,7 @@
 #include "NNBulletManager.h"
 #include "NNBird.h"
 #include "NNBirdFactory.h"
+#include "NNPooManager.h"
 
 
 NNBulletManager* NNBulletManager::m_pInstance = nullptr;
@@ -96,6 +97,8 @@ void NNBulletManager::RemoveCheck()
 		}
 	}
 
+	//Bird & Bullet Hitcheck
+
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBird* >& bird_list = NNBirdFactory::GetInstance()->GetBirdList();
 
@@ -134,12 +137,63 @@ void NNBulletManager::RemoveCheck()
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true );
 				
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
-				RemoveChild( pBullet_Iter );
+				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
 
 				break;
 			}
 			
+		}
+		if( !hitCheck )
+		{
+			++bullet_Iter;
+		}
+	}
+
+	//bullet & poo hitcheck
+
+	std::list< NNPoo* >::iterator poo_Iter;
+	std::list< NNPoo* >& poo_list = NNPooManager::GetInstance()->GetPooList();
+
+	struct Hit_Rect poo_rect;
+
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
+	{
+		auto pBullet_Iter = *bullet_Iter;
+
+		bullet_rect.left	=	pBullet_Iter->GetPositionX();
+		bullet_rect.right	=	pBullet_Iter->GetPositionX() + pBullet_Iter->GetSpriteWidth();
+		bullet_rect.up		=	pBullet_Iter->GetPositionY();
+		bullet_rect.down	=	pBullet_Iter->GetPositionY() + pBullet_Iter->GetSpriteHeight();
+
+		hitCheck = false;
+
+		for( poo_Iter = poo_list.begin(); poo_Iter != poo_list.end(); )
+		{
+			auto pPoo_Iter = *poo_Iter;
+
+			poo_rect.left	=	pPoo_Iter->GetPositionX();
+			poo_rect.right	=	pPoo_Iter->GetPositionX() + pPoo_Iter->GetSpriteWidth();
+			poo_rect.up		=	pPoo_Iter->GetPositionY();
+			poo_rect.down	=	pPoo_Iter->GetPositionY() + pPoo_Iter->GetSpriteHeight();
+
+			if( poo_rect.right < bullet_rect.left || poo_rect.down < bullet_rect.up || poo_rect.left > bullet_rect.right	||	poo_rect.up > bullet_rect.down )
+			{
+				++poo_Iter;
+				continue;
+			}
+			else
+			{
+				poo_Iter = poo_list.erase( poo_Iter );
+				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
+
+				bullet_Iter = m_Bullet.erase( bullet_Iter );
+				RemoveChild( pBullet_Iter, true );
+				hitCheck = true;
+
+				break;
+			}
+
 		}
 		if( !hitCheck )
 		{

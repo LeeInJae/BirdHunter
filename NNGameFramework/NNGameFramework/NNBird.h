@@ -12,8 +12,7 @@ public:
 	~NNBird(void);
 	
 	void	SetBirdProperty( BIRD_PROPERTY bird_property );
-	void	SetBirdSpeed( int speed )	{ m_BirdSpeed = speed; }
-	int		GetBirdSpeed()				{ return m_BirdSpeed; }
+//	void	SetBird( BirdType bir_type );
 
 	float GetSpriteHeight() { return m_SpriteHeight; }
 	float GetSpriteWidth() { return m_SpriteWidth; }
@@ -40,4 +39,5 @@ protected:
 	float			m_SpriteWidth;
 	NNSprite*		m_pBird; //좌 우 이미지는 반전으로
 	BirdType		m_Type;
+	int				m_Zindex;
 };

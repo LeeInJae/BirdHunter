@@ -28,10 +28,12 @@ void NNPoo::Update( float dTime )
 
 void NNPoo::SetProperty( POO_PROPERTY poo_property )
 {
-	m_CheckByBullet = false;
-	m_CheckByPlayer = false;
+	m_PooSpeed		=	poo_property.speed;
+	m_SpriteHeight	=	poo_property.setImageHeight;
+	m_SpriteWidth	=	poo_property.setImageWidth;
+	m_Zindex		=	poo_property.zindex;
+	m_Type			=	poo_property.type;
 
-	m_PooSpeed = poo_property.speed;
 	m_pPoo = NNSprite::Create( poo_property.sprite_path );
 	m_pPoo -> SetImageWidth( poo_property.setImageWidth );
 	m_pPoo -> SetImageHeight( poo_property.setImageHeight );
