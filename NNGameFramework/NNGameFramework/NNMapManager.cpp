@@ -8,7 +8,7 @@ NNMapManager* NNMapManager::m_pInstance = nullptr;
 
 NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0)
 {	
-	m_pMap = NNSprite::Create( L"Image/map.png" );
+	m_pMap = NNSprite::Create( L"Image/map.png" );	// agebreak : Define으로
 	m_pMap -> SetImageWidth( RESOLUTION_WIDTH );
 	m_pMap -> SetImageHeight( RESOLUTION_HEIGHT );
 	m_pMap ->SetZindex( 0 );
@@ -30,6 +30,8 @@ NNMapManager* NNMapManager::GetInstance()
 
 void NNMapManager::Update(float dTime)
 {
+
+	// agebreak : 코드 리팩토링 필요
 	int pollution = NNPooManager::GetInstance()->GetLandedPoo();
 	if (pollution > POLLUTION_WARNING_LV_04 && m_CurrentWarningLV != POLLUTION_WARNING_LV_04)
 	{

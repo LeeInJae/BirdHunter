@@ -1,5 +1,7 @@
 #pragma once
 #include "NNScene.h"
+
+// agebreak : 아래 객체들은 다 포인터로 사용하고 있기 때문에, 전방선언으로 바꾸는게 좋음
 #include "NNPlayerCharacter.h"
 #include "NNBird_A.h"
 #include "NNBIRD_B.h"

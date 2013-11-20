@@ -6,7 +6,7 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 {
 	m_CheckByPoo = false;
 	m_PlayerSpeed = INIT_PLAYERSPEED;
-	m_pChar = NNSprite::Create( L"Image/character.png" );
+	m_pChar = NNSprite::Create( L"Image/character.png" );	// agebreak : 캐릭터 이미지 파일명도 Define으로
 	
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;

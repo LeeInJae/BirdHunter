@@ -65,19 +65,23 @@ void NNGameScene::Update( float dTime )
 	{ 
 		m_GameOverLabel = NNLabel::Create(L"GameOver ", L"맑은 고딕", 50.f);
 		m_GameOverLabel->SetPosition(RESOLUTION_WIDTH * 0.5f, RESOLUTION_HEIGHT * 0.5f );
-		m_GameOverLabel->SetCenter(800,400);
+		m_GameOverLabel->SetCenter(800,400); // agebreak : 이건 왜 상수인가?
 		AddChild(m_GameOverLabel);
 		m_CheckGameOver = true;
 		//assert( !m_CheckGameOver );
 		//getchar();
 	}
 	
+
+	// agebreak : 업데이트 두번 호출 버그!!
 	m_Character->Update( dTime );
 	NNBulletManager::GetInstance()-> Update( dTime );
 	NNPooManager::GetInstance()-> Update( dTime );
 	NNBirdFactory::GetInstance()->Update( dTime );
 
 	NNMapManager::GetInstance()->Update( dTime );
+
+	// agebreak : UI 출력은 따로 함수로 분리해서 호출할것
 
 	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime());
 	m_PlayTimeLabel->SetString(m_PlayTimeString);

@@ -1,11 +1,13 @@
 #pragma once
 #include "NNObject.h"
-#include "NNSprite.h"
+
+//agebreak : 헤더에서 사용하지 않는것은 헤더에서 Include 하지 않는다!
 #include "NNInputSystem.h"
 #include "NNBullet_A.h"
 #include "BHDefine.h"
 
-//class NNSptie;
+
+class NNSptie;
 //이렇게 하니 m_pchar 에러
 // agebreak : 클래스의 전방 선언을 하고 나서는 CPP에서 헤더파일을 추가하지 않으면, 에러가 발생함
 

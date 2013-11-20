@@ -46,6 +46,8 @@ void NNBirdFactory::MakeBird( BirdType type )
 
 	( checkDirection == 0 ) ? bird_Property.goingDirection = LEFT_GO : bird_Property.goingDirection = RIGHT_GO;
 
+
+	// agebreak : 코드 리팩토링!
 	switch ( type )
 	{
 	case NORMAL_BIRD:

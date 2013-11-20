@@ -117,4 +117,6 @@ struct Bullet_PROPERTY
 struct Hit_Rect
 {
 	float left, right, down, up;
+
+	// agebreak : 여기에 체크 함수를 넣으면?
 };

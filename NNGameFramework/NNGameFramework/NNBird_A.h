@@ -5,6 +5,8 @@
 #include <list>
 
 // agebreak : 여기서 _A는 당췌뭔가.. 클래스 이름은 명확하게 할것
+
+// 새 A 클래스 
 class NNBird_A : public NNBird
 {
 public:

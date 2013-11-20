@@ -31,6 +31,7 @@ void NNBullet::SetBulletProperty( Bullet_PROPERTY bullet_property )
 	m_SpriteWidth = bullet_property.setImageWidth;
 	m_Type = bullet_property.type;
 
+	// agebreak : 포인터 연산자는 공백이 없어야함!
 	m_pBullet -> SetImageWidth( bullet_property.setImageWidth );
 	m_pBullet -> SetImageHeight( bullet_property.setImageHeight );
 	m_pBullet -> SetZindex( bullet_property.zindex );
