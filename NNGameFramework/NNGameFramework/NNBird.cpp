@@ -37,7 +37,7 @@ void NNBird::Update( float dTime )
 
 	m_SumTime += dTime;
 
-	if( m_SumTime >= 5)
+	if( m_SumTime >= 3)
 	{
 		NNPooManager::GetInstance()->MakePoo( NORMAL_POO, GetPosition() );
 		m_SumTime = 0;

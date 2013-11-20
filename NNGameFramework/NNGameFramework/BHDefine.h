@@ -59,6 +59,10 @@
 
 #define MAP_DEFAULT_SPRITE L"Image/map.png"
 
+#define HIT_EFFECT_SCALE_X 30
+#define HIT_EFFECT_SCALE_Y 30
+#define HIT_EFFECT_LIFETIME 2
+
 enum BulletType
 {
 	NORMAL_BULLET,
@@ -121,9 +125,13 @@ struct Hit_Rect
 {
 	float left, right, down, up;
 
-	bool HitCheck()
+	bool HitCheck( Hit_Rect target )
 	{
-
+		if( target.right < left || target.down < up || target.left	> right	||	target.up > down )
+		{
+			return false;
+		}
+		return true;
 	}
 	// agebreak : 여기에 체크 함수를 넣으면?
 };

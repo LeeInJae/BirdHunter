@@ -45,16 +45,17 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 		poo_Property.speed			= NORMAL_POO_SPEED;
 		poo_Property.sprite_path	= NORMAL_POO_SPRITE;
 		poo_Property.zindex			= NORMAL_POO_ZINDEX;
-		NNPoo* newPoo;
-		newPoo = new NNPoo();
-		newPoo->SetProperty( poo_Property );
-		newPoo->SetPosition( birdPosition );
-		m_Poo.push_back( newPoo );
-		AddChild( newPoo );
 		break;
 	default:
 		break;
 	}
+
+	NNPoo* newPoo;
+	newPoo = new NNPoo();
+	newPoo->SetProperty( poo_Property );
+	newPoo->SetPosition( birdPosition );
+	m_Poo.push_back( newPoo );
+	AddChild( newPoo );
 }
 
 void NNPooManager::Update( float dTime )
@@ -117,7 +118,7 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 
 		hitCheck = false;
 
-		if( poo_rect.right < player_rect.left || poo_rect.down < player_rect.up || poo_rect.left	> player_rect.right	||	poo_rect.up > player_rect.down )
+		if( !poo_rect.HitCheck( player_rect ) )
 		{
 			++poo_Iter;
 			continue;

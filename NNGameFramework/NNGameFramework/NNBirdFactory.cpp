@@ -59,14 +59,6 @@ void NNBirdFactory::MakeBird( BirdType type )
 		bird_Property.setImageWidth		= NORMAL_BIRD_WIDTH;
 		bird_Property.zindex			= NORMAL_BIRD_ZINDEX;
 		bird_Property.type				= NORMAL_BIRD;
-
-		p_newBird = new NNBird();
-		p_newBird->SetBirdProperty( bird_Property );
-		p_newBird->SetPosition( BirdSetPosition );
-		m_Bird.push_back( p_newBird );
-		
-		AddChild( p_newBird );
-
 		break;
 	case EASY_BIRD:
 		if( bird_Property.goingDirection == LEFT_GO )
@@ -79,27 +71,23 @@ void NNBirdFactory::MakeBird( BirdType type )
 		bird_Property.setImageWidth = EASY_BIRD_WIDTH;
 		bird_Property.zindex = EASY_BIRD_ZINDEX;
 		bird_Property.type	=	EASY_BIRD;
-
-		p_newBird = new NNBird();
-		p_newBird->SetBirdProperty( bird_Property );
-		p_newBird->SetPosition( BirdSetPosition );
-		m_Bird.push_back( p_newBird );
-
-		AddChild( p_newBird );
 		break;
 	default:
 		break;
 	}
+
+	p_newBird = new NNBird();
+	p_newBird->SetBirdProperty( bird_Property );
+	p_newBird->SetPosition( BirdSetPosition );
+	m_Bird.push_back( p_newBird );
+
+	AddChild( p_newBird );
 }
 
 void NNBirdFactory::Update( float dTime )
 {
-	if( !m_Bird.empty() )
+	for( auto bird_Iter : m_Bird )
 	{
-		std::list< NNBird* >::iterator bird_Iter = m_Bird.begin();
-		for( bird_Iter = m_Bird.begin(); bird_Iter != m_Bird.end(); ++bird_Iter )
-		{
-			( *bird_Iter ) -> Update( dTime );
-		}
+		bird_Iter->Update( dTime );
 	}
 }

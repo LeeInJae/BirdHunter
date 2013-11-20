@@ -114,6 +114,7 @@
     <ClCompile Include="NNBulletManager.cpp" />
     <ClCompile Include="NNCamera.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
+    <ClCompile Include="NNEffectManager.cpp" />
     <ClCompile Include="NNHitEffect.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNLabel.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="NNCamera.h" />
     <ClInclude Include="NNConfig.h" />
     <ClInclude Include="NND2DRenderer.h" />
+    <ClInclude Include="NNEffectManager.h" />
     <ClInclude Include="NNHitEffect.h" />
     <ClInclude Include="NNIncludeSet.h" />
     <ClInclude Include="NNInputSystem.h" />

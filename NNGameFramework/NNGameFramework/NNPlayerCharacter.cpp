@@ -12,8 +12,8 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;
 
-	m_pChar->	SetImageWidth( PLAYER_WIDTH );
-	m_pChar->	SetImageHeight( PLAYER_HEIGHT );
+	m_pChar->SetImageWidth( PLAYER_WIDTH );
+	m_pChar->SetImageHeight( PLAYER_HEIGHT );
 
 	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y );
 	SetZindex	( PLAYER_ZINDEX );

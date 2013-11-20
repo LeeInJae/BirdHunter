@@ -4,6 +4,7 @@
 #include "NNPooManager.h"
 #include "NNHitEffect.h"
 #include "NNPoo.h"
+#include "NNEffectManager.h"
 
 NNBulletManager* NNBulletManager::m_pInstance = nullptr;
 
@@ -28,7 +29,6 @@ void NNBulletManager::ReleaseInstance()
 
 NNBulletManager::NNBulletManager(void)
 {
-	m_HitEffect = new NNHitEffect();
 }
 
 
@@ -67,10 +67,10 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 
 void NNBulletManager::Update( float dTime )
 {
-	for( auto bullet_Iter : m_Bullet )
+ 	for( auto bullet_Iter : m_Bullet ) 	
 	{
-		bullet_Iter->Update( dTime );
-	}
+ 		bullet_Iter->Update( dTime );
+ 	}
 	RemoveCheck();
 }
 
@@ -101,7 +101,7 @@ void NNBulletManager::RemoveCheck()
 
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBird* >& bird_list = NNBirdFactory::GetInstance()->GetBirdList();
-
+	std::list< NNHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
 	struct Hit_Rect bird_rect, bullet_rect;
 
 	bool hitCheck;
@@ -126,18 +126,17 @@ void NNBulletManager::RemoveCheck()
 			bird_rect.up	=	pBird_Iter->GetPositionY();
 			bird_rect.down	=	pBird_Iter->GetPositionY() + pBird_Iter->GetSpriteHeight();
 
-			if( bird_rect.right < bullet_rect.left || bird_rect.down < bullet_rect.up || bird_rect.left	> bullet_rect.right	||	bird_rect.up > bullet_rect.down )
+			if( !bullet_rect.HitCheck( bird_rect ) )
 			{
 				++bird_Iter;
 				continue;
 			}
 			else
 			{
-				bird_Iter = bird_list.erase( bird_Iter );
+				NNEffectManager::GetInstance()->MakeHitEffect( pBird_Iter->GetPosition() );
 				
-				m_HitEffect->AnimationSetPosition(  pBird_Iter->GetPosition() );
-				AddChild( m_HitEffect ); 
 
+				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true );
 				
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
@@ -180,7 +179,7 @@ void NNBulletManager::RemoveCheck()
 			poo_rect.up		=	pPoo_Iter->GetPositionY();
 			poo_rect.down	=	pPoo_Iter->GetPositionY() + pPoo_Iter->GetSpriteHeight();
 
-			if( poo_rect.right < bullet_rect.left || poo_rect.down < bullet_rect.up || poo_rect.left > bullet_rect.right	||	poo_rect.up > bullet_rect.down )
+			if( !bullet_rect.HitCheck( poo_rect ) )
 			{
 				++poo_Iter;
 				continue;

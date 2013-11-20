@@ -9,6 +9,7 @@
 #include "NNPooManager.h"
 #include <assert.h>
 #include "NNMapManager.h"
+#include "NNEffectManager.h"
 
 NNGameScene::NNGameScene(void )
 {
@@ -22,9 +23,16 @@ NNGameScene::NNGameScene(void )
 	AddChild( NNPooManager::GetInstance() );
 	AddChild( NNBulletManager::GetInstance() );
 	AddChild( NNBirdFactory::GetInstance() );
-
+	AddChild( NNEffectManager::GetInstance() );
 	UIInit();
 	
+// 	NNHitEffect* newEffect = new NNHitEffect();
+// 	NNPoint temp;
+// 	temp.SetX( 100 );
+// 	temp.SetY( 100 );
+// 
+// 	newEffect->AnimationSetPosition( temp );
+// 	AddChild( newEffect); 
 }
 
 void NNGameScene::UIInit()
@@ -55,11 +63,11 @@ void NNGameScene::Update( float dTime )
 
 	m_SumTime += dTime;
 		
-	if( m_SumTime >= 5 )
+	if( m_SumTime >= 3 )
  	{
- 		NNBirdFactory::GetInstance() -> MakeBird( NORMAL_BIRD );
-		NNBirdFactory::GetInstance() -> MakeBird( NORMAL_BIRD );
-		NNBirdFactory::GetInstance() -> MakeBird( EASY_BIRD );
+ 		NNBirdFactory::GetInstance()->MakeBird( NORMAL_BIRD );
+		NNBirdFactory::GetInstance()->MakeBird( NORMAL_BIRD );
+		NNBirdFactory::GetInstance()->MakeBird( EASY_BIRD );
 		m_SumTime = 0;
  	}
 	

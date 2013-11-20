@@ -23,5 +23,5 @@ private:
 	static NNBulletManager* m_pInstance;
 
 	std::list< NNBullet* > m_Bullet;
-	NNHitEffect* m_HitEffect;
+
 };

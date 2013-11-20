@@ -8,10 +8,13 @@ public:
 	NNHitEffect(void);
 	virtual ~NNHitEffect(void);
 	void AnimationSetPosition( NNPoint animationPosition );
+	void Update( float dTime );
+	float GetLifeTime() { return m_LifeTime; }
 	void Render();
-	void Update( float eTime );
 
+	
 private:
 	NNAnimation* m_Animation;
+	float		 m_LifeTime;
 };
 
