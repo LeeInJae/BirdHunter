@@ -64,6 +64,7 @@ void NNObject::Update( float dTime )
 	// 	{
 	// 		(*iter)->Update( dTime );
 	// 	}
+
 	for (const auto& child : m_ChildList)
 	{
 		child->Update( dTime );

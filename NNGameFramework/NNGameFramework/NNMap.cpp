@@ -1,9 +1,7 @@
 #include "NNMap.h"
 
-
 NNMap::NNMap(void)
 {
-	
 }
 
 

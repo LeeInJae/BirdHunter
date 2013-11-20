@@ -127,6 +127,9 @@
     <Filter Include="BirdHunter\Map">
       <UniqueIdentifier>{22d76370-a30c-41d8-8a12-2926045027d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BirdHunter\Effect">
+      <UniqueIdentifier>{de79b78a-61df-411c-a7da-322bc99e2b99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -262,31 +265,13 @@
     <ClCompile Include="NNBird.cpp">
       <Filter>BirdHunter\Bird</Filter>
     </ClCompile>
-    <ClCompile Include="NNBird_A.cpp">
-      <Filter>BirdHunter\Bird</Filter>
-    </ClCompile>
-    <ClCompile Include="NNBIRD_B.cpp">
-      <Filter>BirdHunter\Bird</Filter>
-    </ClCompile>
-    <ClCompile Include="NNBird_C.cpp">
-      <Filter>BirdHunter\Bird</Filter>
-    </ClCompile>
     <ClCompile Include="NNPoo.cpp">
-      <Filter>BirdHunter\Poo</Filter>
-    </ClCompile>
-    <ClCompile Include="NNPoo_A.cpp">
       <Filter>BirdHunter\Poo</Filter>
     </ClCompile>
     <ClCompile Include="NNBullet.cpp">
       <Filter>BirdHunter\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="NNBullet_A.cpp">
-      <Filter>BirdHunter\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="NNMap.cpp">
-      <Filter>BirdHunter\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="NNMap_A.cpp">
       <Filter>BirdHunter\Map</Filter>
     </ClCompile>
     <ClCompile Include="NNPooManager.cpp">
@@ -300,6 +285,9 @@
     </ClCompile>
     <ClCompile Include="NNMapManager.cpp">
       <Filter>BirdHunter\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="NNHitEffect.cpp">
+      <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -478,31 +466,13 @@
     <ClInclude Include="NNBird.h">
       <Filter>BirdHunter\Bird</Filter>
     </ClInclude>
-    <ClInclude Include="NNBird_A.h">
-      <Filter>BirdHunter\Bird</Filter>
-    </ClInclude>
-    <ClInclude Include="NNBIRD_B.h">
-      <Filter>BirdHunter\Bird</Filter>
-    </ClInclude>
-    <ClInclude Include="NNBird_C.h">
-      <Filter>BirdHunter\Bird</Filter>
-    </ClInclude>
     <ClInclude Include="NNPoo.h">
-      <Filter>BirdHunter\Poo</Filter>
-    </ClInclude>
-    <ClInclude Include="NNPoo_A.h">
       <Filter>BirdHunter\Poo</Filter>
     </ClInclude>
     <ClInclude Include="NNBullet.h">
       <Filter>BirdHunter\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="NNBullet_A.h">
-      <Filter>BirdHunter\Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="NNMap.h">
-      <Filter>BirdHunter\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="NNMap_A.h">
       <Filter>BirdHunter\Map</Filter>
     </ClInclude>
     <ClInclude Include="NNPooManager.h">
@@ -516,6 +486,9 @@
     </ClInclude>
     <ClInclude Include="NNMapManager.h">
       <Filter>BirdHunter\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="NNHitEffect.h">
+      <Filter>BirdHunter\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

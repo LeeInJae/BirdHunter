@@ -1,9 +1,8 @@
 #pragma once
 #include "NNObject.h"
-#include "NNSprite.h"
 #include "BHDefine.h"
 
-
+class NNSprite;
 
 class NNBird : public NNObject
 {
@@ -12,29 +11,15 @@ public:
 	~NNBird(void);
 	
 	void	SetBirdProperty( BIRD_PROPERTY bird_property );
-//	void	SetBird( BirdType bir_type );
 
-	float GetSpriteHeight() { return m_SpriteHeight; }
-	float GetSpriteWidth() { return m_SpriteWidth; }
+	float	GetSpriteHeight()	{ return m_SpriteHeight; }
+	float	GetSpriteWidth()	{ return m_SpriteWidth; }
 	
-	//void			SetBirdDirection( GoingDirection newDirection ) { m_BirdDirection = newDirection; }
-	//GoingDirection	GetBirdDirection() { return m_BirdDirection; }
-	
-	//NNSprite* GetBirdSprite( ) { return m_pBird; }
+	void	Update( float dTime );
 
-	//void Update( float dTime ) {Move(dTime);}
-
-	// agebreak : Move 함수가 아니라 Update()를 오버라이딩 할것. 
-	// Update는 자동으로 Object에서 호출되기 때문에 추가 호출할 필요가 없음
-
-	//void Move( float dTime );
-	void Update( float dTime );
 protected:
 	float			m_Toggle;
 	float			m_SumTime;
-
-	//BIRD_PROPERTY	m_BirdProperty;
-
 	int				m_BirdSpeed;
 	GoingDirection	m_BirdDirection;
 	float			m_SpriteHeight;

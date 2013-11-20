@@ -10,6 +10,8 @@
 #define PLAYER_POSITION_X	350
 #define PLAYER_POSITION_Y	500
 #define PLAYER_SPRITE_REAL_EDGE 30
+#define PLAYER_SPRITE		L"Image/character.png"
+#define PLAYER_ZINDEX		1
 
 #define BIRD_WIDTH			30
 #define BIRD_HEIGHT			30
@@ -26,8 +28,8 @@
 
 #define EASY_BIRD_LEFT_SPRITE	 L"Image/BIRD_B_LEFT.png"
 #define EASY_BIRD_RIGHT_SPRITE L"Image/BIRD_B_RIGHT.png"
-#define EASY_BIRD_WIDTH	30.f
-#define EASY_BIRD_HEIGHT	30.f
+#define EASY_BIRD_WIDTH	50.f
+#define EASY_BIRD_HEIGHT	50.f
 #define EASY_BIRD_ZINDEX	2
 #define EASY_BIRD_SPEED	100
 
@@ -54,6 +56,8 @@
 #define POLLUTION_WARNING_LV_02 15
 #define POLLUTION_WARNING_LV_03	25
 #define POLLUTION_WARNING_LV_04	40
+
+#define MAP_DEFAULT_SPRITE L"Image/map.png"
 
 enum BulletType
 {
@@ -91,7 +95,6 @@ struct BIRD_PROPERTY
 	GoingDirection	goingDirection;
 	int				zindex;
 	BirdType		type;
-	//NNSprite*		sprite;
 };
 
 struct POO_PROPERTY
@@ -118,5 +121,9 @@ struct Hit_Rect
 {
 	float left, right, down, up;
 
+	bool HitCheck()
+	{
+
+	}
 	// agebreak : 여기에 체크 함수를 넣으면?
 };

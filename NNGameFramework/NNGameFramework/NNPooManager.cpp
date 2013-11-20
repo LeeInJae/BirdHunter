@@ -1,7 +1,7 @@
 #include "NNPooManager.h"
-#include "NNPoo_A.h"
 #include "BHDefine.h"
 #include "NNPlayerCharacter.h"
+#include "NNPoo.h"
 
 NNPooManager* NNPooManager::m_pInstance = nullptr;
 
@@ -37,12 +37,6 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 {
 	POO_PROPERTY poo_Property;
 
-
-	// agebreak : 각각 다른 클래스로 상속을 받을 필요가 있을까? 
-	// 이런 경우에는 객체의 속성만이 다르지 않을까? 
-	// 공부 해볼것 : 팩토리 패턴
-
-
 	switch ( WhichPoo )
 	{
 	case NORMAL_POO:
@@ -58,12 +52,6 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 		m_Poo.push_back( newPoo );
 		AddChild( newPoo );
 		break;
-// 	case POO_B:
-// 		break;
-// 	case POO_C:
-// 		break;
-// 	case POO_D:
-// 		break;
 	default:
 		break;
 	}
@@ -71,11 +59,9 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 
 void NNPooManager::Update( float dTime )
 {
-	// agebreak : auto 키워드를 이용하여, 훤씬 간결하게 만들 수 있음.
-	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
-	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); ++poo_Iter )
+	for( auto poo_Iter : m_Poo )
 	{
-		(*poo_Iter) -> Update( dTime );
+		poo_Iter->Update( dTime );
 	}
 	RemoveCheck();
 }
@@ -85,7 +71,6 @@ void NNPooManager::RemoveCheck()
 	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
 
 	//poo & bound hitcheck
-	//반복자 이용 리스트에서 원소 삭제하는 것 에러 질문.(삭제하고 난 뒤 반복자가 바뀌는 듯)
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
 	{
 		if( (*poo_Iter)->GetPositionY() >= RESOLUTION_HEIGHT - (*poo_Iter)->GetSpriteHeight() )
@@ -105,9 +90,6 @@ void NNPooManager::RemoveCheck()
 			++poo_Iter;
 		}
 	}
-
-	
-
 }
 
 bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
@@ -143,19 +125,7 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 		else
 		{
 			return true;
-			//poo_Iter = m_Poo.erase( poo_Iter );
-			//RemoveChild( pPoo_Iter, true );
-			//getchar();
-
-			//bullet_Iter = m_Bullet.erase( bullet_Iter );
-			//RemoveChild( pBullet_Iter, true );
 		}
-
-		//}
-		//if( !hitCheck )
-// 		{
-// 			++bullet_Iter;
-// 		}
 	}
 	return false;
 }

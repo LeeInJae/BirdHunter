@@ -1,28 +1,24 @@
 #include "NNPlayerCharacter.h"
 #include "BHDefine.h"
 #include "NNBulletManager.h"
+#include "NNInputSystem.h"
 
 NNPlayerCharacter::NNPlayerCharacter(void)
 {
-	m_CheckByPoo = false;
-	m_PlayerSpeed = INIT_PLAYERSPEED;
-	m_pChar = NNSprite::Create( L"Image/character.png" );	// agebreak : 캐릭터 이미지 파일명도 Define으로
+	m_CheckByPoo	= false;
+	m_PlayerSpeed	= INIT_PLAYERSPEED;
+	m_pChar = NNSprite::Create( PLAYER_SPRITE );
 	
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;
 
-	m_pChar -> SetImageWidth( PLAYER_WIDTH );
-	m_pChar -> SetImageHeight( PLAYER_HEIGHT );
+	m_pChar->	SetImageWidth( PLAYER_WIDTH );
+	m_pChar->	SetImageHeight( PLAYER_HEIGHT );
 
-	//m_pChar -> SetZindex( 1 );
-	//m_pChar -> SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
-	
-	//WS_POPUPWINDOW : 타이틀바를 없앰
-	//dTime을 이용하여 프레임 자체를 빠르게 또는 느리게( 전체 속도를 조절 가능)
-	
-	SetPosition( PLAYER_POSITION_X, PLAYER_POSITION_Y );
-	SetZindex( 1 );
+	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y );
+	SetZindex	( PLAYER_ZINDEX );
 	m_SumTime = 0;
+	
 	AddChild( m_pChar );
 }
 
@@ -35,11 +31,9 @@ void NNPlayerCharacter::Update( float dTime )
 {
 	NNPoint wich = GetPosition();
 	
-	switch( NNInputSystem::GetInstance() -> CheckWhichPressedKey() )
+	switch( NNInputSystem::GetInstance()->CheckWhichPressedKey() )
 	{
 	case LEFT:
-		// agebreak : 0, 700 같은 상수를 사용하지 말고, Define을 사용하여 명확하게 할것. 
-
 		if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE )
 			SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
 		break;
@@ -73,5 +67,4 @@ void NNPlayerCharacter::Update( float dTime )
 		}
 		m_SumTime = 0;
 	}
-	//NNInputSystem::ReleaseInstance();
 }

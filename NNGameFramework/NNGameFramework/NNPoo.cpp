@@ -4,7 +4,6 @@
 
 NNPoo::NNPoo(void)
 {
-	
 }
 
 
@@ -19,7 +18,6 @@ void NNPoo::SetPoo( NNPoint BirdPosition )
 
 void NNPoo::Update( float dTime )
 {
-	// agebreak : 600 같은 상수를 사용하지 말것, 명확하게 Define해서 사용할 것.
 	if( GetPositionY() <= WINDOW_HEIGHT_DOWN_EDGE ) 
 	{
 		SetPosition( GetPositionX(), GetPositionY() + m_PooSpeed * dTime );
@@ -35,8 +33,8 @@ void NNPoo::SetProperty( POO_PROPERTY poo_property )
 	m_Type			=	poo_property.type;
 
 	m_pPoo = NNSprite::Create( poo_property.sprite_path );
-	m_pPoo -> SetImageWidth( poo_property.setImageWidth );
-	m_pPoo -> SetImageHeight( poo_property.setImageHeight );
-	m_pPoo -> SetZindex( poo_property.zindex );
+	m_pPoo->SetImageWidth( poo_property.setImageWidth );
+	m_pPoo->SetImageHeight( poo_property.setImageHeight );
+	m_pPoo->SetZindex( poo_property.zindex );
 	AddChild( m_pPoo );
 }

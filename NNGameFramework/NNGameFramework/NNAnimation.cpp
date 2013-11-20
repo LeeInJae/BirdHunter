@@ -76,4 +76,5 @@ void NNAnimation::Update( float dTime )
 			m_AnimationEnd = true;
 		}
 	}
+
 }

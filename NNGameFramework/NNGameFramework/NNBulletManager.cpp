@@ -2,10 +2,10 @@
 #include "NNBird.h"
 #include "NNBirdFactory.h"
 #include "NNPooManager.h"
-
+#include "NNHitEffect.h"
+#include "NNPoo.h"
 
 NNBulletManager* NNBulletManager::m_pInstance = nullptr;
-
 
 NNBulletManager* NNBulletManager::GetInstance()
 {
@@ -28,6 +28,7 @@ void NNBulletManager::ReleaseInstance()
 
 NNBulletManager::NNBulletManager(void)
 {
+	m_HitEffect = new NNHitEffect();
 }
 
 
@@ -53,7 +54,7 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 		newBullet = new NNBullet();
 
 		newBullet->SetBulletProperty( bullet_property);
-		newBullet -> SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY()  );
+		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
 		m_Bullet.push_back( newBullet );
 		AddChild( newBullet );
 
@@ -66,10 +67,9 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 
 void NNBulletManager::Update( float dTime )
 {
-	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
-	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); ++bullet_Iter )
+	for( auto bullet_Iter : m_Bullet )
 	{
-		(*bullet_Iter) -> Update( dTime );
+		bullet_Iter->Update( dTime );
 	}
 	RemoveCheck();
 }
@@ -80,7 +80,7 @@ void NNBulletManager::RemoveCheck()
 	
 	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); )
 	{
-		if( (*bullet_Iter) -> GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )
+		if( (*bullet_Iter)->GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )
 		{
  			auto pBullet = *bullet_Iter;
 
@@ -112,7 +112,7 @@ void NNBulletManager::RemoveCheck()
 
 		bullet_rect.left	=	pBullet_Iter->GetPositionX();
 		bullet_rect.right	=	pBullet_Iter->GetPositionX() + pBullet_Iter->GetSpriteWidth();
-		bullet_rect.up	=	pBullet_Iter->GetPositionY();
+		bullet_rect.up		=	pBullet_Iter->GetPositionY();
 		bullet_rect.down	=	pBullet_Iter->GetPositionY() + pBullet_Iter->GetSpriteHeight();
 
 		hitCheck = false;
@@ -134,15 +134,18 @@ void NNBulletManager::RemoveCheck()
 			else
 			{
 				bird_Iter = bird_list.erase( bird_Iter );
+				
+				m_HitEffect->AnimationSetPosition(  pBird_Iter->GetPosition() );
+				AddChild( m_HitEffect ); 
+
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true );
 				
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
-
+				
 				break;
 			}
-			
 		}
 		if( !hitCheck )
 		{
@@ -201,5 +204,3 @@ void NNBulletManager::RemoveCheck()
 		}
 	}
 }
-//test
-//test2

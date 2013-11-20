@@ -33,6 +33,7 @@ int main()
 	Application->Init( L"D2D Test", RESOLUTION_WIDTH, RESOLUTION_HEIGHT, D2D );
 	
 	// 콘솔창 띄우기
+
 	AllocConsole();
 	FILE* pStream;
 	freopen_s(  &pStream, "CONOUT$", "wt", stdout );
@@ -44,7 +45,7 @@ int main()
 // 	}
 	 NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
-// 	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
+ 	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
 // 	 //NNSceneDirector::GetInstance()->ChangeScene( XMLSample::Create() );
 // 	 NNSceneDirector::GetInstance()->ChangeScene( SpriteAtlasSample::Create() );
 // 	 NNSceneDirector::GetInstance()->ChangeScene( CameraSample::Create() );

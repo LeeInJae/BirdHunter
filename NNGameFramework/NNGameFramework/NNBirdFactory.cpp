@@ -6,7 +6,6 @@ NNBirdFactory* NNBirdFactory::m_pInstance = nullptr;
 
 NNBirdFactory::NNBirdFactory(void)
 {
-
 }
 
 NNBirdFactory::~NNBirdFactory(void)
@@ -45,7 +44,6 @@ void NNBirdFactory::MakeBird( BirdType type )
 	int checkDirection = rand() % 2;
 
 	( checkDirection == 0 ) ? bird_Property.goingDirection = LEFT_GO : bird_Property.goingDirection = RIGHT_GO;
-
 
 	// agebreak : 코드 리팩토링!
 	switch ( type )
@@ -89,8 +87,6 @@ void NNBirdFactory::MakeBird( BirdType type )
 
 		AddChild( p_newBird );
 		break;
-	//case Bird_C:
-		//break;
 	default:
 		break;
 	}
@@ -103,69 +99,7 @@ void NNBirdFactory::Update( float dTime )
 		std::list< NNBird* >::iterator bird_Iter = m_Bird.begin();
 		for( bird_Iter = m_Bird.begin(); bird_Iter != m_Bird.end(); ++bird_Iter )
 		{
-			(*bird_Iter) -> Update( dTime );
-			
+			( *bird_Iter ) -> Update( dTime );
 		}
 	}
-	RemoveCheck();
-}
-
-void NNBirdFactory::RemoveCheck() //충돌체크 구현하면서 없애 주어야 함
-{
-// 	std::list< NNBird* >::iterator bird_Iter;
-// 	std::list< NNBullet* >::iterator bullet_Iter;
-// 	std::list< NNBullet* >& bullet_list = NNBulletManager::GetInstance()->GetBulletList();
-// 
-// 	struct Hit_Rect bird_rect, bullet_rect;
-// 
-// 	bool hitCheck;
-//   
-//  	for( bird_Iter = m_Bird.begin(); bird_Iter != m_Bird.end();  )
-// 	{
-// 		auto pbird_Iter = *bird_Iter;
-// 
-// 		bird_rect.left	=	pbird_Iter->GetPositionX();
-// 		bird_rect.right	=	pbird_Iter->GetPositionX() + pbird_Iter->GetSpriteWidth();
-// 		bird_rect.up	=	pbird_Iter->GetPositionY();
-// 		bird_rect.down	=	pbird_Iter->GetPositionY() + pbird_Iter->GetSpriteHeight();
-// 
-// 		hitCheck = false;
-// 
-// 		for( bullet_Iter = bullet_list.begin(); bullet_Iter != bullet_list.end(); )
-// 		{
-// 			
-// 			auto pbullet_Iter = *bullet_Iter;
-// 
-// 			bullet_rect.left	=	pbullet_Iter->GetPositionX();
-// 			bullet_rect.right	=	pbullet_Iter->GetPositionX() + pbullet_Iter->GetSpriteWidth();
-// 			bullet_rect.up	=	pbullet_Iter->GetPositionY();
-// 			bullet_rect.down	=	pbullet_Iter->GetPositionY() + pbullet_Iter->GetSpriteHeight();
-// 			
-// 			if( bird_rect.right < bullet_rect.left || bullet_rect.right < bird_rect.left || bullet_rect.down < bird_rect.up || bullet_rect.up > bird_rect.down )
-// 			{
-// 				//++bird_Iter;
-// 				++bullet_Iter;
-// 				continue;
-// 			}
-// 			else
-// 			{
-// 				//bird_Iter = m_Bird.erase( bird_Iter );
-// 				bullet_Iter = bullet_list.erase( bullet_Iter );
-// 
-// 				//RemoveChild( pbird_Iter );
-// 				NNBulletManager::GetInstance()->RemoveChild( pbullet_Iter, true );
-// 				hitCheck = true;
-// 			}
-// 		}
-// 		
-// 		if( hitCheck )
-// 		{
-// 			bird_Iter = m_Bird.erase( bird_Iter );
-// 			RemoveChild( pbird_Iter, true );
-// 		}
-// 		else
-// 		{
-// 			++bird_Iter;
-// 		}
-// 	}
 }
