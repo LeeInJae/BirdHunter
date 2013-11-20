@@ -11,4 +11,3 @@ public:
 protected:
 	NNSprite* m_pMap;
 };
-
