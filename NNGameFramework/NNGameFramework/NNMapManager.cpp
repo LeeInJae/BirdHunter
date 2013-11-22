@@ -42,8 +42,10 @@ void NNMapManager::Update(float dTime)
 		m_pMap->SetZindex( 0 );
 		AddChild( m_pMap );
 		m_CurrentWarningLV = POLLUTION_WARNING_LV_04;
+
+		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
 	}
-	else if (pollution > POLLUTION_WARNING_LV_03 && m_CurrentWarningLV != POLLUTION_WARNING_LV_03)
+	else if (pollution <= POLLUTION_WARNING_LV_04 && pollution > POLLUTION_WARNING_LV_03 && m_CurrentWarningLV != POLLUTION_WARNING_LV_03)
 	{
 		RemoveChild(m_pMap);
 		m_pMap = NNSprite::Create( L"Image/mapWarning003.png" );
@@ -52,6 +54,8 @@ void NNMapManager::Update(float dTime)
 		m_pMap->SetZindex( 0 );
 		AddChild( m_pMap );
 		m_CurrentWarningLV = POLLUTION_WARNING_LV_03;
+
+		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
 	}
 	else if (pollution > POLLUTION_WARNING_LV_02 && m_CurrentWarningLV != POLLUTION_WARNING_LV_02)
 	{
@@ -62,6 +66,8 @@ void NNMapManager::Update(float dTime)
 		m_pMap->SetZindex( 0 );
 		AddChild( m_pMap );
 		m_CurrentWarningLV = POLLUTION_WARNING_LV_02;
+
+		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
 	}
 	else if (pollution > POLLUTION_WARNING_LV_01 && m_CurrentWarningLV != POLLUTION_WARNING_LV_01)
 	{
@@ -72,6 +78,8 @@ void NNMapManager::Update(float dTime)
 		m_pMap->SetZindex( 0 );
 		AddChild( m_pMap );
 		m_CurrentWarningLV = POLLUTION_WARNING_LV_01;
+
+		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
 	}
 	else if (pollution < POLLUTION_WARNING_LV_01 && m_CurrentWarningLV != 0)
 	{
@@ -82,5 +90,7 @@ void NNMapManager::Update(float dTime)
 		m_pMap->SetZindex( 0 );
 		AddChild( m_pMap );
 		m_CurrentWarningLV = 0;
+
+		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
 	}
 }

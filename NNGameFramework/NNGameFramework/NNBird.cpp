@@ -42,7 +42,6 @@ void NNBird::Update( float dTime )
 		NNPooManager::GetInstance()->MakePoo( NORMAL_POO, GetPosition() );
 		m_SumTime = 0;
 	}
-
 }
 
 void NNBird::SetBirdProperty( BIRD_PROPERTY bird_property )

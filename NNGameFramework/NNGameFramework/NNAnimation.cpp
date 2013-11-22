@@ -22,7 +22,7 @@ NNAnimation* NNAnimation::Create( int count, ... )
 	{
 		NNSpriteNode* spriteInstance = NNSpriteNode::Create( va_arg( ap, wchar_t* ) );
 		pInstance->m_SpriteList.push_back( spriteInstance );
-		pInstance->m_SpriteList[i]->SetFrameTime( 0.2f );
+		pInstance->m_SpriteList[i]->SetFrameTime( 0.5f );
 		pInstance->AddChild( spriteInstance );
 	}
 
@@ -54,6 +54,7 @@ void NNAnimation::Render()
 
 	m_SpriteList[m_Frame]->Render();
 }
+
 void NNAnimation::Update( float dTime )
 {
 	if ( m_AnimationEnd == true || m_Visible == false ) return;

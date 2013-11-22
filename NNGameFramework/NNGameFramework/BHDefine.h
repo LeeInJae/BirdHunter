@@ -59,9 +59,9 @@
 
 #define MAP_DEFAULT_SPRITE L"Image/map.png"
 
-#define HIT_EFFECT_SCALE_X 30
-#define HIT_EFFECT_SCALE_Y 30
-#define HIT_EFFECT_LIFETIME 2
+#define HIT_EFFECT_SCALE_X 0.5
+#define HIT_EFFECT_SCALE_Y 0.5
+#define HIT_EFFECT_LIFETIME 0.5
 
 enum BulletType
 {

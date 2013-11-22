@@ -1,4 +1,5 @@
 #include "NNHitEffect.h"
+#include "NNAnimation.h"
 
 
 NNHitEffect::NNHitEffect(void)
@@ -16,30 +17,24 @@ NNHitEffect::NNHitEffect(void)
 	// 총 4장 애니메이션
 	// 맨 앞이 텍스쳐 수, 뒤가 경로
 
-	//m_Animation->SetPosition( NNPoint(50.f,50.f) );
-
+// 	m_Animation->SetPosition( NNPoint(50.f,50.f) );
+// 	m_Animation->SetZindex( 0 );
 	// 행렬 연산 먹힘
 	m_LifeTime = 0.f;
 	AddChild( m_Animation );
 }
 
-
 NNHitEffect::~NNHitEffect(void)
 {
 }
 
-void NNHitEffect::AnimationSetPosition( NNPoint animationPosition )
-{
-	m_Animation->SetPosition( animationPosition );
-}
-
 void NNHitEffect::Update( float dTime )
 {
+//	NNObject::Update( dTime );
 	m_LifeTime += dTime;
-	NNObject::Update( dTime );
 }
 
-void NNHitEffect::Render()
-{
-	NNScene::Render();
-}
+// void NNHitEffect::Render()
+// {
+//  	NNObject::Render( );
+// }

@@ -35,7 +35,6 @@ void NNEffectManager::Update( float dTime ) //시간체크 후 소멸.
 	for( auto hitEffect_Iter : m_HitEffect )
 	{
 		hitEffect_Iter->Update( dTime );
-		//hitEffect_Iter->Render();
 	}
 	RemoveHitEffectCheck();
 }
@@ -44,8 +43,9 @@ void NNEffectManager::MakeHitEffect( NNPoint birdPosition )
 {
 	NNHitEffect* newEffect;
 	newEffect = new NNHitEffect();
-	newEffect->AnimationSetPosition( birdPosition );
+	newEffect->SetPosition( birdPosition );
 	newEffect->SetScale(HIT_EFFECT_SCALE_X, HIT_EFFECT_SCALE_Y);
+	newEffect->SetZindex( 0 );
 	m_HitEffect.push_back( newEffect );
 	AddChild( newEffect ); 
 }

@@ -24,6 +24,7 @@ void NNScene::Render()
 		child->Render();
 	}
 }
+
 void NNScene::Update( float dTime )
 {
 	if ( m_Visible == false ) return;
