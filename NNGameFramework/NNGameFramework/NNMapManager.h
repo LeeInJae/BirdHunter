@@ -1,5 +1,7 @@
 #pragma once
 #include "NNObject.h"
+#include <vector>
+#include <string>
 
 class NNSprite;
 
@@ -10,6 +12,8 @@ public:
 	static NNMapManager* GetInstance();
 	~NNMapManager(void);
 	void Update(float dTime);
+	void SetMapContainer(void);
+	void SetWarningCount(void);
 
 protected:
 	NNMapManager(void);
@@ -17,6 +21,9 @@ protected:
 
 private:
 	static NNMapManager* m_pInstance;
-	int m_CurrentWarningLV;
+	int pollution;
+	int m_WarningLV;
+	std::vector<std::wstring> m_MapContainer;
+	std::vector<int> m_WarningCount;
 };
 

@@ -6,9 +6,11 @@
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
-NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0)
-{	
-	m_pMap=NNSprite::Create( MAP_DEFAULT_SPRITE );
+NNMapManager::NNMapManager(void) : m_WarningLV(0)
+{	 
+	SetMapContainer();
+	SetWarningCount();
+	m_pMap=NNSprite::Create( m_MapContainer[0] );
 	m_pMap->SetImageWidth( RESOLUTION_WIDTH );
 	m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
 	m_pMap->SetZindex( 0 );
@@ -27,70 +29,42 @@ NNMapManager* NNMapManager::GetInstance()
 	return m_pInstance;
 }
 
+void NNMapManager::SetMapContainer( void )
+{
+	m_MapContainer.push_back(MAP_DEFAULT);
+	m_MapContainer.push_back(MAP_WARNING_01);
+	m_MapContainer.push_back(MAP_WARNING_02);
+	m_MapContainer.push_back(MAP_WARNING_03);
+	m_MapContainer.push_back(MAP_WARNING_04);
+}
+
+
+void NNMapManager::SetWarningCount( void )
+{
+	m_WarningCount.push_back(0);
+	m_WarningCount.push_back(POLLUTION_WARNING_LV_01);
+	m_WarningCount.push_back(POLLUTION_WARNING_LV_02);
+	m_WarningCount.push_back(POLLUTION_WARNING_LV_03);
+	m_WarningCount.push_back(POLLUTION_WARNING_LV_04);
+}
+
 void NNMapManager::Update(float dTime)
 {
-
-	// agebreak : 코드 리팩토링 필요
-	int pollution = NNPooManager::GetInstance()->GetLandedPoo();
+	pollution = NNPooManager::GetInstance()->GetLandedPoo();
+	for (int i= 0; i < m_WarningCount.size(); ++i)
+	{
+		if (pollution > m_WarningCount[i])
+		{
+			m_WarningLV = i;
+		}
+	}	
 	
-	if (pollution > POLLUTION_WARNING_LV_04 && m_CurrentWarningLV != POLLUTION_WARNING_LV_04)
-	{
-		RemoveChild(m_pMap);
-		m_pMap = NNSprite::Create( L"Image/mapWarning004.png" );
-		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-		m_pMap->SetZindex( 0 );
-		AddChild( m_pMap );
-		m_CurrentWarningLV = POLLUTION_WARNING_LV_04;
-
-		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
-	}
-	else if (pollution <= POLLUTION_WARNING_LV_04 && pollution > POLLUTION_WARNING_LV_03 && m_CurrentWarningLV != POLLUTION_WARNING_LV_03)
-	{
-		RemoveChild(m_pMap);
-		m_pMap = NNSprite::Create( L"Image/mapWarning003.png" );
-		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-		m_pMap->SetZindex( 0 );
-		AddChild( m_pMap );
-		m_CurrentWarningLV = POLLUTION_WARNING_LV_03;
-
-		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
-	}
-	else if (pollution > POLLUTION_WARNING_LV_02 && m_CurrentWarningLV != POLLUTION_WARNING_LV_02)
-	{
-		RemoveChild(m_pMap);
-		m_pMap = NNSprite::Create( L"Image/mapWarning002.png" );
-		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-		m_pMap->SetZindex( 0 );
-		AddChild( m_pMap );
-		m_CurrentWarningLV = POLLUTION_WARNING_LV_02;
-
-		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
-	}
-	else if (pollution > POLLUTION_WARNING_LV_01 && m_CurrentWarningLV != POLLUTION_WARNING_LV_01)
-	{
-		RemoveChild(m_pMap);
-		m_pMap = NNSprite::Create( L"Image/mapWarning001.png" );
-		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-		m_pMap->SetZindex( 0 );
-		AddChild( m_pMap );
-		m_CurrentWarningLV = POLLUTION_WARNING_LV_01;
-
-		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
-	}
-	else if (pollution < POLLUTION_WARNING_LV_01 && m_CurrentWarningLV != 0)
-	{
-		RemoveChild(m_pMap);
-		m_pMap = NNSprite::Create( L"Image/map.png" );
-		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-		m_pMap->SetZindex( 0 );
-		AddChild( m_pMap );
-		m_CurrentWarningLV = 0;
-
-		printf_s("MAP_LEVEL : %d\n", m_CurrentWarningLV);
-	}
+	RemoveChild(m_pMap);
+	m_pMap = NNSprite::Create( m_MapContainer[m_WarningLV] );
+	m_pMap->SetImageWidth( RESOLUTION_WIDTH );
+	m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
+	m_pMap->SetZindex( 0 );
+	AddChild( m_pMap );
 }
+
+

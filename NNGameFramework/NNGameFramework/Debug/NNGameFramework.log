@@ -1,0 +1,20 @@
+﻿  Main.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  NNPooManager.cpp
+  NNPooBulletHitEffect.cpp
+  NNPoo.cpp
+  NNPlayerCharacter.cpp
+  NNMapManager.cpp
+c:\users\oldgieui\documents\github\birdhunter\nngameframework\nngameframework\nnmapmanager.cpp(54): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+  NNGameScene.cpp
+  NNEffectManager.cpp
+  NNBulletManager.cpp
+c:\users\oldgieui\documents\github\birdhunter\nngameframework\nngameframework\nnbulletmanager.cpp(139): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\oldgieui\documents\github\birdhunter\nngameframework\nngameframework\nnbulletmanager.cpp(192): warning C4244: '인수' : 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  NNBullet.cpp
+  NNBirdFactory.cpp
+  NNBirdBulletHitEffect.cpp
+  NNBird.cpp
+  코드를 생성하고 있습니다...
+  NNGameFramework.vcxproj -> C:\Users\oldgieui\Documents\GitHub\BirdHunter\NNGameFramework\Bin\BirdHunter.exe

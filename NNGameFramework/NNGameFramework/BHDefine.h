@@ -57,7 +57,11 @@
 #define POLLUTION_WARNING_LV_03	25
 #define POLLUTION_WARNING_LV_04	40
 
-#define MAP_DEFAULT_SPRITE L"Image/map.png"
+#define MAP_DEFAULT		L"Image/map.png"
+#define MAP_WARNING_01	L"Image/mapWarning001.png"
+#define MAP_WARNING_02	L"Image/mapWarning002.png"
+#define MAP_WARNING_03	L"Image/mapWarning003.png"
+#define MAP_WARNING_04	L"Image/mapWarning004.png"
 
 #define Bird_Bullet_HIT_EFFECT_SCALE_X 1.0f
 #define Bird_Bullet_HIT_EFFECT_SCALE_Y 1.0f
@@ -91,6 +95,8 @@
 #define Poo_Bullet_HiT_Effect_Sprite6 L"Image/EXPLOSION_06.png"
 #define Poo_Bullet_HiT_Effect_Sprite7 L"Image/EXPLOSION_07.png"
 #define Poo_Bullet_HiT_Effect_Change_Sprite_Time 0.15f
+
+
 
 enum BulletType
 {
