@@ -18,19 +18,12 @@ NNGameScene::NNGameScene(void )
 
 	m_SumTime = 0;
 
-	//AddChild( NNMapManager::GetInstance() );
+	AddChild( NNMapManager::GetInstance() );
 	AddChild( m_Character );
-	//AddChild( NNPooManager::GetInstance() );
+	AddChild( NNPooManager::GetInstance() );
 	AddChild( NNBulletManager::GetInstance() );
 	AddChild( NNBirdFactory::GetInstance() );
 	AddChild( NNEffectManager::GetInstance() );
-
-// 	NNHitEffect* newEffect;
-// 	newEffect = new NNHitEffect();
-// 	newEffect->SetPosition( 50,50 );
-// 	newEffect->SetScale(0.5, 0.5);
-// 	newEffect->SetZindex( 0 );
-// 	AddChild( newEffect ); 
 
 	UIInit();
 }

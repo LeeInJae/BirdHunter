@@ -109,6 +109,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="NNBird.cpp" />
+    <ClCompile Include="NNBirdBulletHitEffect.cpp" />
     <ClCompile Include="NNBirdFactory.cpp" />
     <ClCompile Include="NNBullet.cpp" />
     <ClCompile Include="NNBulletManager.cpp" />
@@ -125,6 +126,7 @@
     <ClCompile Include="NNPlayerCharacter.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNPoo.cpp" />
+    <ClCompile Include="NNPooBulletHitEffect.cpp" />
     <ClCompile Include="NNPooManager.cpp" />
     <ClCompile Include="NNResourceManager.cpp" />
     <ClCompile Include="NNScene.cpp" />
@@ -175,6 +177,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="NNBird.h" />
+    <ClInclude Include="NNBirdBulletHitEffect.h" />
     <ClInclude Include="NNBirdFactory.h" />
     <ClInclude Include="NNBullet.h" />
     <ClInclude Include="NNBulletManager.h" />
@@ -195,6 +198,7 @@
     <ClInclude Include="NNPlayerCharacter.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNPoo.h" />
+    <ClInclude Include="NNPooBulletHitEffect.h" />
     <ClInclude Include="NNPooManager.h" />
     <ClInclude Include="NNRenderer.h" />
     <ClInclude Include="NNResourceManager.h" />

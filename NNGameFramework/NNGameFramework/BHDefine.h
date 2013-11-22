@@ -59,9 +59,38 @@
 
 #define MAP_DEFAULT_SPRITE L"Image/map.png"
 
-#define HIT_EFFECT_SCALE_X 0.5
-#define HIT_EFFECT_SCALE_Y 0.5
-#define HIT_EFFECT_LIFETIME 0.5
+#define Bird_Bullet_HIT_EFFECT_SCALE_X 1.0f
+#define Bird_Bullet_HIT_EFFECT_SCALE_Y 1.0f
+#define Bird_Bullet_HIT_EFFECT_LIFETIME 0.5
+#define Bird_Bullet_HIT_EFFECT_BALACE_X 40
+#define Bird_Bullet_HIT_EFFECT_BALACE_Y 40
+
+#define Poo_Bullet_HIT_EFFECT_SCALE_X 0.5f
+#define Poo_Bullet_HIT_EFFECT_SCALE_Y 0.5f
+#define Poo_Bullet_HIT_EFFECT_LIFETIME 0.5
+#define Poo_Bullet_HIT_EFFECT_BALACE_X 40
+#define Poo_Bullet_HIT_EFFECT_BALACE_Y 40
+
+#define Bird_Bullet_HiT_Effect_Size 8
+#define Bird_Bullet_HiT_Effect_Sprite1 L"Image/GREEN_BIRD_DIE_001.png"
+#define Bird_Bullet_HiT_Effect_Sprite2 L"Image/GREEN_BIRD_DIE_002.png"
+#define Bird_Bullet_HiT_Effect_Sprite3 L"Image/GREEN_BIRD_DIE_003.png"
+#define Bird_Bullet_HiT_Effect_Sprite4 L"Image/GREEN_BIRD_DIE_004.png"
+#define Bird_Bullet_HiT_Effect_Sprite5 L"Image/GREEN_BIRD_DIE_005.png"
+#define Bird_Bullet_HiT_Effect_Sprite6 L"Image/GREEN_BIRD_DIE_006.png"
+#define Bird_Bullet_HiT_Effect_Sprite7 L"Image/GREEN_BIRD_DIE_007.png"
+#define Bird_Bullet_HiT_Effect_Sprite8 L"Image/GREEN_BIRD_DIE_008.png"
+#define Bird_Bullet_HiT_Effect_Change_Sprite_Time 0.15f
+
+#define Poo_Bullet_HiT_Effect_Size 7
+#define Poo_Bullet_HiT_Effect_Sprite1 L"Image/EXPLOSION_01.png"
+#define Poo_Bullet_HiT_Effect_Sprite2 L"Image/EXPLOSION_02.png"
+#define Poo_Bullet_HiT_Effect_Sprite3 L"Image/EXPLOSION_03.png"
+#define Poo_Bullet_HiT_Effect_Sprite4 L"Image/EXPLOSION_04.png"
+#define Poo_Bullet_HiT_Effect_Sprite5 L"Image/EXPLOSION_05.png"
+#define Poo_Bullet_HiT_Effect_Sprite6 L"Image/EXPLOSION_06.png"
+#define Poo_Bullet_HiT_Effect_Sprite7 L"Image/EXPLOSION_07.png"
+#define Poo_Bullet_HiT_Effect_Change_Sprite_Time 0.15f
 
 enum BulletType
 {

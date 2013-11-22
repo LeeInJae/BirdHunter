@@ -292,6 +292,12 @@
     <ClCompile Include="NNEffectManager.cpp">
       <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="NNBirdBulletHitEffect.cpp">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="NNPooBulletHitEffect.cpp">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -494,6 +500,12 @@
       <Filter>BirdHunter\Effect</Filter>
     </ClInclude>
     <ClInclude Include="NNEffectManager.h">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBirdBulletHitEffect.h">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNPooBulletHitEffect.h">
       <Filter>BirdHunter\Effect</Filter>
     </ClInclude>
   </ItemGroup>

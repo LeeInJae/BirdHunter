@@ -101,7 +101,10 @@ void NNBulletManager::RemoveCheck()
 
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBird* >& bird_list = NNBirdFactory::GetInstance()->GetBirdList();
-	std::list< NNHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
+	//std::list< NNHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
+
+	std::list< NNBirdBulletHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
+	
 	struct Hit_Rect bird_rect, bullet_rect;
 
 	bool hitCheck;
@@ -133,8 +136,8 @@ void NNBulletManager::RemoveCheck()
 			}
 			else
 			{
-				NNEffectManager::GetInstance()->MakeHitEffect( pBird_Iter->GetPosition() );
-				
+				NNEffectManager::GetInstance()->MakeBirdBulletHitEffect( pBird_Iter->GetPosition(), pBird_Iter->GetSpriteWidth(), pBird_Iter->GetSpriteHeight(), pBird_Iter->GetBirdDirection() );
+				//NNEffectManager::GetInstance()->MakeHitEffect( pBullet_Iter->GetPosition(), pBird_Iter->GetSpriteWidth(), pBird_Iter->GetSpriteHeight(), pBird_Iter->GetBirdDirection() );
 
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true );
@@ -186,6 +189,8 @@ void NNBulletManager::RemoveCheck()
 			}
 			else
 			{
+				NNEffectManager::GetInstance()->MakePooBulletHitEffect( pPoo_Iter->GetPosition(), pPoo_Iter->GetSpriteWidth(), pPoo_Iter->GetSpriteHeight() );
+				
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
 

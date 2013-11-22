@@ -14,7 +14,7 @@ public:
 
 	float	GetSpriteHeight()	{ return m_SpriteHeight; }
 	float	GetSpriteWidth()	{ return m_SpriteWidth; }
-	
+	GoingDirection GetBirdDirection() { return m_BirdDirection; }
 	void	Update( float dTime );
 
 protected:
