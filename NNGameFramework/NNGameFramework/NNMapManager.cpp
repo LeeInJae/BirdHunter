@@ -74,17 +74,6 @@ void NNMapManager::Update(float dTime)
 	{
 		NNAudioSystem::GetInstance()->Play(SE_WARNING);
 	}
-
-// 	if (m_WarningLV+1 == m_MapContainer.size())
-// 	{
-// 		NNAudioSystem::GetInstance()->Play(SE_WARNING);
-// 	}
-// 	else
-// 	{
-// 		NNAudioSystem::GetInstance()->Stop(SE_WARNING);
-// 	}
-
-
 }
 
 
