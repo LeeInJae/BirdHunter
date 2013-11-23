@@ -7,7 +7,7 @@
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
-NNMapManager::NNMapManager(void) : m_WarningLV(0)
+NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0)
 {	 
 	SetMapContainer();
 	SetWarningCount();
@@ -56,15 +56,24 @@ void NNMapManager::Update(float dTime)
 	{
 		if (pollution > m_WarningCount[i])
 		{
-			m_WarningLV = i;
-			RemoveChild(m_pMap);
-			m_pMap = NNSprite::Create( m_MapContainer[m_WarningLV] );
-			m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-			m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-			m_pMap->SetZindex( 0 );
-			AddChild( m_pMap );
+			m_PrevWarningLV = m_CurrentWarningLV;
+			m_CurrentWarningLV = i;
 		}
 	}	
+	if (m_PrevWarningLV != m_CurrentWarningLV)
+	{
+		RemoveChild(m_pMap);
+		m_pMap = NNSprite::Create( m_MapContainer[m_CurrentWarningLV] );
+		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
+		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
+		m_pMap->SetZindex( 0 );
+		AddChild( m_pMap );
+	}
+
+	if (pollution -1 == POLLUTION_WARNING_LV_04)
+	{
+		NNAudioSystem::GetInstance()->Play(SE_WARNING);
+	}
 
 // 	if (m_WarningLV+1 == m_MapContainer.size())
 // 	{

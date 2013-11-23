@@ -14,7 +14,7 @@ public:
 	void Update(float dTime);
 	void SetMapContainer(void);
 	void SetWarningCount(void);
-	int GetWarningLV(void){return m_WarningLV;}
+	int GetWarningLV(void){return m_CurrentWarningLV;}
 
 protected:
 	NNMapManager(void);
@@ -23,7 +23,8 @@ protected:
 private:
 	static NNMapManager* m_pInstance;
 	int pollution;
-	int m_WarningLV;
+	int m_CurrentWarningLV;
+	int m_PrevWarningLV;
 	std::vector<std::wstring> m_MapContainer;
 	std::vector<int> m_WarningCount;
 };
