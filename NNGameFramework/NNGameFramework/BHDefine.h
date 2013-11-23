@@ -1,5 +1,8 @@
 #pragma once
 #include "NNSprite.h"
+#include "NNSound.h"
+#include <time.h>
+#include <vector>
 
 #define RESOLUTION_WIDTH	800
 #define RESOLUTION_HEIGHT	600
@@ -62,6 +65,17 @@
 #define MAP_WARNING_02	L"Image/mapWarning002.png"
 #define MAP_WARNING_03	L"Image/mapWarning003.png"
 #define MAP_WARNING_04	L"Image/mapWarning004.png"
+
+#define SE_GAMESTART	NNSound::Create("Sound/GAME_START.wav")
+#define SE_BIRD_DIE_00	NNSound::Create("Sound/BIRD_DIE_00.wav")
+#define SE_BIRD_DIE_01	NNSound::Create("Sound/BIRD_DIE_01.wav")
+#define SE_BIRD_DIE_02	NNSound::Create("Sound/BIRD_DIE_02.wav")
+#define SE_POO_BOOM_00	NNSound::Create("Sound/POO_BOOM_00.wav")
+#define SE_POO_BOOM_01	NNSound::Create("Sound/POO_BOOM_01.wav")
+#define SE_POO_BOOM_02	NNSound::Create("Sound/POO_BOOM_02.wav")
+#define SE_POO_BOOM_03	NNSound::Create("Sound/POO_BOOM_03.wav")
+#define SE_POO_BOOM_04	NNSound::Create("Sound/POO_BOOM_04.wav")
+#define SE_WARNING		NNSound::Create("Sound/WARNING.wav")
 
 #define Bird_Bullet_HIT_EFFECT_SCALE_X 1.0f
 #define Bird_Bullet_HIT_EFFECT_SCALE_Y 1.0f
