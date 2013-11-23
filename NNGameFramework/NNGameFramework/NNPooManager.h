@@ -23,8 +23,9 @@ private:
 
 	std::list< NNPoo* > m_Poo;
 
+	
 	static NNPooManager* m_pInstance;
 	void RemoveCheck();
-
+	
 	int m_LandedPoo;
 };

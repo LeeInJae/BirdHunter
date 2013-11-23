@@ -1,5 +1,6 @@
 #pragma once
 #include "NNScene.h"
+#include <vector>
 
 class NNPlayerCharacter;
 class NNMap_A;
@@ -7,6 +8,8 @@ class NNPooManager;
 class NNMapManager;
 class NNLabel;
 class NNSprite;
+class NNSound;
+class NNAudioSystem;
 
 class NNGameScene : public NNScene
 {
@@ -26,6 +29,10 @@ protected:
 	NNLabel*			m_LandedPooLabel;
 	NNLabel*			m_GameOverLabel;
 	NNLabel*			m_FPSLabel;
+
+	NNAudioSystem*			m_AudioPlayer;
+	NNSound*				m_GameStartSE;
+	std::vector<NNSound*>	m_BirdDieSE;
 
 	virtual void	Render();
 	virtual void	UIUpdate( float dTime );

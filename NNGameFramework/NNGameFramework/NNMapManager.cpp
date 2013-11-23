@@ -3,6 +3,7 @@
 #include "NNSprite.h"
 #include "BHDefine.h"
 #include "NNPooManager.h"
+#include "NNAudioSystem.h"
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
@@ -56,15 +57,25 @@ void NNMapManager::Update(float dTime)
 		if (pollution > m_WarningCount[i])
 		{
 			m_WarningLV = i;
+			RemoveChild(m_pMap);
+			m_pMap = NNSprite::Create( m_MapContainer[m_WarningLV] );
+			m_pMap->SetImageWidth( RESOLUTION_WIDTH );
+			m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
+			m_pMap->SetZindex( 0 );
+			AddChild( m_pMap );
 		}
 	}	
-	
-	RemoveChild(m_pMap);
-	m_pMap = NNSprite::Create( m_MapContainer[m_WarningLV] );
-	m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-	m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-	m_pMap->SetZindex( 0 );
-	AddChild( m_pMap );
+
+// 	if (m_WarningLV+1 == m_MapContainer.size())
+// 	{
+// 		NNAudioSystem::GetInstance()->Play(SE_WARNING);
+// 	}
+// 	else
+// 	{
+// 		NNAudioSystem::GetInstance()->Stop(SE_WARNING);
+// 	}
+
+
 }
 
 

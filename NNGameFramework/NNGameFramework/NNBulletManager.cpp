@@ -5,6 +5,7 @@
 #include "NNHitEffect.h"
 #include "NNPoo.h"
 #include "NNEffectManager.h"
+#include "NNAudioSystem.h"
 
 NNBulletManager* NNBulletManager::m_pInstance = nullptr;
 
@@ -29,6 +30,11 @@ void NNBulletManager::ReleaseInstance()
 
 NNBulletManager::NNBulletManager(void)
 {
+	m_SE_PooBoom.push_back(SE_POO_BOOM_00);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_01);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_02);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_03);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_04);
 }
 
 
@@ -141,7 +147,7 @@ void NNBulletManager::RemoveCheck()
 
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true );
-				
+
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
@@ -193,6 +199,7 @@ void NNBulletManager::RemoveCheck()
 				
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
+				NNAudioSystem::GetInstance()->Play(m_SE_PooBoom[rand()%m_SE_PooBoom.size()]);
 
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );

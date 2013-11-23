@@ -3,6 +3,7 @@
 #include "BHDefine.h"
 #include "NNBird.h"
 
+
 class NNBirdFactory : public NNObject
 {
 public:
@@ -11,6 +12,7 @@ public:
 	void					MakeBird( BirdType type );
 	void					Update( float dTime );
 	std::list< NNBird* >&	GetBirdList() { return m_Bird; }
+	void					RemoveChild( NNObject* object, bool memoryDel );
 
 private:
 	NNBirdFactory(void);
@@ -19,4 +21,6 @@ private:
 	static NNBirdFactory*	 m_pInstance;
 
 	std::list< NNBird* >	 m_Bird;
+
+	std::vector<NNSound*> m_SE_BirdDie; 
 };

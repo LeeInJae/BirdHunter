@@ -2,6 +2,7 @@
 #include "BHDefine.h"
 #include "NNPlayerCharacter.h"
 #include "NNPoo.h"
+#include "NNAudioSystem.h"
 
 NNPooManager* NNPooManager::m_pInstance = nullptr;
 
@@ -130,3 +131,4 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 	}
 	return false;
 }
+

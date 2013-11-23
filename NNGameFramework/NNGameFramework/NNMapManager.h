@@ -14,6 +14,7 @@ public:
 	void Update(float dTime);
 	void SetMapContainer(void);
 	void SetWarningCount(void);
+	int GetWarningLV(void){return m_WarningLV;}
 
 protected:
 	NNMapManager(void);

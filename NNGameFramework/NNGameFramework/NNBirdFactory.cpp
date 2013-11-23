@@ -1,12 +1,17 @@
 #include "NNBirdFactory.h"
 #include "NNBullet.h"
 #include "NNBulletManager.h"
+#include "NNAudioSystem.h"
+
 
 NNBirdFactory* NNBirdFactory::m_pInstance = nullptr;
 
 NNBirdFactory::NNBirdFactory(void)
 {
-
+	srand((unsigned)time(NULL));
+	m_SE_BirdDie.push_back(SE_BIRD_DIE_00);
+	m_SE_BirdDie.push_back(SE_BIRD_DIE_01);
+	m_SE_BirdDie.push_back(SE_BIRD_DIE_02);
 }
 
 NNBirdFactory::~NNBirdFactory(void)
@@ -91,3 +96,10 @@ void NNBirdFactory::Update( float dTime )
 		bird_Iter->Update( dTime );
 	}
 }
+
+void NNBirdFactory::RemoveChild( NNObject* object, bool memoryDel )
+{
+	NNObject::RemoveChild(object, memoryDel);
+	NNAudioSystem::GetInstance()->Play(m_SE_BirdDie[rand()%m_SE_BirdDie.size()]);
+}
+
