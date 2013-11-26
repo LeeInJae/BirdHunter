@@ -31,6 +31,7 @@ void NNBirdBulletHitEffect::Update( float dTime )
 	//SpriteSetPosition( m_BirdPosition );
 	m_Sumtime += dTime;
 
+	// agebreak : Define은 대문자를 사용한다.
 	if( m_Sumtime >= Bird_Bullet_HiT_Effect_Change_Sprite_Time )
 	{
 		m_pCurrentSprite = m_pSprite[m_CurrentFrame];

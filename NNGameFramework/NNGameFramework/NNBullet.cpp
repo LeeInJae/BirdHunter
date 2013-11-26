@@ -21,6 +21,7 @@ void NNBullet::Update( float dTime )
 
 void NNBullet::SetBulletProperty( Bullet_PROPERTY bullet_property )
 {
+	// agebreak : 이 변수는 왜 존재하는가?
 	m_CheckByBird = false;
 	m_CheckByPoo  = false;
 

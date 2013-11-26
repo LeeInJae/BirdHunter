@@ -48,8 +48,9 @@ void NNBirdFactory::MakeBird( BirdType type )
 	BirdSetPosition.SetY( (float) (rand() % BIRD_SET_MAX_HEIGHT) );
 
 	int checkDirection = rand() % 2;
-
 	( checkDirection == 0 ) ? bird_Property.goingDirection = LEFT_GO : bird_Property.goingDirection = RIGHT_GO;
+	// agebreak : 위 코드는 아래와 같이 변경한다
+	bird_Property.goingDirection =  rand() % 2 ? LEFT_GO : RIGHT_GO;
 
 	switch ( type )
 	{
@@ -66,6 +67,7 @@ void NNBirdFactory::MakeBird( BirdType type )
 		bird_Property.type				= NORMAL_BIRD;
 		break;
 	case EASY_BIRD:
+		// agebreak : 위와 같이 3항 연산자를 사용하면,  한 줄로 변경할 수 있다. 
 		if( bird_Property.goingDirection == LEFT_GO )
 			bird_Property.sprite_path =  EASY_BIRD_LEFT_SPRITE;
 		else
@@ -91,6 +93,7 @@ void NNBirdFactory::MakeBird( BirdType type )
 
 void NNBirdFactory::Update( float dTime )
 {
+	// agebreak : 업데이트가 두번 되지 않는가??
 	for( auto bird_Iter : m_Bird )
 	{
 		bird_Iter->Update( dTime );
@@ -99,6 +102,7 @@ void NNBirdFactory::Update( float dTime )
 
 void NNBirdFactory::RemoveChild( NNObject* object, bool memoryDel )
 {
+	// agebreak : 두번째 인자가 false가 들어오면 무슨 문제가 발생하는가?
 	NNObject::RemoveChild(object, memoryDel);
 	NNAudioSystem::GetInstance()->Play(m_SE_BirdDie[rand()%m_SE_BirdDie.size()]);
 }

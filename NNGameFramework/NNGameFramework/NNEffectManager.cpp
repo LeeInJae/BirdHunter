@@ -34,6 +34,8 @@ void NNEffectManager::ReleaseInstance()
 
 void NNEffectManager::Update( float dTime ) //시간체크 후 소멸.
 {
+	// agebreak : AddChild를 했으면, 부모의 Update를 호출하면 되지 않는가??
+
 	// Update BirdBulletHitEffect
 	for( auto hitEffect_Iter : m_BirdBulletHitEffect )
 	{
@@ -66,6 +68,7 @@ void NNEffectManager::MakeBirdBulletHitEffect( NNPoint birdPosition, int birdWid
 		hitEffectPosition.SetY( birdPosition.GetY() - Bird_Bullet_HIT_EFFECT_BALACE_Y );
 	}
 
+	// agebreak : 생성된 히트이펙트는 어디서 해제해 주는가??
 	newHItEffect = new NNBirdBulletHitEffect( hitEffectPosition );
 	//newHItEffect->SetPosition( hitEffectPosition );
 	//newHItEffect->SetScale( Bird_Bullet_HIT_EFFECT_SCALE_X, Bird_Bullet_HIT_EFFECT_SCALE_Y );
@@ -130,6 +133,7 @@ void NNEffectManager::MakePooBulletHitEffect( NNPoint pooPosition, int pooWidth,
 // 	hitEffectPosition.SetX( pooPosition.GetX() - HIT_EFFECT_BALACE_X );
 // 	hitEffectPosition.SetX( pooPosition.GetY() - HIT_EFFECT_BALACE_Y );
 	
+	// agebreak : 생성된 히트이펙트는 어디서 해제해 주는가??
 	newHItEffect = new NNPooBulletHitEffect( hitEffectPosition );
 	//newHItEffect->SetPosition( hitEffectPosition );
 	//newHItEffect->SetScale( Poo_Bullet_HIT_EFFECT_SCALE_X, Poo_Bullet_HIT_EFFECT_SCALE_Y );

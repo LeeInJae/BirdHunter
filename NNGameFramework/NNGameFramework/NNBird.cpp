@@ -28,15 +28,16 @@ void NNBird::Update( float dTime )
 	{
 		SetPosition( GetPositionX() + m_BirdSpeed * dTime, GetPositionY() );
 		if(GetPositionX() >= RESOLUTION_WIDTH )
-		{
+		{	
 			SetScaleX(  m_Toggle );
-			m_Toggle *= -1;
+			m_Toggle *= -1;	// agebreak : 이 변수는 필요 없을듯?
 			m_BirdDirection = LEFT_GO;
 		}
 	}
 
 	m_SumTime += dTime;
 
+	// agebreak : 지금은 3초마다 생성하지만, 이것을 새의 종류에 따라 설정할 수 있는 형태로 변경해야 한다.
 	if( m_SumTime >= 3)
 	{
 		NNPooManager::GetInstance()->MakePoo( NORMAL_POO, GetPosition() );

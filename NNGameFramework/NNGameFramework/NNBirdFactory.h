@@ -3,7 +3,7 @@
 #include "BHDefine.h"
 #include "NNBird.h"
 
-
+// agebreak : 클래스 위에는 설명을 단다
 class NNBirdFactory : public NNObject
 {
 public:

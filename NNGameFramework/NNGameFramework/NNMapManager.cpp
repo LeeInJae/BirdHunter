@@ -9,6 +9,7 @@ NNMapManager* NNMapManager::m_pInstance = nullptr;
 
 NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0)
 {	 
+	// agebreak : 초기화 함수를 따로 분리한것은 좋다.
 	SetMapContainer();
 	SetWarningCount();
 	m_pMap=NNSprite::Create( m_MapContainer[0] );
@@ -63,6 +64,8 @@ void NNMapManager::Update(float dTime)
 	if (m_PrevWarningLV != m_CurrentWarningLV)
 	{
 		RemoveChild(m_pMap);
+		
+		// agebreak : 매번 맵을 삭제하고, 새로 생성해야 할까??
 		m_pMap = NNSprite::Create( m_MapContainer[m_CurrentWarningLV] );
 		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
 		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );

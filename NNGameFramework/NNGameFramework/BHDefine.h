@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "NNSprite.h"
 #include "NNSound.h"
 #include <time.h>
@@ -66,6 +66,7 @@
 #define MAP_WARNING_03	L"Image/mapWarning003.png"
 #define MAP_WARNING_04	L"Image/mapWarning004.png"
 
+// agebreak : 함수째로 Define 하지 않는다. 만약 하는 경우에는 Create를 Define에 명시한다.
 #define SE_GAMESTART	NNSound::Create("Sound/GAME_START.wav")
 #define SE_BIRD_DIE_00	NNSound::Create("Sound/BIRD_DIE_00.wav")
 #define SE_BIRD_DIE_01	NNSound::Create("Sound/BIRD_DIE_01.wav")
@@ -139,11 +140,12 @@ enum GoingDirection
 	RIGHT_GO,
 };
 
+// agebreak : 아래 세개의 프로퍼티는 전부 거의 같은 형태이다. 이것을 상속 구조로 만드는게 낫지 않을까?
 struct BIRD_PROPERTY
 {
 	int				speed;
 	std::wstring	sprite_path;
-	float			setImageWidth;
+	float			setImageWidth;	// agebreak : 변수명을 set으로 시작하는것 옳지 않다.
 	float			setImageHeight;
 	GoingDirection	goingDirection;
 	int				zindex;
@@ -154,7 +156,7 @@ struct POO_PROPERTY
 {
 	int				speed;
 	std::wstring	sprite_path;
-	float			setImageWidth;
+	float			setImageWidth; // agebreak : 변수명을 set으로 시작하는것 옳지 않다.
 	float			setImageHeight;
 	int				zindex;
 	PooType			type;
@@ -164,7 +166,7 @@ struct Bullet_PROPERTY
 {
 	int				speed;
 	std::wstring	sprite_path;
-	float			setImageWidth;
+	float			setImageWidth; // agebreak : 변수명을 set으로 시작하는것 옳지 않다.
 	float			setImageHeight;
 	int				zindex;
 	BulletType		type;
@@ -174,6 +176,7 @@ struct Hit_Rect
 {
 	float left, right, down, up;
 
+	// agebreak : 이렇게 구조체를 받아와 값을 비교만 하는 경우에는 참조를 사용하자. 
 	bool HitCheck( Hit_Rect target )
 	{
 		if( target.right < left || target.down < up || target.left	> right	||	target.up > down )
@@ -182,5 +185,5 @@ struct Hit_Rect
 		}
 		return true;
 	}
-	// agebreak : ���⿡ üũ �Լ��� ������?
+	// agebreak : 여기에 체크 함수를 넣으면?
 };

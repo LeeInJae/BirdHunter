@@ -30,6 +30,7 @@ void NNBulletManager::ReleaseInstance()
 
 NNBulletManager::NNBulletManager(void)
 {
+	// agebreak : 생성된 사운드 객체는 어디서 해제하는가??
 	m_SE_PooBoom.push_back(SE_POO_BOOM_00);
 	m_SE_PooBoom.push_back(SE_POO_BOOM_01);
 	m_SE_PooBoom.push_back(SE_POO_BOOM_02);
@@ -73,6 +74,7 @@ void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
 
 void NNBulletManager::Update( float dTime )
 {
+	// agebreak : 총알이 두번 업데이트 되지 않는가??
  	for( auto bullet_Iter : m_Bullet ) 	
 	{
  		bullet_Iter->Update( dTime );
@@ -80,6 +82,7 @@ void NNBulletManager::Update( float dTime )
 	RemoveCheck();
 }
 
+// agebreak : RemoveCheck 와 HitCheck 함수 두개로 분리하도록. 두개의 기능을 하는 함수가 하나에 존재하는것은 옳지 않다.
 void NNBulletManager::RemoveCheck()
 {
 	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
@@ -124,6 +127,7 @@ void NNBulletManager::RemoveCheck()
 		bullet_rect.up		=	pBullet_Iter->GetPositionY();
 		bullet_rect.down	=	pBullet_Iter->GetPositionY() + pBullet_Iter->GetSpriteHeight();
 
+		// agebreak : 이 변수는 필요 없을듯?
 		hitCheck = false;
 
 		for( bird_Iter = bird_list.begin(); bird_Iter != bird_list.end(); )
@@ -146,7 +150,7 @@ void NNBulletManager::RemoveCheck()
 				//NNEffectManager::GetInstance()->MakeHitEffect( pBullet_Iter->GetPosition(), pBird_Iter->GetSpriteWidth(), pBird_Iter->GetSpriteHeight(), pBird_Iter->GetBirdDirection() );
 
 				bird_Iter = bird_list.erase( bird_Iter );
-				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true );
+				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true ); 
 
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
