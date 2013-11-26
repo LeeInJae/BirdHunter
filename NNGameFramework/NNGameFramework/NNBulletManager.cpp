@@ -1,7 +1,7 @@
 #include "NNBulletManager.h"
 #include "NNBird.h"
 #include "NNBirdFactory.h"
-#include "NNPooManager.h"
+#include  "NNPooManager.h"
 #include "NNHitEffect.h"
 #include "NNPoo.h"
 #include "NNEffectManager.h"

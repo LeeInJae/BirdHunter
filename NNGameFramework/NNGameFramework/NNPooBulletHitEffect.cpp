@@ -19,8 +19,8 @@ NNPooBulletHitEffect::NNPooBulletHitEffect( NNPoint pooPosition )
 	m_Sumtime = 0;
 	m_CurrentFrame = 0;
 	m_pCurrentSprite = m_pSprite[0];
-
 	m_PooPosition = pooPosition;
+	SpriteSetPosition( m_PooPosition );
 }
 
 
@@ -30,12 +30,13 @@ NNPooBulletHitEffect::~NNPooBulletHitEffect(void)
 
 void NNPooBulletHitEffect::Update( float dTime )
 {
-	SpriteSetPosition( m_PooPosition );
+//	SpriteSetPosition( m_PooPosition );
 	m_Sumtime += dTime;
 
 	if( m_Sumtime >= Poo_Bullet_HiT_Effect_Change_Sprite_Time )
 	{
 		m_pCurrentSprite = m_pSprite[m_CurrentFrame];
+		SpriteSetPosition( m_PooPosition );
 		++m_CurrentFrame;
 		m_Sumtime = 0;
 	}

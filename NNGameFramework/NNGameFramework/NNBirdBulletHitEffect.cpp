@@ -16,8 +16,8 @@ NNBirdBulletHitEffect::NNBirdBulletHitEffect(NNPoint birdPosition )
 	m_Sumtime = 0;
 	m_CurrentFrame = 0;
 	m_pCurrentSprite = m_pSprite[0];
-
 	m_BirdPosition = birdPosition;
+	SpriteSetPosition( m_BirdPosition );
 }
 
 
@@ -28,12 +28,13 @@ NNBirdBulletHitEffect::~NNBirdBulletHitEffect(void)
 
 void NNBirdBulletHitEffect::Update( float dTime )
 {
-	SpriteSetPosition( m_BirdPosition );
+	//SpriteSetPosition( m_BirdPosition );
 	m_Sumtime += dTime;
 
 	if( m_Sumtime >= Bird_Bullet_HiT_Effect_Change_Sprite_Time )
 	{
 		m_pCurrentSprite = m_pSprite[m_CurrentFrame];
+		SpriteSetPosition( m_BirdPosition );
 		++m_CurrentFrame;
 		m_Sumtime = 0;
 	}
@@ -46,7 +47,7 @@ void NNBirdBulletHitEffect::Update( float dTime )
 
 void NNBirdBulletHitEffect::Render()
 {
-	if(m_pCurrentSprite)
+	if( m_pCurrentSprite )
 		m_pCurrentSprite->Render();
 }
 
