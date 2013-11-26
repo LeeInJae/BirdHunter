@@ -5,6 +5,7 @@
 
 class NNPoo;
 
+// 똥을 관리하는 똥 매니져
 class NNPooManager : public NNObject
 {
 public:
@@ -12,7 +13,7 @@ public:
 	static void				ReleaseInstance();
 	
 	void	Update( float dTime );
-	void	MakePoo( PooType WhichPoo, NNPoint birdPosition );
+	void	MakePoo( POO_TYPE WhichPoo, NNPoint birdPosition );
 	int		GetLandedPoo( void ){ return m_LandedPoo; }
 	bool	HitCheckByPlayer( NNPlayerCharacter* player );
 	std::list< NNPoo* >& GetPooList() { return m_Poo; }

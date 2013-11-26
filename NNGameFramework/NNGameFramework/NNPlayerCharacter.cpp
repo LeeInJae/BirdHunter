@@ -5,7 +5,6 @@
 
 NNPlayerCharacter::NNPlayerCharacter(void)
 {
-	m_CheckByPoo	= false;
 	m_PlayerSpeed	= INIT_PLAYERSPEED;
 	m_pChar = NNSprite::Create( PLAYER_SPRITE );
 	

@@ -19,7 +19,7 @@
 #define BIRD_WIDTH			30
 #define BIRD_HEIGHT			30
 
-#define BIRD_SET_MAX_WIDTH		800
+#define BIRD_SET_MAX_WIDTH		100
 #define BIRD_SET_MAX_HEIGHT		100
 
 #define NORMAL_BIRD_LEFT_SPRITE	 L"Image/BIRD_A_LEFT.png"
@@ -78,106 +78,104 @@
 #define SE_POO_BOOM_04	NNSound::Create("Sound/POO_BOOM_04.wav")
 #define SE_WARNING		NNSound::Create("Sound/WARNING.wav")
 
-#define Bird_Bullet_HIT_EFFECT_SCALE_X 1.0f
-#define Bird_Bullet_HIT_EFFECT_SCALE_Y 1.0f
-#define Bird_Bullet_HIT_EFFECT_LIFETIME 0.5
-#define Bird_Bullet_HIT_EFFECT_BALACE_X 40
-#define Bird_Bullet_HIT_EFFECT_BALACE_Y 40
+#define BIRD_BULLET_HIT_EFFECT_SCALE_X 1.0f
+#define BIRD_BULLET_HIT_EFFECT_SCALE_Y 1.0f
+#define BIRD_BULLET_HIT_EFFECT_WIDTH	128.f
+#define BIRD_BULLET_HIT_EFFECT_HEIGHT	128.f
+#define BIRD_BULLET_HIT_EFFECT_LIFETIME 0.5f
+#define BIRD_BULLET_HIT_EFFECT_BALANCE_X 80.f
+#define BIRD_BULLET_HIT_EFFECT_BALANCE_Y 40.f
 
-#define Poo_Bullet_HIT_EFFECT_SCALE_X 0.5f
-#define Poo_Bullet_HIT_EFFECT_SCALE_Y 0.5f
-#define Poo_Bullet_HIT_EFFECT_LIFETIME 0.5
-#define Poo_Bullet_HIT_EFFECT_BALACE_X 40
-#define Poo_Bullet_HIT_EFFECT_BALACE_Y 40
+#define POO_BULLET_HIT_EFFECT_SCALE_X 0.5f
+#define POO_BULLET_HIT_EFFECT_SCALE_Y 0.5f
+#define POO_BULLET_HIT_EFFECT_LIFETIME 0.5f
+#define POO_BULLET_HIT_EFFECT_BALACE_X 40.f
+#define POO_BULLET_HIT_EFFECT_BALACE_Y 40.f
 
-#define Bird_Bullet_HiT_Effect_Size 8
-#define Bird_Bullet_HiT_Effect_Sprite1 L"Image/GREEN_BIRD_DIE_001.png"
-#define Bird_Bullet_HiT_Effect_Sprite2 L"Image/GREEN_BIRD_DIE_002.png"
-#define Bird_Bullet_HiT_Effect_Sprite3 L"Image/GREEN_BIRD_DIE_003.png"
-#define Bird_Bullet_HiT_Effect_Sprite4 L"Image/GREEN_BIRD_DIE_004.png"
-#define Bird_Bullet_HiT_Effect_Sprite5 L"Image/GREEN_BIRD_DIE_005.png"
-#define Bird_Bullet_HiT_Effect_Sprite6 L"Image/GREEN_BIRD_DIE_006.png"
-#define Bird_Bullet_HiT_Effect_Sprite7 L"Image/GREEN_BIRD_DIE_007.png"
-#define Bird_Bullet_HiT_Effect_Sprite8 L"Image/GREEN_BIRD_DIE_008.png"
-#define Bird_Bullet_HiT_Effect_Change_Sprite_Time 0.15f
+#define BIRD_BULLET_HIT_EFFECT_SIZE 8
+#define BIRD_BULLET_HIT_EFFECT_SPRITE1 L"Image/GREEN_BIRD_DIE_001.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE2 L"Image/GREEN_BIRD_DIE_002.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE3 L"Image/GREEN_BIRD_DIE_003.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE4 L"Image/GREEN_BIRD_DIE_004.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE5 L"Image/GREEN_BIRD_DIE_005.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE6 L"Image/GREEN_BIRD_DIE_006.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE7 L"Image/GREEN_BIRD_DIE_007.png"
+#define BIRD_BULLET_HIT_EFFECT_SPRITE8 L"Image/GREEN_BIRD_DIE_008.png"
+#define BIRD_BULLET_HIT_EFFECT_CHANGE_SPRITE_TIME 0.15f
 
-#define Poo_Bullet_HiT_Effect_Size 7
-#define Poo_Bullet_HiT_Effect_Sprite1 L"Image/EXPLOSION_01.png"
-#define Poo_Bullet_HiT_Effect_Sprite2 L"Image/EXPLOSION_02.png"
-#define Poo_Bullet_HiT_Effect_Sprite3 L"Image/EXPLOSION_03.png"
-#define Poo_Bullet_HiT_Effect_Sprite4 L"Image/EXPLOSION_04.png"
-#define Poo_Bullet_HiT_Effect_Sprite5 L"Image/EXPLOSION_05.png"
-#define Poo_Bullet_HiT_Effect_Sprite6 L"Image/EXPLOSION_06.png"
-#define Poo_Bullet_HiT_Effect_Sprite7 L"Image/EXPLOSION_07.png"
-#define Poo_Bullet_HiT_Effect_Change_Sprite_Time 0.15f
+#define POO_BULLET_HIT_EFFECT_SIZE 7
+#define POO_BULLET_HIT_EFFECT_SPRITE1 L"Image/EXPLOSION_01.png"
+#define POO_BULLET_HIT_EFFECT_SPRITE2 L"Image/EXPLOSION_02.png"
+#define POO_BULLET_HIT_EFFECT_SPRITE3 L"Image/EXPLOSION_03.png"
+#define POO_BULLET_HIT_EFFECT_SPRITE4 L"Image/EXPLOSION_04.png"
+#define POO_BULLET_HIT_EFFECT_SPRITE5 L"Image/EXPLOSION_05.png"
+#define POO_BULLET_HIT_EFFECT_SPRITE6 L"Image/EXPLOSION_06.png"
+#define POO_BULLET_HIT_EFFECT_SPRITE7 L"Image/EXPLOSION_07.png"
+#define POO_BULLET_HIT_EFFECT_CHANGE_SPRITE_TIME 0.15f
 
+#define BIRD_BULLET_HIT_BALANCE_X 50.f
 
-
-enum BulletType
+enum BULLET_TYPE
 {
 	NORMAL_BULLET,
 	FIRE_BULLET,
 	STORM_BULLET,
 };
 
-enum BirdType
+enum BIRD_TYPE
 {
 	EASY_BIRD,
 	NORMAL_BIRD,
 	HARD_BIRD,
 };
 
-enum PooType
+enum POO_TYPE
 {
 	NORMAL_POO,
 	BLOOD_POO,
 	BIG_POO,
 };
 
-enum GoingDirection
+enum GOING_DIRECTION
 {
 	LEFT_GO,
 	RIGHT_GO,
 };
 
-// agebreak : 아래 세개의 프로퍼티는 전부 거의 같은 형태이다. 이것을 상속 구조로 만드는게 낫지 않을까?
-struct BIRD_PROPERTY
+class OBJECT_PROPERTY
 {
+public:
 	int				speed;
 	std::wstring	sprite_path;
-	float			setImageWidth;	// agebreak : 변수명을 set으로 시작하는것 옳지 않다.
-	float			setImageHeight;
-	GoingDirection	goingDirection;
-	int				zindex;
-	BirdType		type;
+	float			imageWidth;
+	float			imageHeight;
+	int				zIndex;
 };
 
-struct POO_PROPERTY
+class BIRD_PROPERTY : public OBJECT_PROPERTY
 {
-	int				speed;
-	std::wstring	sprite_path;
-	float			setImageWidth; // agebreak : 변수명을 set으로 시작하는것 옳지 않다.
-	float			setImageHeight;
-	int				zindex;
-	PooType			type;
+public:
+	GOING_DIRECTION	goingDirection;
+	BIRD_TYPE		type;
 };
 
-struct Bullet_PROPERTY
+class POO_PROPERTY : public OBJECT_PROPERTY
 {
-	int				speed;
-	std::wstring	sprite_path;
-	float			setImageWidth; // agebreak : 변수명을 set으로 시작하는것 옳지 않다.
-	float			setImageHeight;
-	int				zindex;
-	BulletType		type;
+public:
+	POO_TYPE			type;
 };
 
-struct Hit_Rect
+class BULLET_PROPERTY : public OBJECT_PROPERTY
+{
+public:
+	BULLET_TYPE		type;
+};
+
+struct HIT_RECT
 {
 	float left, right, down, up;
 
-	// agebreak : 이렇게 구조체를 받아와 값을 비교만 하는 경우에는 참조를 사용하자. 
-	bool HitCheck( Hit_Rect target )
+	bool HitCheck( HIT_RECT& target )
 	{
 		if( target.right < left || target.down < up || target.left	> right	||	target.up > down )
 		{
@@ -185,5 +183,4 @@ struct Hit_Rect
 		}
 		return true;
 	}
-	// agebreak : 여기에 체크 함수를 넣으면?
 };

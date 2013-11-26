@@ -3,7 +3,7 @@
 #include "NNObject.h"
 #include "BHDefine.h"
 
-
+//새가 누는 똥을 정의하는 클래스
 class NNPoo : public NNObject
 {
 public:
@@ -22,7 +22,7 @@ protected:
 	int			m_PooSpeed;
 	int			m_PooLife;
 	int			m_Zindex;
-	PooType		m_Type;
+	POO_TYPE		m_Type;
 	float		m_SpriteHeight;
 	float		m_SpriteWidth;
 };

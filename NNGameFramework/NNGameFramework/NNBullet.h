@@ -3,6 +3,7 @@
 #include "NNObject.h"
 #include "BHDefine.h"
 
+// 플레이어가 발사하는 총알 클래스
 class NNBullet : public NNObject
 {
 
@@ -11,17 +12,14 @@ public:
 	~NNBullet(void);
 	void Update( float dTime );
 	NNSprite* GetBullet() { return m_pBullet; }
-	void SetBulletProperty( Bullet_PROPERTY bullet_property);
+	void SetBulletProperty( BULLET_PROPERTY bullet_property);
 	float GetSpriteHeight() { return m_SpriteHeight; }
 	float GetSpriteWidth() { return m_SpriteWidth; }
 
 protected:
-	
-	bool		m_CheckByPoo;
-	bool		m_CheckByBird;
 	int			m_BulletSpeed;
 	NNSprite*	m_pBullet;
 	float		m_SpriteHeight;
 	float		m_SpriteWidth;
-	BulletType	m_Type;
+	BULLET_TYPE	m_Type;
 };

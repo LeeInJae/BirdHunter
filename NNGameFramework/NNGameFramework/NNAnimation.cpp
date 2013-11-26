@@ -1,4 +1,3 @@
-
 #include "NNAnimation.h"
 
 NNAnimation::NNAnimation()
@@ -8,6 +7,10 @@ NNAnimation::NNAnimation()
 }
 NNAnimation::~NNAnimation()
 {
+	for (auto& iter=m_SpriteList.begin(); iter!=m_SpriteList.end(); iter++ )
+	{
+		SafeDelete(*iter);
+	}
 	m_SpriteList.clear();
 }
 
@@ -22,8 +25,9 @@ NNAnimation* NNAnimation::Create( int count, ... )
 	{
 		NNSpriteNode* spriteInstance = NNSpriteNode::Create( va_arg( ap, wchar_t* ) );
 		pInstance->m_SpriteList.push_back( spriteInstance );
-		pInstance->m_SpriteList[i]->SetFrameTime( 0.5f );
-		pInstance->AddChild( spriteInstance );
+		pInstance->m_SpriteList[i]->SetFrameTime( 0.2f );
+		spriteInstance->SetParent( pInstance );
+		//pInstance->AddChild( spriteInstance );
 	}
 
 	va_end( ap );
@@ -43,7 +47,8 @@ void NNAnimation::AddSpriteNode( wchar_t* path )
 	NNSpriteNode* spriteInstance = NNSpriteNode::Create( path);
 	m_FrameCount++;
 	m_SpriteList.push_back( spriteInstance );
-	AddChild( spriteInstance );
+	spriteInstance->SetParent( this );
+	//AddChild( spriteInstance );
 }
 
 void NNAnimation::Render()
@@ -54,7 +59,6 @@ void NNAnimation::Render()
 
 	m_SpriteList[m_Frame]->Render();
 }
-
 void NNAnimation::Update( float dTime )
 {
 	if ( m_AnimationEnd == true || m_Visible == false ) return;
@@ -77,5 +81,4 @@ void NNAnimation::Update( float dTime )
 			m_AnimationEnd = true;
 		}
 	}
-
 }

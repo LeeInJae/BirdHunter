@@ -43,46 +43,39 @@ NNBulletManager::~NNBulletManager(void)
 {
 }
 
-void NNBulletManager::MakeBullet( BulletType type, NNPoint PlayerPosition )
+void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 {
-	Bullet_PROPERTY bullet_property;
+	BULLET_PROPERTY bullet_property;
+	NNBullet* newBullet;
+	newBullet = new NNBullet();
 
 	switch ( type )
 	{
 	case NORMAL_BULLET:
-		bullet_property.setImageHeight	=	NORMAL_BULLET_HEIGHT;
-		bullet_property.setImageWidth	=	NORMAL_BULLET_WIDTH;
+		bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
+		bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
 		bullet_property.speed			=	NORMAL_BULLET_SPEED;
 		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
-		bullet_property.zindex			=	NORMAL_BULLET_ZINDEX;
+		bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
 		bullet_property.type			=	NORMAL_BULLET;
-
-		NNBullet* newBullet;
-		newBullet = new NNBullet();
-
-		newBullet->SetBulletProperty( bullet_property);
-		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
-		m_Bullet.push_back( newBullet );
-		AddChild( newBullet );
-
 		break;
 	default:
 		break;
 	}
 
+	newBullet->SetBulletProperty( bullet_property);
+	newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
+	m_Bullet.push_back( newBullet );
+	AddChild( newBullet );
 }
 
 void NNBulletManager::Update( float dTime )
 {
-	// agebreak : 총알이 두번 업데이트 되지 않는가??
- 	for( auto bullet_Iter : m_Bullet ) 	
-	{
- 		bullet_Iter->Update( dTime );
- 	}
+	NNObject::Update( dTime ); //자식 업데이트
 	RemoveCheck();
+	HitCheck();
 }
 
-// agebreak : RemoveCheck 와 HitCheck 함수 두개로 분리하도록. 두개의 기능을 하는 함수가 하나에 존재하는것은 옳지 않다.
 void NNBulletManager::RemoveCheck()
 {
 	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
@@ -105,20 +98,22 @@ void NNBulletManager::RemoveCheck()
 			++bullet_Iter;
 		}
 	}
+}
+
+void NNBulletManager::HitCheck()
+{
 
 	//Bird & Bullet Hitcheck
-
+	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBird* >& bird_list = NNBirdFactory::GetInstance()->GetBirdList();
-	//std::list< NNHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
-
 	std::list< NNBirdBulletHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
-	
-	struct Hit_Rect bird_rect, bullet_rect;
+
+	struct HIT_RECT bird_rect, bullet_rect;
 
 	bool hitCheck;
 
-  	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
 	{
 		auto pBullet_Iter = *bullet_Iter;
 
@@ -135,7 +130,7 @@ void NNBulletManager::RemoveCheck()
 			auto pBird_Iter = *bird_Iter;
 
 			bird_rect.left	=	pBird_Iter->GetPositionX();
-			bird_rect.right	=	pBird_Iter->GetPositionX() + pBird_Iter->GetSpriteWidth();
+			bird_rect.right	=	pBird_Iter->GetPositionX() + pBird_Iter->GetSpriteWidth() - BIRD_BULLET_HIT_BALANCE_X;
 			bird_rect.up	=	pBird_Iter->GetPositionY();
 			bird_rect.down	=	pBird_Iter->GetPositionY() + pBird_Iter->GetSpriteHeight();
 
@@ -146,16 +141,16 @@ void NNBulletManager::RemoveCheck()
 			}
 			else
 			{
-				NNEffectManager::GetInstance()->MakeBirdBulletHitEffect( pBird_Iter->GetPosition(), pBird_Iter->GetSpriteWidth(), pBird_Iter->GetSpriteHeight(), pBird_Iter->GetBirdDirection() );
-				//NNEffectManager::GetInstance()->MakeHitEffect( pBullet_Iter->GetPosition(), pBird_Iter->GetSpriteWidth(), pBird_Iter->GetSpriteHeight(), pBird_Iter->GetBirdDirection() );
-
+				NNEffectManager::GetInstance()->MakeBirdBulletHitEffect( pBird_Iter->GetPosition(), pBird_Iter->GetBirdDirection() );
+				
+				//NNEffectManager::GetInstance()->MakeHitEffect( pBird_Iter->GetPosition(), pBird_Iter->GetBirdDirection() );
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true ); 
 
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
-				
+
 				break;
 			}
 		}
@@ -170,7 +165,7 @@ void NNBulletManager::RemoveCheck()
 	std::list< NNPoo* >::iterator poo_Iter;
 	std::list< NNPoo* >& poo_list = NNPooManager::GetInstance()->GetPooList();
 
-	struct Hit_Rect poo_rect;
+	struct HIT_RECT poo_rect;
 
 	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
 	{
@@ -196,11 +191,11 @@ void NNBulletManager::RemoveCheck()
 			{
 				++poo_Iter;
 				continue;
-			}
+			} 
 			else
 			{
-				NNEffectManager::GetInstance()->MakePooBulletHitEffect( pPoo_Iter->GetPosition(), pPoo_Iter->GetSpriteWidth(), pPoo_Iter->GetSpriteHeight() );
-				
+				NNEffectManager::GetInstance()->MakePooBulletHitEffect( pPoo_Iter->GetPosition() );
+
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
 				NNAudioSystem::GetInstance()->Play(m_SE_PooBoom[rand()%m_SE_PooBoom.size()]);

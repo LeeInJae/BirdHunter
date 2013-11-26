@@ -34,18 +34,18 @@ NNPooManager::~NNPooManager(void)
 {
 }
  
-void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
+void NNPooManager::MakePoo( POO_TYPE WhichPoo, NNPoint birdPosition )
 {
 	POO_PROPERTY poo_Property;
 
 	switch ( WhichPoo )
 	{
 	case NORMAL_POO:
-		poo_Property.setImageHeight = NORMAL_POO_HEIGHT;
-		poo_Property.setImageWidth	= NORMAL_POO_WIDTH;
+		poo_Property.imageHeight = NORMAL_POO_HEIGHT;
+		poo_Property.imageWidth	= NORMAL_POO_WIDTH;
 		poo_Property.speed			= NORMAL_POO_SPEED;
 		poo_Property.sprite_path	= NORMAL_POO_SPRITE;
-		poo_Property.zindex			= NORMAL_POO_ZINDEX;
+		poo_Property.zIndex			= NORMAL_POO_ZINDEX;
 		break;
 	default:
 		break;
@@ -61,10 +61,7 @@ void NNPooManager::MakePoo( PooType WhichPoo, NNPoint birdPosition )
 
 void NNPooManager::Update( float dTime )
 {
-	for( auto poo_Iter : m_Poo )
-	{
-		poo_Iter->Update( dTime );
-	}
+	NNObject::Update( dTime );
 	RemoveCheck();
 }
 
@@ -99,7 +96,7 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
 
 	//poo & player hitcheck
-	struct Hit_Rect poo_rect, player_rect;
+	struct HIT_RECT poo_rect, player_rect;
 
 	bool hitCheck;
 

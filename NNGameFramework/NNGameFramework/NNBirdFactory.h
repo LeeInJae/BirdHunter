@@ -3,14 +3,13 @@
 #include "BHDefine.h"
 #include "NNBird.h"
 
-// agebreak : 클래스 위에는 설명을 단다
+//몬스터인 새를 생성하고 관리해주는 클래스
 class NNBirdFactory : public NNObject
 {
 public:
 	static NNBirdFactory*	GetInstance();
 	static void				ReleaseInstance();
-	void					MakeBird( BirdType type );
-	void					Update( float dTime );
+	void					MakeBird( BIRD_TYPE type );
 	std::list< NNBird* >&	GetBirdList() { return m_Bird; }
 	void					RemoveChild( NNObject* object, bool memoryDel );
 

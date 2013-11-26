@@ -5,6 +5,7 @@
 #include "NNBirdBulletHitEffect.h"
 #include "NNPooBulletHitEffect.h"
 
+//이펙트들을 관리하는 이펙트 매니져
 class NNEffectManager : public NNObject
 {
 public:
@@ -13,9 +14,11 @@ public:
 
 	void Release();
 	void Update( float dTime );
-	void MakeBirdBulletHitEffect( NNPoint birdPosition, int birdWidth, int birdHeight, GoingDirection dir );
-	void MakePooBulletHitEffect( NNPoint pooPosition, int pooWidth, int pooHeight);
-	//std::list< NNHitEffect* >& GetHitEffectList(){ return m_HitEffect; }
+	void MakeBirdBulletHitEffect( NNPoint birdPosition, GOING_DIRECTION dir );
+	void MakePooBulletHitEffect( NNPoint pooPosition );
+	
+	//void MakeHitEffect( NNPoint birdPosition, GOING_DIRECTION dir );
+	
 	std::list< NNBirdBulletHitEffect* >& GetHitEffectList(){ return m_BirdBulletHitEffect; }
 private:
 	NNEffectManager(void);
@@ -25,5 +28,6 @@ private:
 	static NNEffectManager* m_pInstance;
 	std::list< NNBirdBulletHitEffect* > m_BirdBulletHitEffect;
 	std::list< NNPooBulletHitEffect* > m_PooBulletHitEffect;
-//	std::list< NNHitEffect* > m_HitEffect;
+	
+	std::list< NNHitEffect* > m_HitEffect;
 };

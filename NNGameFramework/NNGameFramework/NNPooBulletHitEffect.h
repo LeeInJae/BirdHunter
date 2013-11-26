@@ -4,6 +4,7 @@
 
 class NNSprite;
 
+// ¶Ë°ú ÃÑ¾ËÀÇ È÷Æ® ÀÌÆåÆ® Å¬·¡½º
 class NNPooBulletHitEffect : public NNObject
 {
 public:
@@ -19,7 +20,7 @@ protected:
 	float		m_Sumtime;
 	int			m_CurrentFrame;
 	NNPoint		m_PooPosition;
-	NNSprite*	m_pSprite[Poo_Bullet_HiT_Effect_Size];
+	NNSprite*	m_pSprite[POO_BULLET_HIT_EFFECT_SIZE];
 	NNSprite*	m_pCurrentSprite;
 };
 

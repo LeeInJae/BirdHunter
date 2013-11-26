@@ -11,6 +11,7 @@ class NNSprite;
 class NNSound;
 class NNAudioSystem;
 
+//실제 게임이 실행되고 있는 화면( 게임 씬 클래스)
 class NNGameScene : public NNScene
 {
 public:

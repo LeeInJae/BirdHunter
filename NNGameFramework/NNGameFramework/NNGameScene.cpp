@@ -30,6 +30,14 @@ NNGameScene::NNGameScene(void )
 	UIInit();
 	m_AudioPlayer = NNAudioSystem::GetInstance();
 	m_AudioPlayer->Play(SE_GAMESTART);
+
+// 	NNHitEffect* newEffect;
+// 	newEffect = new NNHitEffect();
+// 	NNPoint temp;
+// 	temp.SetX( 800 - 128 );
+// 	temp.SetY( 600 - 128);
+// 	newEffect->SetPosition( temp );
+// 	AddChild( newEffect );
 }
 
 void NNGameScene::UIInit()
@@ -68,9 +76,6 @@ void NNGameScene::Update( float dTime )
 		NNBirdFactory::GetInstance()->MakeBird( EASY_BIRD );
 		m_SumTime = 0;
  	}
-
-
-	
 	UIUpdate( dTime );
 }
 
@@ -99,4 +104,3 @@ void NNGameScene::UIUpdate( float dTime )
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());
 	m_FPSLabel->SetString(m_FPSString);
 }
-

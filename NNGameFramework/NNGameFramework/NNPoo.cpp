@@ -27,14 +27,14 @@ void NNPoo::Update( float dTime )
 void NNPoo::SetProperty( POO_PROPERTY poo_property )
 {
 	m_PooSpeed		=	poo_property.speed;
-	m_SpriteHeight	=	poo_property.setImageHeight;
-	m_SpriteWidth	=	poo_property.setImageWidth;
-	m_Zindex		=	poo_property.zindex;
+	m_SpriteHeight	=	poo_property.imageHeight;
+	m_SpriteWidth	=	poo_property.imageWidth;
+	m_Zindex		=	poo_property.zIndex;
 	m_Type			=	poo_property.type;
 
 	m_pPoo = NNSprite::Create( poo_property.sprite_path );
-	m_pPoo->SetImageWidth( poo_property.setImageWidth );
-	m_pPoo->SetImageHeight( poo_property.setImageHeight );
-	m_pPoo->SetZindex( poo_property.zindex );
+	m_pPoo->SetImageWidth( poo_property.imageWidth );
+	m_pPoo->SetImageHeight( poo_property.imageHeight );
+	m_pPoo->SetZindex( poo_property.zIndex );
 	AddChild( m_pPoo );
 }

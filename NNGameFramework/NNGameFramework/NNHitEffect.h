@@ -2,6 +2,8 @@
 #include "NNAnimation.h"
 #include "NNScene.h"
 
+
+//새와 총알의 충돌 이펙트 클래스
 class NNHitEffect : public NNObject
 {
 public:
