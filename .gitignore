@@ -1,0 +1,42 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+*.ipch
+*.sdf
+*.opensdf
+*.suo
+*.user
+
+_ReSharper.*/
+*.cd
+*.tlog
+*.log
+*.sass-cache
+
+*.pidb
+*.userprefs
+*.dbmdl
+
+TestResult.xml
+*.VisualState.xml
+Version.cs
+Version.h
+Version.cpp
+
+# generated files
+ipch/
+Debug/
+Release/
+bin/
+obj/
