@@ -3,7 +3,7 @@
 #include "NNSprite.h"
 #include "BHDefine.h"
 #include "NNPooManager.h"
-#include "NNAudioSystem.h"
+#include "NNSoundManager.h"
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
@@ -75,7 +75,7 @@ void NNMapManager::Update(float dTime)
 
 	if (pollution -1 == POLLUTION_WARNING_LV_04)
 	{
-		NNAudioSystem::GetInstance()->Play(SE_WARNING);
+		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[WARNING]);
 	}
 }
 

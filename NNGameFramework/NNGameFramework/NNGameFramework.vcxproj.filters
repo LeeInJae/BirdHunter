@@ -298,6 +298,9 @@
     <ClCompile Include="NNPooBulletHitEffect.cpp">
       <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="NNSoundManager.cpp">
+      <Filter>BirdHunter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -507,6 +510,9 @@
     </ClInclude>
     <ClInclude Include="NNPooBulletHitEffect.h">
       <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNSoundManager.h">
+      <Filter>BirdHunter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

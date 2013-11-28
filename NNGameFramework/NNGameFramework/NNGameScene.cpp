@@ -10,8 +10,7 @@
 #include <assert.h>
 #include "NNMapManager.h"
 #include "NNEffectManager.h"
-#include "NNSound.h"
-#include "NNAudioSystem.h"
+#include "NNSoundManager.h"
 
 NNGameScene::NNGameScene(void )
 {
@@ -28,8 +27,7 @@ NNGameScene::NNGameScene(void )
 	AddChild( NNEffectManager::GetInstance() );
 
 	UIInit();
-	m_AudioPlayer = NNAudioSystem::GetInstance();
-	m_AudioPlayer->Play(SE_GAMESTART);
+	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[GAMESTART]);
 
 // 	NNHitEffect* newEffect;
 // 	newEffect = new NNHitEffect();

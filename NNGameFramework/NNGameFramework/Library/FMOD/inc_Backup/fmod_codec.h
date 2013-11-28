@@ -1,11 +1,11 @@
-/* ==================================================================================================== */
-/* FMOD Ex - codec development header file. Copyright (c), Firelight Technologies Pty, Ltd. 2004-2011.  */
-/*                                                                                                      */
-/* Use this header if you are wanting to develop your own file format plugin to use with                */
-/* FMOD's codec system.  With this header you can make your own fileformat plugin that FMOD             */
-/* can register and use.  See the documentation and examples on how to make a working plugin.           */
-/*                                                                                                      */
-/* ==================================================================================================== */
+/* ======================================================================================================== */
+/* FMOD Studio - codec development header file. Copyright (c), Firelight Technologies Pty, Ltd. 2004-2011.  */
+/*                                                                                                          */
+/* Use this header if you are wanting to develop your own file format plugin to use with                    */
+/* FMOD's codec system.  With this header you can make your own fileformat plugin that FMOD                 */
+/* can register and use.  See the documentation and examples on how to make a working plugin.               */
+/*                                                                                                          */
+/* ======================================================================================================== */
 
 #ifndef _FMOD_CODEC_H
 #define _FMOD_CODEC_H
@@ -34,11 +34,8 @@ typedef FMOD_RESULT (F_CALLBACK *FMOD_CODEC_GETWAVEFORMAT)       (FMOD_CODEC_STA
     When creating a codec, declare one of these and provide the relevant callbacks and name for FMOD to use when it opens and reads a file.
 
     [REMARKS]
-    Members marked with [in] mean the variable can be written to.  The user can set the value.
-    Members marked with [out] mean the variable is modified by FMOD and is for reading purposes only.  Do not change this value.
-
-    [PLATFORMS]
-    Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation Portable, PlayStation 3, Wii, iPhone, 3GS, NGP, Android
+    Members marked with [in] mean the variable can be written to.  The user can set the value.<br>
+    Members marked with [out] mean the variable is modified by FMOD and is for reading purposes only.  Do not change this value.<br>
 
     [SEE_ALSO]
     FMOD_CODEC_STATE
@@ -65,26 +62,25 @@ typedef struct FMOD_CODEC_DESCRIPTION
 [STRUCTURE] 
 [
     [DESCRIPTION]
-    Set these values marked 'in' to tell fmod what sort of sound to create.
-    The format, channels and frequency tell FMOD what sort of hardware buffer to create when you initialize your code.  So if you wrote an MP3 codec that decoded to stereo 16bit integer PCM, you would specify FMOD_SOUND_FORMAT_PCM16, and channels would be equal to 2.
-    Members marked as 'out' are set by fmod.  Do not modify these.  Simply specify 0 for these values when declaring the structure, FMOD will fill in the values for you after creation with the correct function pointers.
+    Set these values marked 'in' to tell fmod what sort of sound to create.<br>
+    The format, channels and frequency tell FMOD what sort of hardware buffer to create when you initialize your code.  So if you wrote an MP3 codec that decoded to stereo 16bit integer PCM, you would specify FMOD_SOUND_FORMAT_PCM16, and channels would be equal to 2.<br>
+    Members marked as 'out' are set by fmod.  Do not modify these.  Simply specify 0 for these values when declaring the structure, FMOD will fill in the values for you after creation with the correct function pointers.<br>
 
     [REMARKS]
-    Members marked with [in] mean the variable can be written to.  The user can set the value.
-    Members marked with [out] mean the variable is modified by FMOD and is for reading purposes only.  Do not change this value.
-    
-    An FMOD file might be from disk, memory or network, however the file may be opened by the user.
-    
-    'numsubsounds' should be 0 if the file is a normal single sound stream or sound.  Examples of this would be .WAV, .WMA, .MP3, .AIFF.
-    'numsubsounds' should be 1+ if the file is a container format, and does not contain wav data itself.  Examples of these types would be CDDA (multiple CD tracks), FSB (contains multiple sounds), MIDI/MOD/S3M/XM/IT (contain instruments).
-    The arrays of format, channel, frequency, length and blockalign should point to arrays of information based on how many subsounds are in the format.  If the number of subsounds is 0 then it should point to 1 of each attribute, the same as if the number of subsounds was 1.  If subsounds was 100 for example, each pointer should point to an array of 100 of each attribute.
+    Members marked with [in] mean the variable can be written to.  The user can set the value.<br>
+    Members marked with [out] mean the variable is modified by FMOD and is for reading purposes only.  Do not change this value.<br>
+    <br>
+    An FMOD file might be from disk, memory or network, however the file may be opened by the user.<br>
+    <br>
+    'numsubsounds' should be 0 if the file is a normal single sound stream or sound.  Examples of this would be .WAV, .WMA, .MP3, .AIFF.<br>
+    'numsubsounds' should be 1+ if the file is a container format, and does not contain wav data itself.  Examples of these types would be CDDA (multiple CD tracks), FSB (contains multiple sounds), MIDI/MOD/S3M/XM/IT (contain instruments).<br>
+    The arrays of format, channel, frequency, length and blockalign should point to arrays of information based on how many subsounds are in the format.  If the number of subsounds is 0 then it should point to 1 of each attribute, the same as if the number of subsounds was 1.  If subsounds was 100 for example, each pointer should point to an array of 100 of each attribute.<br>
     When a sound has 1 or more subsounds, you must play the individual sounds specified by first obtaining the subsound with Sound::getSubSound.
     
-    [PLATFORMS]
-    Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation Portable, PlayStation 3, Wii, iPhone, 3GS, NGP, Android
-
     [SEE_ALSO]
     FMOD_SOUND_FORMAT
+    FMOD_MODE
+    FMOD_CHANNELMASK
     FMOD_FILE_READCALLBACK      
     FMOD_FILE_SEEKCALLBACK      
     FMOD_CODEC_METADATACALLBACK
@@ -104,7 +100,7 @@ struct FMOD_CODEC_WAVEFORMAT
     int                loopstart;     /* [in] Loopstart in decompressed, PCM samples of file. */
     int                loopend;       /* [in] Loopend in decompressed, PCM samples of file. */
     FMOD_MODE          mode;          /* [in] Mode to determine whether the sound should by default load as looping, non looping, 2d or 3d. */
-    unsigned int       channelmask;   /* [in] Microsoft speaker channel mask, as defined for WAVEFORMATEXTENSIBLE and is found in ksmedia.h.  Leave at 0 to play in natural speaker order. */
+    FMOD_CHANNELMASK   channelmask;   /* [in] Defined channel bitmask to describe where each channel should pan for the number of channels specified.  See fmod_common.h.  Leave at 0 to play in default speaker order. */
 };
 
 
@@ -112,26 +108,23 @@ struct FMOD_CODEC_WAVEFORMAT
 [STRUCTURE] 
 [
     [DESCRIPTION]
-    Codec plugin structure that is passed into each callback.
-    
-    Set these numsubsounds and waveformat members when called in FMOD_CODEC_OPENCALLBACK to tell fmod what sort of sound to create.
-    
-    The format, channels and frequency tell FMOD what sort of hardware buffer to create when you initialize your code.  So if you wrote an MP3 codec that decoded to stereo 16bit integer PCM, you would specify FMOD_SOUND_FORMAT_PCM16, and channels would be equal to 2.
+    Codec plugin structure that is passed into each callback.<br>
+    <br>
+    Set these numsubsounds and waveformat members when called in FMOD_CODEC_OPENCALLBACK to tell fmod what sort of sound to create.<br>
+    <br>
+    The format, channels and frequency tell FMOD what sort of hardware buffer to create when you initialize your code.  So if you wrote an MP3 codec that decoded to stereo 16bit integer PCM, you would specify FMOD_SOUND_FORMAT_PCM16, and channels would be equal to 2.<br>
 
     [REMARKS]
-    Members marked with [in] mean the variable can be written to.  The user can set the value.
-    Members marked with [out] mean the variable is modified by FMOD and is for reading purposes only.  Do not change this value.
-    
-    An FMOD file might be from disk, memory or internet, however the file may be opened by the user.
-    
-    'numsubsounds' should be 0 if the file is a normal single sound stream or sound.  Examples of this would be .WAV, .WMA, .MP3, .AIFF.
-    'numsubsounds' should be 1+ if the file is a container format, and does not contain wav data itself.  Examples of these types would be CDDA (multiple CD tracks), FSB (contains multiple sounds), DLS (contain instruments).
-    The arrays of format, channel, frequency, length and blockalign should point to arrays of information based on how many subsounds are in the format.  If the number of subsounds is 0 then it should point to 1 of each attribute, the same as if the number of subsounds was 1.  If subsounds was 100 for example, each pointer should point to an array of 100 of each attribute.
+    Members marked with [in] mean the variable can be written to.  The user can set the value.<br>
+    Members marked with [out] mean the variable is modified by FMOD and is for reading purposes only.  Do not change this value.<br>
+    <br>
+    An FMOD file might be from disk, memory or internet, however the file may be opened by the user.<br>
+    <br>
+    'numsubsounds' should be 0 if the file is a normal single sound stream or sound.  Examples of this would be .WAV, .WMA, .MP3, .AIFF.<br>
+    'numsubsounds' should be 1+ if the file is a container format, and does not contain wav data itself.  Examples of these types would be CDDA (multiple CD tracks), FSB (contains multiple sounds), DLS (contain instruments).<br>
+    The arrays of format, channel, frequency, length and blockalign should point to arrays of information based on how many subsounds are in the format.  If the number of subsounds is 0 then it should point to 1 of each attribute, the same as if the number of subsounds was 1.  If subsounds was 100 for example, each pointer should point to an array of 100 of each attribute.<br>
     When a sound has 1 or more subsounds, you must play the individual sounds specified by first obtaining the subsound with Sound::getSubSound.
     
-    [PLATFORMS]
-    Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation Portable, PlayStation 3, Wii, iPhone, 3GS, NGP, Android
-
     [SEE_ALSO]
     FMOD_SOUND_FORMAT
     FMOD_FILE_READCALLBACK      

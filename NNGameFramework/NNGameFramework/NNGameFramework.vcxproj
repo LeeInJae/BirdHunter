@@ -133,6 +133,7 @@
     <ClCompile Include="NNSceneDirector.cpp" />
     <ClCompile Include="NNSize.cpp" />
     <ClCompile Include="NNSound.cpp" />
+    <ClCompile Include="NNSoundManager.cpp" />
     <ClCompile Include="NNSprite.cpp" />
     <ClCompile Include="NNSpriteAtlas.cpp" />
     <ClCompile Include="NNSpriteNode.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="NNSceneDirector.h" />
     <ClInclude Include="NNSize.h" />
     <ClInclude Include="NNSound.h" />
+    <ClInclude Include="NNSoundManager.h" />
     <ClInclude Include="NNSprite.h" />
     <ClInclude Include="NNSpriteAtlas.h" />
     <ClInclude Include="NNSpriteNode.h" />
