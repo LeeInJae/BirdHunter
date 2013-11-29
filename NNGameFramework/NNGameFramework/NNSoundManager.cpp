@@ -55,7 +55,7 @@ FMOD::Sound* NNSoundManager::CreateSound( std::string path )
 
 void NNSoundManager::Play( FMOD::Sound* sound )
 {
-	m_System->playSound(FMOD_CHANNEL_FREE, sound, false, nullptr);
+	m_System->playSound(FMOD_CHANNEL_FREE, sound, false, &m_Dchannel);
 }
 
 void NNSoundManager::PlayAndGetChannel( FMOD:: Sound* sound, FMOD::Channel* channel )
@@ -87,7 +87,7 @@ void NNSoundManager::SetVolume( FMOD::Channel* channel, float volume )
 bool NNSoundManager::IsPlay( FMOD::Channel* channel )
 {
 	bool isplay;
-	return channel->isPlaying(&isplay);
+	channel->isPlaying(&isplay);
 	return isplay;
 }
 
