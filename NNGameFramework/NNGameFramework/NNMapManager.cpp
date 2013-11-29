@@ -7,7 +7,7 @@
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
-NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0)
+NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0), m_WarningFlag(true)
 {	 
 	// agebreak : 초기화 함수를 따로 분리한것은 좋다.
 	SetMapContainer();
@@ -52,10 +52,10 @@ void NNMapManager::SetWarningCount( void )
 
 void NNMapManager::Update(float dTime)
 {
-	pollution = NNPooManager::GetInstance()->GetLandedPoo();
-	for (int i= 0; i < m_WarningCount.size(); ++i)
+	m_Pollution = NNPooManager::GetInstance()->GetLandedPoo();
+	for (int i= 0; i < (int)m_WarningCount.size(); ++i)
 	{
-		if (pollution > m_WarningCount[i])
+		if (m_Pollution > m_WarningCount[i])
 		{
 			m_PrevWarningLV = m_CurrentWarningLV;
 			m_CurrentWarningLV = i;
@@ -73,8 +73,10 @@ void NNMapManager::Update(float dTime)
 		AddChild( m_pMap );
 	}
 
-	if (pollution -1 == POLLUTION_WARNING_LV_04)
+	if (m_Pollution -1 == POLLUTION_WARNING_LV_04 && m_WarningFlag)
 	{
+		m_WarningFlag = false;
+
 		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[WARNING]);
 	}
 }

@@ -1,4 +1,6 @@
 #pragma once
+#pragma  comment( lib, "fmodex_vc.lib" )
+
 #include "NNConfig.h"
 #include "Library/FMOD/inc/fmod.hpp"
 #include "Library/FMOD/inc/fmod_errors.h"

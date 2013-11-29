@@ -195,7 +195,8 @@ void NNBulletManager::HitCheck()
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
 				/*NNAudioSystem::GetInstance()->Play(m_SE_PooBoom[rand()%m_SE_PooBoom.size()]);*/
-				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%m_SE_PooBoom.size()]);
+
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
 
 
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
