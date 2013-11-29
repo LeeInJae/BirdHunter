@@ -32,6 +32,7 @@ public:
 
 	std::vector<FMOD::Sound*> SE_BirdDie;
 	std::vector<FMOD::Sound*> SE_PooBoom;
+	std::vector<FMOD::Sound*> SE_NormalGunShot;
 	std::array<FMOD::Sound*, SYSTEMSOUND_MAX> SystemSound;
 
 private:

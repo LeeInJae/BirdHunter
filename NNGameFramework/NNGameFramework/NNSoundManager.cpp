@@ -25,6 +25,10 @@ void NNSoundManager::Init( void )
 	SE_PooBoom.push_back(CreateSound("Sound/POO_BOOM_02.wav"));
 	SE_PooBoom.push_back(CreateSound("Sound/POO_BOOM_03.wav"));
 	SE_PooBoom.push_back(CreateSound("Sound/POO_BOOM_04.wav"));
+	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_00.wav"));
+	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_01.wav"));
+	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_02.wav"));
+	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_03.wav"));
 	SystemSound[GAMESTART] = CreateSound("Sound/GAME_START.wav");
 	SystemSound[WARNING] = CreateSound("Sound/WARNING.wav");
 	SystemSound[GAMEOVER] = CreateSound("Sound/GAME_OVER.wav");
