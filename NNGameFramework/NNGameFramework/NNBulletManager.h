@@ -14,7 +14,7 @@ public:
 	void					MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition );
 	void					Update( float dTime );
 	
-	std::list< NNBullet* >& GetBulletList() { return m_Bullet; }
+	std::list< NNBullet* >& GetBulletList() { return m_BulletList; }
 
 private:
 	NNBulletManager(void);
@@ -24,6 +24,6 @@ private:
 	void HitCheck();
 	static NNBulletManager* m_pInstance;
 
-	std::list< NNBullet* > m_Bullet;
+	std::list< NNBullet* > m_BulletList;
 
 };

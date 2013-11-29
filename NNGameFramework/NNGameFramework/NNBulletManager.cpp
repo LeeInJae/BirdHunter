@@ -40,29 +40,32 @@ NNBulletManager::~NNBulletManager(void)
 
 void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 {
-	BULLET_PROPERTY bullet_property;
-	NNBullet* newBullet;
-	newBullet = new NNBullet();
-
-	switch ( type )
+	if (m_BulletList.size() < 5 )
 	{
-	case NORMAL_BULLET:
-		bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
-		bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
-		bullet_property.speed			=	NORMAL_BULLET_SPEED;
-		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
-		bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
-		bullet_property.type			=	NORMAL_BULLET;
-		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
-		break;
-	default:
-		break;
-	}
+		BULLET_PROPERTY bullet_property;
+		NNBullet* newBullet;
+		newBullet = new NNBullet();
 
-	newBullet->SetBulletProperty( bullet_property);
-	newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
-	m_Bullet.push_back( newBullet );
-	AddChild( newBullet );
+		switch ( type )
+		{
+		case NORMAL_BULLET:
+			bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
+			bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
+			bullet_property.speed			=	NORMAL_BULLET_SPEED;
+			bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
+			bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
+			bullet_property.type			=	NORMAL_BULLET;
+			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
+			break;
+		default:
+			break;
+		}
+
+		newBullet->SetBulletProperty( bullet_property);
+		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
+		m_BulletList.push_back( newBullet );
+		AddChild( newBullet );
+	}
 }
 
 void NNBulletManager::Update( float dTime )
@@ -74,9 +77,9 @@ void NNBulletManager::Update( float dTime )
 
 void NNBulletManager::RemoveCheck()
 {
-	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
+	std::list< NNBullet* >::iterator bullet_Iter = m_BulletList.begin();
 	
-	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); )
+	for( bullet_Iter = m_BulletList.begin(); bullet_Iter != m_BulletList.end(); )
 	{
 		if( (*bullet_Iter)->GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )
 		{
@@ -84,7 +87,7 @@ void NNBulletManager::RemoveCheck()
 
 			// 리스트에서 삭제. 반환값은 다음 원소이다.
 			//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
-			bullet_Iter =  m_Bullet.erase( bullet_Iter );	
+			bullet_Iter =  m_BulletList.erase( bullet_Iter );	
 
 			// 객체 해제
 			RemoveChild(pBullet,true);
@@ -100,7 +103,7 @@ void NNBulletManager::HitCheck()
 {
 
 	//Bird & Bullet Hitcheck
-	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
+	std::list< NNBullet* >::iterator bullet_Iter = m_BulletList.begin();
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBird* >& bird_list = NNBirdFactory::GetInstance()->GetBirdList();
 	std::list< NNBirdBulletHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
@@ -109,7 +112,7 @@ void NNBulletManager::HitCheck()
 
 	bool hitCheck;
 
-	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
+	for( bullet_Iter = m_BulletList.begin(); bullet_Iter != m_BulletList.end();  )
 	{
 		auto pBullet_Iter = *bullet_Iter;
 
@@ -143,7 +146,7 @@ void NNBulletManager::HitCheck()
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true ); 
 
-				bullet_Iter = m_Bullet.erase( bullet_Iter );
+				bullet_Iter = m_BulletList.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
 
@@ -163,7 +166,7 @@ void NNBulletManager::HitCheck()
 
 	struct HIT_RECT poo_rect;
 
-	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
+	for( bullet_Iter = m_BulletList.begin(); bullet_Iter != m_BulletList.end();  )
 	{
 		auto pBullet_Iter = *bullet_Iter;
 
@@ -199,7 +202,7 @@ void NNBulletManager::HitCheck()
 				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
 
 
-				bullet_Iter = m_Bullet.erase( bullet_Iter );
+				bullet_Iter = m_BulletList.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
 

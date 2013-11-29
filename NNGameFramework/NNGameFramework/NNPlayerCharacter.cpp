@@ -47,7 +47,7 @@ void NNPlayerCharacter::Update( float dTime )
 
 	m_SumTime += dTime;
 
-	if( m_SumTime >= 0.1)
+	if( m_SumTime >= 0.5f)
 	{
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
