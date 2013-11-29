@@ -61,7 +61,12 @@ NNGameScene::~NNGameScene(void)
 void NNGameScene::Update( float dTime )
 {
 	if(m_CheckGameOver)
+	{
+		FMOD::Channel* m_gameoverCh = nullptr;
+		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SystemSound[GAMEOVER], m_gameoverCh);
+		NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 0.1f);
 		return;
+	}
 
 	NNScene::Update( dTime );
 
