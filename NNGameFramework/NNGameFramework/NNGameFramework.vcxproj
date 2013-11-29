@@ -62,9 +62,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-
       <AdditionalDependencies>fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
-
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,12 +133,10 @@
     <ClCompile Include="NNScene.cpp" />
     <ClCompile Include="NNSceneDirector.cpp" />
     <ClCompile Include="NNSize.cpp" />
-
     <ClCompile Include="NNSound.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="NNSoundManager.cpp" />
-
     <ClCompile Include="NNSprite.cpp" />
     <ClCompile Include="NNSpriteAtlas.cpp" />
     <ClCompile Include="NNSpriteNode.cpp" />
@@ -213,12 +209,10 @@
     <ClInclude Include="NNScene.h" />
     <ClInclude Include="NNSceneDirector.h" />
     <ClInclude Include="NNSize.h" />
-
     <ClInclude Include="NNSound.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="NNSoundManager.h" />
-
     <ClInclude Include="NNSprite.h" />
     <ClInclude Include="NNSpriteAtlas.h" />
     <ClInclude Include="NNSpriteNode.h" />
