@@ -1,11 +1,11 @@
 #include "NNBulletManager.h"
 #include "NNBird.h"
 #include "NNBirdFactory.h"
-#include  "NNPooManager.h"
-#include "NNHitEffect.h"
+#include "NNPooManager.h"
+#include "NNBirdBulletCrashEffect.h"
 #include "NNPoo.h"
 #include "NNEffectManager.h"
-#include "NNSoundManager.h"
+#include "NNAudioSystem.h"
 
 NNBulletManager* NNBulletManager::m_pInstance = nullptr;
 
@@ -30,7 +30,12 @@ void NNBulletManager::ReleaseInstance()
 
 NNBulletManager::NNBulletManager(void)
 {
-	srand((unsigned)time(NULL));
+	// agebreak : 생성된 사운드 객체는 어디서 해제하는가??
+	m_SE_PooBoom.push_back(SE_POO_BOOM_00);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_01);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_02);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_03);
+	m_SE_PooBoom.push_back(SE_POO_BOOM_04);
 }
 
 
@@ -40,32 +45,28 @@ NNBulletManager::~NNBulletManager(void)
 
 void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 {
-	if (m_BulletList.size() < 5 )
+	BULLET_PROPERTY bullet_property;
+	NNBullet* newBullet;
+	newBullet = new NNBullet();
+
+	switch ( type )
 	{
-		BULLET_PROPERTY bullet_property;
-		NNBullet* newBullet;
-		newBullet = new NNBullet();
-
-		switch ( type )
-		{
-		case NORMAL_BULLET:
-			bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
-			bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
-			bullet_property.speed			=	NORMAL_BULLET_SPEED;
-			bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
-			bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
-			bullet_property.type			=	NORMAL_BULLET;
-			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
-			break;
-		default:
-			break;
-		}
-
-		newBullet->SetBulletProperty( bullet_property);
-		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
-		m_BulletList.push_back( newBullet );
-		AddChild( newBullet );
+	case NORMAL_BULLET:
+		bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
+		bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
+		bullet_property.speed			=	NORMAL_BULLET_SPEED;
+		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
+		bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
+		bullet_property.type			=	NORMAL_BULLET;
+		break;
+	default:
+		break;
 	}
+
+	newBullet->SetBulletProperty( bullet_property);
+	newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
+	m_Bullet.push_back( newBullet );
+	AddChild( newBullet );
 }
 
 void NNBulletManager::Update( float dTime )
@@ -77,9 +78,9 @@ void NNBulletManager::Update( float dTime )
 
 void NNBulletManager::RemoveCheck()
 {
-	std::list< NNBullet* >::iterator bullet_Iter = m_BulletList.begin();
+	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
 	
-	for( bullet_Iter = m_BulletList.begin(); bullet_Iter != m_BulletList.end(); )
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); )
 	{
 		if( (*bullet_Iter)->GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )
 		{
@@ -87,7 +88,7 @@ void NNBulletManager::RemoveCheck()
 
 			// 리스트에서 삭제. 반환값은 다음 원소이다.
 			//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
-			bullet_Iter =  m_BulletList.erase( bullet_Iter );	
+			bullet_Iter =  m_Bullet.erase( bullet_Iter );	
 
 			// 객체 해제
 			RemoveChild(pBullet,true);
@@ -103,16 +104,15 @@ void NNBulletManager::HitCheck()
 {
 
 	//Bird & Bullet Hitcheck
-	std::list< NNBullet* >::iterator bullet_Iter = m_BulletList.begin();
+	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
 	std::list< NNBird* >::iterator bird_Iter;
 	std::list< NNBird* >& bird_list = NNBirdFactory::GetInstance()->GetBirdList();
-	std::list< NNBirdBulletHitEffect* >& hitEffect_list = NNEffectManager::GetInstance()->GetHitEffectList();
 
 	struct HIT_RECT bird_rect, bullet_rect;
 
 	bool hitCheck;
 
-	for( bullet_Iter = m_BulletList.begin(); bullet_Iter != m_BulletList.end();  )
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
 	{
 		auto pBullet_Iter = *bullet_Iter;
 
@@ -140,13 +140,12 @@ void NNBulletManager::HitCheck()
 			}
 			else
 			{
-				NNEffectManager::GetInstance()->MakeBirdBulletHitEffect( pBird_Iter->GetPosition(), pBird_Iter->GetBirdDirection() );
+				NNEffectManager::GetInstance()->MakeBirdBulletCrashEffect( pBird_Iter->GetPosition() );
 				
-				//NNEffectManager::GetInstance()->MakeHitEffect( pBird_Iter->GetPosition(), pBird_Iter->GetBirdDirection() );
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true ); 
 
-				bullet_Iter = m_BulletList.erase( bullet_Iter );
+				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
 
@@ -166,7 +165,7 @@ void NNBulletManager::HitCheck()
 
 	struct HIT_RECT poo_rect;
 
-	for( bullet_Iter = m_BulletList.begin(); bullet_Iter != m_BulletList.end();  )
+	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
 	{
 		auto pBullet_Iter = *bullet_Iter;
 
@@ -193,22 +192,18 @@ void NNBulletManager::HitCheck()
 			} 
 			else
 			{
-				NNEffectManager::GetInstance()->MakePooBulletHitEffect( pPoo_Iter->GetPosition() );
+				NNEffectManager::GetInstance()->MakePooBulletCrashEffect( pPoo_Iter->GetPosition() );
 
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
-				/*NNAudioSystem::GetInstance()->Play(m_SE_PooBoom[rand()%m_SE_PooBoom.size()]);*/
+				NNAudioSystem::GetInstance()->Play(m_SE_PooBoom[rand()%m_SE_PooBoom.size()]);
 
-				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
-
-
-				bullet_Iter = m_BulletList.erase( bullet_Iter );
+				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
 
 				break;
 			}
-
 		}
 		if( !hitCheck )
 		{

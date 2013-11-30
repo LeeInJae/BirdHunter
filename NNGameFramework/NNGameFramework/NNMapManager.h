@@ -21,9 +21,8 @@ protected:
 	NNSprite* m_pMap;
 
 private:
-	bool m_WarningFlag;
 	static NNMapManager* m_pInstance;
-	int m_Pollution;
+	int pollution;
 	int m_CurrentWarningLV;
 	int m_PrevWarningLV;
 	std::vector<std::wstring> m_MapContainer;

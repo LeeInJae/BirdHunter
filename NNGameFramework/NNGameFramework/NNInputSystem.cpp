@@ -76,12 +76,6 @@ PlayerCharacterDirection NNInputSystem::CheckWhichPressedKey()
 
 	return NONE;
 
-	// 	if( GetInstance() -> GetKeyState( VK_LEFT ) == KEY_PRESSED ) 싱글톤 구조 질문. 함수만들어서 함수값을 받아오려고 했는데 에러남
-// 		m_Direction = LEFT;
-// 	else if( GetInstance() -> GetKeyState( VK_RIGHT ) == KEY_PRESSED )
-// 		m_Direction = RIGHT;
-// 
-// 	m_Direction = NONE;
 }
 
 NNPoint NNInputSystem::GetMousePosition()
@@ -95,12 +89,27 @@ NNPoint NNInputSystem::GetMousePosition()
 
 SpecialKeyInput NNInputSystem::CheckSpecialPressedKey()
 {
-	if( GetInstance() -> GetKeyState( VK_SPACE ) == KEY_PRESSED )
+	if( GetInstance()->GetKeyState( VK_SPACE ) == KEY_DOWN )
 		return ATTACK;
-	else if( GetInstance() -> GetKeyState( 'Z' ) == KEY_PRESSED )
+	else if( GetInstance()->GetKeyState( 'Z' ) == KEY_DOWN )
 		return ITEM1;
-	else if( GetInstance() -> GetKeyState( 'X' ) == KEY_PRESSED )
+	else if( GetInstance()->GetKeyState( 'X' ) == KEY_DOWN )
 		return ITEM2;
+	else if( GetInstance()->GetKeyState( 'P' ) == KEY_DOWN )
+		return PAUSE;
 
 	return NO;
+}
+
+bool NNInputSystem::PressedKeyCheck()
+{
+	KeyState state;
+
+	for( int i=0; i<256; ++i )
+	{
+		state = GetKeyState( i );
+		if( state == KEY_DOWN )
+			return true;
+	}
+	return false;
 }

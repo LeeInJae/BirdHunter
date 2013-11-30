@@ -2,7 +2,7 @@
 #include "NNObject.h"
 #include "NNPoint.h"
 #include "BHDefine.h"
-#include "NNHitEffect.h"
+#include "NNBirdBulletCrashEffect.h"
 #include "NNBullet.h"
 
 //총알의 생성 및 충돌체크 등을 관리하는 매니져
@@ -14,7 +14,7 @@ public:
 	void					MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition );
 	void					Update( float dTime );
 	
-	std::list< NNBullet* >& GetBulletList() { return m_BulletList; }
+	std::list< NNBullet* >& GetBulletList() { return m_Bullet; }
 
 private:
 	NNBulletManager(void);
@@ -24,6 +24,8 @@ private:
 	void HitCheck();
 	static NNBulletManager* m_pInstance;
 
-	std::list< NNBullet* > m_BulletList;
+	std::list< NNBullet* > m_Bullet;
+
+	std::vector<NNSound*> m_SE_PooBoom;
 
 };

@@ -298,11 +298,12 @@
     <ClCompile Include="NNPooBulletHitEffect.cpp">
       <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
-
     <ClCompile Include="NNSoundManager.cpp">
       <Filter>BirdHunter</Filter>
     </ClCompile>
-
+    <ClCompile Include="NNStartScene.cpp">
+      <Filter>BirdHunter\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -516,7 +517,9 @@
     <ClInclude Include="NNSoundManager.h">
       <Filter>BirdHunter</Filter>
     </ClInclude>
-
+    <ClInclude Include="NNStartScene.h">
+      <Filter>BirdHunter\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NNGameFramework.rc" />

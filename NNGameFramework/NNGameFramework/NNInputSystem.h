@@ -30,6 +30,7 @@ enum SpecialKeyInput
 	ATTACK,
 	ITEM1,
 	ITEM2,
+	PAUSE,
 	NO,
 };
 
@@ -45,6 +46,7 @@ public:
 	PlayerCharacterDirection GetDirection() { return m_Direction; }
 	PlayerCharacterDirection CheckWhichPressedKey();
 	SpecialKeyInput			 CheckSpecialPressedKey();
+	bool PressedKeyCheck();
 private:
 	NNInputSystem();
 	~NNInputSystem();
@@ -54,6 +56,7 @@ private:
 	PlayerCharacterDirection m_Direction;
 	bool m_PrevKeyState[256];
 	bool m_NowKeyState[256];
+	int attackey;
 };
 
 

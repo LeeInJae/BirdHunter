@@ -3,11 +3,11 @@
 #include "NNSprite.h"
 #include "BHDefine.h"
 #include "NNPooManager.h"
-#include "NNSoundManager.h"
+#include "NNAudioSystem.h"
 
 NNMapManager* NNMapManager::m_pInstance = nullptr;
 
-NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0), m_WarningFlag(true)
+NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0)
 {	 
 	// agebreak : 초기화 함수를 따로 분리한것은 좋다.
 	SetMapContainer();
@@ -52,10 +52,10 @@ void NNMapManager::SetWarningCount( void )
 
 void NNMapManager::Update(float dTime)
 {
-	m_Pollution = NNPooManager::GetInstance()->GetLandedPoo();
-	for (int i= 0; i < (int)m_WarningCount.size(); ++i)
+	pollution = NNPooManager::GetInstance()->GetLandedPoo();
+	for (int i= 0; i < m_WarningCount.size(); ++i)
 	{
-		if (m_Pollution > m_WarningCount[i])
+		if (pollution > m_WarningCount[i])
 		{
 			m_PrevWarningLV = m_CurrentWarningLV;
 			m_CurrentWarningLV = i;
@@ -73,11 +73,9 @@ void NNMapManager::Update(float dTime)
 		AddChild( m_pMap );
 	}
 
-	if (m_Pollution -1 == POLLUTION_WARNING_LV_04 && m_WarningFlag)
+	if (pollution -1 == POLLUTION_WARNING_LV_04)
 	{
-		m_WarningFlag = false;
-
-		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[WARNING]);
+		NNAudioSystem::GetInstance()->Play(SE_WARNING);
 	}
 }
 

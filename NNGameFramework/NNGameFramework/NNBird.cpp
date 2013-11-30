@@ -37,10 +37,9 @@ void NNBird::Update( float dTime )
 
 	m_SumTime += dTime;
 
-	// agebreak : 지금은 3초마다 생성하지만, 이것을 새의 종류에 따라 설정할 수 있는 형태로 변경해야 한다.
-	if( m_SumTime >= 7.5f)
+	if( m_SumTime >= m_MakePooCoolTime )
 	{
-		NNPooManager::GetInstance()->MakePoo( NORMAL_POO, GetPosition() );
+		NNPooManager::GetInstance()->MakePoo( m_Type, GetPosition() );
 		m_SumTime = 0;
 	}
 }
@@ -50,12 +49,13 @@ void NNBird::SetBirdProperty( BIRD_PROPERTY &bird_property )
 	m_BirdSpeed		= bird_property.speed;
 	m_BirdDirection = bird_property.goingDirection;
 	
-	m_Type			= bird_property.type;
-	m_pBird			= NNSprite::Create( bird_property.sprite_path );
-	m_SpriteHeight	= bird_property.imageHeight;
-	m_SpriteWidth	= bird_property.imageWidth;
-	m_Zindex		= bird_property.zIndex;
-
+	m_Type				=	bird_property.type;
+	m_pBird				=	NNSprite::Create( bird_property.sprite_path );
+	m_SpriteHeight		=	bird_property.imageHeight;
+	m_SpriteWidth		=	bird_property.imageWidth;
+	m_Zindex			=	bird_property.zIndex;
+	m_MakePooCoolTime	=	bird_property.pooCoolTime;
+	
 	m_pBird->SetImageHeight( bird_property.imageHeight );
 	m_pBird->SetImageWidth( bird_property.imageWidth );	
 	SetZindex( bird_property.zIndex );

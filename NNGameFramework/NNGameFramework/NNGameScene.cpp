@@ -10,14 +10,93 @@
 #include <assert.h>
 #include "NNMapManager.h"
 #include "NNEffectManager.h"
-#include "NNSoundManager.h"
+#include "NNSound.h"
+#include "NNAudioSystem.h"
 
 NNGameScene::NNGameScene(void )
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
-
+	
+	m_PauseTime	= 0;
 	m_SumTime = 0;
+
+	struct BIRD_BORN_TIME birdBornItem;
+
+	birdBornItem.birdType		=	BLACK_SMALL_BIRD;
+	birdBornItem.bornTime		=	BLACK_SMALL_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	SMALL_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 0 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	ORANGE_SMALL_BIRD;
+	birdBornItem.bornTime		=	ORANGE_SMALL_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	SMALL_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 1 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	WHITE_SMALL_BIRD;
+	birdBornItem.bornTime		=	WHITE_SMALL_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	SMALL_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 2 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	RED_SMALL_BIRD;
+	birdBornItem.bornTime		=	RED_SMALL_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	SMALL_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 3 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	BLACK_MID_BIRD;
+	birdBornItem.bornTime		=	BLACK_MID_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	MID_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 4 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	CARAMEL_MID_BIRD;
+	birdBornItem.bornTime		=	CARAMEL_MID_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	MID_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 5 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	GREEN_MID_BIRD;
+	birdBornItem.bornTime		=	GREEN_MID_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	MID_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 6 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	ICE_MID_BIRD;
+	birdBornItem.bornTime		=	GREEN_MID_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	MID_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 7 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	YELLOW_MID_BIRD;
+	birdBornItem.bornTime		=	YELLOW_MID_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	MID_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 8 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	BROWN_BIG_BIRD;
+	birdBornItem.bornTime		=	BROWN_BIG_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	BIG_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 9 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	WHITE_BIG_BIRD;
+	birdBornItem.bornTime		=	WHITE_BIG_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	BIG_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 10 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	PINK_BIG_BIRD;
+	birdBornItem.bornTime		=	PINK_BIG_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	BIG_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 11 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	ITEM_KING_BIRD;
+	birdBornItem.bornTime		=	ITEM_KING_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	ITEM_KING_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 12 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	RED_OLD_BIRD;
+	birdBornItem.bornTime		=	RED_OLD_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	OLD_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 13 ]	=	birdBornItem;
+
+	birdBornItem.birdType		=	GREEN_OLD_BIRD;
+	birdBornItem.bornTime		=	GREEN_OLD_BIRD_BORN_TIME;
+	birdBornItem.bornCoolTime	=	OLD_BIRD_COOLTIME;
+	m_BirdBornCheckArray[ 14 ]	=	birdBornItem;
 
 	AddChild( NNMapManager::GetInstance() );
 	AddChild( m_Character );
@@ -27,15 +106,8 @@ NNGameScene::NNGameScene(void )
 	AddChild( NNEffectManager::GetInstance() );
 
 	UIInit();
-	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[GAMESTART]);
-
-// 	NNHitEffect* newEffect;
-// 	newEffect = new NNHitEffect();
-// 	NNPoint temp;
-// 	temp.SetX( 800 - 128 );
-// 	temp.SetY( 600 - 128);
-// 	newEffect->SetPosition( temp );
-// 	AddChild( newEffect );
+	m_AudioPlayer = NNAudioSystem::GetInstance();
+	m_AudioPlayer->Play(SE_GAMESTART);
 }
 
 void NNGameScene::UIInit()
@@ -61,30 +133,56 @@ NNGameScene::~NNGameScene(void)
 void NNGameScene::Update( float dTime )
 {
 	if(m_CheckGameOver)
-	{
-		FMOD::Channel* m_gameoverCh = nullptr;
-		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SystemSound[GAMEOVER], m_gameoverCh);
-		NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 0.1f);
 		return;
-	}
 
-	NNScene::Update( dTime );
+	if( !m_Character->GetPauseKey() )
+	{
+		NNScene::Update( dTime );
+		UIUpdate( dTime );
+	}
+	else
+	{
+		m_PauseTime += dTime;
+		m_Character->Update( dTime );
+	}
+	
 
 	m_SumTime += dTime;
-		
-	if( m_SumTime >= 3 )
- 	{
- 		NNBirdFactory::GetInstance()->MakeBird( NORMAL_BIRD );
-		NNBirdFactory::GetInstance()->MakeBird( NORMAL_BIRD );
-		NNBirdFactory::GetInstance()->MakeBird( EASY_BIRD );
-		m_SumTime = 0;
- 	}
-	UIUpdate( dTime );
+	
+	for( int i=0; i<BIRD_ALL_NUMBER; ++i )
+	{
+		if( m_SumTime >= m_BirdBornCheckArray[ i ].bornTime )
+		{
+			NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
+			m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
+		}
+	}
+
+// 	if( m_SumTime <= TIME_LEVEL_00 )
+//  	{
+//  		NNBirdFactory::GetInstance()->MakeBird( BLACK_SMALL_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( ORANGE_SMALL_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( WHITE_SMALL_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( RED_SMALL_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( BLACK_MID_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( CARAMEL_MID_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( GREEN_MID_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( ICE_MID_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( YELLOW_MID_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( BROWN_BIG_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( WHITE_BIG_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( PINK_BIG_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( ITEM_KING_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( RED_OLD_BIRD );
+// 		NNBirdFactory::GetInstance()->MakeBird( GREEN_OLD_BIRD );
+// 		m_SumTime = 0;
+//  	}
+	
 }
 
 void NNGameScene::Render()
 {
-   	NNScene::Render();
+	NNScene::Render();
 }
 
 void NNGameScene::UIUpdate( float dTime )
@@ -98,7 +196,7 @@ void NNGameScene::UIUpdate( float dTime )
 		m_CheckGameOver = true;
 	}
 
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime());
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime);
 	m_PlayTimeLabel->SetString(m_PlayTimeString);
 
 	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L"POLLUTION : %d ", NNPooManager::GetInstance()->GetLandedPoo());

@@ -1,11 +1,9 @@
 #include "NNBullet.h"
 #include "BHDefine.h"
 
-
 NNBullet::NNBullet(void)
 {
 }
-
 
 NNBullet::~NNBullet(void)
 {

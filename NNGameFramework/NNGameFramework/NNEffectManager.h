@@ -1,9 +1,7 @@
 #pragma once
 #include "NNObject.h"
-#include "NNHitEffect.h"
+#include "NNBirdBulletCrashEffect.h"
 #include "BHDefine.h"
-#include "NNBirdBulletHitEffect.h"
-#include "NNPooBulletHitEffect.h"
 
 //이펙트들을 관리하는 이펙트 매니져
 class NNEffectManager : public NNObject
@@ -14,20 +12,16 @@ public:
 
 	void Release();
 	void Update( float dTime );
-	void MakeBirdBulletHitEffect( NNPoint birdPosition, GOING_DIRECTION dir );
-	void MakePooBulletHitEffect( NNPoint pooPosition );
 	
-	//void MakeHitEffect( NNPoint birdPosition, GOING_DIRECTION dir );
-	
-	std::list< NNBirdBulletHitEffect* >& GetHitEffectList(){ return m_BirdBulletHitEffect; }
+	void MakeBirdBulletCrashEffect( NNPoint birdPosition );
+	void MakePooBulletCrashEffect( NNPoint pooPosition );
+
+	std::list< NNEffect* >& GetEffectList(){ return m_HitEffect; }
 private:
 	NNEffectManager(void);
 	~NNEffectManager(void);
 
-	void RemoveHitEffectCheck();
+	void RemoveEffectCheck();
 	static NNEffectManager* m_pInstance;
-	std::list< NNBirdBulletHitEffect* > m_BirdBulletHitEffect;
-	std::list< NNPooBulletHitEffect* > m_PooBulletHitEffect;
-	
-	std::list< NNHitEffect* > m_HitEffect;
+	std::list< NNEffect* > m_HitEffect;
 };

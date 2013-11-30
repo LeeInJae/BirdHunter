@@ -17,7 +17,7 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y );
 	SetZindex	( PLAYER_ZINDEX );
 	m_SumTime = 0;
-	
+	m_PauseKey = false;
 	AddChild( m_pChar );
 }
 
@@ -30,24 +30,26 @@ void NNPlayerCharacter::Update( float dTime )
 {
 	NNPoint wich = GetPosition();
 	
-	switch( NNInputSystem::GetInstance()->CheckWhichPressedKey() )
+	if( !m_PauseKey )
 	{
-	case LEFT:
-		if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE )
-			SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
-		break;
+		switch( NNInputSystem::GetInstance()->CheckWhichPressedKey() )
+		{
+		case LEFT:
+			if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE )
+				SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
+			break;
 
-	case RIGHT:
-		if( GetPositionX() + m_PlayerSpeed * dTime <= WINDOW_WIDTH_RIGHT_EDGE - PLAYER_WIDTH )
-			SetPosition( GetPositionX() + m_PlayerSpeed * dTime, GetPositionY() );
-		break;
-	default:
-		break;
+			case RIGHT:
+			if( GetPositionX() + m_PlayerSpeed * dTime <= WINDOW_WIDTH_RIGHT_EDGE - PLAYER_WIDTH )
+				SetPosition( GetPositionX() + m_PlayerSpeed * dTime, GetPositionY() );
+			break;
+		default:
+			break;
+		}
 	}
-
 	m_SumTime += dTime;
 
-	if( m_SumTime >= 0.5f)
+	//if( m_SumTime >= 0.1)
 	{
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
@@ -59,6 +61,10 @@ void NNPlayerCharacter::Update( float dTime )
 			break;
 
 		case ITEM2:
+			break;
+
+		case PAUSE:
+			( m_PauseKey == true ) ? m_PauseKey = false : m_PauseKey = true;
 			break;
 
 		default:

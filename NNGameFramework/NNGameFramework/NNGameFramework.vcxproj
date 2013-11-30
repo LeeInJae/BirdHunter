@@ -140,6 +140,7 @@
     <ClCompile Include="NNSprite.cpp" />
     <ClCompile Include="NNSpriteAtlas.cpp" />
     <ClCompile Include="NNSpriteNode.cpp" />
+    <ClCompile Include="NNStartScene.cpp" />
     <ClCompile Include="NNTexture.cpp" />
     <ClCompile Include="NNXML.cpp" />
     <ClCompile Include="SpriteAtlasSample.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="NNSprite.h" />
     <ClInclude Include="NNSpriteAtlas.h" />
     <ClInclude Include="NNSpriteNode.h" />
+    <ClInclude Include="NNStartScene.h" />
     <ClInclude Include="NNTexture.h" />
     <ClInclude Include="NNXML.h" />
     <ClInclude Include="resource.h" />

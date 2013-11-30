@@ -22,11 +22,14 @@ public:
 protected:
 	float			m_Toggle;
 	float			m_SumTime;
-	int				m_BirdSpeed;
+	float			m_BirdSpeed;
+	float			m_MakePooCoolTime;
+	
 	GOING_DIRECTION	m_BirdDirection;
+	BIRD_TYPE		m_Type;
+	POO_TYPE		m_PooType;	
 	float			m_SpriteHeight;
 	float			m_SpriteWidth;
 	NNSprite*		m_pBird;
-	BIRD_TYPE		m_Type;
 	int				m_Zindex;
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include "NNScene.h"
 #include <vector>
+#include "BHDefine.h"
 
 class NNPlayerCharacter;
 class NNMap_A;
@@ -10,6 +11,13 @@ class NNLabel;
 class NNSprite;
 class NNSound;
 class NNAudioSystem;
+
+struct BIRD_BORN_TIME
+{
+	BIRD_TYPE	birdType;
+	float		bornTime;
+	float		bornCoolTime;
+};
 
 //실제 게임이 실행되고 있는 화면( 게임 씬 클래스)
 class NNGameScene : public NNScene
@@ -39,10 +47,6 @@ protected:
 	virtual void	UIUpdate( float dTime );
 	virtual void	Update( float dTime );
 	void			UIInit();
-	void			MovePlayerCharacter( float dTime );
-	void			MoveBird( float dTime );
-	void			MovePoo( float dTime );
-	void			MoveBullet( float dTime );
 	float			m_SumTime;
 	
 	wchar_t			m_PlayTimeString[20];
@@ -52,4 +56,6 @@ protected:
 
 private:
 	bool m_CheckGameOver;
+	BIRD_BORN_TIME m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
+	float			m_PauseTime;
 };

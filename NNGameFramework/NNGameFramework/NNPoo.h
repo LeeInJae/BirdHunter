@@ -19,10 +19,11 @@ public:
 
 protected:
 	NNSprite*	m_pPoo;
-	int			m_PooSpeed;
+	float		m_PooSpeed;
+	float		m_PooAccelSpeed;
 	int			m_PooLife;
 	int			m_Zindex;
-	POO_TYPE		m_Type;
+	POO_TYPE	m_Type;
 	float		m_SpriteHeight;
 	float		m_SpriteWidth;
 };

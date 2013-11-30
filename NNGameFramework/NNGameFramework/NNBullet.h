@@ -17,7 +17,7 @@ public:
 	float GetSpriteWidth() { return m_SpriteWidth; }
 
 protected:
-	int			m_BulletSpeed;
+	float			m_BulletSpeed;
 	NNSprite*	m_pBullet;
 	float		m_SpriteHeight;
 	float		m_SpriteWidth;
