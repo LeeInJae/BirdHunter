@@ -1,7 +1,7 @@
 
 #include "NNApplication.h"
 #include "NNInputSystem.h"
-#include "NNAudioSystem.h"
+
 #include "NNResourceManager.h"
 #include <stdio.h>
 
@@ -71,7 +71,7 @@ bool NNApplication::Release()
 	NNSceneDirector::ReleaseInstance();
 	NNResourceManager::ReleaseInstance();
 	NNInputSystem::ReleaseInstance();
-	NNAudioSystem::ReleaseInstance();
+	
 	SafeDelete( m_Renderer );
 	ReleaseInstance();
 

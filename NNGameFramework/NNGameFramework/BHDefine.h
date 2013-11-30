@@ -308,18 +308,6 @@
 #define MAP_WARNING_03	L"Image/mapWarning003.png"
 #define MAP_WARNING_04	L"Image/mapWarning004.png"
 
-// agebreak : 함수째로 Define 하지 않는다. 만약 하는 경우에는 Create를 Define에 명시한다.
-#define SE_GAMESTART	NNSound::Create("Sound/GAME_START.wav")
-#define SE_BIRD_DIE_00	NNSound::Create("Sound/BIRD_DIE_00.wav")
-#define SE_BIRD_DIE_01	NNSound::Create("Sound/BIRD_DIE_01.wav")
-#define SE_BIRD_DIE_02	NNSound::Create("Sound/BIRD_DIE_02.wav")
-#define SE_POO_BOOM_00	NNSound::Create("Sound/POO_BOOM_00.wav")
-#define SE_POO_BOOM_01	NNSound::Create("Sound/POO_BOOM_01.wav")
-#define SE_POO_BOOM_02	NNSound::Create("Sound/POO_BOOM_02.wav")
-#define SE_POO_BOOM_03	NNSound::Create("Sound/POO_BOOM_03.wav")
-#define SE_POO_BOOM_04	NNSound::Create("Sound/POO_BOOM_04.wav")
-#define SE_WARNING		NNSound::Create("Sound/WARNING.wav")
-
 #define BIRD_BULLET_HIT_EFFECT_SCALE_X 1.0f
 #define BIRD_BULLET_HIT_EFFECT_SCALE_Y 1.0f
 #define BIRD_BULLET_HIT_EFFECT_WIDTH	128.f
@@ -440,6 +428,15 @@ enum POO_TYPE
 	ITEM_KING_BIRD_POO,
 	RED_OLD_BIRD_POO,
 	GREEN_OLD_BIRD_POO,
+};
+
+enum SystemSE
+{
+	GAMESTART,
+	WARNING,
+	GAMEOVER,
+
+	SYSTEMSOUND_MAX
 };
 
 enum GOING_DIRECTION

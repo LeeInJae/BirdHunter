@@ -5,7 +5,7 @@
 #include "NNBirdBulletCrashEffect.h"
 #include "NNPoo.h"
 #include "NNEffectManager.h"
-#include "NNAudioSystem.h"
+#include "NNSoundManager.h"
 
 NNBulletManager* NNBulletManager::m_pInstance = nullptr;
 
@@ -30,12 +30,7 @@ void NNBulletManager::ReleaseInstance()
 
 NNBulletManager::NNBulletManager(void)
 {
-	// agebreak : 생성된 사운드 객체는 어디서 해제하는가??
-	m_SE_PooBoom.push_back(SE_POO_BOOM_00);
-	m_SE_PooBoom.push_back(SE_POO_BOOM_01);
-	m_SE_PooBoom.push_back(SE_POO_BOOM_02);
-	m_SE_PooBoom.push_back(SE_POO_BOOM_03);
-	m_SE_PooBoom.push_back(SE_POO_BOOM_04);
+	 srand((unsigned)time(NULL));
 }
 
 
@@ -196,7 +191,7 @@ void NNBulletManager::HitCheck()
 
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
-				NNAudioSystem::GetInstance()->Play(m_SE_PooBoom[rand()%m_SE_PooBoom.size()]);
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
 
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );

@@ -10,8 +10,7 @@
 #include <assert.h>
 #include "NNMapManager.h"
 #include "NNEffectManager.h"
-#include "NNSound.h"
-#include "NNAudioSystem.h"
+#include "NNSoundManager.h"
 
 NNGameScene::NNGameScene(void )
 {
@@ -106,8 +105,7 @@ NNGameScene::NNGameScene(void )
 	AddChild( NNEffectManager::GetInstance() );
 
 	UIInit();
-	m_AudioPlayer = NNAudioSystem::GetInstance();
-	m_AudioPlayer->Play(SE_GAMESTART);
+	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[GAMESTART]);
 }
 
 void NNGameScene::UIInit()
@@ -133,7 +131,12 @@ NNGameScene::~NNGameScene(void)
 void NNGameScene::Update( float dTime )
 {
 	if(m_CheckGameOver)
-		return;
+   {
+	   FMOD::Channel* m_gameoverCh = nullptr;
+	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SystemSound[GAMEOVER], m_gameoverCh);
+	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 0.1f);
+	   return;
+   }
 
 	if( !m_Character->GetPauseKey() )
 	{

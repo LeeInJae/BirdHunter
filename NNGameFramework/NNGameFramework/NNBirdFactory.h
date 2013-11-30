@@ -20,6 +20,4 @@ private:
 	static NNBirdFactory*	 m_pInstance;
 
 	std::list< NNBird* >	 m_Bird;
-
-	std::vector<NNSound*> m_SE_BirdDie; 
 };

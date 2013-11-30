@@ -286,16 +286,7 @@
     <ClCompile Include="NNMapManager.cpp">
       <Filter>BirdHunter\Map</Filter>
     </ClCompile>
-    <ClCompile Include="NNHitEffect.cpp">
-      <Filter>BirdHunter\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="NNEffectManager.cpp">
-      <Filter>BirdHunter\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="NNBirdBulletHitEffect.cpp">
-      <Filter>BirdHunter\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="NNPooBulletHitEffect.cpp">
       <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
     <ClCompile Include="NNSoundManager.cpp">
@@ -303,6 +294,15 @@
     </ClCompile>
     <ClCompile Include="NNStartScene.cpp">
       <Filter>BirdHunter\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="NNBirdBulletCrashEffect.cpp">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="NNPooBulletCrashEffect.cpp">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="NNEffect.cpp">
+      <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -502,16 +502,7 @@
     <ClInclude Include="NNMapManager.h">
       <Filter>BirdHunter\Map</Filter>
     </ClInclude>
-    <ClInclude Include="NNHitEffect.h">
-      <Filter>BirdHunter\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="NNEffectManager.h">
-      <Filter>BirdHunter\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="NNBirdBulletHitEffect.h">
-      <Filter>BirdHunter\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="NNPooBulletHitEffect.h">
       <Filter>BirdHunter\Effect</Filter>
     </ClInclude>
     <ClInclude Include="NNSoundManager.h">
@@ -519,6 +510,15 @@
     </ClInclude>
     <ClInclude Include="NNStartScene.h">
       <Filter>BirdHunter\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="NNBirdBulletCrashEffect.h">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNPooBulletCrashEffect.h">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNEffect.h">
+      <Filter>BirdHunter\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

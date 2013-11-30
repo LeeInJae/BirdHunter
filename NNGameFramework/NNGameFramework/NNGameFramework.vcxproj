@@ -86,7 +86,9 @@
   <ItemGroup>
     <ClCompile Include="AnimationSample.cpp" />
     <ClCompile Include="CameraSample.cpp" />
-    <ClCompile Include="FMODSoundSample.cpp" />
+    <ClCompile Include="FMODSoundSample.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Library\TinyXML\action_store.cpp" />
     <ClCompile Include="Library\TinyXML\htmlutil.cpp" />
     <ClCompile Include="Library\TinyXML\lex_util.cpp" />
@@ -110,14 +112,14 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="NNBird.cpp" />
-    <ClCompile Include="NNBirdBulletHitEffect.cpp" />
+    <ClCompile Include="NNBirdBulletCrashEffect.cpp" />
     <ClCompile Include="NNBirdFactory.cpp" />
     <ClCompile Include="NNBullet.cpp" />
     <ClCompile Include="NNBulletManager.cpp" />
     <ClCompile Include="NNCamera.cpp" />
     <ClCompile Include="NND2DRenderer.cpp" />
+    <ClCompile Include="NNEffect.cpp" />
     <ClCompile Include="NNEffectManager.cpp" />
-    <ClCompile Include="NNHitEffect.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNLabel.cpp" />
     <ClCompile Include="NNGameScene.cpp" />
@@ -127,9 +129,11 @@
     <ClCompile Include="NNPlayerCharacter.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNPoo.cpp" />
-    <ClCompile Include="NNPooBulletHitEffect.cpp" />
+    <ClCompile Include="NNPooBulletCrashEffect.cpp" />
     <ClCompile Include="NNPooManager.cpp" />
-    <ClCompile Include="NNResourceManager.cpp" />
+    <ClCompile Include="NNResourceManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="NNScene.cpp" />
     <ClCompile Include="NNSceneDirector.cpp" />
     <ClCompile Include="NNSize.cpp" />
@@ -151,7 +155,9 @@
     <ClInclude Include="AnimationSample.h" />
     <ClInclude Include="BHDefine.h" />
     <ClInclude Include="CameraSample.h" />
-    <ClInclude Include="FMODSoundSample.h" />
+    <ClInclude Include="FMODSoundSample.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Library\FMOD\inc\fmod.h" />
     <ClInclude Include="Library\FMOD\inc\fmod.hpp" />
     <ClInclude Include="Library\FMOD\inc\fmod_codec.h" />
@@ -182,15 +188,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="NNBird.h" />
-    <ClInclude Include="NNBirdBulletHitEffect.h" />
+    <ClInclude Include="NNBirdBulletCrashEffect.h" />
     <ClInclude Include="NNBirdFactory.h" />
     <ClInclude Include="NNBullet.h" />
     <ClInclude Include="NNBulletManager.h" />
     <ClInclude Include="NNCamera.h" />
     <ClInclude Include="NNConfig.h" />
     <ClInclude Include="NND2DRenderer.h" />
+    <ClInclude Include="NNEffect.h" />
     <ClInclude Include="NNEffectManager.h" />
-    <ClInclude Include="NNHitEffect.h" />
     <ClInclude Include="NNIncludeSet.h" />
     <ClInclude Include="NNInputSystem.h" />
     <ClInclude Include="NNLabel.h" />
@@ -203,10 +209,12 @@
     <ClInclude Include="NNPlayerCharacter.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNPoo.h" />
-    <ClInclude Include="NNPooBulletHitEffect.h" />
+    <ClInclude Include="NNPooBulletCrashEffect.h" />
     <ClInclude Include="NNPooManager.h" />
     <ClInclude Include="NNRenderer.h" />
-    <ClInclude Include="NNResourceManager.h" />
+    <ClInclude Include="NNResourceManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="NNScene.h" />
     <ClInclude Include="NNSceneDirector.h" />
     <ClInclude Include="NNSize.h" />

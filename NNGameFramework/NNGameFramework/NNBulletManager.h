@@ -25,7 +25,4 @@ private:
 	static NNBulletManager* m_pInstance;
 
 	std::list< NNBullet* > m_Bullet;
-
-	std::vector<NNSound*> m_SE_PooBoom;
-
 };

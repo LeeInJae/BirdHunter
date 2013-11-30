@@ -1,17 +1,13 @@
 #include "NNBirdFactory.h"
 #include "NNBullet.h"
 #include "NNBulletManager.h"
-#include "NNAudioSystem.h"
-
+#include "NNSoundManager.h"
 
 NNBirdFactory* NNBirdFactory::m_pInstance = nullptr;
 
 NNBirdFactory::NNBirdFactory(void)
 {
 	srand((unsigned)time(NULL));
-	m_SE_BirdDie.push_back(SE_BIRD_DIE_00);
-	m_SE_BirdDie.push_back(SE_BIRD_DIE_01);
-	m_SE_BirdDie.push_back(SE_BIRD_DIE_02);
 }
 
 NNBirdFactory::~NNBirdFactory(void)
@@ -205,5 +201,5 @@ void NNBirdFactory::RemoveChild( NNObject* object, bool memoryDel )
 {
 	// agebreak : 두번째 인자가 false가 들어오면 무슨 문제가 발생하는가?
 	NNObject::RemoveChild(object, memoryDel);
-	NNAudioSystem::GetInstance()->Play(m_SE_BirdDie[rand()%m_SE_BirdDie.size()]);
+	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_BirdDie[rand()%NNSoundManager::GetInstance()->SE_BirdDie.size()]);
 }
