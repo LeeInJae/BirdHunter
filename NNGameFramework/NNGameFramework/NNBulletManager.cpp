@@ -40,29 +40,32 @@ NNBulletManager::~NNBulletManager(void)
 
 void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 {
-	BULLET_PROPERTY bullet_property;
-	NNBullet* newBullet;
-	newBullet = new NNBullet();
-
-	switch ( type )
+	if (m_Bullet.size() < 5)
 	{
-	case NORMAL_BULLET:
-		bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
-		bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
-		bullet_property.speed			=	NORMAL_BULLET_SPEED;
-		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
-		bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
-		bullet_property.type			=	NORMAL_BULLET;
-		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
-		break;
-	default:
-		break;
-	}
+		BULLET_PROPERTY bullet_property;
+		NNBullet* newBullet;
+		newBullet = new NNBullet();
 
-	newBullet->SetBulletProperty( bullet_property);
-	newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
-	m_Bullet.push_back( newBullet );
-	AddChild( newBullet );
+		switch ( type )
+		{
+		case NORMAL_BULLET:
+			bullet_property.imageHeight		=	NORMAL_BULLET_HEIGHT;
+			bullet_property.imageWidth		=	NORMAL_BULLET_WIDTH;
+			bullet_property.speed			=	NORMAL_BULLET_SPEED;
+			bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
+			bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
+			bullet_property.type			=	NORMAL_BULLET;
+			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
+			break;
+		default:
+			break;
+		}
+
+		newBullet->SetBulletProperty( bullet_property);
+		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
+		m_Bullet.push_back( newBullet );
+		AddChild( newBullet );
+	}
 }
 
 void NNBulletManager::Update( float dTime )
