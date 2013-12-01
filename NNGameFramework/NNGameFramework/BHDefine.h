@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "NNSprite.h"
-#include "NNSound.h"
 #include <time.h>
 #include <vector>
 
@@ -286,7 +285,7 @@
 
 #define NORMAL_BULLET_WIDTH		25.f
 #define NORMAL_BULLET_HEIGHT	30.f
-#define NORMAL_BULLET_SPEED		350
+#define NORMAL_BULLET_SPEED		200
 #define NORMAL_BULLET_ZINDEX	2
 #define NORMAL_BULLET_SPRITE	L"Image/BULLET.png"
 
@@ -435,9 +434,12 @@ enum SystemSE
 	GAMESTART,
 	WARNING,
 	GAMEOVER,
+	GAMEBGM,
 
-	SYSTEMSOUND_MAX
+	SYSTEMSOUND_MAX,
 };
+
+
 
 enum GOING_DIRECTION
 {

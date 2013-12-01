@@ -3,13 +3,14 @@
 #include <vector>
 #include "BHDefine.h"
 
+
 class NNPlayerCharacter;
 class NNMap_A;
 class NNPooManager;
 class NNMapManager;
 class NNLabel;
 class NNSprite;
-
+class NNSoundManager;
 
 
 struct BIRD_BORN_TIME
@@ -54,4 +55,5 @@ private:
 	bool m_CheckGameOver;
 	BIRD_BORN_TIME m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
+
 };

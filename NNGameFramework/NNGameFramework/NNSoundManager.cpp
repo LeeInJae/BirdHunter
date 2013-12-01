@@ -3,7 +3,7 @@
 
 NNSoundManager* NNSoundManager::m_pInstance = nullptr;
 
-NNSoundManager::NNSoundManager(void) : m_System(nullptr)
+NNSoundManager::NNSoundManager(void) : m_System(nullptr), m_Dchannel(nullptr), m_BgmChannel(nullptr)
 {
 	FMOD::System_Create(&m_System);
 	m_System->init(32, FMOD_INIT_NORMAL, 0);
@@ -13,6 +13,7 @@ NNSoundManager::NNSoundManager(void) : m_System(nullptr)
 NNSoundManager::~NNSoundManager(void)
 {
 	m_System->release();
+	m_System->close();
 }
 
 void NNSoundManager::Init( void )
@@ -29,9 +30,10 @@ void NNSoundManager::Init( void )
 	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_01.wav"));
 	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_02.wav"));
 	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_03.wav"));
-	SystemSound[GAMESTART] = CreateSound("Sound/GAME_START.wav");
-	SystemSound[WARNING] = CreateSound("Sound/WARNING.wav");
-	SystemSound[GAMEOVER] = CreateSound("Sound/GAME_OVER.wav");
+	SE_SystemSound[GAMESTART] = CreateSound("Sound/GAME_START.wav");
+	SE_SystemSound[WARNING] = CreateSound("Sound/WARNING.wav");
+	SE_SystemSound[GAMEOVER] = CreateSound("Sound/GAME_OVER.wav");
+	SE_SystemSound[GAMEBGM] = CreateLoopSound("Sound/GAME_BGM.wav");
 }
 
 NNSoundManager* NNSoundManager::GetInstance()
@@ -57,6 +59,14 @@ FMOD::Sound* NNSoundManager::CreateSound( std::string path )
 	return sInstance;
 }
 
+
+FMOD::Sound* NNSoundManager::CreateLoopSound( std::string path )
+{
+	FMOD::Sound* sInstance;
+	m_System->createSound(path.c_str(), FMOD_LOOP_NORMAL | FMOD_2D | FMOD_HARDWARE, nullptr, &sInstance );
+	return sInstance;
+}
+
 void NNSoundManager::Play( FMOD::Sound* sound )
 {
 	m_System->playSound(FMOD_CHANNEL_FREE, sound, false, &m_Dchannel);
@@ -79,8 +89,11 @@ void NNSoundManager::Reset( FMOD::Channel* channel )
 
 void NNSoundManager::Stop( FMOD::Channel* channel )
 {
-	Reset(channel);
-	Pause(channel);
+	if (IsPlay(channel))
+	{
+		channel->stop();
+		Reset(channel);
+	}
 }
 
 void NNSoundManager::SetVolume( FMOD::Channel* channel, float volume )
@@ -94,6 +107,12 @@ bool NNSoundManager::IsPlay( FMOD::Channel* channel )
 	channel->isPlaying(&isplay);
 	return isplay;
 }
+
+void NNSoundManager::Update( float dTime )
+{
+	m_System->update();
+}
+
 
 
 

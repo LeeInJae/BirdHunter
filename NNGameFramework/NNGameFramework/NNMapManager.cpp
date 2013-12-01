@@ -75,7 +75,7 @@ void NNMapManager::Update(float dTime)
 	if (m_Pollution -1 == POLLUTION_WARNING_LV_04 && m_WarningFlag)
 	{
 		m_WarningFlag = false;
-		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SystemSound[WARNING]);
+		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[WARNING]);
 	}
 }
 

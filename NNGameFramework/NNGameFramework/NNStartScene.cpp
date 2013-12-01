@@ -69,7 +69,7 @@ void NNStartScene::Update( float dTime )
 		{
 			NNPoint temp;
 			temp.SetX( m_pStartString[i]->GetPositionX());
-			temp.SetY( m_pStartString[i]->GetPositionY() - m_Sumtime*0.1);
+			temp.SetY( m_pStartString[i]->GetPositionY() - m_Sumtime*0.1f);
 			m_pStartString[ i ]->SetPosition( temp );
 		}
 	}

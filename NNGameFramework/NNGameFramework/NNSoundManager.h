@@ -8,15 +8,17 @@
 #include <array>
 #include "BHDefine.h"
 
-class NNSoundManager
+class NNSoundManager : public NNObject
 {
 public:
 	static NNSoundManager* GetInstance();
 	static void ReleaseInstance();
 	
 	void Init(void);
+	void Update( float dTime );
 
 	FMOD::Sound* CreateSound( std::string path );
+	FMOD::Sound* CreateLoopSound( std::string path );
 
 	void Play(FMOD::Sound* sound);
 	void PlayAndGetChannel(FMOD:: Sound* sound, FMOD::Channel* channel);
@@ -29,11 +31,13 @@ public:
 	bool IsPlay( FMOD::Channel* channel );
 
 	FMOD::System* GetSystem() { return m_System; }
+	FMOD::Channel*		m_Dchannel;
+	FMOD::Channel*		m_BgmChannel;
 
 	std::vector<FMOD::Sound*> SE_BirdDie;
 	std::vector<FMOD::Sound*> SE_PooBoom;
 	std::vector<FMOD::Sound*> SE_NormalGunShot;
-	std::array<FMOD::Sound*, SYSTEMSOUND_MAX> SystemSound;
+	std::array<FMOD::Sound*, SYSTEMSOUND_MAX> SE_SystemSound;
 
 private:
 	NNSoundManager(void);
@@ -41,6 +45,6 @@ private:
 	static NNSoundManager* m_pInstance;
 
 	FMOD::System*		m_System;
-	FMOD::Channel*		m_Dchannel;
+	
 };
 
