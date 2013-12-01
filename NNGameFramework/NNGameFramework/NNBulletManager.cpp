@@ -28,7 +28,7 @@ void NNBulletManager::ReleaseInstance()
 	}
 }
 
-NNBulletManager::NNBulletManager(void)
+NNBulletManager::NNBulletManager(void) : m_AmmoLeft(5)
 {
 	 srand((unsigned)time(NULL));
 }
@@ -40,7 +40,7 @@ NNBulletManager::~NNBulletManager(void)
 
 void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 {
-	if (m_Bullet.size() < 5)
+	if (m_AmmoLeft > 0)
 	{
 		BULLET_PROPERTY bullet_property;
 		NNBullet* newBullet;
@@ -65,6 +65,7 @@ void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
 		m_Bullet.push_back( newBullet );
 		AddChild( newBullet );
+		--m_AmmoLeft;
 	}
 }
 
@@ -91,6 +92,7 @@ void NNBulletManager::RemoveCheck()
 
 			// ∞¥√º «ÿ¡¶
 			RemoveChild(pBullet,true);
+			++m_AmmoLeft;
 		}
 		else
 		{
@@ -147,7 +149,7 @@ void NNBulletManager::HitCheck()
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
-
+				++m_AmmoLeft;
 				break;
 			}
 		}
@@ -200,7 +202,7 @@ void NNBulletManager::HitCheck()
 				bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
 				hitCheck = true;
-
+				++m_AmmoLeft;
 				break;
 			}
 		}

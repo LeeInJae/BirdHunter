@@ -13,6 +13,7 @@ public:
 	static void				ReleaseInstance();
 	void					MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition );
 	void					Update( float dTime );
+	int						GetAmmoLeft(){return m_AmmoLeft;}
 	
 	std::list< NNBullet* >& GetBulletList() { return m_Bullet; }
 
@@ -24,5 +25,6 @@ private:
 	void HitCheck();
 	static NNBulletManager* m_pInstance;
 
+	int m_AmmoLeft;
 	std::list< NNBullet* > m_Bullet;
 };

@@ -39,6 +39,7 @@ protected:
 	NNLabel*			m_LandedPooLabel;
 	NNLabel*			m_GameOverLabel;
 	NNLabel*			m_FPSLabel;
+	NNLabel*			m_AmmoLabel;
 
 	virtual void	Render();
 	virtual void	UIUpdate( float dTime );
@@ -50,6 +51,7 @@ protected:
 	wchar_t			m_LandedPooString[20];
 	wchar_t			m_FPSString[200];
 	wchar_t			m_GameOverString[20];
+	wchar_t			m_AmmoString[20];
 
 private:
 	bool m_CheckGameOver;

@@ -277,6 +277,8 @@
 #define GREEN_OLD_BIRD_POO_SPEED			100
 //////////////////////////////////////////////////////////////////////////
 
+#define AMMO_MAX	5
+
 #define NORMAL_POO_WIDTH	30.f
 #define NORMAL_POO_HEIGHT	30.f
 #define NORMAL_POO_ZINDEX	2

@@ -123,6 +123,10 @@ void NNGameScene::UIInit()
 	m_FPSLabel = NNLabel::Create(L"FPS : ", L"¸¼Àº °íµñ", 15.f);
 	m_FPSLabel->SetPosition(670.f, 1.f);
 	AddChild(m_FPSLabel);
+
+	m_AmmoLabel = NNLabel::Create(L"AMMO LEFT : ", L"¸¼Àº °íµñ", 15.f);
+	m_AmmoLabel->SetPosition(670.f, 30.f);
+	AddChild(m_AmmoLabel);
 }
 
 
@@ -210,4 +214,7 @@ void NNGameScene::UIUpdate( float dTime )
 
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());
 	m_FPSLabel->SetString(m_FPSString);
+
+	swprintf_s(m_AmmoString, _countof(m_AmmoString), L"AMMO LEFT : %d", NNBulletManager::GetInstance()->GetAmmoLeft());
+	m_AmmoLabel->SetString(m_AmmoString);
 }
