@@ -53,6 +53,7 @@ void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 		bullet_property.sprite_path		=	NORMAL_BULLET_SPRITE;
 		bullet_property.zIndex			=	NORMAL_BULLET_ZINDEX;
 		bullet_property.type			=	NORMAL_BULLET;
+		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
 		break;
 	default:
 		break;
