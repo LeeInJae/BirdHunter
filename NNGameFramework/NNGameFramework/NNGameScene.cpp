@@ -137,7 +137,7 @@ void NNGameScene::Update( float dTime )
 	   FMOD::Channel* m_gameoverCh = nullptr;
 	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], m_gameoverCh);
 	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 0.1f);
-	   NNSoundManager::GetInstance()->Stop(BGM_CHANNEL);
+	   NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
 	   return;
    }
 
