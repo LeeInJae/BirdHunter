@@ -61,7 +61,7 @@ void NNStartScene::Update( float dTime )
 	NNScene::Update( dTime );
 	
 
-	if ( m_Sumtime <= 2 )
+	if ( m_Sumtime <= 1.5f )
 	{
 		m_Sumtime += dTime;
 		for( int i=0; i<START_STRING_NUMBER; ++i )
