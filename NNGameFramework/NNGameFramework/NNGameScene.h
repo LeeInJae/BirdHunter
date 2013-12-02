@@ -40,6 +40,7 @@ protected:
 	NNLabel*			m_GameOverLabel;
 	NNLabel*			m_FPSLabel;
 	NNLabel*			m_AmmoLabel;
+	NNSprite*			m_UI;
 
 	virtual void	Render();
 	virtual void	UIUpdate( float dTime );

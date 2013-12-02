@@ -114,12 +114,19 @@ NNGameScene::NNGameScene(void )
 
 void NNGameScene::UIInit()
 {
-	m_PlayTimeLabel = NNLabel::Create(L"TIME : ", L"¸¼Àº °íµñ", 15.f);
-	m_PlayTimeLabel->SetPosition(1.f, 1.f);
+	m_UI = NNSprite::Create(UI_SPRITE);
+	m_UI->SetImageWidth(UI_WIDTH);
+	m_UI->SetImageHeight(UI_HEIGHT);
+	m_UI->SetPosition(0.f, 500.f);
+	m_UI->SetZindex(UI_ZINDEX);
+	AddChild(m_UI);
+
+	m_PlayTimeLabel = NNLabel::Create(L"TIME : ", L"¸¼Àº °íµñ", 30.f);
+	m_PlayTimeLabel->SetPosition(80.f, 550.f);
 	AddChild(m_PlayTimeLabel);
 
-	m_LandedPooLabel = NNLabel::Create(L"POLLUTION : ", L"¸¼Àº °íµñ", 15.f);
-	m_LandedPooLabel->SetPosition(1.f, 30.f);
+	m_LandedPooLabel = NNLabel::Create(L"POLLUTION : ", L"¸¼Àº °íµñ", 30.f);
+	m_LandedPooLabel->SetPosition(650.f, 550.f);
 	AddChild(m_LandedPooLabel);
 
 	m_FPSLabel = NNLabel::Create(L"FPS : ", L"¸¼Àº °íµñ", 15.f);
@@ -142,7 +149,7 @@ void NNGameScene::Update( float dTime )
    {
 	   FMOD::Channel* m_gameoverCh = nullptr;
 	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
-	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 0.1f);
+	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
 	   NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
 	   return;
    }
@@ -151,11 +158,13 @@ void NNGameScene::Update( float dTime )
 	{
 		NNScene::Update( dTime );
 		UIUpdate( dTime );
+		NNSoundManager::GetInstance()->Resume(NNSoundManager::GetInstance()->m_BgmChannel);
 	}
 	else
 	{
 		m_PauseTime += dTime;
 		m_Character->Update( dTime );
+		NNSoundManager::GetInstance()->Pause(NNSoundManager::GetInstance()->m_BgmChannel);
 	}
 	
 
@@ -187,10 +196,10 @@ void NNGameScene::UIUpdate( float dTime )
 		m_CheckGameOver = true;
 	}
 
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_GameSceneStartTime );
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L" %0.1f ", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_GameSceneStartTime );
 	m_PlayTimeLabel->SetString(m_PlayTimeString);
 
-	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L"POLLUTION : %d ", NNPooManager::GetInstance()->GetLandedPoo());
+	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L" %d ", NNPooManager::GetInstance()->GetLandedPoo());
 	m_LandedPooLabel->SetString(m_LandedPooString);
 
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());

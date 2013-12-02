@@ -79,7 +79,16 @@ void NNSoundManager::PlayAndGetChannel( FMOD:: Sound* sound, FMOD::Channel** cha
 
 void NNSoundManager::Pause( FMOD::Channel* channel )
 {
-	channel->setPaused(true);
+	if (IsPlay(channel))
+		channel->setPaused(true);
+}
+
+void NNSoundManager::Resume( FMOD::Channel* channel )
+{
+	bool* isPaused = nullptr;
+	channel->getPaused(isPaused);
+	if (isPaused)
+		channel->setPaused(false);
 }
 
 void NNSoundManager::Reset( FMOD::Channel* channel )

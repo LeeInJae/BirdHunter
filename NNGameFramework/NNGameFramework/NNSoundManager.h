@@ -23,6 +23,7 @@ public:
 	void Play(FMOD::Sound* sound);
 	void PlayAndGetChannel(FMOD:: Sound* sound, FMOD::Channel** channel);
 	void Pause(FMOD::Channel* channel);
+	void Resume(FMOD::Channel* channel);
 	void Reset(FMOD::Channel* channel);
 	void Stop(FMOD::Channel* channel);
 
