@@ -44,8 +44,6 @@ NNStartScene::NNStartScene(void)
 	AddChild( m_pBackGround );
 
 	m_Sumtime	=	0;	
-	m_Toggle	=	1;
-	
 }
 
 
@@ -62,7 +60,8 @@ void NNStartScene::Update( float dTime )
 {
 	NNScene::Update( dTime );
 	
-	if ( m_Sumtime <= 2)
+
+	if ( m_Sumtime <= 2 )
 	{
 		m_Sumtime += dTime;
 		for( int i=0; i<START_STRING_NUMBER; ++i )

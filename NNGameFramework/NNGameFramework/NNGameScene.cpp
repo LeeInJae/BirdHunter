@@ -11,6 +11,7 @@
 #include "NNMapManager.h"
 #include "NNEffectManager.h"
 #include "NNSoundManager.h"
+#include "NNStartScene.h"
 
 NNGameScene::NNGameScene(void )
 {
@@ -19,7 +20,8 @@ NNGameScene::NNGameScene(void )
 	
 	m_PauseTime	= 0;
 	m_SumTime = 0;
-
+	m_GameSceneStartTime	=	NNApplication::GetInstance()->GetElapsedTime();	
+	
 	struct BIRD_BORN_TIME birdBornItem;
 
 	birdBornItem.birdType		=	BLACK_SMALL_BIRD;
@@ -167,27 +169,6 @@ void NNGameScene::Update( float dTime )
 			m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
 		}
 	}
-
-// 	if( m_SumTime <= TIME_LEVEL_00 )
-//  	{
-//  		NNBirdFactory::GetInstance()->MakeBird( BLACK_SMALL_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( ORANGE_SMALL_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( WHITE_SMALL_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( RED_SMALL_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( BLACK_MID_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( CARAMEL_MID_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( GREEN_MID_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( ICE_MID_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( YELLOW_MID_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( BROWN_BIG_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( WHITE_BIG_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( PINK_BIG_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( ITEM_KING_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( RED_OLD_BIRD );
-// 		NNBirdFactory::GetInstance()->MakeBird( GREEN_OLD_BIRD );
-// 		m_SumTime = 0;
-//  	}
-	
 }
 
 void NNGameScene::Render()
@@ -206,7 +187,7 @@ void NNGameScene::UIUpdate( float dTime )
 		m_CheckGameOver = true;
 	}
 
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime);
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"TIME : %0.1f sec", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_GameSceneStartTime );
 	m_PlayTimeLabel->SetString(m_PlayTimeString);
 
 	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L"POLLUTION : %d ", NNPooManager::GetInstance()->GetLandedPoo());

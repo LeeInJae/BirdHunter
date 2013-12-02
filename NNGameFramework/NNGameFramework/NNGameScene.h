@@ -57,5 +57,5 @@ private:
 	bool m_CheckGameOver;
 	BIRD_BORN_TIME m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
-
+	float			m_GameSceneStartTime;
 };
