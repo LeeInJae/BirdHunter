@@ -13,7 +13,7 @@
 #include "NNSoundManager.h"
 #include "NNStartScene.h"
 
-NNGameScene::NNGameScene(void )
+NNGameScene::NNGameScene(void ) : m_CheckGameStart(false)
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
@@ -109,7 +109,6 @@ NNGameScene::NNGameScene(void )
 
 	UIInit();
 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
-	NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM], &NNSoundManager::GetInstance()->m_BgmChannel);
 }
 
 void NNGameScene::UIInit()
@@ -121,11 +120,11 @@ void NNGameScene::UIInit()
 	m_UI->SetZindex(UI_ZINDEX);
 	AddChild(m_UI);
 
-	m_PlayTimeLabel = NNLabel::Create(L"TIME : ", L"¸¼Àº °íµñ", 30.f);
+	m_PlayTimeLabel = NNLabel::Create(L"Please Wait", L"¸¼Àº °íµñ", 30.f);
 	m_PlayTimeLabel->SetPosition(80.f, 550.f);
 	AddChild(m_PlayTimeLabel);
 
-	m_LandedPooLabel = NNLabel::Create(L"POLLUTION : ", L"¸¼Àº °íµñ", 30.f);
+	m_LandedPooLabel = NNLabel::Create(L"Please Wait", L"¸¼Àº °íµñ", 30.f);
 	m_LandedPooLabel->SetPosition(650.f, 550.f);
 	AddChild(m_LandedPooLabel);
 
@@ -145,6 +144,13 @@ NNGameScene::~NNGameScene(void)
 
 void NNGameScene::Update( float dTime )
 {
+	if (m_CheckGameStart == false)
+	{
+		Sleep(3000);
+		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM], &NNSoundManager::GetInstance()->m_BgmChannel);
+		m_CheckGameStart = true;
+	}
+
 	if(m_CheckGameOver)
    {
 	   FMOD::Channel* m_gameoverCh = nullptr;

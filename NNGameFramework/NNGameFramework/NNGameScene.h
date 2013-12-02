@@ -56,6 +56,7 @@ protected:
 
 private:
 	bool m_CheckGameOver;
+	bool m_CheckGameStart;
 	BIRD_BORN_TIME m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;
