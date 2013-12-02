@@ -24,6 +24,7 @@ public:
 	void PlayAndGetChannel(FMOD:: Sound* sound, FMOD::Channel** channel);
 	void Pause(FMOD::Channel* channel);
 	void Resume(FMOD::Channel* channel);
+	bool IsPaused(FMOD::Channel* channel);
 	void Reset(FMOD::Channel* channel);
 	void Stop(FMOD::Channel* channel);
 

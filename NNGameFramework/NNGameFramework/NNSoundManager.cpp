@@ -83,12 +83,18 @@ void NNSoundManager::Pause( FMOD::Channel* channel )
 		channel->setPaused(true);
 }
 
+
 void NNSoundManager::Resume( FMOD::Channel* channel )
 {
-	bool* isPaused = nullptr;
-	channel->getPaused(isPaused);
-	if (isPaused)
+	if (IsPaused(channel))
 		channel->setPaused(false);
+}
+
+bool NNSoundManager::IsPaused( FMOD::Channel* channel )
+{
+	bool isPaused;
+	channel->getPaused(&isPaused);
+	return isPaused;
 }
 
 void NNSoundManager::Reset( FMOD::Channel* channel )
