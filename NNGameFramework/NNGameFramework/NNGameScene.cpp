@@ -107,7 +107,7 @@ NNGameScene::NNGameScene(void )
 
 	UIInit();
 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
-	NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM], NNSoundManager::GetInstance()->m_BgmChannel);
+	NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM], &NNSoundManager::GetInstance()->m_BgmChannel);
 }
 
 void NNGameScene::UIInit()
@@ -139,7 +139,7 @@ void NNGameScene::Update( float dTime )
 	if(m_CheckGameOver)
    {
 	   FMOD::Channel* m_gameoverCh = nullptr;
-	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], m_gameoverCh);
+	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
 	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 0.1f);
 	   NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
 	   return;
