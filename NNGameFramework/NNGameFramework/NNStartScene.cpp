@@ -6,11 +6,22 @@
 
 NNStartScene::NNStartScene(void)
 {
+	NNPoint	position;
+
 	m_pBackGround=NNSprite::Create( BACKGROUND_SPRITE );
 	m_pBackGround->SetImageWidth( RESOLUTION_WIDTH );
 	m_pBackGround->SetImageHeight( RESOLUTION_HEIGHT );
 	m_pBackGround->SetZindex( BACKGROUND_ZINDEX );
 
+	
+	m_pTitle=NNSprite::Create( TITLE_SPRITE );
+	m_pTitle->SetImageWidth( TITLE_WIDTH );
+	m_pTitle->SetImageHeight( TITLE_HEIGHT );
+	position.SetX( 0 );
+	position.SetY( RESOLUTION_HEIGHT * 0.55 );
+	m_pTitle->SetPosition( position );
+	m_pTitle->SetZindex( TITLE_ZINDEX );
+	
 	m_pStartString[ 0 ] = NNSprite::Create( STRING_P );
 	m_pStartString[ 1 ] = NNSprite::Create( STRING_R );
 	m_pStartString[ 2 ] = NNSprite::Create( STRING_E );
@@ -42,7 +53,7 @@ NNStartScene::NNStartScene(void)
 		AddChild( m_pStartString[ i ] );
 	}
 	AddChild( m_pBackGround );
-
+	AddChild( m_pTitle );
 	m_Sumtime	=	0;	
 }
 

@@ -17,6 +17,12 @@
 #define START_STRING_ZINDEX 1
 #define UI_ZINDEX	1
 
+#define TITLE_SPRITE		L"Image/TITLE.png"
+#define TITLE_WIDTH			800.f
+#define TITLE_HEIGHT		100.f
+#define TITLE_ZINDEX		1
+
+
 #define STRING_P			L"Image/P.png"
 #define STRING_E			L"Image/E.png"
 #define STRING_R			L"Image/R.png"
