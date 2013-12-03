@@ -60,7 +60,6 @@ void NNEffectManager::MakeBirdBulletCrashEffect( NNPoint birdPosition )
 {
 	NNBirdBulletCrashEffect* newHitEffect;
 
-	// agebreak : 생성된 히트이펙트는 어디서 해제해 주는가??
 	newHitEffect = new NNBirdBulletCrashEffect();
 	birdPosition.SetX( birdPosition.GetX() - BIRD_BULLET_HIT_EFFECT_BALANCE_X );
 	birdPosition.SetY( birdPosition.GetY() - BIRD_BULLET_HIT_EFFECT_BALANCE_Y );
@@ -74,7 +73,6 @@ void NNEffectManager::MakePooBulletCrashEffect( NNPoint pooPosition )
 {
 	NNPooBulletCrashEffect* newHitEffect;
 
-	// agebreak : 생성된 히트이펙트는 어디서 해제해 주는가??
 	newHitEffect = new NNPooBulletCrashEffect();
  	pooPosition.SetX( pooPosition.GetX() - POO_BULLET_HIT_EFFECT_BALANCE_X );
  	pooPosition.SetY( pooPosition.GetY() - POO_BULLET_HIT_EFFECT_BALANCE_Y );
