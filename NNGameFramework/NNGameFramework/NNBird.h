@@ -20,7 +20,6 @@ public:
 	void	Update( float dTime );
 
 protected:
-	float			m_Toggle;
 	float			m_SumTime;
 	float			m_BirdSpeed;
 	float			m_MakePooCoolTime;

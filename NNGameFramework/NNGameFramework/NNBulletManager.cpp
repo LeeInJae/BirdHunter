@@ -111,8 +111,6 @@ void NNBulletManager::HitCheck()
 
 	struct HIT_RECT bird_rect, bullet_rect;
 
-	bool hitCheck;
-
 	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
 	{
 		auto pBullet_Iter = *bullet_Iter;
@@ -121,9 +119,6 @@ void NNBulletManager::HitCheck()
 		bullet_rect.right	=	pBullet_Iter->GetPositionX() + pBullet_Iter->GetSpriteWidth();
 		bullet_rect.up		=	pBullet_Iter->GetPositionY();
 		bullet_rect.down	=	pBullet_Iter->GetPositionY() + pBullet_Iter->GetSpriteHeight();
-
-		// agebreak : 이 변수는 필요 없을듯?
-		hitCheck = false;
 
 		for( bird_Iter = bird_list.begin(); bird_Iter != bird_list.end(); )
 		{
@@ -146,17 +141,23 @@ void NNBulletManager::HitCheck()
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true ); 
 
-				bullet_Iter = m_Bullet.erase( bullet_Iter );
+				m_Bullet.erase( bullet_Iter );
+				bullet_Iter = m_Bullet.end();
+				
 				RemoveChild( pBullet_Iter, true );
-				hitCheck = true;
 				++m_AmmoLeft;
 				break;
 			}
 		}
-		if( !hitCheck )
+		if( bullet_Iter == m_Bullet.end() )
+		{
+			break;
+		}
+		else
 		{
 			++bullet_Iter;
 		}
+
 	}
 
 	//bullet & poo hitcheck
@@ -174,8 +175,6 @@ void NNBulletManager::HitCheck()
 		bullet_rect.right	=	pBullet_Iter->GetPositionX() + pBullet_Iter->GetSpriteWidth();
 		bullet_rect.up		=	pBullet_Iter->GetPositionY();
 		bullet_rect.down	=	pBullet_Iter->GetPositionY() + pBullet_Iter->GetSpriteHeight();
-
-		hitCheck = false;
 
 		for( poo_Iter = poo_list.begin(); poo_Iter != poo_list.end(); )
 		{
@@ -199,14 +198,20 @@ void NNBulletManager::HitCheck()
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
 				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
 
-				bullet_Iter = m_Bullet.erase( bullet_Iter );
+				m_Bullet.erase( bullet_Iter );
+				bullet_Iter = m_Bullet.end();
+
+				//bullet_Iter = m_Bullet.erase( bullet_Iter );
 				RemoveChild( pBullet_Iter, true );
-				hitCheck = true;
 				++m_AmmoLeft;
 				break;
 			}
 		}
-		if( !hitCheck )
+		if( bullet_Iter == m_Bullet.end() )
+		{
+			break;
+		}
+		else
 		{
 			++bullet_Iter;
 		}

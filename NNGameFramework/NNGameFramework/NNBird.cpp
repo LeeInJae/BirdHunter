@@ -4,7 +4,6 @@
 
 NNBird::NNBird(void)
 {
-	m_Toggle	= -1;
 	m_SumTime	= 0;
 }
 
@@ -19,8 +18,7 @@ void NNBird::Update( float dTime )
 		SetPosition( GetPositionX() - m_BirdSpeed * dTime, GetPositionY() );
 		if( GetPositionX() <= 0 )
 		{
-			SetScaleX( m_Toggle );
-			m_Toggle *= -1;
+			SetScaleX( GetScaleX() * (-1) );
 			m_BirdDirection = RIGHT_GO;
 		}
 	}
@@ -29,8 +27,7 @@ void NNBird::Update( float dTime )
 		SetPosition( GetPositionX() + m_BirdSpeed * dTime, GetPositionY() );
 		if(GetPositionX() >= RESOLUTION_WIDTH )
 		{	
-			SetScaleX(  m_Toggle );
-			m_Toggle *= -1;	// agebreak : 이 변수는 필요 없을듯?
+			SetScaleX( GetScaleX() * (-1) );
 			m_BirdDirection = LEFT_GO;
 		}
 	}
