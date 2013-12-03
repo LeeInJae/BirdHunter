@@ -6,8 +6,9 @@
 #define RESOLUTION_WIDTH	800
 #define RESOLUTION_HEIGHT	700
 
+#define GAMESTART_READYTIME	3.0f
 #define UI_WIDTH			800
-#define UI_HEIGHT			100
+#define UI_HEIGHT			139
 #define UI_SPRITE			L"Image/UI.png"
 #define BACKGROUND_SPRITE	L"Image/BACKGROUND.jpg"
 #define BACKGROUND_ZINDEX	0
@@ -15,7 +16,7 @@
 #define START_STRING_HEIGHT 50.f
 #define START_STRING_WIDTH	50.f
 #define START_STRING_ZINDEX 1
-#define UI_ZINDEX	1
+#define UI_ZINDEX	2
 
 #define TITLE_SPRITE		L"Image/TITLE.png"
 #define TITLE_WIDTH			800.f
@@ -39,7 +40,7 @@
 #define PLAYER_POSITION_Y	500
 #define PLAYER_SPRITE_REAL_EDGE 30
 #define PLAYER_SPRITE		L"Image/character.png"
-#define PLAYER_ZINDEX		2
+#define PLAYER_ZINDEX		1
 
 #define BIRD_WIDTH			30
 #define BIRD_HEIGHT			30

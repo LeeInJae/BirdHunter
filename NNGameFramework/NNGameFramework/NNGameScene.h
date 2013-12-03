@@ -46,6 +46,7 @@ protected:
 	virtual void	UIUpdate( float dTime );
 	virtual void	Update( float dTime );
 	void			UIInit();
+	
 	float			m_SumTime;
 	
 	wchar_t			m_PlayTimeString[20];

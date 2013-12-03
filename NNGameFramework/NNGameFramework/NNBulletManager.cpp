@@ -43,7 +43,7 @@ void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 	if (m_AmmoLeft > 0)
 	{
 		BULLET_PROPERTY bullet_property;
-		NNBullet* newBullet;
+		NNBullet* newBullet; 
 		newBullet = new NNBullet();
 
 		switch ( type )

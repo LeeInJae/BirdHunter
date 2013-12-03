@@ -116,24 +116,28 @@ void NNGameScene::UIInit()
 	m_UI = NNSprite::Create(UI_SPRITE);
 	m_UI->SetImageWidth(UI_WIDTH);
 	m_UI->SetImageHeight(UI_HEIGHT);
-	m_UI->SetPosition(0.f, 600.f);
+	m_UI->SetPosition(0.f, 561.f);
 	m_UI->SetZindex(UI_ZINDEX);
 	AddChild(m_UI);
 
-	m_PlayTimeLabel = NNLabel::Create(L"Please Wait", L"¸¼Àº °íµñ", 30.f);
-	m_PlayTimeLabel->SetPosition(80.f, 550.f);
+	m_PlayTimeLabel = NNLabel::Create(L"0.0", L"¸¼Àº °íµñ", 30.f);
+	m_PlayTimeLabel->SetPosition(380.f, 623.f);
+	m_PlayTimeLabel->SetZindex(3);
 	AddChild(m_PlayTimeLabel);
 
 	m_LandedPooLabel = NNLabel::Create(L"Please Wait", L"¸¼Àº °íµñ", 30.f);
-	m_LandedPooLabel->SetPosition(650.f, 550.f);
+	m_LandedPooLabel->SetPosition(1.f, 550.f);
+	m_LandedPooLabel->SetZindex(3);
 	AddChild(m_LandedPooLabel);
 
 	m_FPSLabel = NNLabel::Create(L"FPS : ", L"¸¼Àº °íµñ", 15.f);
 	m_FPSLabel->SetPosition(670.f, 1.f);
+	m_FPSLabel->SetZindex(3);
 	AddChild(m_FPSLabel);
 
-	m_AmmoLabel = NNLabel::Create(L"AMMO LEFT : ", L"¸¼Àº °íµñ", 15.f);
-	m_AmmoLabel->SetPosition(670.f, 30.f);
+	m_AmmoLabel = NNLabel::Create(L"5", L"¸¼Àº °íµñ", 30.f);
+	m_AmmoLabel->SetPosition(575.f, 623.f);
+	m_AmmoLabel->SetZindex(3);
 	AddChild(m_AmmoLabel);
 }
 
@@ -202,15 +206,15 @@ void NNGameScene::UIUpdate( float dTime )
 		m_CheckGameOver = true;
 	}
 
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L" %0.1f ", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_GameSceneStartTime );
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime );
 	m_PlayTimeLabel->SetString(m_PlayTimeString);
 
-	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L" %d ", NNPooManager::GetInstance()->GetLandedPoo());
+	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L"%d", NNPooManager::GetInstance()->GetLandedPoo());
 	m_LandedPooLabel->SetString(m_LandedPooString);
 
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());
 	m_FPSLabel->SetString(m_FPSString);
 
-	swprintf_s(m_AmmoString, _countof(m_AmmoString), L"AMMO LEFT : %d", NNBulletManager::GetInstance()->GetAmmoLeft());
+	swprintf_s(m_AmmoString, _countof(m_AmmoString), L"%d", NNBulletManager::GetInstance()->GetAmmoLeft());
 	m_AmmoLabel->SetString(m_AmmoString);
 }
