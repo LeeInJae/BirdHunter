@@ -156,7 +156,7 @@ void NNGameScene::Update( float dTime )
 	}
 
 	if(m_CheckGameOver)
-   {
+	{
 	   FMOD::Channel* m_gameoverCh = nullptr;
 	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
 	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
@@ -169,24 +169,22 @@ void NNGameScene::Update( float dTime )
 		NNScene::Update( dTime );
 		UIUpdate( dTime );
 		NNSoundManager::GetInstance()->Resume(NNSoundManager::GetInstance()->m_BgmChannel);
+		m_SumTime += dTime;
+
+		for( int i=0; i<BIRD_ALL_NUMBER; ++i )
+		{
+			if( m_SumTime >= m_BirdBornCheckArray[ i ].bornTime )
+			{
+				NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
+				m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
+			}
+		}
 	}
 	else
 	{
 		m_PauseTime += dTime;
 		m_Character->Update( dTime );
 		NNSoundManager::GetInstance()->Pause(NNSoundManager::GetInstance()->m_BgmChannel);
-	}
-	
-
-	m_SumTime += dTime;
-	
-	for( int i=0; i<BIRD_ALL_NUMBER; ++i )
-	{
-		if( m_SumTime >= m_BirdBornCheckArray[ i ].bornTime )
-		{
-			NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
-			m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
-		}
 	}
 }
 

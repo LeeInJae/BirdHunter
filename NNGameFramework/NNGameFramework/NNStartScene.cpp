@@ -10,7 +10,7 @@ NNStartScene::NNStartScene(void)
 
 	m_pBackGround=NNSprite::Create( BACKGROUND_SPRITE );
 	m_pBackGround->SetImageWidth( RESOLUTION_WIDTH );
-	m_pBackGround->SetImageHeight( RESOLUTION_HEIGHT );
+	m_pBackGround->SetImageHeight( RESOLUTION_HEIGHT - 100 );
 	m_pBackGround->SetZindex( BACKGROUND_ZINDEX );
 
 	
@@ -18,7 +18,7 @@ NNStartScene::NNStartScene(void)
 	m_pTitle->SetImageWidth( TITLE_WIDTH );
 	m_pTitle->SetImageHeight( TITLE_HEIGHT );
 	position.SetX( 0 );
-	position.SetY( RESOLUTION_HEIGHT * 0.55 );
+	position.SetY( RESOLUTION_HEIGHT * 0.5 );
 	m_pTitle->SetPosition( position );
 	m_pTitle->SetZindex( TITLE_ZINDEX );
 	

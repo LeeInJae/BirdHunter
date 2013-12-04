@@ -46,30 +46,32 @@ void NNPlayerCharacter::Update( float dTime )
 		default:
 			break;
 		}
-	}
-	m_SumTime += dTime;
 
-	//if( m_SumTime >= 0.1)
-	{
-		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
+		m_SumTime += dTime;
+
+		//if( m_SumTime >= 0.1)
 		{
-		case ATTACK: 
- 	  		NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, GetPosition() );
-			break;
+			switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
+			{
+			case ATTACK: 
+				NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, GetPosition() );
+				break;
 
-		case ITEM1:
-			break;
+			case ITEM1:
+				break;
 
-		case ITEM2:
-			break;
+			case ITEM2:
+				break;
 
-		case PAUSE:
-			( m_PauseKey == true ) ? m_PauseKey = false : m_PauseKey = true;
-			break;
+			case PAUSE:
+				( m_PauseKey == true ) ? m_PauseKey = false : m_PauseKey = true;
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
+			m_SumTime = 0;
 		}
-		m_SumTime = 0;
 	}
+	
 }
