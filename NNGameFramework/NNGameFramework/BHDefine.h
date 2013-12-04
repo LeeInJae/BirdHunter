@@ -314,11 +314,11 @@
 #define POLLUTION_WARNING_LV_03	25
 #define POLLUTION_WARNING_LV_04	40
 
-#define MAP_DEFAULT		L"Image/map.png"
-#define MAP_WARNING_01	L"Image/mapWarning001.png"
-#define MAP_WARNING_02	L"Image/mapWarning002.png"
-#define MAP_WARNING_03	L"Image/mapWarning003.png"
-#define MAP_WARNING_04	L"Image/mapWarning004.png"
+#define MAP_DEFAULT		L"Image/BGimage1.png"
+#define MAP_WARNING_01	L"Image/BG_Warning001.png"
+#define MAP_WARNING_02	L"Image/BG_Warning002.png"
+#define MAP_WARNING_03	L"Image/BG_Warning003.png"
+#define MAP_WARNING_04	L"Image/BG_Warning004.png"
 
 #define BIRD_BULLET_HIT_EFFECT_SCALE_X 1.0f
 #define BIRD_BULLET_HIT_EFFECT_SCALE_Y 1.0f
