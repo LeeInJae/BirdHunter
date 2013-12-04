@@ -17,11 +17,11 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false)
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
-	
+
 	m_PauseTime	= 0;
 	m_SumTime = 0;
 	m_GameSceneStartTime	=	NNApplication::GetInstance()->GetElapsedTime();	
-	
+
 	struct BIRD_BORN_TIME birdBornItem;
 
 	birdBornItem.birdType		=	BLACK_SMALL_BIRD;
@@ -113,8 +113,15 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false)
 
 void NNGameScene::UIInit()
 {
+	m_UI = NNSprite::Create(UI_SPRITE);
+	m_UI->SetImageWidth(UI_WIDTH);
+	m_UI->SetImageHeight(UI_HEIGHT);
+	m_UI->SetPosition(0.f, 561.f);
+	m_UI->SetZindex(UI_ZINDEX);
+	AddChild(m_UI);
+
 	m_PlayTimeLabel = NNLabel::Create(L"0.0", L"¸¼Àº °íµñ", 30.f);
-	m_PlayTimeLabel->SetPosition(700.f, 500.f);
+	m_PlayTimeLabel->SetPosition(380.f, 623.f);
 	m_PlayTimeLabel->SetZindex(3);
 	AddChild(m_PlayTimeLabel);
 
@@ -129,7 +136,7 @@ void NNGameScene::UIInit()
 	AddChild(m_FPSLabel);
 
 	m_AmmoLabel = NNLabel::Create(L"5", L"¸¼Àº °íµñ", 30.f);
-	m_AmmoLabel->SetPosition(670.f, 30.f);
+	m_AmmoLabel->SetPosition(575.f, 623.f);
 	m_AmmoLabel->SetZindex(3);
 	AddChild(m_AmmoLabel);
 }
@@ -150,12 +157,12 @@ void NNGameScene::Update( float dTime )
 
 	if(m_CheckGameOver)
 	{
-	   FMOD::Channel* m_gameoverCh = nullptr;
-	   NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
-	   NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
-	   NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
-	   return;
-   }
+		FMOD::Channel* m_gameoverCh = nullptr;
+		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
+		NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
+		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+		return;
+	}
 
 	if( !m_Character->GetPauseKey() )
 	{
@@ -172,6 +179,13 @@ void NNGameScene::Update( float dTime )
 				m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
 			}
 		}
+
+		// 		test
+		//		if( m_SumTime >= 1)
+		// 		{
+		// 			NNBirdFactory::GetInstance()->MakeBird( GREEN_OLD_BIRD );
+		// 			m_SumTime = 0;
+		// 		}
 	}
 	else
 	{

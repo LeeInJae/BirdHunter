@@ -28,9 +28,9 @@ void NNBulletManager::ReleaseInstance()
 	}
 }
 
-NNBulletManager::NNBulletManager(void) : m_AmmoLeft(5)
+NNBulletManager::NNBulletManager(void) : m_AmmoLeft(10000)
 {
-	 srand((unsigned)time(NULL));
+	srand((unsigned)time(NULL));
 }
 
 
@@ -79,12 +79,12 @@ void NNBulletManager::Update( float dTime )
 void NNBulletManager::RemoveCheck()
 {
 	std::list< NNBullet* >::iterator bullet_Iter = m_Bullet.begin();
-	
+
 	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end(); )
 	{
 		if( (*bullet_Iter)->GetPositionY() <= WINDOW_HEIGHT_UP_EDGE )
 		{
- 			auto pBullet = *bullet_Iter;
+			auto pBullet = *bullet_Iter;
 
 			// 리스트에서 삭제. 반환값은 다음 원소이다.
 			//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
@@ -115,6 +115,8 @@ void NNBulletManager::HitCheck()
 	{
 		auto pBullet_Iter = *bullet_Iter;
 
+		bool hitCheck = false;
+
 		bullet_rect.left	=	pBullet_Iter->GetPositionX();
 		bullet_rect.right	=	pBullet_Iter->GetPositionX() + pBullet_Iter->GetSpriteWidth();
 		bullet_rect.up		=	pBullet_Iter->GetPositionY();
@@ -125,9 +127,91 @@ void NNBulletManager::HitCheck()
 			auto pBird_Iter = *bird_Iter;
 
 			bird_rect.left	=	pBird_Iter->GetPositionX();
-			bird_rect.right	=	pBird_Iter->GetPositionX() + pBird_Iter->GetSpriteWidth() - BIRD_BULLET_HIT_BALANCE_X;
+			bird_rect.right	=	pBird_Iter->GetPositionX() + pBird_Iter->GetSpriteWidth();
 			bird_rect.up	=	pBird_Iter->GetPositionY();
 			bird_rect.down	=	pBird_Iter->GetPositionY() + pBird_Iter->GetSpriteHeight();
+
+
+			switch( pBird_Iter->GetBirdType() )
+			{
+			case	BLACK_SMALL_BIRD:
+				bird_rect.left	-=	25.f;
+				bird_rect.right	=	bird_rect.left + 20.f;
+				bird_rect.down -= 10.f;
+				break;
+			case	ORANGE_SMALL_BIRD:
+				bird_rect.left	-=	30.f;
+				bird_rect.right	=	bird_rect.left + 28.f;
+				bird_rect.down -= 10.f;
+				break;
+			case	WHITE_SMALL_BIRD:
+				bird_rect.left	-=	20.f;
+				bird_rect.right	=	bird_rect.left + 30.f;
+				bird_rect.down -= 10.f;
+				break;
+			case	RED_SMALL_BIRD:
+				bird_rect.left	-=	45.f;
+				bird_rect.right	=	bird_rect.left + 50.f;
+				bird_rect.down -= 10.f;
+				break;
+			case	BLACK_MID_BIRD:
+				bird_rect.left	-=	45.f;
+				bird_rect.right	=	bird_rect.left + 35.f;
+				bird_rect.down -= 20.f;
+				break;
+			case	CARAMEL_MID_BIRD:
+				bird_rect.left	-=	45.f;
+				bird_rect.right	=	bird_rect.left + 35.f;
+				bird_rect.down -= 20.f;
+				break;
+			case	GREEN_MID_BIRD:
+				bird_rect.left	-=	45.f;
+				bird_rect.right	=	bird_rect.left + 35.f;
+				bird_rect.down -= 20.f;
+				break;
+			case	ICE_MID_BIRD:
+				bird_rect.left	-=	45.f;
+				bird_rect.right	=	bird_rect.left + 35.f;
+				bird_rect.down -= 20.f;
+				break;
+			case	YELLOW_MID_BIRD:
+				bird_rect.left	-=	45.f;
+				bird_rect.right	=	bird_rect.left + 35.f;
+				bird_rect.down -= 30.f;
+				break;
+			case	BROWN_BIG_BIRD:
+				bird_rect.left	-=	70.f;
+				bird_rect.right	=	bird_rect.left + 65.f;
+				bird_rect.down -= 30.f;
+				break;
+			case	WHITE_BIG_BIRD:
+				bird_rect.left	-=	70.f;
+				bird_rect.right	=	bird_rect.left + 60.f;
+				bird_rect.down -= 30.f;
+				break;
+			case	PINK_BIG_BIRD:
+				bird_rect.left	-=	75.f;
+				bird_rect.right	=	bird_rect.left + 65.f;
+				bird_rect.down -= 30.f;
+				break;
+			case	ITEM_KING_BIRD:
+				bird_rect.left	-=	75.f;
+				bird_rect.right	=	bird_rect.left + 65.f;
+				bird_rect.down -= 30.f;
+				break;
+			case	RED_OLD_BIRD:
+				bird_rect.left	-=	65.f;
+				bird_rect.right	=	bird_rect.left + 55.f;
+				bird_rect.down -= 20.f;
+				break;
+			case	GREEN_OLD_BIRD:
+				bird_rect.left	-=	65.f;
+				bird_rect.right	=	bird_rect.left + 55.f;
+				bird_rect.down -= 20.f;
+				break;
+			default:
+				break;
+			}
 
 			if( !bullet_rect.HitCheck( bird_rect ) )
 			{
@@ -136,29 +220,26 @@ void NNBulletManager::HitCheck()
 			}
 			else
 			{
+				hitCheck = true;
 				NNEffectManager::GetInstance()->MakeBirdBulletCrashEffect( pBird_Iter->GetPosition() );
-				
 				bird_Iter = bird_list.erase( bird_Iter );
 				NNBirdFactory::GetInstance()->RemoveChild( pBird_Iter, true ); 
-
-				m_Bullet.erase( bullet_Iter );
-				bullet_Iter = m_Bullet.end();
-				
-				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_BirdDie[rand()%NNSoundManager::GetInstance()->SE_BirdDie.size()]);
-				RemoveChild( pBullet_Iter, true );
+				// 
 				++m_AmmoLeft;
+
 				break;
 			}
 		}
-		if( bullet_Iter == m_Bullet.end() )
+
+		if( hitCheck )
 		{
-			break;
+			bullet_Iter = m_Bullet.erase( bullet_Iter );
+			RemoveChild( pBullet_Iter, true );
 		}
 		else
 		{
 			++bullet_Iter;
 		}
-
 	}
 
 	//bullet & poo hitcheck
@@ -170,6 +251,7 @@ void NNBulletManager::HitCheck()
 
 	for( bullet_Iter = m_Bullet.begin(); bullet_Iter != m_Bullet.end();  )
 	{
+		bool hitCheck = false;
 		auto pBullet_Iter = *bullet_Iter;
 
 		bullet_rect.left	=	pBullet_Iter->GetPositionX();
@@ -193,24 +275,23 @@ void NNBulletManager::HitCheck()
 			} 
 			else
 			{
+				hitCheck = true;
+
 				NNEffectManager::GetInstance()->MakePooBulletCrashEffect( pPoo_Iter->GetPosition() );
 
 				poo_Iter = poo_list.erase( poo_Iter );
 				NNPooManager::GetInstance()->RemoveChild( pPoo_Iter, true );
 				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
 
-				m_Bullet.erase( bullet_Iter );
-				bullet_Iter = m_Bullet.end();
-
-				//bullet_Iter = m_Bullet.erase( bullet_Iter );
-				RemoveChild( pBullet_Iter, true );
 				++m_AmmoLeft;
 				break;
 			}
 		}
-		if( bullet_Iter == m_Bullet.end() )
+
+		if( hitCheck )
 		{
-			break;
+			bullet_Iter = m_Bullet.erase( bullet_Iter );
+			RemoveChild( pBullet_Iter, true );
 		}
 		else
 		{

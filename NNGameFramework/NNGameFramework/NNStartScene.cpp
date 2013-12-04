@@ -10,10 +10,10 @@ NNStartScene::NNStartScene(void)
 
 	m_pBackGround=NNSprite::Create( BACKGROUND_SPRITE );
 	m_pBackGround->SetImageWidth( RESOLUTION_WIDTH );
-	m_pBackGround->SetImageHeight( RESOLUTION_HEIGHT - 100 );
+	m_pBackGround->SetImageHeight( RESOLUTION_HEIGHT );
 	m_pBackGround->SetZindex( BACKGROUND_ZINDEX );
 
-	
+
 	m_pTitle=NNSprite::Create( TITLE_SPRITE );
 	m_pTitle->SetImageWidth( TITLE_WIDTH );
 	m_pTitle->SetImageHeight( TITLE_HEIGHT );
@@ -21,7 +21,7 @@ NNStartScene::NNStartScene(void)
 	position.SetY( RESOLUTION_HEIGHT * 0.5 );
 	m_pTitle->SetPosition( position );
 	m_pTitle->SetZindex( TITLE_ZINDEX );
-	
+
 	m_pStartString[ 0 ] = NNSprite::Create( STRING_P );
 	m_pStartString[ 1 ] = NNSprite::Create( STRING_R );
 	m_pStartString[ 2 ] = NNSprite::Create( STRING_E );
@@ -40,7 +40,7 @@ NNStartScene::NNStartScene(void)
 	{
 		m_pStartString[ i ]->SetImageHeight( START_STRING_HEIGHT );
 		m_pStartString[ i ]->SetImageWidth( START_STRING_WIDTH );
-		
+
 		NNPoint position;
 
 		( i == 5 || i == 8 ) ? space += 80.f : space += 40.f;
@@ -70,7 +70,7 @@ void NNStartScene::Render()
 void NNStartScene::Update( float dTime )
 {
 	NNScene::Update( dTime );
-	
+
 
 	if ( m_Sumtime <= 1.5f )
 	{
