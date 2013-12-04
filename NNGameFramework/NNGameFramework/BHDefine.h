@@ -4,24 +4,20 @@
 #include <vector>
 
 #define RESOLUTION_WIDTH	800
-#define RESOLUTION_HEIGHT	700
+#define RESOLUTION_HEIGHT	600
 
 #define GAMESTART_READYTIME	3.0f
-#define UI_WIDTH			800
-#define UI_HEIGHT			139
-#define UI_SPRITE			L"Image/UI.png"
 #define BACKGROUND_SPRITE	L"Image/BACKGROUND3.jpg"
 #define BACKGROUND_ZINDEX	0
 #define START_STRING_NUMBER	11
 #define START_STRING_HEIGHT 50.f
 #define START_STRING_WIDTH	50.f
 #define START_STRING_ZINDEX 1
-#define UI_ZINDEX	2
 
 #define TITLE_SPRITE		L"Image/TITLE.png"
 #define TITLE_WIDTH			800.f
 #define TITLE_HEIGHT		100.f
-#define TITLE_ZINDEX		1
+#define TITLE_ZINDEX		2
 
 
 #define STRING_P			L"Image/P.png"
@@ -40,7 +36,7 @@
 #define PLAYER_POSITION_Y	500
 #define PLAYER_SPRITE_REAL_EDGE 30
 #define PLAYER_SPRITE		L"Image/character.png"
-#define PLAYER_ZINDEX		1
+#define PLAYER_ZINDEX		2
 
 #define BIRD_WIDTH			30
 #define BIRD_HEIGHT			30
@@ -305,7 +301,7 @@
 #define WINDOW_WIDTH_LEFT_EDGE	0.f
 #define WINDOW_WIDTH_RIGHT_EDGE 800.f
 #define WINDOW_HEIGHT_UP_EDGE	0.f
-#define WINDOW_HEIGHT_DOWN_EDGE	700.f
+#define WINDOW_HEIGHT_DOWN_EDGE	600.f
 
 #define GUN_WIDTH 70
 
@@ -315,10 +311,7 @@
 #define POLLUTION_WARNING_LV_04	40
 
 #define MAP_DEFAULT		L"Image/BGimage1.png"
-#define MAP_WARNING_01	L"Image/BG_Warning001.png"
-#define MAP_WARNING_02	L"Image/BG_Warning002.png"
-#define MAP_WARNING_03	L"Image/BG_Warning003.png"
-#define MAP_WARNING_04	L"Image/BG_Warning004.png"
+#define WARNING_FILTER  L"Image/WARNING_FILTER.png"
 
 #define BIRD_BULLET_HIT_EFFECT_SCALE_X 1.0f
 #define BIRD_BULLET_HIT_EFFECT_SCALE_Y 1.0f
