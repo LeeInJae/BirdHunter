@@ -16,6 +16,7 @@ public:
 	float GetStartSceneSumTime() { return m_Sumtime; }
 private:
 	NNSprite*		m_pBackGround;
+	NNSprite*		m_pFilter;
 	NNSprite*		m_pTitle;
 	NNSprite*		m_pStartString[ START_STRING_NUMBER ];
 	float			m_Sumtime;

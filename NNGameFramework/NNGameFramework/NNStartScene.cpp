@@ -22,6 +22,12 @@ NNStartScene::NNStartScene(void)
 	m_pTitle->SetPosition( position );
 	m_pTitle->SetZindex( TITLE_ZINDEX );
 
+	m_pFilter = NNSprite::Create( TITLE_FILTER_SPRITE );
+	m_pFilter->SetImageWidth( TITLE_FILTER_WIDTH );
+	m_pFilter->SetImageHeight( TITLE_FILTER_HEIGHT );
+	m_pFilter->SetZindex( TITLE_FILTER_ZINDEX );
+	m_pFilter->SetOpacity( 0.5f );
+
 	m_pStartString[ 0 ] = NNSprite::Create( STRING_P );
 	m_pStartString[ 1 ] = NNSprite::Create( STRING_R );
 	m_pStartString[ 2 ] = NNSprite::Create( STRING_E );
@@ -53,7 +59,8 @@ NNStartScene::NNStartScene(void)
 		AddChild( m_pStartString[ i ] );
 	}
 	AddChild( m_pBackGround );
-	AddChild( m_pTitle );
+	AddChild( m_pFilter );
+	//AddChild( m_pTitle );
 	m_Sumtime	=	0;	
 }
 
@@ -72,7 +79,7 @@ void NNStartScene::Update( float dTime )
 	NNScene::Update( dTime );
 
 
-	if ( m_Sumtime <= 1.5f )
+	if ( m_Sumtime <= 1.0f )
 	{
 		m_Sumtime += dTime;
 		for( int i=0; i<START_STRING_NUMBER; ++i )
