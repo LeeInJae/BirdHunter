@@ -7,22 +7,17 @@
 #define RESOLUTION_HEIGHT	600
 
 #define GAMESTART_READYTIME	3.0f
-#define UI_WIDTH			800
-#define UI_HEIGHT			139
-#define UI_SPRITE			L"Image/UI.png"
 #define BACKGROUND_SPRITE	L"Image/BACKGROUND.jpg"
 #define BACKGROUND_ZINDEX	0
 #define START_STRING_NUMBER	11
 #define START_STRING_HEIGHT 50.f
 #define START_STRING_WIDTH	50.f
 #define START_STRING_ZINDEX 2
-#define UI_ZINDEX	3
 
 #define TITLE_SPRITE		L"Image/TITLE.png"
 #define TITLE_WIDTH			800.f
 #define TITLE_HEIGHT		100.f
 #define TITLE_ZINDEX		2
-
 
 #define STRING_P			L"Image/P.png"
 #define STRING_E			L"Image/E.png"

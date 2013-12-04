@@ -144,6 +144,7 @@ void NNBulletManager::HitCheck()
 				m_Bullet.erase( bullet_Iter );
 				bullet_Iter = m_Bullet.end();
 				
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_BirdDie[rand()%NNSoundManager::GetInstance()->SE_BirdDie.size()]);
 				RemoveChild( pBullet_Iter, true );
 				++m_AmmoLeft;
 				break;

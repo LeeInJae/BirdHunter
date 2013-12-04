@@ -59,14 +59,6 @@ void NNMapManager::Update(float dTime)
 	if (m_PrevWarningLV != m_CurrentWarningLV)
 	{
 		m_WarningFilter->SetOpacity(0.15f*m_CurrentWarningLV);
-// 		RemoveChild(m_pMap);
-// 		
-// 		// agebreak : 매번 맵을 삭제하고, 새로 생성해야 할까??
-// 		m_pMap = NNSprite::Create( m_MapContainer[m_CurrentWarningLV] );
-// 		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-// 		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-// 		m_pMap->SetZindex( 0 );
-// 		AddChild( m_pMap );
 	}
 
 	if (m_Pollution -1 == POLLUTION_WARNING_LV_04 && m_WarningFlag)

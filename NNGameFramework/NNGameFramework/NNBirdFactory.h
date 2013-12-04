@@ -11,7 +11,6 @@ public:
 	static void				ReleaseInstance();
 	void					MakeBird( BIRD_TYPE type );
 	std::list< NNBird* >&	GetBirdList() { return m_Bird; }
-	void					RemoveChild( NNObject* object, bool memoryDel );
 
 private:
 	NNBirdFactory(void);

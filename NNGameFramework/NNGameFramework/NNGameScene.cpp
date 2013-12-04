@@ -113,15 +113,8 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false)
 
 void NNGameScene::UIInit()
 {
-	m_UI = NNSprite::Create(UI_SPRITE);
-	m_UI->SetImageWidth(UI_WIDTH);
-	m_UI->SetImageHeight(UI_HEIGHT);
-	m_UI->SetPosition(0.f, 561.f);
-	m_UI->SetZindex(UI_ZINDEX);
-	AddChild(m_UI);
-
 	m_PlayTimeLabel = NNLabel::Create(L"0.0", L"¸¼Àº °íµñ", 30.f);
-	m_PlayTimeLabel->SetPosition(380.f, 623.f);
+	m_PlayTimeLabel->SetPosition(700.f, 500.f);
 	m_PlayTimeLabel->SetZindex(3);
 	AddChild(m_PlayTimeLabel);
 
@@ -136,7 +129,7 @@ void NNGameScene::UIInit()
 	AddChild(m_FPSLabel);
 
 	m_AmmoLabel = NNLabel::Create(L"5", L"¸¼Àº °íµñ", 30.f);
-	m_AmmoLabel->SetPosition(575.f, 623.f);
+	m_AmmoLabel->SetPosition(670.f, 30.f);
 	m_AmmoLabel->SetZindex(3);
 	AddChild(m_AmmoLabel);
 }

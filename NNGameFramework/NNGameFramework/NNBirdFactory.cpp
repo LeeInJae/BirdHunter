@@ -196,10 +196,3 @@ void NNBirdFactory::MakeBird( BIRD_TYPE type )
 
 	AddChild( p_newBird );
 }
-
-void NNBirdFactory::RemoveChild( NNObject* object, bool memoryDel )
-{
-	// agebreak : 두번째 인자가 false가 들어오면 무슨 문제가 발생하는가?
-	NNObject::RemoveChild(object, memoryDel);
-	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_BirdDie[rand()%NNSoundManager::GetInstance()->SE_BirdDie.size()]);
-}
