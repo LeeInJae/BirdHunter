@@ -12,13 +12,13 @@ public:
 	static NNMapManager* GetInstance();
 	~NNMapManager(void);
 	void Update(float dTime);
-	void SetMapContainer(void);
 	void SetWarningCount(void);
 	int GetWarningLV(void){return m_CurrentWarningLV;}
 
 protected:
 	NNMapManager(void);
 	NNSprite* m_pMap;
+	NNSprite* m_WarningFilter;
 
 private:
 	bool m_WarningFlag;

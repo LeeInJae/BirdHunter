@@ -9,13 +9,19 @@ NNMapManager* NNMapManager::m_pInstance = nullptr;
 
 NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0), m_WarningFlag(true)
 {	 
-	SetMapContainer();
 	SetWarningCount();
+	m_MapContainer.push_back(MAP_DEFAULT);
 	m_pMap=NNSprite::Create( m_MapContainer[0] );
 	m_pMap->SetImageWidth( RESOLUTION_WIDTH );
 	m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
 	m_pMap->SetZindex( 0 );
 	AddChild( m_pMap );
+	m_WarningFilter = NNSprite::Create( WARNING_FILTER );
+	m_WarningFilter->SetImageWidth(RESOLUTION_WIDTH);
+	m_WarningFilter->SetImageHeight(RESOLUTION_HEIGHT);
+	m_WarningFilter->SetZindex(1);
+	m_WarningFilter->SetOpacity(0);
+	AddChild(m_WarningFilter);
 }
 
 NNMapManager::~NNMapManager(void)
@@ -29,16 +35,6 @@ NNMapManager* NNMapManager::GetInstance()
 	}
 	return m_pInstance;
 }
-
-void NNMapManager::SetMapContainer( void )
-{
-	m_MapContainer.push_back(MAP_DEFAULT);
-	m_MapContainer.push_back(MAP_WARNING_01);
-	m_MapContainer.push_back(MAP_WARNING_02);
-	m_MapContainer.push_back(MAP_WARNING_03);
-	m_MapContainer.push_back(MAP_WARNING_04);
-}
-
 
 void NNMapManager::SetWarningCount( void )
 {
@@ -62,14 +58,15 @@ void NNMapManager::Update(float dTime)
 	}	
 	if (m_PrevWarningLV != m_CurrentWarningLV)
 	{
-		RemoveChild(m_pMap);
-		
-		// agebreak : 매번 맵을 삭제하고, 새로 생성해야 할까??
-		m_pMap = NNSprite::Create( m_MapContainer[m_CurrentWarningLV] );
-		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
-		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
-		m_pMap->SetZindex( 0 );
-		AddChild( m_pMap );
+		m_WarningFilter->SetOpacity(0.15f*m_CurrentWarningLV);
+// 		RemoveChild(m_pMap);
+// 		
+// 		// agebreak : 매번 맵을 삭제하고, 새로 생성해야 할까??
+// 		m_pMap = NNSprite::Create( m_MapContainer[m_CurrentWarningLV] );
+// 		m_pMap->SetImageWidth( RESOLUTION_WIDTH );
+// 		m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
+// 		m_pMap->SetZindex( 0 );
+// 		AddChild( m_pMap );
 	}
 
 	if (m_Pollution -1 == POLLUTION_WARNING_LV_04 && m_WarningFlag)

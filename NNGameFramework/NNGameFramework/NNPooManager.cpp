@@ -185,7 +185,7 @@ void NNPooManager::RemoveCheck()
 	//poo & bound hitcheck
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
 	{
-		if( (*poo_Iter)->GetPositionY() >= RESOLUTION_HEIGHT - (*poo_Iter)->GetSpriteHeight() - UI_HEIGHT )
+		if( (*poo_Iter)->GetPositionY() >= RESOLUTION_HEIGHT - (*poo_Iter)->GetSpriteHeight() )
 		{
 			auto pBullet = *poo_Iter;
 
