@@ -164,10 +164,10 @@ void NNPooManager::MakePoo( BIRD_TYPE WhichBird, NNPoint birdPosition )
 		break;
 	}
 
-	NNPoo* newPoo = new NNPoo();
+	NNPoo* newPoo;
+	newPoo = new NNPoo();
 	newPoo->SetProperty( poo_Property );
 	newPoo->SetPosition( birdPosition );
-	newPoo->SetCenter( birdPosition.GetX() + poo_Property.imageWidth * 0.5, birdPosition.GetY() + poo_Property.imageHeight * 0.5 );
 	m_Poo.push_back( newPoo );
 	AddChild( newPoo );
 }

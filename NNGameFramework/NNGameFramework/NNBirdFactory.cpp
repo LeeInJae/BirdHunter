@@ -36,19 +36,16 @@ void NNBirdFactory::ReleaseInstance()
 
 void NNBirdFactory::MakeBird( BIRD_TYPE type )
 {
-	NNPoint birdSetPosition;
+	NNPoint BirdSetPosition;
 	NNBird* p_newBird;
 	BIRD_PROPERTY bird_Property;
 
- 	birdSetPosition.SetY( (float) (rand() % BIRD_SET_MAX_HEIGHT) );
+ 	BirdSetPosition.SetY( (float) (rand() % BIRD_SET_MAX_HEIGHT) );
 
 	bird_Property.goingDirection =  rand() % 2 ? LEFT_GO : RIGHT_GO;
 
-	( bird_Property.goingDirection == LEFT_GO ) ? birdSetPosition.SetX( WINDOW_WIDTH_RIGHT_EDGE + ( rand() % BIRD_SET_MAX_WIDTH ) )
-												: birdSetPosition.SetX( WINDOW_WIDTH_LEFT_EDGE - ( rand() % BIRD_SET_MAX_WIDTH ) );
-
-	bird_Property.position = birdSetPosition;
-
+	( bird_Property.goingDirection == LEFT_GO ) ? BirdSetPosition.SetX( WINDOW_WIDTH_LEFT_EDGE - ( rand() % BIRD_SET_MAX_WIDTH ) )
+												: BirdSetPosition.SetX( WINDOW_WIDTH_RIGHT_EDGE + ( rand() % BIRD_SET_MAX_WIDTH ) );
 	switch ( type )
 	{
 	case BLACK_SMALL_BIRD:
@@ -194,8 +191,8 @@ void NNBirdFactory::MakeBird( BIRD_TYPE type )
 
 	p_newBird = new NNBird();
 	p_newBird->SetBirdProperty( bird_Property );
-	p_newBird->SetPosition( birdSetPosition );
-	//p_newBird->SetPosition( 100,100 );
+	p_newBird->SetPosition( BirdSetPosition );
 	m_Bird.push_back( p_newBird );
+
 	AddChild( p_newBird );
 }
