@@ -58,15 +58,30 @@ void NNEffectManager::RemoveEffectCheck()
 }
 
 //void NNEffectManager::MakeBirdBulletCrashEffect( NNPoint birdPosition )
-void NNEffectManager::MakeBirdBulletCrashEffect( NNBird bird )
+void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPERTY birdProperty, float scaleX )
 {
 	NNBirdBulletCrashEffect* newHitEffect;
-
 	newHitEffect = new NNBirdBulletCrashEffect();
-	newHitEffect->SetPosition( bird.GetPosition() );
-	newHitEffect->SetCenter( bird.GetSpriteWidth(), bird.GetSpriteHeight() );
-	newHitEffect->SetZindex( 0 );
 	
+	if( scaleX == -1)
+	{
+		birdPosition.SetX( birdPosition.GetX() - birdProperty.imageWidth );
+	}
+	newHitEffect->SetPosition( birdPosition.GetX() + birdProperty.imageWidth * 0.5,birdPosition.GetY() + birdProperty.imageHeight * 0.5 );
+	if( birdProperty.goingDirection == LEFT_GO )
+	{
+		newHitEffect->SetPosition( birdPosition.GetX() - 50,birdPosition.GetY() - 50 );
+	}
+	else
+	{
+		newHitEffect->SetPosition( birdPosition.GetX() - 20,birdPosition.GetY() - 50 );
+	}
+	
+	switch( birdProperty.type )
+	{
+
+	}
+	newHitEffect->SetZindex( 0 );
 	m_HitEffect.push_back( newHitEffect );
 	AddChild( newHitEffect ); 
 }

@@ -195,8 +195,7 @@ void NNBirdFactory::MakeBird( BIRD_TYPE type )
 	p_newBird = new NNBird();
 	p_newBird->SetBirdProperty( bird_Property );
 	p_newBird->SetPosition( birdSetPosition );
-	p_newBird->SetCenter( birdSetPosition.GetX() + bird_Property.imageWidth * 0.5, birdSetPosition.GetY() + bird_Property.imageHeight * 0.5 );
-  
+	//p_newBird->SetPosition( 100,100 );
 	m_Bird.push_back( p_newBird );
 	AddChild( p_newBird );
 }

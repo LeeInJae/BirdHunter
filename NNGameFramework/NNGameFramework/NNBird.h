@@ -18,7 +18,7 @@ public:
 	float	GetSpriteWidth()			{ return m_BirdProperty.imageWidth; }
 	GOING_DIRECTION GetBirdDirection()	{ return m_BirdProperty.goingDirection; }
 	BIRD_TYPE	GetBirdType()			{ return m_BirdProperty.type; }
-
+	BIRD_PROPERTY	GetBirdProperty()		{ return m_BirdProperty; }
 	void	Update( float dTime );
 
 protected:
@@ -36,4 +36,5 @@ protected:
 	float			m_SpriteWidth;
 	NNSprite*		m_pBird;
 	int				m_Zindex;
+
 };

@@ -168,17 +168,17 @@ void NNGameScene::Update( float dTime )
 		{
 			if( m_SumTime >= m_BirdBornCheckArray[ i ].bornTime )
 			{
-				NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
+ 				NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
 				m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
 			}
 		}
 
 		// 		test
-		//		if( m_SumTime >= 1)
-		// 		{
-		// 			NNBirdFactory::GetInstance()->MakeBird( GREEN_OLD_BIRD );
-		// 			m_SumTime = 0;
-		// 		}
+// 				if( m_SumTime >= 1)
+// 		 		{
+// 		 			NNBirdFactory::GetInstance()->MakeBird( BLACK_SMALL_BIRD );
+// 		 			m_SumTime = 0;
+// 				}
 	}
 	else
 	{

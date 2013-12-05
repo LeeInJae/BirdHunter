@@ -14,7 +14,7 @@ public:
 
 	void Release();
 	void Update( float dTime );
-	void MakeBirdBulletCrashEffect( NNBird bird );
+	void MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPERTY birdProperty, float scaleX );
 	//void MakeBirdBulletCrashEffect( NNPoint birdPosition );
 	void MakePooBulletCrashEffect( NNPoint pooPosition );
 
