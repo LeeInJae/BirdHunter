@@ -81,56 +81,31 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	switch( birdProperty.type )
 	{
 	case BLACK_SMALL_BIRD:
-		newHitEffect->SetScale( 1.0f, 1.0f );
-		break;
-
 	case ORANGE_SMALL_BIRD:
-		newHitEffect->SetScale( 1.0f, 1.0f );
-		break;
 	case WHITE_SMALL_BIRD:
-		newHitEffect->SetScale( 1.0f, 1.0f );
-		break;
 	case RED_SMALL_BIRD:
 		newHitEffect->SetScale( 1.0f, 1.0f );
 		break;
 
 	case BLACK_MID_BIRD:
+	case CARAMEL_MID_BIRD:
+	case GREEN_MID_BIRD:
+	caseICE_MID_BIRD:
+	case YELLOW_MID_BIRD:
 		newHitEffect->SetScale( 1.5f, 1.5f );
 		break;
-			
-		case CARAMEL_MID_BIRD:
-			newHitEffect->SetScale( 1.5f, 1.5f );
-			break;
 
-		case GREEN_MID_BIRD:
-			newHitEffect->SetScale( 1.5f, 1.5f );
-			break;
-		case	ICE_MID_BIRD:
-			newHitEffect->SetScale( 1.5f, 1.5f );
-			break;
-		case YELLOW_MID_BIRD:
-			newHitEffect->SetScale( 1.5f, 1.2f );
-			break;
-		case BROWN_BIG_BIRD:
-			newHitEffect->SetScale( 1.8f, 1.8f );
-			break;
-		case WHITE_BIG_BIRD:
-			newHitEffect->SetScale( 1.8f, 1.8f );
-			break;
-		case PINK_BIG_BIRD:
-			newHitEffect->SetScale( 1.8f, 1.8f );
-			break;
-		case ITEM_KING_BIRD:
-			newHitEffect->SetScale( 1.8f, 1.8f );
-			break;
-		case RED_OLD_BIRD:
-			newHitEffect->SetScale( 1.8f, 1.8f );
-			break;
-		case GREEN_OLD_BIRD:
-			newHitEffect->SetScale( 1.8f, 1.8f );
-			break;
-		default:
-			break;
+	case BROWN_BIG_BIRD:
+	case WHITE_BIG_BIRD:
+	case PINK_BIG_BIRD:
+	case ITEM_KING_BIRD:
+	case RED_OLD_BIRD:
+	case GREEN_OLD_BIRD:
+		newHitEffect->SetScale( 1.8f, 1.8f );
+		break;
+
+	default:
+		break;
 	}
 	newHitEffect->SetZindex( 0 );
 	m_HitEffect.push_back( newHitEffect );
