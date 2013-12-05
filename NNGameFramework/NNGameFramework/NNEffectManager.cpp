@@ -1,6 +1,7 @@
 #include "NNEffectManager.h"
 #include "BHDefine.h"
 #include "NNPooBulletCrashEffect.h"
+#include "NNBird.h"
 
 NNEffectManager* NNEffectManager::m_pInstance = nullptr;
 
@@ -56,15 +57,16 @@ void NNEffectManager::RemoveEffectCheck()
 	}
 }
 
-void NNEffectManager::MakeBirdBulletCrashEffect( NNPoint birdPosition )
+//void NNEffectManager::MakeBirdBulletCrashEffect( NNPoint birdPosition )
+void NNEffectManager::MakeBirdBulletCrashEffect( NNBird bird )
 {
 	NNBirdBulletCrashEffect* newHitEffect;
 
 	newHitEffect = new NNBirdBulletCrashEffect();
-	birdPosition.SetX( birdPosition.GetX() - BIRD_BULLET_HIT_EFFECT_BALANCE_X );
-	birdPosition.SetY( birdPosition.GetY() - BIRD_BULLET_HIT_EFFECT_BALANCE_Y );
-	newHitEffect->SetPosition( birdPosition );
+	newHitEffect->SetPosition( bird.GetPosition() );
+	newHitEffect->SetCenter( bird.GetSpriteWidth(), bird.GetSpriteHeight() );
 	newHitEffect->SetZindex( 0 );
+	
 	m_HitEffect.push_back( newHitEffect );
 	AddChild( newHitEffect ); 
 }
@@ -74,8 +76,8 @@ void NNEffectManager::MakePooBulletCrashEffect( NNPoint pooPosition )
 	NNPooBulletCrashEffect* newHitEffect;
 
 	newHitEffect = new NNPooBulletCrashEffect();
- 	pooPosition.SetX( pooPosition.GetX() - POO_BULLET_HIT_EFFECT_BALANCE_X );
- 	pooPosition.SetY( pooPosition.GetY() - POO_BULLET_HIT_EFFECT_BALANCE_Y );
+ 	pooPosition.SetX( pooPosition.GetX() );
+ 	pooPosition.SetY( pooPosition.GetY() );
 	newHitEffect->SetPosition( pooPosition );
 	newHitEffect->SetScale( POO_BULLET_HIT_EFFECT_SCALE_X, POO_BULLET_HIT_EFFECT_SCALE_Y );
 	newHitEffect->SetZindex( 0 );

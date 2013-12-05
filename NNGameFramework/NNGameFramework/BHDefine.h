@@ -7,8 +7,9 @@
 #define RESOLUTION_HEIGHT	600
 
 #define GAMESTART_READYTIME	3.0f
-#define BACKGROUND_SPRITE	L"Image/BACKGROUND5.jpg"
+#define BACKGROUND_SPRITE	L"Image/BACKGROUND6.png"
 #define BACKGROUND_ZINDEX	1
+
 #define START_STRING_NUMBER	11
 #define START_STRING_HEIGHT 50.f
 #define START_STRING_WIDTH	50.f
@@ -17,7 +18,7 @@
 #define TITLE_SPRITE		L"Image/TITLE.png"
 #define TITLE_WIDTH			800.f
 #define TITLE_HEIGHT		100.f
-#define TITLE_ZINDEX		2
+#define TITLE_ZINDEX		1
 
 #define TITLE_FILTER_SPRITE L"Image/TITLE_BACKGROUND.jpg"
 #define TITLE_FILTER_WIDTH			800.f
@@ -129,7 +130,7 @@
 #define BROWN_BIG_BIRD_WIDTH				90.f
 #define BROWN_BIG_BIRD_HEIGHT				90.f
 #define BROWN_BIG_BIRD_ZINDEX				2
-#define BROWN_BIG_BIRD_SPEED				5
+#define BROWN_BIG_BIRD_SPEED				30
 #define BROWN_BIG_BIRD_MAKE_POO_TIME		20
 
 #define WHITE_BIG_BIRD_LEFT_SPRITE			L"Image/WHITE_BIG_BIRD_LEFT.png"
@@ -137,7 +138,7 @@
 #define WHITE_BIG_BIRD_WIDTH				90.f
 #define WHITE_BIG_BIRD_HEIGHT				90.f
 #define WHITE_BIG_BIRD_ZINDEX				2
-#define WHITE_BIG_BIRD_SPEED				10
+#define WHITE_BIG_BIRD_SPEED				30
 #define WHITE_BIG_BIRD_MAKE_POO_TIME		20
 
 #define PINK_BIG_BIRD_LEFT_SPRITE			L"Image/PINK_BIG_BIRD_LEFT.png"
@@ -145,7 +146,7 @@
 #define PINK_BIG_BIRD_WIDTH					90.f
 #define PINK_BIG_BIRD_HEIGHT				90.f
 #define PINK_BIG_BIRD_ZINDEX				2
-#define PINK_BIG_BIRD_SPEED					15
+#define PINK_BIG_BIRD_SPEED					35
 #define PINK_BIG_BIRD_MAKE_POO_TIME			20
 //////////////ITEM BIRD //////////////////////////////////////////////
 
@@ -317,8 +318,8 @@
 #define MAP_DEFAULT		L"Image/BGimage1.png"
 #define WARNING_FILTER  L"Image/WARNING_FILTER.png"
 
-#define BIRD_BULLET_HIT_EFFECT_SCALE_X 1.0f
-#define BIRD_BULLET_HIT_EFFECT_SCALE_Y 1.0f
+#define BIRD_BULLET_CRASH_EFFECT_SCALE_X 1.0f
+#define BIRD_BULLET_CRASH_EFFECT_SCALE_Y 1.0f
 #define BIRD_BULLET_HIT_EFFECT_WIDTH	128.f
 #define BIRD_BULLET_HIT_EFFECT_HEIGHT	128.f
 #define BIRD_BULLET_HIT_EFFECT_LIFETIME 1.0f
@@ -466,6 +467,7 @@ struct OBJECT_PROPERTY
 	float			imageWidth;
 	float			imageHeight;
 	int				zIndex;
+	NNPoint			position;
 };
 
 struct BIRD_PROPERTY : public OBJECT_PROPERTY

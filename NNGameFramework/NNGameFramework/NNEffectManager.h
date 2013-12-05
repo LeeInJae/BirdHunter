@@ -3,6 +3,8 @@
 #include "NNBirdBulletCrashEffect.h"
 #include "BHDefine.h"
 
+class NNBird;
+
 //이펙트들을 관리하는 이펙트 매니져
 class NNEffectManager : public NNObject
 {
@@ -12,8 +14,8 @@ public:
 
 	void Release();
 	void Update( float dTime );
-	
-	void MakeBirdBulletCrashEffect( NNPoint birdPosition );
+	void MakeBirdBulletCrashEffect( NNBird bird );
+	//void MakeBirdBulletCrashEffect( NNPoint birdPosition );
 	void MakePooBulletCrashEffect( NNPoint pooPosition );
 
 	std::list< NNEffect* >& GetEffectList(){ return m_HitEffect; }

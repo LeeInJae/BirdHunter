@@ -9,52 +9,49 @@ NNBird::NNBird(void)
 
 NNBird::~NNBird(void)
 {
+
 }
 
 void NNBird::Update( float dTime )
 {
-	if( m_BirdDirection == LEFT_GO )
+	if( m_BirdProperty.goingDirection == LEFT_GO )
 	{
-		SetPosition( GetPositionX() - m_BirdSpeed * dTime, GetPositionY() );
+		SetPosition( GetPositionX() - m_BirdProperty.speed * dTime, GetPositionY() );
+		
 		if( GetPositionX() <= 0 )
 		{
 			SetScaleX( GetScaleX() * (-1) );
-			m_BirdDirection = RIGHT_GO;
+			m_BirdProperty.goingDirection = RIGHT_GO;
 		}
 	}
 	else
 	{
-		SetPosition( GetPositionX() + m_BirdSpeed * dTime, GetPositionY() );
+		SetPosition( GetPositionX() + m_BirdProperty.speed * dTime, GetPositionY() );
+
 		if(GetPositionX() >= RESOLUTION_WIDTH )
 		{	
 			SetScaleX( GetScaleX() * (-1) );
-			m_BirdDirection = LEFT_GO;
+			m_BirdProperty.goingDirection = LEFT_GO;
 		}
 	}
 
 	m_SumTime += dTime;
 
-	if( m_SumTime >= m_MakePooCoolTime )
+	if( m_SumTime >= m_BirdProperty.pooCoolTime )
 	{
-		NNPooManager::GetInstance()->MakePoo( m_Type, GetPosition() );
+		NNPooManager::GetInstance()->MakePoo( m_BirdProperty.type, GetPosition() );
 		m_SumTime = 0;
 	}
 }
 
 void NNBird::SetBirdProperty( BIRD_PROPERTY &bird_property )
 {
-	m_BirdSpeed		= bird_property.speed;
-	m_BirdDirection = bird_property.goingDirection;
+	m_BirdProperty	=	bird_property;
 	
-	m_Type				=	bird_property.type;
-	m_pBird				=	NNSprite::Create( bird_property.sprite_path );
-	m_SpriteHeight		=	bird_property.imageHeight;
-	m_SpriteWidth		=	bird_property.imageWidth;
-	m_Zindex			=	bird_property.zIndex;
-	m_MakePooCoolTime	=	bird_property.pooCoolTime;
-	
+	m_pBird			=	NNSprite::Create( bird_property.sprite_path );
 	m_pBird->SetImageHeight( bird_property.imageHeight );
 	m_pBird->SetImageWidth( bird_property.imageWidth );	
 	SetZindex( bird_property.zIndex );
+	//m_pBird->SetCenter( m_BirdProperty.position );
 	AddChild( m_pBird );
 }

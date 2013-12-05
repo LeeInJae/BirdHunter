@@ -13,13 +13,12 @@ public:
 	void Update( float dTime );
 	NNSprite* GetBullet() { return m_pBullet; }
 	void SetBulletProperty( BULLET_PROPERTY bullet_property);
-	float GetSpriteHeight() { return m_SpriteHeight; }
-	float GetSpriteWidth() { return m_SpriteWidth; }
+	float GetSpriteHeight() { return m_BulletProperty.imageHeight; }
+	float GetSpriteWidth() { return m_BulletProperty.imageWidth; }
 
 protected:
-	float			m_BulletSpeed;
+	BULLET_PROPERTY	m_BulletProperty;
 	NNSprite*	m_pBullet;
-	float		m_SpriteHeight;
-	float		m_SpriteWidth;
+
 	BULLET_TYPE	m_Type;
 };

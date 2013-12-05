@@ -19,6 +19,7 @@ NNBirdBulletCrashEffect::NNBirdBulletCrashEffect( void )
 		BIRD_BULLET_HIT_EFFECT_SPRITE7,
 		BIRD_BULLET_HIT_EFFECT_SPRITE8
 		);
+
 	AddChild( m_Animation );
 }
 

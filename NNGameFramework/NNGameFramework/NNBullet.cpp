@@ -13,20 +13,20 @@ void NNBullet::Update( float dTime )
 {
 	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE ) 
 	{
-		SetPosition( GetPositionX(), GetPositionY() - m_BulletSpeed * dTime );
+		SetPosition( GetPositionX(), GetPositionY() - m_BulletProperty.speed * dTime );
 	}
 }
 
 void NNBullet::SetBulletProperty( BULLET_PROPERTY bullet_property )
 {
 	m_pBullet			= NNSprite::Create( bullet_property.sprite_path );
-	m_SpriteHeight		= bullet_property.imageHeight;
-	m_SpriteWidth		= bullet_property.imageWidth;
-	m_Type				= bullet_property.type;
+	
+	m_BulletProperty	=	bullet_property;
 
-	m_pBullet->SetImageWidth( bullet_property.imageWidth );
-	m_pBullet->SetImageHeight( bullet_property.imageHeight );
-	m_pBullet->SetZindex( bullet_property.zIndex );
-	m_BulletSpeed = bullet_property.speed;
+	m_pBullet->SetImageWidth( m_BulletProperty.imageWidth );
+	m_pBullet->SetImageHeight( m_BulletProperty.imageHeight );
+	m_pBullet->SetZindex( m_BulletProperty.zIndex );
+	
+	//m_pBullet->SetCenter( m_BulletProperty.position );
 	AddChild( m_pBullet );
 }

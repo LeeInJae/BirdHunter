@@ -14,15 +14,18 @@ public:
 
 	void	SetBirdProperty( BIRD_PROPERTY &bird_property );
 
-	float	GetSpriteHeight()			{ return m_SpriteHeight; }
-	float	GetSpriteWidth()			{ return m_SpriteWidth; }
-	GOING_DIRECTION GetBirdDirection()	{ return m_BirdDirection; }
-	BIRD_TYPE	GetBirdType()			{ return m_Type; }
+	float	GetSpriteHeight()			{ return m_BirdProperty.imageHeight; }
+	float	GetSpriteWidth()			{ return m_BirdProperty.imageWidth; }
+	GOING_DIRECTION GetBirdDirection()	{ return m_BirdProperty.goingDirection; }
+	BIRD_TYPE	GetBirdType()			{ return m_BirdProperty.type; }
 
 	void	Update( float dTime );
 
 protected:
 	float			m_SumTime;
+
+	BIRD_PROPERTY	m_BirdProperty;
+
 	float			m_BirdSpeed;
 	float			m_MakePooCoolTime;
 
