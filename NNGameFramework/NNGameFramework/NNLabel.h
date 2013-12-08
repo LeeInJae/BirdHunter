@@ -29,6 +29,7 @@ public:
 	virtual ~NNLabel(){}
 
 	static NNLabel* Create( wchar_t* string, wchar_t* fontFace, float fontSize );
+	static NNLabel* Create( wchar_t* string, wchar_t* fontFace, float fontSize, float red, float green, float blue );
 	virtual void Destroy() = 0;
 	virtual void Render() = 0;
 
@@ -67,6 +68,7 @@ private:
 public:
 	NND2DLabel();
 	NND2DLabel( wchar_t* string, wchar_t* face, float fontSize );
+	NND2DLabel( wchar_t* string, wchar_t* fontFace, float fontSize, float red, float green, float blue );
 	virtual ~NND2DLabel();
 
 	void Destroy();

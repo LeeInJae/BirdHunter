@@ -13,7 +13,7 @@
 #include "NNSoundManager.h"
 #include "NNStartScene.h"
 
-NNGameScene::NNGameScene(void ) : m_CheckGameStart(false)
+NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(false)
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
@@ -113,23 +113,56 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false)
 
 void NNGameScene::UIInit()
 {
-	m_PlayTimeLabel = NNLabel::Create(L"0.0", L"¸¼Àº °íµñ", 30.f);
-	m_PlayTimeLabel->SetPosition(700.f, 600.f);
-	m_PlayTimeLabel->SetZindex(3);
-	AddChild(m_PlayTimeLabel);
+	m_TimeLabel = NNLabel::Create(L"TIME", L"Feast of Flesh BB", 35.f, 255, 216, 0);
+	m_TimeLabel->SetPosition(705.f, 330.f);
+	m_TimeLabel->SetZindex(0);
+	AddChild(m_TimeLabel);
 
-	m_LandedPooLabel = NNLabel::Create(L"Please Wait", L"¸¼Àº °íµñ", 30.f);
-	m_LandedPooLabel->SetPosition(1.f, 550.f);
-	m_LandedPooLabel->SetZindex(3);
-	AddChild(m_LandedPooLabel);
+	m_ElapsedPlayTimeLabel = NNLabel::Create(L"0.0", L"Feast of Flesh BB", 30.f, 255, 255, 255);
+	m_ElapsedPlayTimeLabel->SetPosition(715.f, 380.f);
+	m_ElapsedPlayTimeLabel->SetZindex(0);
+	AddChild(m_ElapsedPlayTimeLabel);
+
+	m_PollutionLabel = NNLabel::Create(L"POLLUTION", L"Feast of Flesh BB", 30.f, 255, 50, 0);
+	m_PollutionLabel->SetPosition(665.f, 245.f);
+	m_PollutionLabel->SetZindex(0);
+	m_PollutionLabel->SetRotation(-11.f);
+	AddChild(m_PollutionLabel);
+
+	m_LandedPoo1 = NNSprite::Create(NORMAL_POO_SPRITE);
+	m_LandedPoo1->SetPosition(675.f, 273.f);
+	m_LandedPoo1->SetZindex(0);
+	m_LandedPoo1->SetImageWidth(32.f);
+	m_LandedPoo1->SetImageHeight(27.f);
+	m_LandedPoo1->SetVisible(false);
+	m_LandedPoo1->SetRotation(-11.f);
+	AddChild(m_LandedPoo1);
+
+	m_LandedPoo2 = NNSprite::Create(NORMAL_POO_SPRITE);
+	m_LandedPoo2->SetPosition(711.f, 267.f);
+	m_LandedPoo2->SetZindex(0);
+	m_LandedPoo2->SetImageWidth(32.f);
+	m_LandedPoo2->SetImageHeight(27.f);
+	m_LandedPoo2->SetVisible(false);
+	m_LandedPoo2->SetRotation(-11.f);
+	AddChild(m_LandedPoo2);
+
+	m_LandedPoo3 = NNSprite::Create(NORMAL_POO_SPRITE);
+	m_LandedPoo3->SetPosition(745.f, 261.f);
+	m_LandedPoo3->SetZindex(0);
+	m_LandedPoo3->SetImageWidth(32.f);
+	m_LandedPoo3->SetImageHeight(27.f);
+	m_LandedPoo3->SetVisible(false);
+	m_LandedPoo3->SetRotation(-11.f);
+	AddChild(m_LandedPoo3);
 
 	m_FPSLabel = NNLabel::Create(L"FPS : ", L"¸¼Àº °íµñ", 15.f);
 	m_FPSLabel->SetPosition(670.f, 1.f);
 	m_FPSLabel->SetZindex(3);
 	AddChild(m_FPSLabel);
 
-	m_AmmoLabel = NNLabel::Create(L"5", L"¸¼Àº °íµñ", 30.f);
-	m_AmmoLabel->SetPosition(670.f, 30.f);
+	m_AmmoLabel = NNLabel::Create(L"Ready", L"Feast of Flesh BB", 30.f, 255, 255, 255);
+	m_AmmoLabel->SetPosition(685.f, 471.f);
 	m_AmmoLabel->SetZindex(3);
 	AddChild(m_AmmoLabel);
 }
@@ -203,12 +236,27 @@ void NNGameScene::UIUpdate( float dTime )
 		AddChild(m_GameOverLabel);
 		m_CheckGameOver = true;
 	}
-
+	if (NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime > 9.9f
+		&& m_CheckElapsedTenSec == false)
+	{
+		m_ElapsedPlayTimeLabel->SetPosition(708.f, 380.f);
+		m_CheckElapsedTenSec = true;
+	}
 	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime );
-	m_PlayTimeLabel->SetString(m_PlayTimeString);
+	m_ElapsedPlayTimeLabel->SetString(m_PlayTimeString);
 
-	swprintf_s(m_LandedPooString, _countof(m_LandedPooString), L"%d", NNPooManager::GetInstance()->GetLandedPoo());
-	m_LandedPooLabel->SetString(m_LandedPooString);
+	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_01)
+	{
+		m_LandedPoo1->SetVisible(true);
+	}
+	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_02)
+	{
+		m_LandedPoo2->SetVisible(true);
+	}
+	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_03)
+	{
+		m_LandedPoo3->SetVisible(true);
+	}
 
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());
 	m_FPSLabel->SetString(m_FPSString);

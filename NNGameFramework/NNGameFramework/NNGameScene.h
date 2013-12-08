@@ -35,11 +35,16 @@ protected:
 	NNPlayerCharacter*	m_Character;
 	NNPooManager*		m_PooManager;
 
-	NNLabel*			m_PlayTimeLabel;
-	NNLabel*			m_LandedPooLabel;
+	NNLabel*			m_TimeLabel;
+	NNLabel*			m_ElapsedPlayTimeLabel;
+	NNLabel*			m_PollutionLabel;
 	NNLabel*			m_GameOverLabel;
 	NNLabel*			m_FPSLabel;
 	NNLabel*			m_AmmoLabel;
+
+	NNSprite*			m_LandedPoo1;
+	NNSprite*			m_LandedPoo2;
+	NNSprite*			m_LandedPoo3;
 
 
 	virtual void	Render();
@@ -58,6 +63,7 @@ protected:
 private:
 	bool m_CheckGameOver;
 	bool m_CheckGameStart;
+	bool m_CheckElapsedTenSec;
 	BIRD_BORN_TIME m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;

@@ -23,6 +23,24 @@ NNLabel* NNLabel::Create( wchar_t* string, wchar_t* fontFace, float fontSize )
 	return pInstance;
 }
 
+NNLabel* NNLabel::Create( wchar_t* string, wchar_t* fontFace, float fontSize, float red, float green, float blue )
+{
+	static RendererStatus rendererStatus = NNApplication::GetInstance()->GetRendererStatus();
+
+	NNLabel* pInstance = nullptr;
+
+	switch ( rendererStatus )
+	{
+	case D2D:
+		pInstance = new NND2DLabel( string, fontFace, fontSize, red, green, blue );
+		break;
+	default:
+		break;
+	}
+
+	return pInstance;
+}
+
 //////////////////////////////////////////////////////////////////////////
 /*					NND2DLabel											*/
 //////////////////////////////////////////////////////////////////////////
@@ -48,6 +66,25 @@ NND2DLabel::NND2DLabel( wchar_t* string, wchar_t* fontFace, float fontSize )
 
 	m_pD2DRenderer->GetHwndRenderTarget()->CreateSolidColorBrush( D2D1::ColorF(m_ColorR,m_ColorG,m_ColorB), &m_Brush );
 }
+
+NND2DLabel::NND2DLabel( wchar_t* string, wchar_t* fontFace, float fontSize, float red, float green, float blue )
+{
+	NND2DLabel();
+
+	m_String = string;
+	m_FontFace = fontFace;
+	m_FontSize = fontSize;
+
+	m_pD2DRenderer = static_cast<NND2DRenderer*>(NNApplication::GetInstance()->GetRenderer());
+	DWriteCreateFactory( DWRITE_FACTORY_TYPE_SHARED,
+		__uuidof(m_DWriteFactory),
+		reinterpret_cast<IUnknown**>(&m_DWriteFactory) );
+
+	SetTextFormat();
+
+	m_pD2DRenderer->GetHwndRenderTarget()->CreateSolidColorBrush( D2D1::ColorF(red, green, blue), &m_Brush );
+}
+
 NND2DLabel::~NND2DLabel()
 {
 	Destroy();

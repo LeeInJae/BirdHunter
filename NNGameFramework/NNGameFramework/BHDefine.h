@@ -7,7 +7,7 @@
 #define RESOLUTION_HEIGHT	600
 
 #define GAMESTART_READYTIME	3.0f
-#define BACKGROUND_SPRITE	L"Image/BACKGROUND6.png"
+#define BACKGROUND_SPRITE	L"Image/BACKGROUND5.jpg"
 #define BACKGROUND_ZINDEX	1
 
 #define START_STRING_NUMBER	11
@@ -50,6 +50,7 @@
 #define BIRD_SET_MAX_HEIGHT		100
 
 #define UI_SPRITE			L"Image/UI_ATLAS.png"
+#define SKULL_SPRITE		L"Image/SKULL.png"
 
 /**********************************************************************///
 /////////////<새들의 속성들 값을 지정 >/////////////////////////////////////////////////////////////////////
