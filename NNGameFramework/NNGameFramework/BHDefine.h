@@ -41,6 +41,7 @@
 #define PLAYER_POSITION_Y	500
 #define PLAYER_SPRITE_REAL_EDGE 30
 #define PLAYER_SPRITE		L"Image/character.png"
+#define PLAYER_ATLAS		L"Image/PC_ATLAS.png"
 #define PLAYER_ZINDEX		2
 
 #define BIRD_WIDTH			30

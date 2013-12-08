@@ -2,11 +2,14 @@
 #include "BHDefine.h"
 #include "NNBulletManager.h"
 #include "NNInputSystem.h"
+#include "NNSpriteAtlas.h"
 
 NNPlayerCharacter::NNPlayerCharacter(void)
 {
 	m_PlayerSpeed	= INIT_PLAYERSPEED;
-	m_pChar = NNSprite::Create( PLAYER_SPRITE );
+	//m_pChar = NNSprite::Create( PLAYER_SPRITE );
+	m_pChar = NNSpriteAtlas::Create(PLAYER_ATLAS);
+	m_pChar->SetCutSize(6.f, 7.f, 38.f, 35.f);
 
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;
