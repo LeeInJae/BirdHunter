@@ -12,6 +12,8 @@ public:
 	void Render();
 	void Update( float dTime );
 
+	void SetImageHeight( float height ) { m_Sprite->SetImageHeight( height ); }
+	void SetImageWidth( float width ) { m_Sprite->SetImageWidth( width ); }
 	//NNCREATE_FUNC(NNSpriteNode);
 
 	static NNSpriteNode* Create( wchar_t* path );
@@ -19,7 +21,6 @@ public:
 public:
 	NNSprite* GetSprite() const { return m_Sprite; }
 	float GetFrameTime() const { return m_FrameTime; }
-
 	void SetFrameTime( float frameTime ) { m_FrameTime = frameTime; }
 
 private:

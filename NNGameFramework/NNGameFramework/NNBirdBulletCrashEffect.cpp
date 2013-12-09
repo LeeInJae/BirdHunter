@@ -4,7 +4,7 @@
 
 NNBirdBulletCrashEffect::NNBirdBulletCrashEffect( void )
 {
-	m_LifeTime = BIRD_BULLET_HIT_EFFECT_LIFETIME;
+	m_LifeTime = BIRD_BULLET_HIT_EFFECT_SIZE * BIRD_BULLET_HIT_EFFECT_CHANGE_SPRITE_TIME;
 	m_ElapsedTime = 0;
 
 	m_Animation = NNAnimation::Create
@@ -20,6 +20,7 @@ NNBirdBulletCrashEffect::NNBirdBulletCrashEffect( void )
 		BIRD_BULLET_HIT_EFFECT_SPRITE8
 		);
 
+	m_Animation->SetFrameTime( BIRD_BULLET_HIT_EFFECT_CHANGE_SPRITE_TIME );
 	AddChild( m_Animation );
 }
 

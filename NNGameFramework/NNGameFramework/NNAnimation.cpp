@@ -36,6 +36,33 @@ NNAnimation* NNAnimation::Create( int count, ... )
 
 	return pInstance;
 }
+
+NNAnimation* NNAnimation::Create( float fps, float width, float height, int count, ... )
+{
+	NNAnimation* pInstance = new NNAnimation();
+
+	va_list ap;
+	va_start( ap, count );
+
+	for (int i=0; i<count; i++ )
+	{
+		NNSpriteNode* spriteInstance = NNSpriteNode::Create( va_arg( ap, wchar_t* ) );
+		spriteInstance->SetImageHeight( height );
+		spriteInstance->SetImageWidth( width );
+
+		pInstance->m_SpriteList.push_back( spriteInstance );
+		pInstance->m_SpriteList[i]->SetFrameTime( fps );
+		spriteInstance->SetParent( pInstance );
+		//pInstance->AddChild( spriteInstance );
+	}
+
+	va_end( ap );
+
+	pInstance->m_FrameCount = count;
+
+	return pInstance;
+}
+
 NNAnimation* NNAnimation::Create()
 {
 	NNAnimation* pInstance = new NNAnimation();
@@ -59,6 +86,7 @@ void NNAnimation::Render()
 
 	m_SpriteList[m_Frame]->Render();
 }
+
 void NNAnimation::Update( float dTime )
 {
 	if ( m_AnimationEnd == true || m_Visible == false ) return;
@@ -80,5 +108,13 @@ void NNAnimation::Update( float dTime )
 		{
 			m_AnimationEnd = true;
 		}
+	}
+}
+
+void NNAnimation::SetFrameTime( float fps )
+{
+	for (int i=0; i<m_FrameCount; i++ )
+	{
+		m_SpriteList[i]->SetFrameTime( fps );
 	}
 }

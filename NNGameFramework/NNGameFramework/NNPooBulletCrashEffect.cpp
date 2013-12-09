@@ -5,7 +5,7 @@
 
 NNPooBulletCrashEffect::NNPooBulletCrashEffect(void)
 {
-	m_LifeTime = POO_BULLET_HIT_EFFECT_LIFETIME;
+	m_LifeTime = POO_BULLET_HIT_EFFECT_CHANGE_SPRITE_TIME * POO_BULLET_HIT_EFFECT_SIZE;
 	m_ElapsedTime = 0;
 
 	m_Animation = NNAnimation::Create
@@ -18,7 +18,7 @@ NNPooBulletCrashEffect::NNPooBulletCrashEffect(void)
 		POO_BULLET_HIT_EFFECT_SPRITE5,
 		POO_BULLET_HIT_EFFECT_SPRITE6
 		);
-
+	m_Animation->SetFrameTime( POO_BULLET_HIT_EFFECT_CHANGE_SPRITE_TIME );
 	AddChild( m_Animation );
 }
 

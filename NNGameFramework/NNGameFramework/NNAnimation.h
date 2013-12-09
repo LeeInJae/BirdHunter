@@ -14,12 +14,13 @@ public:
 	void Update( float dTime );
 
 	static NNAnimation* Create( int count, ... );
+	static NNAnimation* Create( float fps, float width, float height, int count, ... );
 	static NNAnimation* Create();
 
 	int GetFrameCount() const { return m_FrameCount; }
 	int GetNowFrame() const { return m_Frame; }
 	bool IsLoop() const { return m_Loop; }
-
+	void SetFrameTime( float fps );
 	void AddSpriteNode( wchar_t* path );
 	void SetLoop( bool loop ) { m_Loop = loop; }
 

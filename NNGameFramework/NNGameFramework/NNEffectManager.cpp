@@ -68,16 +68,9 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 		birdPosition.SetX( birdPosition.GetX() - birdProperty.imageWidth );
 	}
 	newHitEffect->SetPosition( birdPosition.GetX() + birdProperty.imageWidth * 0.5,birdPosition.GetY() + birdProperty.imageHeight * 0.5 );
-// 	if( birdProperty.goingDirection == LEFT_GO )
-// 	{
-// 		newHitEffect->SetPosition( birdPosition.GetX() - 50,birdPosition.GetY() - 50 );
-// 	}
-// 	else
-// 	{
-// 		newHitEffect->SetPosition( birdPosition.GetX() - 20,birdPosition.GetY() - 50 );
-// 	}
-// 	
-	newHitEffect->SetPosition( birdPosition.GetX() - 50,birdPosition.GetY() - 50 );
+
+	newHitEffect->SetPosition( birdPosition.GetX() - 50.f ,birdPosition.GetY() - 50.f );
+
 	switch( birdProperty.type )
 	{
 	case BLACK_SMALL_BIRD:
