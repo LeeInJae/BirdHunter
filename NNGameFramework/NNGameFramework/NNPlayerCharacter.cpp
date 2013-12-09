@@ -12,13 +12,14 @@ NNPlayerCharacter::NNPlayerCharacter(void)
 	//m_pChar->SetCutSize(6.f, 7.f, 38.f, 35.f);
 	//m_pChar->SetCutSize(713.f, 23.f, 745.f, 62.f);
 
-	m_SpriteHeight	=	PLAYER_HEIGHT;
-	m_SpriteWidth	=	PLAYER_WIDTH;
+	//m_SpriteHeight	=	PLAYER_HEIGHT;
+	//m_SpriteWidth	=	PLAYER_WIDTH;
 
 	m_pChar->SetImageWidth( PLAYER_WIDTH );
 	m_pChar->SetImageHeight( PLAYER_HEIGHT );
 
-	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y );
+	SetPosition	( 100, 100 );
+	//SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y );
 	SetZindex	( PLAYER_ZINDEX );
 	m_SumTime = 0;
 	m_PauseKey = false;
