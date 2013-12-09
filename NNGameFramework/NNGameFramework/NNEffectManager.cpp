@@ -67,7 +67,7 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	{
 		birdPosition.SetX( birdPosition.GetX() - birdProperty.imageWidth );
 	}
-	newHitEffect->SetPosition( birdPosition.GetX() + birdProperty.imageWidth * 0.5,birdPosition.GetY() + birdProperty.imageHeight * 0.5 );
+	newHitEffect->SetPosition( birdPosition.GetX() + birdProperty.imageWidth * 0.5f ,birdPosition.GetY() + birdProperty.imageHeight * 0.5f );
 
 	newHitEffect->SetPosition( birdPosition.GetX() - 50.f ,birdPosition.GetY() - 50.f );
 
@@ -83,7 +83,7 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	case BLACK_MID_BIRD:
 	case CARAMEL_MID_BIRD:
 	case GREEN_MID_BIRD:
-	caseICE_MID_BIRD:
+	case ICE_MID_BIRD:
 	case YELLOW_MID_BIRD:
 		newHitEffect->SetScale( 1.5f, 1.5f );
 		break;

@@ -20,6 +20,7 @@ public:
 	int GetFrameCount() const { return m_FrameCount; }
 	int GetNowFrame() const { return m_Frame; }
 	bool IsLoop() const { return m_Loop; }
+	bool IsAnimationEnded() {return m_AnimationEnd;}
 	void SetFrameTime( float fps );
 	void AddSpriteNode( wchar_t* path );
 	void SetLoop( bool loop ) { m_Loop = loop; }

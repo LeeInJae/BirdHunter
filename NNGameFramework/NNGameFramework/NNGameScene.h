@@ -5,6 +5,7 @@
 
 
 class NNPlayerCharacter;
+class NNPlayerCharacterBottom;
 class NNMap_A;
 class NNPooManager;
 class NNMapManager;
@@ -33,6 +34,7 @@ protected:
 
 	NNMapManager*		m_Map;
 	NNPlayerCharacter*	m_Character;
+	NNPlayerCharacterBottom* m_CharacterBottom;
 	NNPooManager*		m_PooManager;
 
 	NNLabel*			m_ElapsedPlayTimeLabel;

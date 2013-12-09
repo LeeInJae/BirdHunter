@@ -259,9 +259,6 @@
     <ClCompile Include="NNGameScene.cpp">
       <Filter>BirdHunter\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="NNPlayerCharacter.cpp">
-      <Filter>BirdHunter\PlayerCharacter</Filter>
-    </ClCompile>
     <ClCompile Include="NNBird.cpp">
       <Filter>BirdHunter\Bird</Filter>
     </ClCompile>
@@ -303,6 +300,12 @@
     </ClCompile>
     <ClCompile Include="NNEffect.cpp">
       <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="NNPlayerCharacterBottom.cpp">
+      <Filter>BirdHunter\PlayerCharacter</Filter>
+    </ClCompile>
+    <ClCompile Include="NNplayerCharacter.cpp">
+      <Filter>BirdHunter\PlayerCharacter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -519,6 +522,9 @@
     </ClInclude>
     <ClInclude Include="NNEffect.h">
       <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNPlayerCharacterBottom.h">
+      <Filter>BirdHunter\PlayerCharacter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

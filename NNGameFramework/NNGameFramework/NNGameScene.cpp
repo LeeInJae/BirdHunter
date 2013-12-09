@@ -12,11 +12,13 @@
 #include "NNEffectManager.h"
 #include "NNSoundManager.h"
 #include "NNStartScene.h"
+#include "NNPlayerCharacterBottom.h"
 
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(false)
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
+	m_CharacterBottom = new NNPlayerCharacterBottom();
 
 	m_PauseTime	= 0;
 	m_SumTime = 0;
@@ -101,6 +103,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 
 	AddChild( NNMapManager::GetInstance() );
 	AddChild( m_Character );
+	AddChild( m_CharacterBottom);
 	AddChild( NNPooManager::GetInstance() );
 	AddChild( NNBulletManager::GetInstance() );
 	AddChild( NNBirdFactory::GetInstance() );

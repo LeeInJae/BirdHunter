@@ -126,7 +126,8 @@
     <ClCompile Include="NNMap.cpp" />
     <ClCompile Include="NNMapManager.cpp" />
     <ClCompile Include="NNObject.cpp" />
-    <ClCompile Include="NNPlayerCharacter.cpp" />
+    <ClCompile Include="NNplayerCharacter.cpp" />
+    <ClCompile Include="NNPlayerCharacterBottom.cpp" />
     <ClCompile Include="NNPoint.cpp" />
     <ClCompile Include="NNPoo.cpp" />
     <ClCompile Include="NNPooBulletCrashEffect.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="NNMapManager.h" />
     <ClInclude Include="NNObject.h" />
     <ClInclude Include="NNPlayerCharacter.h" />
+    <ClInclude Include="NNPlayerCharacterBottom.h" />
     <ClInclude Include="NNPoint.h" />
     <ClInclude Include="NNPoo.h" />
     <ClInclude Include="NNPooBulletCrashEffect.h" />
