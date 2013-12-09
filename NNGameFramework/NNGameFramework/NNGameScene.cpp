@@ -113,21 +113,10 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 
 void NNGameScene::UIInit()
 {
-	m_TimeLabel = NNLabel::Create(L"TIME", L"Feast of Flesh BB", 35.f, 255, 216, 0);
-	m_TimeLabel->SetPosition(705.f, 330.f);
-	m_TimeLabel->SetZindex(0);
-	AddChild(m_TimeLabel);
-
 	m_ElapsedPlayTimeLabel = NNLabel::Create(L"0.0", L"Feast of Flesh BB", 30.f, 255, 255, 255);
 	m_ElapsedPlayTimeLabel->SetPosition(715.f, 380.f);
 	m_ElapsedPlayTimeLabel->SetZindex(0);
 	AddChild(m_ElapsedPlayTimeLabel);
-
-	m_PollutionLabel = NNLabel::Create(L"POLLUTION", L"Feast of Flesh BB", 30.f, 255, 50, 0);
-	m_PollutionLabel->SetPosition(665.f, 245.f);
-	m_PollutionLabel->SetZindex(0);
-	m_PollutionLabel->SetRotation(-11.f);
-	AddChild(m_PollutionLabel);
 
 	m_LandedPoo1 = NNSprite::Create(NORMAL_POO_SPRITE);
 	m_LandedPoo1->SetPosition(675.f, 273.f);

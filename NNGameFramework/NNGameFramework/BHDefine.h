@@ -35,13 +35,13 @@
 #define STRING_K			L"Image/K.png"
 
 #define INIT_PLAYERSPEED	200
-#define PLAYER_WIDTH		100
-#define PLAYER_HEIGHT		100
+#define PLAYER_WIDTH		66
+#define PLAYER_HEIGHT		90
 #define PLAYER_POSITION_X	350
-#define PLAYER_POSITION_Y	500
+#define PLAYER_POSITION_Y	468
 #define PLAYER_SPRITE_REAL_EDGE 30
-#define PLAYER_SPRITE		L"Image/character.png"
-#define PLAYER_ATLAS		L"Image/PC_ATLAS.png"
+#define PLAYER_SPRITE		L"Image/PC/stand00.png"
+#define PLAYER_ATLAS		L"Image/PC_SPRITE_SET.png"
 #define PLAYER_ZINDEX		2
 
 #define BIRD_WIDTH			30
@@ -301,8 +301,8 @@
 #define NORMAL_POO_ACCEL_SPEED	50
 #define NORMAL_POO_SPRITE L"Image/poo.png"
 
-#define NORMAL_BULLET_WIDTH		6.f
-#define NORMAL_BULLET_HEIGHT	45.f
+#define NORMAL_BULLET_WIDTH		10.f
+#define NORMAL_BULLET_HEIGHT	30.f
 #define NORMAL_BULLET_SPEED		200
 #define NORMAL_BULLET_ZINDEX	2
 #define NORMAL_BULLET_SPRITE	L"Image/BULLET3.png"

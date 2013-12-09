@@ -35,9 +35,7 @@ protected:
 	NNPlayerCharacter*	m_Character;
 	NNPooManager*		m_PooManager;
 
-	NNLabel*			m_TimeLabel;
 	NNLabel*			m_ElapsedPlayTimeLabel;
-	NNLabel*			m_PollutionLabel;
 	NNLabel*			m_GameOverLabel;
 	NNLabel*			m_FPSLabel;
 	NNLabel*			m_AmmoLabel;
