@@ -45,4 +45,5 @@ private:
 	bool		AnimationEndCheck;
 	bool		isLeft;
 	bool		m_PauseKey;
+	bool		isAttack;
 };

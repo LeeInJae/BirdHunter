@@ -5,7 +5,7 @@
 #include "NNSpriteAtlas.h"
 #include "NNAnimation.h"
 
-NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false)
+NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false), isAttack(false)
 {
 	m_PlayerSpeed	= INIT_PLAYERSPEED;
 
@@ -41,6 +41,7 @@ void NNPlayerCharacter::Update( float dTime )
 		switch( NNInputSystem::GetInstance()->CheckWhichPressedKey() )
 		{
 		case LEFT:
+			isAttack = false;
 			RemoveChild(m_pCharTop, false);
 			m_pCharTop = m_RunningTopL;
 			AddChild(m_pCharTop);
@@ -52,6 +53,7 @@ void NNPlayerCharacter::Update( float dTime )
 			break;
 
 		case RIGHT:
+			isAttack = false;
 			RemoveChild(m_pCharTop, false);
 			m_pCharTop = m_RunningTopR;
 			AddChild(m_pCharTop);
@@ -61,6 +63,7 @@ void NNPlayerCharacter::Update( float dTime )
 				SetPosition( GetPositionX() + m_PlayerSpeed * dTime, GetPositionY() );
 			break;
 		case NONE:
+			isAttack = false;
 			if (m_pCharTop->IsAnimationEnded())
 			{
 				RemoveChild(m_pCharTop, false);
@@ -84,7 +87,7 @@ void NNPlayerCharacter::Update( float dTime )
 
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
-		case ATTACK: 
+		case ATTACK:
 			RemoveChild(m_pCharTop, false);
 			if (isLeft)
 			{
@@ -109,6 +112,7 @@ void NNPlayerCharacter::Update( float dTime )
 				bulletPos.SetX( bulletPos.GetX() + 20 );
 
 			NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, bulletPos );
+			isAttack = true;
 			break;
 
 		case ITEM1:
