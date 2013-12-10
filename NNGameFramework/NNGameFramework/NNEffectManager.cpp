@@ -110,8 +110,8 @@ void NNEffectManager::MakePooBulletCrashEffect( NNPoint pooPosition )
 	NNPooBulletCrashEffect* newHitEffect;
 
 	newHitEffect = new NNPooBulletCrashEffect();
- 	pooPosition.SetX( pooPosition.GetX() );
- 	pooPosition.SetY( pooPosition.GetY() );
+ 	pooPosition.SetX( pooPosition.GetX() - 30.f);
+ 	pooPosition.SetY( pooPosition.GetY() - 30.f);
 	newHitEffect->SetPosition( pooPosition );
 	newHitEffect->SetScale( POO_BULLET_HIT_EFFECT_SCALE_X, POO_BULLET_HIT_EFFECT_SCALE_Y );
 	newHitEffect->SetZindex( 0 );
