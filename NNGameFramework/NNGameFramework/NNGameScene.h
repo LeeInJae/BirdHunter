@@ -46,6 +46,7 @@ protected:
 	NNSprite*			m_LandedPoo2;
 	NNSprite*			m_LandedPoo3;
 
+	NNSprite*			m_GameOver;
 
 	virtual void	Render();
 	virtual void	UIUpdate( float dTime );

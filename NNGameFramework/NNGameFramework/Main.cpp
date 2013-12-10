@@ -44,7 +44,8 @@ int main()
 // 		printf_s("%f %f\n", pos );
 // 
 // 	}
-	 NNSceneDirector::GetInstance()->ChangeScene( NNStartScene::Create() );
+		 
+	NNSceneDirector::GetInstance()->ChangeScene( NNStartScene::Create() );
 	 //NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
  	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );

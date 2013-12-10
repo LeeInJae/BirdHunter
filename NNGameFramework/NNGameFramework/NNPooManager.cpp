@@ -213,10 +213,10 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 
 	bool hitCheck;
 
-	player_rect.left	=	player->GetPositionX() + PLAYER_SPRITE_REAL_EDGE;
-	player_rect.right	=	player->GetPositionX() + player->GetSpriteWidth() - PLAYER_SPRITE_REAL_EDGE;
-	player_rect.up		=	player->GetPositionY() + PLAYER_SPRITE_REAL_EDGE;
-	player_rect.down	=	player->GetPositionY() + player->GetSpriteHeight() - PLAYER_SPRITE_REAL_EDGE;
+	player_rect.left	=	player->GetPositionX() + 10;
+	player_rect.right	=	player_rect.left + 45;
+	player_rect.up		=	player->GetPositionY() + 63;
+	player_rect.down	=	player_rect.up + 71;
 
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
 	{

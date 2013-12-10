@@ -172,12 +172,25 @@ void NNGameScene::Update( float dTime )
 		m_CheckGameStart = true;
 	}
 
-	if(m_CheckGameOver)
-	{
+	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) )
+	{ 
+		m_CheckGameOver = true;
+
+		m_GameOver = NNSprite::Create( GAMEOVER_SPRITE );
+		m_GameOver->SetZindex( GAMEOVER_ZINDEX );
+		m_GameOver->SetImageHeight( 200.f );
+		m_GameOver->SetImageWidth( 600.f );
+		m_GameOver->SetPosition( 100.f, 200.f );
+		AddChild( m_GameOver );
+		
+		m_CheckGameOver = true;
+	
+
 		FMOD::Channel* m_gameoverCh = nullptr;
 		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
 		NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
 		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+		
 		return;
 	}
 
@@ -212,14 +225,8 @@ void NNGameScene::Render()
 
 void NNGameScene::UIUpdate( float dTime )
 {
-	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) )
-	{ 
-		m_GameOverLabel = NNLabel::Create(L"GameOver ", L"¸¼Àº °íµñ", 50.f);
-		m_GameOverLabel->SetPosition(RESOLUTION_WIDTH * 0.5f, RESOLUTION_HEIGHT * 0.5f );
-		m_GameOverLabel->SetCenter(RESOLUTION_WIDTH, RESOLUTION_HEIGHT); 
-		AddChild(m_GameOverLabel);
-		m_CheckGameOver = true;
-	}
+	
+
 	if (NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime > 9.9f
 		&& m_CheckElapsedTenSec == false)
 	{
