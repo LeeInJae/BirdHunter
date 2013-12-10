@@ -116,7 +116,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 
 void NNGameScene::UIInit()
 {
-	m_ElapsedPlayTimeLabel = NNLabel::Create(L"0.0", L"Feast of Flesh BB", 30.f, 255, 255, 255);
+	m_ElapsedPlayTimeLabel = NNLabel::Create(L"0.0", L"Feast of Flesh BB", 30.f, 150, 150, 150);
 	m_ElapsedPlayTimeLabel->SetPosition(715.f, 380.f);
 	m_ElapsedPlayTimeLabel->SetZindex(0);
 	AddChild(m_ElapsedPlayTimeLabel);
@@ -153,7 +153,7 @@ void NNGameScene::UIInit()
 	m_FPSLabel->SetZindex(3);
 	AddChild(m_FPSLabel);
 
-	m_AmmoLabel = NNLabel::Create(L"Ready", L"Feast of Flesh BB", 30.f, 255, 255, 255);
+	m_AmmoLabel = NNLabel::Create(L"Ready", L"Feast of Flesh BB", 30.f, 148, 84, 14);
 	m_AmmoLabel->SetPosition(685.f, 471.f);
 	m_AmmoLabel->SetZindex(3);
 	AddChild(m_AmmoLabel);
