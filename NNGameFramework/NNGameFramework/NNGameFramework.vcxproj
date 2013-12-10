@@ -107,6 +107,7 @@
     <ClCompile Include="Library\TinyXML\xpath_syntax.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NNAnimation.cpp" />
+    <ClCompile Include="NNAnimationManager.cpp" />
     <ClCompile Include="NNApplication.cpp" />
     <ClCompile Include="NNAudioSystem.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -184,6 +185,7 @@
     <ClInclude Include="Library\TinyXML\xpath_stream.h" />
     <ClInclude Include="Library\TinyXML\xpath_syntax.h" />
     <ClInclude Include="NNAnimation.h" />
+    <ClInclude Include="NNAnimationManager.h" />
     <ClInclude Include="NNApplication.h" />
     <ClInclude Include="NNAudioSystem.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

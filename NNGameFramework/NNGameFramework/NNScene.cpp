@@ -21,7 +21,7 @@ void NNScene::Render()
 
 	for (const auto& child : m_ChildList )
 	{
-		child->Render();
+ 		child->Render();
 	}
 }
 

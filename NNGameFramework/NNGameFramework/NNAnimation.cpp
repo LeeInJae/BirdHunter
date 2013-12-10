@@ -1,7 +1,7 @@
 #include "NNAnimation.h"
 
 NNAnimation::NNAnimation()
-	: m_FrameCount(0), m_Frame(0), m_Time(0.f), m_Loop(true), m_AnimationEnd(false)
+	: m_FrameCount(0), m_Frame(0), m_Time(0.f), m_Loop(true), m_AnimationEnd(false), m_LifeTime(0.f)
 {
 
 }

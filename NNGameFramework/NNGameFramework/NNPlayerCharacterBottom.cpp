@@ -26,11 +26,12 @@ NNPlayerCharacterBottom::~NNPlayerCharacterBottom(void)
 
 void NNPlayerCharacterBottom::Update( float dTime )
 {
-	m_pCharBottom->Update(dTime);
+	
 	NNPoint wich = GetPosition();
 
 	if( !m_PauseKey )
 	{
+		m_pCharBottom->Update(dTime);
 		switch( NNInputSystem::GetInstance()->CheckWhichPressedKey() )
 		{
 		case LEFT:
@@ -45,7 +46,7 @@ void NNPlayerCharacterBottom::Update( float dTime )
 				isLeft = true;
 			}
 			
-			if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE )
+			if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE + 20 )
 				SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
 			break;
 

@@ -24,13 +24,14 @@ public:
 	void SetFrameTime( float fps );
 	void AddSpriteNode( wchar_t* path );
 	void SetLoop( bool loop ) { m_Loop = loop; }
-
+	void SetLifeTime( float time ) { m_LifeTime = time; }
 private:
 	std::vector<NNSpriteNode*> m_SpriteList;
 
 	int m_FrameCount;
 	int m_Frame;
 	float m_Time;
+	float m_LifeTime;
 	bool m_Loop;
 	bool m_AnimationEnd;
 };

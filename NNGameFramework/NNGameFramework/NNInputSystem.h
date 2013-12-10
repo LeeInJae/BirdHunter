@@ -22,6 +22,8 @@ enum PlayerCharacterDirection
 {
 	LEFT,
 	RIGHT,
+	LEFT_GOING_ATTACK,
+	RIGHT_GOING_ATTACK,
 	NONE,
 };
 
