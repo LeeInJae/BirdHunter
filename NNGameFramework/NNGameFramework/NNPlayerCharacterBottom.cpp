@@ -41,7 +41,7 @@ void NNPlayerCharacterBottom::Update( float dTime )
 
 			if (isLeft == false)
 			{
-				SetPosition(GetPositionX() + 10.f, GetPositionY());
+				SetPosition(GetPositionX() + 15.f, GetPositionY());
 				isLeft = true;
 			}
 			
@@ -56,7 +56,7 @@ void NNPlayerCharacterBottom::Update( float dTime )
 
 			if (isLeft)
 			{
-				SetPosition(GetPositionX() - 10.f, GetPositionY());
+				SetPosition(GetPositionX() - 15.f, GetPositionY());
 				isLeft = false;
 			}
 			if( GetPositionX() + m_PlayerSpeed * dTime <= WINDOW_WIDTH_RIGHT_EDGE - PLAYER_WIDTH )
@@ -97,16 +97,27 @@ void NNPlayerCharacterBottom::Update( float dTime )
 
 void NNPlayerCharacterBottom::PCAnimationInit( void )
 {
-	m_StandingBottomR = NNAnimation::Create(1, PLAYER_STAND_BOTTOM_R);
-	m_StandingBottomL = NNAnimation::Create(1, PLAYER_STAND_BOTTOM_L);
+	m_StandingBottomR = NNAnimation::Create(0.2f, 34, 34, 1, PLAYER_STAND_BOTTOM_R);
+	m_StandingBottomL = NNAnimation::Create(0.2f, 34, 34, 1, PLAYER_STAND_BOTTOM_L);
 
-	m_RunningBottomR = NNAnimation::Create(6, PLAYER_RUN_BOTTOM_R_00, PLAYER_RUN_BOTTOM_R_01, 
+	m_RunningBottomR = NNAnimation::Create(0.1f, 43, 36,6, PLAYER_RUN_BOTTOM_R_00, PLAYER_RUN_BOTTOM_R_01, 
 		PLAYER_RUN_BOTTOM_R_02, PLAYER_RUN_BOTTOM_R_03, PLAYER_RUN_BOTTOM_R_04, PLAYER_RUN_BOTTOM_R_05);
 	m_RunningBottomR->SetLoop(true);
-	m_RunningBottomR->SetFrameTime(0.1f);
 
-	m_RunningBottomL = NNAnimation::Create(6, PLAYER_RUN_BOTTOM_L_00, PLAYER_RUN_BOTTOM_L_01, 
+	m_RunningBottomL = NNAnimation::Create(0.1f, 43, 36, 6, PLAYER_RUN_BOTTOM_L_00, PLAYER_RUN_BOTTOM_L_01, 
 		PLAYER_RUN_BOTTOM_L_02, PLAYER_RUN_BOTTOM_L_03, PLAYER_RUN_BOTTOM_L_04, PLAYER_RUN_BOTTOM_L_05);
 	m_RunningBottomL->SetLoop(true);
-	m_RunningBottomL->SetFrameTime(0.1f);
+
+// 	m_StandingBottomR = NNAnimation::Create(1, PLAYER_STAND_BOTTOM_R);
+// 	m_StandingBottomL = NNAnimation::Create(1, PLAYER_STAND_BOTTOM_L);
+// 
+// 	m_RunningBottomR = NNAnimation::Create(6, PLAYER_RUN_BOTTOM_R_00, PLAYER_RUN_BOTTOM_R_01, 
+// 		PLAYER_RUN_BOTTOM_R_02, PLAYER_RUN_BOTTOM_R_03, PLAYER_RUN_BOTTOM_R_04, PLAYER_RUN_BOTTOM_R_05);
+// 	m_RunningBottomR->SetLoop(true);
+// 	m_RunningBottomR->SetFrameTime(0.1f);
+// 
+// 	m_RunningBottomL = NNAnimation::Create(6, PLAYER_RUN_BOTTOM_L_00, PLAYER_RUN_BOTTOM_L_01, 
+// 		PLAYER_RUN_BOTTOM_L_02, PLAYER_RUN_BOTTOM_L_03, PLAYER_RUN_BOTTOM_L_04, PLAYER_RUN_BOTTOM_L_05);
+// 	m_RunningBottomL->SetLoop(true);
+// 	m_RunningBottomL->SetFrameTime(0.1f);
 }

@@ -16,7 +16,7 @@ NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false)
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;
 
-	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y );
+	SetPosition	( PLAYER_POSITION_X -  4, PLAYER_POSITION_Y - 25 );
 	SetZindex	( PLAYER_ZINDEX + 1 );
 	m_SumTime = 0;
 	m_PauseKey = false;
@@ -80,6 +80,8 @@ void NNPlayerCharacter::Update( float dTime )
 			break;
 		}
 
+		NNPoint bulletPos;
+
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
 		case ATTACK: 
@@ -87,21 +89,26 @@ void NNPlayerCharacter::Update( float dTime )
 			if (isLeft)
 			{
 				m_pCharTop = m_NormalShotL;
-				m_NormalShotL =  NNAnimation::Create(10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
+				m_NormalShotL =  NNAnimation::Create(0.03f, 50,100,10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
 					NORMAL_SHOT_L_04, NORMAL_SHOT_L_05, NORMAL_SHOT_L_06, NORMAL_SHOT_L_07, NORMAL_SHOT_L_08, NORMAL_SHOT_L_09);
 				m_NormalShotL->SetLoop(false); 
-				m_NormalShotL->SetFrameTime(0.03f);
+				//m_NormalShotL->SetFrameTime(0.03f);
 			}
 			else
 			{
 				m_pCharTop = m_NormalShotR;
-				m_NormalShotR = NNAnimation::Create(10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
+				m_NormalShotR = NNAnimation::Create(0.03f, 50,100,10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
 					NORMAL_SHOT_R_04, NORMAL_SHOT_R_05, NORMAL_SHOT_R_06, NORMAL_SHOT_R_07, NORMAL_SHOT_R_08, NORMAL_SHOT_R_09);
 				m_NormalShotR->SetLoop(false);
-				m_NormalShotR->SetFrameTime(0.03f);
+				//m_NormalShotR->SetFrameTime(0.03f);
 			}
 			AddChild(m_pCharTop);
-			NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, GetPosition() );
+
+			bulletPos = GetPosition();
+			if( isLeft )
+				bulletPos.SetX( bulletPos.GetX() + 20 );
+
+			NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, bulletPos );
 			break;
 
 		case ITEM1:
@@ -122,29 +129,52 @@ void NNPlayerCharacter::Update( float dTime )
 
 void NNPlayerCharacter::PCAnimationInit( void )
 {
-	m_StandingTopR = NNAnimation::Create(6, PLAYER_STAND_TOP_R_00, PLAYER_STAND_TOP_R_01, 
+	m_StandingTopR = NNAnimation::Create(0.2f, 60,100, 6, PLAYER_STAND_TOP_R_00, PLAYER_STAND_TOP_R_01, 
 		PLAYER_STAND_TOP_R_02, PLAYER_STAND_TOP_R_03, PLAYER_STAND_TOP_R_02, PLAYER_STAND_TOP_R_01);
 	m_StandingTopR->SetLoop(true);
 
-	m_StandingTopL = NNAnimation::Create(6, PLAYER_STAND_TOP_L_00, PLAYER_STAND_TOP_L_01, 
+	m_StandingTopL = NNAnimation::Create(0.2f, 60,100,6, PLAYER_STAND_TOP_L_00, PLAYER_STAND_TOP_L_01, 
 		PLAYER_STAND_TOP_L_02, PLAYER_STAND_TOP_L_03,PLAYER_STAND_TOP_L_02, PLAYER_STAND_TOP_L_01);
 	m_StandingTopR->SetLoop(true);
 
-	m_RunningTopR = NNAnimation::Create(6, PLAYER_RUN_TOP_R_00, PLAYER_RUN_TOP_R_01, 
+	m_RunningTopR = NNAnimation::Create(0.2f, 60,100,6, PLAYER_RUN_TOP_R_00, PLAYER_RUN_TOP_R_01, 
 		PLAYER_RUN_TOP_R_02, PLAYER_RUN_TOP_R_03, PLAYER_RUN_TOP_R_04, PLAYER_RUN_TOP_R_05);
 	m_RunningTopR->SetLoop(true);
 
-	m_RunningTopL = NNAnimation::Create(6, PLAYER_RUN_TOP_L_00, PLAYER_RUN_TOP_L_01, 
+	m_RunningTopL = NNAnimation::Create(0.2f, 60,100,6, PLAYER_RUN_TOP_L_00, PLAYER_RUN_TOP_L_01, 
 		PLAYER_RUN_TOP_L_02, PLAYER_RUN_TOP_L_03, PLAYER_RUN_TOP_L_04, PLAYER_RUN_TOP_L_05);
 	m_RunningTopL->SetLoop(true);
 
-	m_NormalShotR = NNAnimation::Create(10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
+	m_NormalShotR = NNAnimation::Create(0.03f, 60,100,10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
 		NORMAL_SHOT_R_04, NORMAL_SHOT_R_05, NORMAL_SHOT_R_06, NORMAL_SHOT_R_07, NORMAL_SHOT_R_08, NORMAL_SHOT_R_09);
 	m_NormalShotR->SetLoop(false);
-	m_NormalShotR->SetFrameTime(0.03f);
 
-	m_NormalShotL = NNAnimation::Create(10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
+	m_NormalShotL = NNAnimation::Create(0.03f, 60,100,10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
 		NORMAL_SHOT_L_04, NORMAL_SHOT_L_05, NORMAL_SHOT_L_06, NORMAL_SHOT_L_07, NORMAL_SHOT_L_08, NORMAL_SHOT_L_09);
 	m_NormalShotL->SetLoop(false); 
-	m_NormalShotL->SetFrameTime(0.03f);
+
+// 	m_StandingTopR = NNAnimation::Create(6, PLAYER_STAND_TOP_R_00, PLAYER_STAND_TOP_R_01, 
+// 		PLAYER_STAND_TOP_R_02, PLAYER_STAND_TOP_R_03, PLAYER_STAND_TOP_R_02, PLAYER_STAND_TOP_R_01);
+// 	m_StandingTopR->SetLoop(true);
+// 	m_StandingTopL = NNAnimation::Create(6, PLAYER_STAND_TOP_L_00, PLAYER_STAND_TOP_L_01, 
+// 		PLAYER_STAND_TOP_L_02, PLAYER_STAND_TOP_L_03,PLAYER_STAND_TOP_L_02, PLAYER_STAND_TOP_L_01);
+// 	m_StandingTopR->SetLoop(true);
+// 
+// 	m_RunningTopR = NNAnimation::Create(6, PLAYER_RUN_TOP_R_00, PLAYER_RUN_TOP_R_01, 
+// 		PLAYER_RUN_TOP_R_02, PLAYER_RUN_TOP_R_03, PLAYER_RUN_TOP_R_04, PLAYER_RUN_TOP_R_05);
+// 	m_RunningTopR->SetLoop(true);
+// 
+// 	m_RunningTopL = NNAnimation::Create(6, PLAYER_RUN_TOP_L_00, PLAYER_RUN_TOP_L_01, 
+// 		PLAYER_RUN_TOP_L_02, PLAYER_RUN_TOP_L_03, PLAYER_RUN_TOP_L_04, PLAYER_RUN_TOP_L_05);
+// 	m_RunningTopL->SetLoop(true);
+// 
+// 	m_NormalShotR = NNAnimation::Create(10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
+// 		NORMAL_SHOT_R_04, NORMAL_SHOT_R_05, NORMAL_SHOT_R_06, NORMAL_SHOT_R_07, NORMAL_SHOT_R_08, NORMAL_SHOT_R_09);
+// 	m_NormalShotR->SetLoop(false);
+// 	m_NormalShotR->SetFrameTime(0.03f);
+// 
+// 	m_NormalShotL = NNAnimation::Create(10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
+// 		NORMAL_SHOT_L_04, NORMAL_SHOT_L_05, NORMAL_SHOT_L_06, NORMAL_SHOT_L_07, NORMAL_SHOT_L_08, NORMAL_SHOT_L_09);
+// 	m_NormalShotL->SetLoop(false); 
+// 	m_NormalShotL->SetFrameTime(0.03f);
 }
