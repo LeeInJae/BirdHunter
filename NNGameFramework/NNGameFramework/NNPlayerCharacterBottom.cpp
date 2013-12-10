@@ -14,7 +14,7 @@ NNPlayerCharacterBottom::NNPlayerCharacterBottom(void): m_SumTime(0), m_PauseKey
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;
 
-	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y + 65.f);
+	SetPosition	( PLAYER_POSITION_X, PLAYER_POSITION_Y + 55.f);
 	SetZindex	( PLAYER_ZINDEX );
 	AddChild(m_pCharBottom);
 }

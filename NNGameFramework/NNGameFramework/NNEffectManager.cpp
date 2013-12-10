@@ -69,7 +69,7 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	}
 	newHitEffect->SetPosition( birdPosition.GetX() + birdProperty.imageWidth * 0.5f ,birdPosition.GetY() + birdProperty.imageHeight * 0.5f );
 
-	newHitEffect->SetPosition( birdPosition.GetX() - 50.f ,birdPosition.GetY() - 50.f );
+	newHitEffect->SetPosition( birdPosition.GetX() - 40.f ,birdPosition.GetY() - 40.f );
 
 	switch( birdProperty.type )
 	{
@@ -77,7 +77,7 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	case ORANGE_SMALL_BIRD:
 	case WHITE_SMALL_BIRD:
 	case RED_SMALL_BIRD:
-		newHitEffect->SetScale( 1.0f, 1.0f );
+		newHitEffect->SetScale( 0.8f, 0.8f );
 		break;
 
 	case BLACK_MID_BIRD:
@@ -85,7 +85,7 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	case GREEN_MID_BIRD:
 	case ICE_MID_BIRD:
 	case YELLOW_MID_BIRD:
-		newHitEffect->SetScale( 1.5f, 1.5f );
+		newHitEffect->SetScale( 1.0f, 1.0f );
 		break;
 
 	case BROWN_BIG_BIRD:
@@ -94,7 +94,7 @@ void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPE
 	case ITEM_KING_BIRD:
 	case RED_OLD_BIRD:
 	case GREEN_OLD_BIRD:
-		newHitEffect->SetScale( 1.8f, 1.8f );
+		newHitEffect->SetScale( 1.3f, 1.3f );
 		break;
 
 	default:

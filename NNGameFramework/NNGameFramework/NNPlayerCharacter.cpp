@@ -16,7 +16,7 @@ NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false), isAttack(false)
 	m_SpriteHeight	=	PLAYER_HEIGHT;
 	m_SpriteWidth	=	PLAYER_WIDTH;
 
-	SetPosition	( PLAYER_POSITION_X -  4, PLAYER_POSITION_Y - 25 );
+	SetPosition	( PLAYER_POSITION_X -  4, PLAYER_POSITION_Y - 35 );
 	SetZindex	( PLAYER_ZINDEX + 1 );
 	m_SumTime = 0;
 	m_PauseKey = false;
@@ -40,7 +40,7 @@ void NNPlayerCharacter::Update( float dTime )
 		{
 		case LEFT_GOING_ATTACK:
 			RemoveChild( m_pCharTop, false );
-			m_NormalShotL =  NNAnimation::Create(0.03f, 52,100,10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
+			m_NormalShotL =  NNAnimation::Create(0.015f, 52,100,10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
 				NORMAL_SHOT_L_04, NORMAL_SHOT_L_05, NORMAL_SHOT_L_06, NORMAL_SHOT_L_07, NORMAL_SHOT_L_08, NORMAL_SHOT_L_09);
 			m_NormalShotL->SetLoop(false); 
 			m_pCharTop = m_NormalShotL;
@@ -49,7 +49,7 @@ void NNPlayerCharacter::Update( float dTime )
 
 		case RIGHT_GOING_ATTACK:
 			RemoveChild( m_pCharTop, false );
-			m_NormalShotR = NNAnimation::Create(0.03f, 52,100,10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
+			m_NormalShotR = NNAnimation::Create(0.015f, 52,100,10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
 				NORMAL_SHOT_R_04, NORMAL_SHOT_R_05, NORMAL_SHOT_R_06, NORMAL_SHOT_R_07, NORMAL_SHOT_R_08, NORMAL_SHOT_R_09);
 			m_NormalShotR->SetLoop( false );
 			m_pCharTop = m_NormalShotR;
@@ -57,7 +57,7 @@ void NNPlayerCharacter::Update( float dTime )
 			break;
 
 		case LEFT:
-			if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopR ||  m_pCharTop == m_StandingTopR)
+			if( ( m_pCharTop->IsAnimationEnded() ) || ( m_pCharTop != m_NormalShotR && m_pCharTop != m_NormalShotL ) )
 			{
 				isAttack = false;
 				RemoveChild(m_pCharTop, false);
@@ -71,7 +71,7 @@ void NNPlayerCharacter::Update( float dTime )
 			break;
 
 		case RIGHT:
-			if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopL ||  m_pCharTop == m_StandingTopL )
+			if( ( m_pCharTop->IsAnimationEnded() ) || ( m_pCharTop != m_NormalShotR && m_pCharTop != m_NormalShotL ) )
 			{
 				isAttack = false;
 				RemoveChild(m_pCharTop, false);
@@ -114,14 +114,14 @@ void NNPlayerCharacter::Update( float dTime )
 			RemoveChild(m_pCharTop, false);
 			if (isLeft)
 			{
-				m_NormalShotL =  NNAnimation::Create(0.03f, 52,100,10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
+				m_NormalShotL =  NNAnimation::Create(0.015f, 52,100,10, NORMAL_SHOT_L_00, NORMAL_SHOT_L_01, NORMAL_SHOT_L_02, NORMAL_SHOT_L_03, 
 					NORMAL_SHOT_L_04, NORMAL_SHOT_L_05, NORMAL_SHOT_L_06, NORMAL_SHOT_L_07, NORMAL_SHOT_L_08, NORMAL_SHOT_L_09);
 				m_NormalShotL->SetLoop( false );
 				m_pCharTop = m_NormalShotL;
 			}
 			else
 			{
-				m_NormalShotR = NNAnimation::Create(0.03f, 52,100,10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
+				m_NormalShotR = NNAnimation::Create(0.015f, 52,100,10, NORMAL_SHOT_R_00, NORMAL_SHOT_R_01, NORMAL_SHOT_R_02, NORMAL_SHOT_R_03, 
 									NORMAL_SHOT_R_04, NORMAL_SHOT_R_05, NORMAL_SHOT_R_06, NORMAL_SHOT_R_07, NORMAL_SHOT_R_08, NORMAL_SHOT_R_09);
  				m_NormalShotR->SetLoop( false );
 				m_pCharTop = m_NormalShotR;

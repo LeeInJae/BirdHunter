@@ -159,7 +159,6 @@ void NNGameScene::UIInit()
 	AddChild(m_AmmoLabel);
 }
 
-
 NNGameScene::~NNGameScene(void)
 {
 }
@@ -197,13 +196,6 @@ void NNGameScene::Update( float dTime )
 				m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
 			}
 		}
-
-		// 		test
-// 				if( m_SumTime >= 1)
-// 		 		{
-// 		 			NNBirdFactory::GetInstance()->MakeBird( BLACK_SMALL_BIRD );
-// 		 			m_SumTime = 0;
-// 				}
 	}
 	else
 	{
