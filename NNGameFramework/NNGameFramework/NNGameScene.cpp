@@ -269,7 +269,7 @@ void NNGameScene::UIUpdate( float dTime )
 	
 
 	if (NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - GAMESTART_READYTIME - 
+		m_PauseTime - m_AppearTime - 
 		m_GameSceneStartTime > 9.9f	&& 
 		m_CheckElapsedTenSec == false)
 	{
@@ -279,7 +279,7 @@ void NNGameScene::UIUpdate( float dTime )
 
 	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", 
 		NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime );
+		m_PauseTime - m_AppearTime - m_GameSceneStartTime );
 
 	m_ElapsedPlayTimeLabel->SetString(m_PlayTimeString);
 
