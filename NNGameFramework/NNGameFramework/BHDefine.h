@@ -28,14 +28,14 @@
 #define TITLE_FILTER_HEIGHT			700.f
 #define TITLE_FILTER_ZINDEX			0
 
-#define STRING_P			L"Image/P.png"
-#define STRING_E			L"Image/E.png"
-#define STRING_R			L"Image/R.png"
-#define STRING_S			L"Image/S.png"
-#define STRING_A			L"Image/A.png"
-#define STRING_N			L"Image/N.png"
-#define STRING_Y			L"Image/Y.png"
-#define STRING_K			L"Image/K.png"
+#define STRING_P			L"Image/LETTERS/P.png"
+#define STRING_E			L"Image/LETTERS/E.png"
+#define STRING_R			L"Image/LETTERS/R.png"
+#define STRING_S			L"Image/LETTERS/S.png"
+#define STRING_A			L"Image/LETTERS/A.png"
+#define STRING_N			L"Image/LETTERS/N.png"
+#define STRING_Y			L"Image/LETTERS/Y.png"
+#define STRING_K			L"Image/LETTERS/K.png"
 
 #define INIT_PLAYERSPEED	200
 #define PLAYER_WIDTH		66
