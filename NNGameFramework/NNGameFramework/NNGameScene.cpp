@@ -266,13 +266,21 @@ void NNGameScene::Render()
 
 void NNGameScene::UIUpdate( float dTime )
 {
-	if (NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_AppearTime - m_GameSceneStartTime > 9.9f
-		&& m_CheckElapsedTenSec == false)
+	
+
+	if (NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - GAMESTART_READYTIME - 
+		m_GameSceneStartTime > 9.9f	&& 
+		m_CheckElapsedTenSec == false)
 	{
 		m_ElapsedPlayTimeLabel->SetPosition(708.f, 380.f);
 		m_CheckElapsedTenSec = true;
 	}
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_AppearTime - m_GameSceneStartTime );
+
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", 
+		NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime );
+
 	m_ElapsedPlayTimeLabel->SetString(m_PlayTimeString);
 
 	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_01)
@@ -288,9 +296,13 @@ void NNGameScene::UIUpdate( float dTime )
 		m_LandedPoo3->SetVisible(true);
 	}
 
-	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ", NNApplication::GetInstance()->GetFPS());
+	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ",
+		NNApplication::GetInstance()->GetFPS());
+
 	m_FPSLabel->SetString(m_FPSString);
 
-	swprintf_s(m_AmmoString, _countof(m_AmmoString), L"%d", NNBulletManager::GetInstance()->GetAmmoLeft());
+	swprintf_s(m_AmmoString, _countof(m_AmmoString), L"%d",
+		NNBulletManager::GetInstance()->GetAmmoLeft());
+
 	m_AmmoLabel->SetString(m_AmmoString);
 }

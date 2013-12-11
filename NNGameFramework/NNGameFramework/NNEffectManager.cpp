@@ -61,7 +61,7 @@ void NNEffectManager::RemoveEffectCheck()
 void NNEffectManager::MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPERTY birdProperty, float scaleX )
 {
 	NNBirdBulletCrashEffect* newHitEffect;
-	newHitEffect = new NNBirdBulletCrashEffect();
+	newHitEffect = new NNBirdBulletCrashEffect(birdProperty.type);
 	
 	if( scaleX == -1)
 	{
