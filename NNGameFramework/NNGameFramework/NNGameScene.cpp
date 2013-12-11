@@ -161,6 +161,7 @@ void NNGameScene::UIInit()
 
 NNGameScene::~NNGameScene(void)
 {
+
 }
 
 void NNGameScene::Update( float dTime )

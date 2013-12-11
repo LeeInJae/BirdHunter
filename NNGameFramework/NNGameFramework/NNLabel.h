@@ -23,7 +23,7 @@ protected:
 public:
 	NNLabel()
 		: m_FontFace(nullptr), m_String(nullptr), m_FontSize(0.f),
-		  m_ColorR(0.f), m_ColorG(0.f), m_ColorB(0.f), m_Opacity(1.f),
+		  m_ColorR( 0.f ), m_ColorG(0.255f), m_ColorB(0.255f), m_Opacity(0.255f),
 		  m_Bold(false), m_Italic(false)
 	{}
 	virtual ~NNLabel(){}
