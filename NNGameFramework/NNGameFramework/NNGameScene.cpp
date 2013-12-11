@@ -15,7 +15,8 @@
 #include "NNPlayerCharacterBottom.h"
 #include "NNAnimation.h"
 
-NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
+NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(false), 
+	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
@@ -114,7 +115,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 	//AddChild( NNBulletManager::GetInstance() );
 	//AddChild( NNBirdFactory::GetInstance() );
 	//AddChild( NNEffectManager::GetInstance() );
-	AddChild( NNSoundManager::GetInstance() );
+	//AddChild( NNSoundManager::GetInstance() );
 
 	UIInit();
 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
@@ -189,6 +190,7 @@ NNGameScene::~NNGameScene(void)
 
 void NNGameScene::Update( float dTime )
 {
+	NNSoundManager::GetInstance()->Update(dTime);
 	if( m_SumTime >= PLAYERCHARACTER_APPEAR_FPS * PLAYERCHARACTER_APPEAR_NUMBER && m_CheckPlayingAddChild == false )
 	{
 		RemoveChild( m_PlayerCharacterAppear, true );
@@ -209,9 +211,18 @@ void NNGameScene::Update( float dTime )
 
 	if (m_CheckGameStart == false)
 	{
-		//Sleep(3000);
-		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM], &NNSoundManager::GetInstance()->m_BgmChannel);
+		NNSoundManager::GetInstance()->PlayAndGetChannel(
+			NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM],
+			&NNSoundManager::GetInstance()->m_BgmChannel);
+		NNSoundManager::GetInstance()->Pause(NNSoundManager::GetInstance()->m_BgmChannel);
 		m_CheckGameStart = true;
+	}
+
+	if (m_CheckBgmStarted == false && (NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - m_AppearTime - m_GameSceneStartTime) >= 2.5f)
+	{
+		NNSoundManager::GetInstance()->Resume(NNSoundManager::GetInstance()->m_BgmChannel);
+		m_CheckBgmStarted = true;
 	}
 
 	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) )
@@ -240,7 +251,10 @@ void NNGameScene::Update( float dTime )
 	{
 		NNScene::Update( dTime );
 		UIUpdate( dTime );
-		NNSoundManager::GetInstance()->Resume(NNSoundManager::GetInstance()->m_BgmChannel);
+		if (m_CheckBgmStarted == true)
+		{
+			NNSoundManager::GetInstance()->Resume(NNSoundManager::GetInstance()->m_BgmChannel);
+		}
 		m_SumTime += dTime;
 
 		for( int i=0; i<BIRD_ALL_NUMBER; ++i )

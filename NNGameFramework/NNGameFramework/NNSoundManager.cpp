@@ -34,6 +34,7 @@ void NNSoundManager::Init( void )
 	SE_SystemSound[WARNING] = CreateSound("Sound/WARNING.wav");
 	SE_SystemSound[GAMEOVER] = CreateSound("Sound/GAME_OVER.wav");
 	SE_SystemSound[GAMEBGM] = CreateLoopSound("Sound/GAME_BGM.wav");
+	SE_SystemSound[STARTSCENEBGM] = CreateLoopSound("Sound/Silence_Is_Sexy_-_01_-_David_and_Bathsheba_instrumental.mp3");
 }
 
 NNSoundManager* NNSoundManager::GetInstance()

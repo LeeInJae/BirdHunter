@@ -3,6 +3,7 @@
 #include "NNInputSystem.h"
 #include "NNSceneDirector.h"
 #include "NNGameScene.h"
+#include "NNSoundManager.h"
 
 NNStartScene::NNStartScene(void)
 {
@@ -12,6 +13,12 @@ NNStartScene::NNStartScene(void)
 	m_pBackGround->SetImageWidth( RESOLUTION_WIDTH );
 	m_pBackGround->SetImageHeight( RESOLUTION_HEIGHT );
 	m_pBackGround->SetZindex( BACKGROUND_ZINDEX );
+
+// 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
+	NNSoundManager::GetInstance()->PlayAndGetChannel
+		(NNSoundManager::GetInstance()->SE_SystemSound[STARTSCENEBGM], 
+		&NNSoundManager::GetInstance()->m_BgmChannel);
+
 
 
 	m_pTitle=NNSprite::Create( TITLE_SPRITE );
@@ -76,6 +83,7 @@ void NNStartScene::Render()
 
 void NNStartScene::Update( float dTime )
 {
+	NNSoundManager::GetInstance()->Update(dTime);
 	NNScene::Update( dTime );
 
 
@@ -94,5 +102,6 @@ void NNStartScene::Update( float dTime )
 	if( NNInputSystem::GetInstance()->PressedKeyCheck() )
 	{
 		NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
+		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
 	}
 }

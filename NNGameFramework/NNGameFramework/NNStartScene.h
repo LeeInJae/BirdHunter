@@ -3,6 +3,7 @@
 #include "BHDefine.h"
 
 class NNSprite;
+class NNSoundManager;
 
 class NNStartScene :	public NNScene
 {
