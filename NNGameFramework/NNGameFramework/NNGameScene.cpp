@@ -13,6 +13,7 @@
 #include "NNSoundManager.h"
 #include "NNStartScene.h"
 #include "NNPlayerCharacterBottom.h"
+#include "NNAnimation.h"
 
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(false)
 {
@@ -23,6 +24,9 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 	m_PauseTime	= 0;
 	m_SumTime = 0;
 	m_GameSceneStartTime	=	NNApplication::GetInstance()->GetElapsedTime();	
+
+	m_CheckLodingAddChild = false;
+	m_CheckPlayingAddChild = false;
 
 	struct BIRD_BORN_TIME birdBornItem;
 
@@ -102,16 +106,34 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 	m_BirdBornCheckArray[ 14 ]	=	birdBornItem;
 
 	AddChild( NNMapManager::GetInstance() );
-	AddChild( m_Character );
-	AddChild( m_CharacterBottom);
-	AddChild( NNPooManager::GetInstance() );
-	AddChild( NNBulletManager::GetInstance() );
-	AddChild( NNBirdFactory::GetInstance() );
-	AddChild( NNEffectManager::GetInstance() );
+	
+	//AddChild( m_Character );
+	//AddChild( m_CharacterBottom);
+	
+	//AddChild( NNPooManager::GetInstance() );
+	//AddChild( NNBulletManager::GetInstance() );
+	//AddChild( NNBirdFactory::GetInstance() );
+	//AddChild( NNEffectManager::GetInstance() );
 	AddChild( NNSoundManager::GetInstance() );
 
 	UIInit();
 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
+
+	m_PlayerCharacterAppear	=	NNAnimation::Create(7,
+						PLAYERCHARACTER_APPEAR_SPRITE1, 
+						PLAYERCHARACTER_APPEAR_SPRITE2, 
+						PLAYERCHARACTER_APPEAR_SPRITE3,
+						PLAYERCHARACTER_APPEAR_SPRITE4,
+						PLAYERCHARACTER_APPEAR_SPRITE5,
+						PLAYERCHARACTER_APPEAR_SPRITE6,
+						PLAYERCHARACTER_APPEAR_SPRITE7
+						);
+	m_PlayerCharacterAppear->SetScale( 1.8f, 1.8f );
+	m_PlayerCharacterAppear->SetPosition( PLAYER_POSITION_X - 10.f, PLAYER_POSITION_Y - 350.f );
+	m_PlayerCharacterAppear->SetFrameTime( PLAYERCHARACTER_APPEAR_FPS );
+	AddChild( m_PlayerCharacterAppear );
+
+
 }
 
 void NNGameScene::UIInit()
@@ -119,7 +141,7 @@ void NNGameScene::UIInit()
 	m_ElapsedPlayTimeLabel = NNLabel::Create(L"0.0", L"Feast of Flesh BB", 30.f, 150, 150, 150);
 	m_ElapsedPlayTimeLabel->SetPosition(715.f, 380.f);
 	m_ElapsedPlayTimeLabel->SetZindex(0);
-	AddChild(m_ElapsedPlayTimeLabel);
+	//AddChild(m_ElapsedPlayTimeLabel);
 
 	m_LandedPoo1 = NNSprite::Create(NORMAL_POO_SPRITE);
 	m_LandedPoo1->SetPosition(675.f, 273.f);
@@ -156,7 +178,7 @@ void NNGameScene::UIInit()
 	m_AmmoLabel = NNLabel::Create(L"Ready", L"Feast of Flesh BB", 30.f, 148, 84, 14);
 	m_AmmoLabel->SetPosition(685.f, 471.f);
 	m_AmmoLabel->SetZindex(3);
-	AddChild(m_AmmoLabel);
+	//AddChild(m_AmmoLabel);
 }
 
 NNGameScene::~NNGameScene(void)
@@ -166,9 +188,27 @@ NNGameScene::~NNGameScene(void)
 
 void NNGameScene::Update( float dTime )
 {
+	if( m_SumTime >= PLAYERCHARACTER_APPEAR_FPS * PLAYERCHARACTER_APPEAR_NUMBER && m_CheckPlayingAddChild == false )
+	{
+		RemoveChild( m_PlayerCharacterAppear, true );
+
+		AddChild( m_Character );
+		AddChild( m_CharacterBottom);
+
+		AddChild( NNPooManager::GetInstance() );
+		AddChild( NNBulletManager::GetInstance() );
+		AddChild( NNBirdFactory::GetInstance() );
+		AddChild( NNEffectManager::GetInstance() );
+		AddChild(m_ElapsedPlayTimeLabel);
+		AddChild(m_AmmoLabel);
+
+		m_CheckPlayingAddChild = true;
+		m_AppearTime = m_SumTime;
+	}
+
 	if (m_CheckGameStart == false)
 	{
-		Sleep(3000);
+		//Sleep(3000);
 		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEBGM], &NNSoundManager::GetInstance()->m_BgmChannel);
 		m_CheckGameStart = true;
 	}
@@ -226,15 +266,13 @@ void NNGameScene::Render()
 
 void NNGameScene::UIUpdate( float dTime )
 {
-	
-
-	if (NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime > 9.9f
+	if (NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_AppearTime - m_GameSceneStartTime > 9.9f
 		&& m_CheckElapsedTenSec == false)
 	{
 		m_ElapsedPlayTimeLabel->SetPosition(708.f, 380.f);
 		m_CheckElapsedTenSec = true;
 	}
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - GAMESTART_READYTIME - m_GameSceneStartTime );
+	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", NNApplication::GetInstance()->GetElapsedTime() - m_PauseTime - m_AppearTime - m_GameSceneStartTime );
 	m_ElapsedPlayTimeLabel->SetString(m_PlayTimeString);
 
 	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_01)

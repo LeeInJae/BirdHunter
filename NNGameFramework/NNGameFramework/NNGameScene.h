@@ -3,7 +3,7 @@
 #include <vector>
 #include "BHDefine.h"
 
-
+class NNAnimation;
 class NNPlayerCharacter;
 class NNPlayerCharacterBottom;
 class NNMap_A;
@@ -32,11 +32,11 @@ public:
 	
 protected:
 
-	NNMapManager*		m_Map;
-	NNPlayerCharacter*	m_Character;
-	NNPlayerCharacterBottom* m_CharacterBottom;
-	NNPooManager*		m_PooManager;
-
+	NNMapManager*				m_Map;
+	NNPlayerCharacter*			m_Character;
+	NNPlayerCharacterBottom*	m_CharacterBottom;
+	NNPooManager*				m_PooManager;
+		
 	NNLabel*			m_ElapsedPlayTimeLabel;
 	NNLabel*			m_GameOverLabel;
 	NNLabel*			m_FPSLabel;
@@ -62,10 +62,16 @@ protected:
 	wchar_t			m_AmmoString[20];
 
 private:
-	bool m_CheckGameOver;
-	bool m_CheckGameStart;
-	bool m_CheckElapsedTenSec;
-	BIRD_BORN_TIME m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
+	bool			m_CheckGameOver;
+	bool			m_CheckGameStart;
+	bool			m_CheckElapsedTenSec;
+	BIRD_BORN_TIME	m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;
+	float			m_AppearTime;
+
+	bool			m_CheckLodingAddChild;
+	bool			m_CheckPlayingAddChild;
+	NNAnimation*	m_PlayerCharacterAppear;
+	NNAnimation*	m_PlayerCharacterDie;
 };

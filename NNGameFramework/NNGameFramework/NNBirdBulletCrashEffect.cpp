@@ -9,7 +9,7 @@ NNBirdBulletCrashEffect::NNBirdBulletCrashEffect( void )
 
 	m_Animation = NNAnimation::Create
 		( 
-		8, 
+		BIRD_BULLET_HIT_EFFECT_SIZE, 
 		BIRD_BULLET_HIT_EFFECT_SPRITE1,
 		BIRD_BULLET_HIT_EFFECT_SPRITE2,
 		BIRD_BULLET_HIT_EFFECT_SPRITE3,
