@@ -35,6 +35,7 @@ public:
 	FMOD::System* GetSystem() { return m_System; }
 	FMOD::Channel*		m_Dchannel;
 	FMOD::Channel*		m_BgmChannel;
+	FMOD::Channel*		m_WarningChannel;
 
 	std::vector<FMOD::Sound*> SE_BirdDie;
 	std::vector<FMOD::Sound*> SE_PooBoom;

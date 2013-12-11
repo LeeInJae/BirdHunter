@@ -31,7 +31,7 @@ void NNSoundManager::Init( void )
 	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_02.wav"));
 	SE_NormalGunShot.push_back(CreateSound("Sound/GUNSHOT_03.wav"));
 	SE_SystemSound[GAMESTART] = CreateSound("Sound/GAME_START.wav");
-	SE_SystemSound[WARNING] = CreateSound("Sound/WARNING.wav");
+	SE_SystemSound[WARNING] = CreateLoopSound("Sound/WARNING.wav");
 	SE_SystemSound[GAMEOVER] = CreateSound("Sound/GAME_OVER.wav");
 	SE_SystemSound[GAMEBGM] = CreateLoopSound("Sound/GAME_BGM.wav");
 	SE_SystemSound[STARTSCENEBGM] = CreateLoopSound("Sound/Silence_Is_Sexy_-_01_-_David_and_Bathsheba_instrumental.mp3");

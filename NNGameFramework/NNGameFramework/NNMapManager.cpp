@@ -9,9 +9,8 @@ NNMapManager* NNMapManager::m_pInstance = nullptr;
 
 NNMapManager::NNMapManager(void) : m_CurrentWarningLV(0), m_PrevWarningLV(0), m_WarningFlag(true)
 {	 
-	SetWarningCount();
-	m_MapContainer.push_back(MAP_DEFAULT);
-	m_pMap=NNSprite::Create( m_MapContainer[0] );
+	WarningCountInit();
+	m_pMap=NNSprite::Create( MAP_DEFAULT );
 	m_pMap->SetImageWidth( RESOLUTION_WIDTH );
 	m_pMap->SetImageHeight( RESOLUTION_HEIGHT );
 	m_pMap->SetZindex( 0 );
@@ -36,7 +35,7 @@ NNMapManager* NNMapManager::GetInstance()
 	return m_pInstance;
 }
 
-void NNMapManager::SetWarningCount( void )
+void NNMapManager::WarningCountInit( void )
 {
 	m_WarningCount.push_back(0);
 	m_WarningCount.push_back(POLLUTION_WARNING_LV_01);
@@ -61,11 +60,19 @@ void NNMapManager::Update(float dTime)
 		m_WarningFilter->SetOpacity(0.15f*m_CurrentWarningLV);
 	}
 
-	if (m_Pollution -1 == POLLUTION_WARNING_LV_04 && m_WarningFlag)
+	if (m_Pollution >= POLLUTION_WARNING_LV_03 && m_WarningFlag == true)
 	{
 		m_WarningFlag = false;
-		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[WARNING]);
+		NNSoundManager::GetInstance()->PlayAndGetChannel
+			(NNSoundManager::GetInstance()->SE_SystemSound[WARNING], 
+			&NNSoundManager::GetInstance()->m_WarningChannel);
 	}
+	if (m_Pollution < POLLUTION_WARNING_LV_03 && m_WarningFlag == false)
+	{
+		m_WarningFlag = true;
+		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_WarningChannel);
+	}
+	
 }
 
 
