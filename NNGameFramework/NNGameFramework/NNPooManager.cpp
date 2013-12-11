@@ -216,7 +216,7 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 	player_rect.left	=	player->GetPositionX() + 10;
 	player_rect.right	=	player_rect.left + 45;
 	player_rect.up		=	player->GetPositionY() + 63;
-	player_rect.down	=	player_rect.up + 71;
+	player_rect.down	=	player_rect.up + 50;
 
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
 	{

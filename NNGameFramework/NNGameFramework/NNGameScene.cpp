@@ -15,7 +15,7 @@
 #include "NNPlayerCharacterBottom.h"
 #include "NNAnimation.h"
 
-NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(false)
+NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
 {
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
@@ -138,8 +138,9 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckElapsedTenSec(
 
 void NNGameScene::UIInit()
 {
-	m_ElapsedPlayTimeLabel = NNLabel::Create(L"0.0", L"Feast of Flesh BB", 30.f, 150, 150, 150);
-	m_ElapsedPlayTimeLabel->SetPosition(715.f, 380.f);
+	m_ElapsedPlayTimeLabel = NNLabel::Create
+		(L"0.0", L"Feast of Flesh BB", 25.f, 0xAE3011);
+	m_ElapsedPlayTimeLabel->SetPosition(725.f, 380.f);
 	m_ElapsedPlayTimeLabel->SetZindex(0);
 	//AddChild(m_ElapsedPlayTimeLabel);
 
@@ -266,15 +267,24 @@ void NNGameScene::Render()
 
 void NNGameScene::UIUpdate( float dTime )
 {
-	
-
-	if (NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - m_AppearTime - 
-		m_GameSceneStartTime > 9.9f	&& 
+	if ((NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - m_AppearTime - m_GameSceneStartTime) > 9.9f &&
 		m_CheckElapsedTenSec == false)
 	{
-		m_ElapsedPlayTimeLabel->SetPosition(708.f, 380.f);
+		//NNApplication::GetInstance()->SetElapsedTime(93.f);
+		m_ElapsedPlayTimeLabel->SetPosition
+			(m_ElapsedPlayTimeLabel->GetPositionX()-8.5f, 
+			m_ElapsedPlayTimeLabel->GetPositionY());
 		m_CheckElapsedTenSec = true;
+	}
+	if ((NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - m_AppearTime - m_GameSceneStartTime) > 99.9f &&
+		m_CheckElapsedHundredSec == false)
+	{
+		m_ElapsedPlayTimeLabel->SetPosition
+			(m_ElapsedPlayTimeLabel->GetPositionX()-8.5f, 
+			m_ElapsedPlayTimeLabel->GetPositionY());
+		m_CheckElapsedHundredSec = true;
 	}
 
 	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", 

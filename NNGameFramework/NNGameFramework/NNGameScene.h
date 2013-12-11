@@ -65,6 +65,8 @@ private:
 	bool			m_CheckGameOver;
 	bool			m_CheckGameStart;
 	bool			m_CheckElapsedTenSec;
+	bool m_CheckElapsedHundredSec;
+
 	BIRD_BORN_TIME	m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;

@@ -72,6 +72,7 @@ public:
 	inline int GetScreenHeight() const { return m_ScreenHeight; }
 	inline RendererStatus GetRendererStatus() const { return m_RendererStatus; }
 
+	//void SetElapsedTime(float newTime){m_ElapsedTime = newTime;}
 	inline float GetFPS() const { return m_Fps; }
 	inline float GetElapsedTime() const { return m_ElapsedTime; }
 	inline float GetDeltaTime() const { return m_DeltaTime; }
