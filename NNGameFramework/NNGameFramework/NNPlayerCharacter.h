@@ -31,11 +31,14 @@ private:
 	NNAnimation*	m_NormalShotR;
 	NNAnimation*	m_NormalShotL;
 
+	NNAnimation*	m_DualGunStandingTopR;
+	NNAnimation*	m_DualGunStandingTopL;
+	NNAnimation*	m_DualGunRunningTopR;
+	NNAnimation*	m_DualGunRunningTopL;
+	NNAnimation*	m_DualGunShotR;
+	NNAnimation*	m_DualGunShotL;
+
 	ATTACK_STATUS	m_AttackStatus;
-// 	NNSpriteAtlas*	m_Stand00;
-// 	NNSpriteAtlas*	m_Stand01;
-// 	NNSpriteAtlas*	m_Stand02;
-// 	NNSpriteAtlas*	m_Stand03;
 
 	void	PCAnimationInit(void);
 

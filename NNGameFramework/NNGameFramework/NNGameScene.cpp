@@ -263,8 +263,7 @@ void NNGameScene::Update( float dTime )
 	{
 		m_Character->SetAttackStatus( NORMAL );
 	}
-	else if(NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 3.f )
+ 	else if(NNApplication::GetInstance()->GetElapsedTime() -  m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 3.f )
 	{
 		m_Character->SetAttackStatus( DUAL_GUN );
 	}
@@ -356,6 +355,7 @@ void NNGameScene::Update( float dTime )
 				m_RightEndPlayerSprite->SetVisible( true );
 				m_RightEndPlayerSprite->SetPosition( m_PlayerCharacterDie->GetPositionX(), m_PlayerCharacterDie->GetPositionY() );
 			}
+
 			m_PlayerCharacterDie->SetVisible( false );
 			m_DieEndCheck = true;
 		}

@@ -69,11 +69,11 @@ KeyState NNInputSystem::GetKeyState( int key )
 
 PlayerCharacterDirection NNInputSystem::CheckWhichPressedKey()
 {
-	if( GetInstance()->GetKeyState( VK_LEFT ) == KEY_PRESSED && GetInstance()->GetKeyState( VK_SPACE ) ==KEY_DOWN )
-		return LEFT_GOING_ATTACK;
-	else if( GetInstance()->GetKeyState( VK_RIGHT ) == KEY_PRESSED && GetInstance()->GetKeyState( VK_SPACE ) ==KEY_DOWN )
-		return RIGHT_GOING_ATTACK;
-	else if( GetInstance()->GetKeyState( VK_LEFT ) == KEY_PRESSED )
+// 	if( GetInstance()->GetKeyState( VK_LEFT ) == KEY_PRESSED && GetInstance()->GetKeyState( VK_SPACE ) ==KEY_DOWN )
+// 		return LEFT_GOING_ATTACK;
+// 	else if( GetInstance()->GetKeyState( VK_RIGHT ) == KEY_PRESSED && GetInstance()->GetKeyState( VK_SPACE ) ==KEY_DOWN )
+// 		return RIGHT_GOING_ATTACK;
+	if( GetInstance()->GetKeyState( VK_LEFT ) == KEY_PRESSED )
 		return LEFT;
 	else if( GetInstance()->GetKeyState( VK_RIGHT ) == KEY_PRESSED )
 		return RIGHT;
