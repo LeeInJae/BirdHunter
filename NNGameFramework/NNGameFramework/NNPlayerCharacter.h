@@ -1,5 +1,6 @@
 #pragma once
 #include "NNObject.h"
+#include "BHDefine.h"
 
 class NNSprite;
 class NNSpriteAtlas;
@@ -17,6 +18,9 @@ public:
 	float	GetSpriteHeight()	{ return m_SpriteHeight; }
 	float	GetSpriteWidth()	{ return m_SpriteWidth; }
 	bool	GetPauseKey()		{ return m_PauseKey ; }
+	ATTACK_STATUS GetAttackStatus() { 	return m_AttackStatus; }
+	GOING_DIRECTION GetPlayerDirection();
+	void SetAttackStatus( ATTACK_STATUS status );
 private:
 	NNAnimation*	m_pCharTop;
 
@@ -27,7 +31,7 @@ private:
 	NNAnimation*	m_NormalShotR;
 	NNAnimation*	m_NormalShotL;
 
-
+	ATTACK_STATUS	m_AttackStatus;
 // 	NNSpriteAtlas*	m_Stand00;
 // 	NNSpriteAtlas*	m_Stand01;
 // 	NNSpriteAtlas*	m_Stand02;
@@ -46,4 +50,5 @@ private:
 	bool		isLeft;
 	bool		m_PauseKey;
 	bool		isAttack;
+	GOING_DIRECTION m_Direction;
 };

@@ -171,3 +171,16 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_RUN_TOP_L_02, PLAYER_RUN_TOP_L_03, PLAYER_RUN_TOP_L_04, PLAYER_RUN_TOP_L_05);
 	m_RunningTopL->SetLoop(true);
 }
+
+void NNPlayerCharacter::SetAttackStatus( ATTACK_STATUS status )
+{
+	m_AttackStatus = status;
+}
+
+GOING_DIRECTION NNPlayerCharacter::GetPlayerDirection()
+{
+	if( m_pCharTop == m_RunningTopL || m_pCharTop == m_StandingTopL || m_pCharTop == m_NormalShotL )
+		return LEFT_GO;
+	else
+		return RIGHT_GO;
+}

@@ -2,6 +2,7 @@
 #include "BHDefine.h"
 #include "NNPlayerCharacter.h"
 #include "NNPoo.h"
+#include "NNGameScene.h"
 
 
 NNPooManager* NNPooManager::m_pInstance = nullptr;
@@ -212,6 +213,25 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 	struct HIT_RECT poo_rect, player_rect;
 
 	bool hitCheck;
+	ATTACK_STATUS attackStats =player->GetAttackStatus();
+	switch ( attackStats )
+	{
+	case NORMAL:
+		player_rect.left	=	player->GetPositionX() + 10;
+		player_rect.right	=	player_rect.left + 45;
+		player_rect.up		=	player->GetPositionY() + 63;
+		player_rect.down	=	player_rect.up + 71;
+		break;
+
+	case DUAL_GUN:
+		player_rect.left	=	player->GetPositionX();
+		player_rect.right	=	player_rect.left + 45;
+		player_rect.up		=	player->GetPositionY() + 13;
+		player_rect.down	=	player_rect.up + 71;
+		break;
+	default:
+		break;
+	}
 
 	player_rect.left	=	player->GetPositionX() + 10;
 	player_rect.right	=	player_rect.left + 45;

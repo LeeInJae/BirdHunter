@@ -29,7 +29,8 @@ public:
 	~NNGameScene(void);
 	
 	NNCREATE_FUNC( NNGameScene );
-	
+	(NNPlayerCharacter*)&	GetPlayerCharacter(){ return m_Character; }
+
 protected:
 
 	NNMapManager*				m_Map;
@@ -65,16 +66,22 @@ private:
 	bool			m_CheckGameOver;
 	bool			m_CheckGameStart;
 	bool			m_CheckElapsedTenSec;
+	bool			m_DieEndCheck;
 	bool			m_CheckElapsedHundredSec;
 	bool			m_CheckBgmStarted;
-
+	bool			m_CheckDie;
 	BIRD_BORN_TIME	m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;
 	float			m_AppearTime;
-
+	GOING_DIRECTION m_DieDirection;
 	bool			m_CheckLodingAddChild;
 	bool			m_CheckPlayingAddChild;
 	NNAnimation*	m_PlayerCharacterAppear;
+	NNAnimation*	m_PlayerCharacterRightDie;
+	NNAnimation*	m_PlayerCharacterLeftDie;
 	NNAnimation*	m_PlayerCharacterDie;
+	NNSprite*		m_LeftEndPlayerSprite;
+	NNSprite*		m_RightEndPlayerSprite;
+
 };

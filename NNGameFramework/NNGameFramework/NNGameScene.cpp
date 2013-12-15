@@ -28,6 +28,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 
 	m_CheckLodingAddChild = false;
 	m_CheckPlayingAddChild = false;
+	m_DieEndCheck = false;
 
 	struct BIRD_BORN_TIME birdBornItem;
 
@@ -133,8 +134,73 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	m_PlayerCharacterAppear->SetPosition( PLAYER_POSITION_X - 10.f, PLAYER_POSITION_Y - 350.f );
 	m_PlayerCharacterAppear->SetFrameTime( PLAYERCHARACTER_APPEAR_FPS );
 	AddChild( m_PlayerCharacterAppear );
+	/////////////////////////////////////////////////
+	m_PlayerCharacterRightDie	=	NNAnimation::Create(PLAYERCHARACTER_RIGHT_DIE_NUMBER,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE1, 
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE2,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE3,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE4,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE5,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE6,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE7, 
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE8, 
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE9,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE10,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE11,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE12,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE13,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE14, 
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE15,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE16,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE17,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE18,
+		PLAYERCHARACTER_RIGHT_DIE_SPRITE19
+		);
 
+	m_PlayerCharacterRightDie->SetScale( 1.8f, 1.8f );
+	m_PlayerCharacterRightDie->SetFrameTime( PLAYERCHARACTER_RIGHT_DIE_FPS );
+	m_PlayerCharacterRightDie->SetLoop( false );
 
+	m_PlayerCharacterLeftDie	=	NNAnimation::Create(PLAYERCHARACTER_LEFT_DIE_NUMBER,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE1, 
+		PLAYERCHARACTER_LEFT_DIE_SPRITE2,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE3,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE4,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE5,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE6,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE7, 
+		PLAYERCHARACTER_LEFT_DIE_SPRITE8, 
+		PLAYERCHARACTER_LEFT_DIE_SPRITE9,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE10,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE11,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE12,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE13,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE14, 
+		PLAYERCHARACTER_LEFT_DIE_SPRITE15,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE16,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE17,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE18,
+		PLAYERCHARACTER_LEFT_DIE_SPRITE19
+		);
+
+	m_PlayerCharacterLeftDie->SetScale( 1.8f, 1.8f );
+	m_PlayerCharacterLeftDie->SetFrameTime( PLAYERCHARACTER_LEFT_DIE_FPS );
+	m_PlayerCharacterLeftDie->SetLoop( false );
+	
+	m_LeftEndPlayerSprite = NNSprite::Create( PLAYERCHARACTER_LEFT_DIE_SPRITE19 );
+	m_RightEndPlayerSprite = NNSprite::Create( PLAYERCHARACTER_RIGHT_DIE_SPRITE19 );
+	
+	m_LeftEndPlayerSprite->SetScale( 1.8f, 1.8f );
+	m_RightEndPlayerSprite->SetScale( 1.8f, 1.8f );
+
+	m_LeftEndPlayerSprite->SetZindex( 5 );
+	m_RightEndPlayerSprite->SetZindex( 5 );
+
+	m_LeftEndPlayerSprite->SetVisible( false );
+	m_RightEndPlayerSprite->SetVisible( false );
+
+	AddChild( m_LeftEndPlayerSprite );
+	AddChild( m_RightEndPlayerSprite );
 }
 
 void NNGameScene::UIInit()
@@ -190,14 +256,27 @@ NNGameScene::~NNGameScene(void)
 
 void NNGameScene::Update( float dTime )
 {
+	//test
+	
+	if(NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 10.f )
+	{
+		m_Character->SetAttackStatus( NORMAL );
+	}
+	else if(NNApplication::GetInstance()->GetElapsedTime() - 
+		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 3.f )
+	{
+		m_Character->SetAttackStatus( DUAL_GUN );
+	}
+
 	NNSoundManager::GetInstance()->Update(dTime);
+
 	if( m_SumTime >= PLAYERCHARACTER_APPEAR_FPS * PLAYERCHARACTER_APPEAR_NUMBER && m_CheckPlayingAddChild == false )
 	{
 		RemoveChild( m_PlayerCharacterAppear, true );
 
 		AddChild( m_Character );
 		AddChild( m_CharacterBottom);
-
 		AddChild( NNPooManager::GetInstance() );
 		AddChild( NNBulletManager::GetInstance() );
 		AddChild( NNBirdFactory::GetInstance() );
@@ -209,6 +288,7 @@ void NNGameScene::Update( float dTime )
 		m_AppearTime = m_SumTime;
 	}
 
+	
 	if (m_CheckGameStart == false)
 	{
 		NNSoundManager::GetInstance()->PlayAndGetChannel(
@@ -225,26 +305,61 @@ void NNGameScene::Update( float dTime )
 		m_CheckBgmStarted = true;
 	}
 
-	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) )
+	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) || m_CheckGameOver )
 	{ 
-		m_CheckGameOver = true;
+		if( !m_CheckGameOver )
+		{
+			NNPoint playerPoint;
+			playerPoint = m_Character->GetPosition();
 
-		m_GameOver = NNSprite::Create( GAMEOVER_SPRITE );
-		m_GameOver->SetZindex( GAMEOVER_ZINDEX );
-		m_GameOver->SetImageHeight( 200.f );
-		m_GameOver->SetImageWidth( 600.f );
-		m_GameOver->SetPosition( 100.f, 200.f );
-		AddChild( m_GameOver );
-		
-		m_CheckGameOver = true;
-	
+			( m_Character->GetPlayerDirection() == LEFT_GO ) ? 
+				m_PlayerCharacterDie = m_PlayerCharacterLeftDie :
+				m_PlayerCharacterDie = m_PlayerCharacterRightDie;
 
-		FMOD::Channel* m_gameoverCh = nullptr;
-		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
-		NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
-		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
-		
-		return;
+				switch ( m_Character->GetAttackStatus() )
+				{
+				case NORMAL:
+					m_PlayerCharacterDie->SetPosition( playerPoint.GetX() + 10.f, playerPoint.GetY() + 50.f );
+					break;
+				case DUAL_GUN:
+					m_PlayerCharacterDie->SetPosition( playerPoint.GetX() + 10.f, playerPoint.GetY() + 5 );
+					break;
+				default:
+					break;
+				}
+			
+			
+			AddChild( m_PlayerCharacterDie );
+			m_Character->SetVisible( false );
+			m_CharacterBottom->SetVisible( false );
+
+			FMOD::Channel* m_gameoverCh = nullptr;
+			NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
+			NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
+			NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+		}
+		 
+		if( m_PlayerCharacterDie->IsAnimationEnded() )
+		{
+			if( !m_DieEndCheck )
+			{
+				m_DieDirection =  m_Character->GetPlayerDirection();
+			}
+
+			if(m_DieDirection == LEFT_GO ) 
+			{
+				m_LeftEndPlayerSprite->SetVisible( true );
+				m_LeftEndPlayerSprite->SetPosition( m_PlayerCharacterDie->GetPositionX(), m_PlayerCharacterDie->GetPositionY() );
+			}
+			else if( m_DieDirection == RIGHT_GO ) 
+			{
+				m_RightEndPlayerSprite->SetVisible( true );
+				m_RightEndPlayerSprite->SetPosition( m_PlayerCharacterDie->GetPositionX(), m_PlayerCharacterDie->GetPositionY() );
+			}
+			m_PlayerCharacterDie->SetVisible( false );
+			m_DieEndCheck = true;
+		}
+		m_CheckGameOver = true;
 	}
 
 	if( !m_Character->GetPauseKey() )
@@ -269,7 +384,7 @@ void NNGameScene::Update( float dTime )
 	else
 	{
 		m_PauseTime += dTime;
-		m_Character->Update( dTime );
+ 		m_Character->Update( dTime );
 		NNSoundManager::GetInstance()->Pause(NNSoundManager::GetInstance()->m_BgmChannel);
 	}
 }
@@ -281,52 +396,55 @@ void NNGameScene::Render()
 
 void NNGameScene::UIUpdate( float dTime )
 {
-	if ((NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - m_AppearTime - m_GameSceneStartTime) > 9.9f &&
-		m_CheckElapsedTenSec == false)
+	if( !m_CheckGameOver )
 	{
-		//NNApplication::GetInstance()->SetElapsedTime(93.f);
-		m_ElapsedPlayTimeLabel->SetPosition
-			(m_ElapsedPlayTimeLabel->GetPositionX()-8.5f, 
-			m_ElapsedPlayTimeLabel->GetPositionY());
-		m_CheckElapsedTenSec = true;
-	}
-	if ((NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - m_AppearTime - m_GameSceneStartTime) > 99.9f &&
-		m_CheckElapsedHundredSec == false)
-	{
-		m_ElapsedPlayTimeLabel->SetPosition
-			(m_ElapsedPlayTimeLabel->GetPositionX()-8.5f, 
-			m_ElapsedPlayTimeLabel->GetPositionY());
-		m_CheckElapsedHundredSec = true;
-	}
+		if (NNApplication::GetInstance()->GetElapsedTime() - 
+			m_PauseTime - m_AppearTime - 
+			m_GameSceneStartTime > 9.9f	&& 
+			m_CheckElapsedTenSec == false)
+		{
+			m_ElapsedPlayTimeLabel->SetPosition(708.f, 380.f);
+			m_CheckElapsedTenSec = true;
+		}
+		swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", 
+			NNApplication::GetInstance()->GetElapsedTime() - 
+			m_PauseTime - m_AppearTime - m_GameSceneStartTime );
 
-	swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", 
-		NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - m_AppearTime - m_GameSceneStartTime );
+		if ((NNApplication::GetInstance()->GetElapsedTime() - 
+			m_PauseTime - m_AppearTime - m_GameSceneStartTime) > 99.9f &&
+			m_CheckElapsedHundredSec == false)
+		{
+			m_ElapsedPlayTimeLabel->SetPosition
+				(m_ElapsedPlayTimeLabel->GetPositionX()-8.5f, 
+				m_ElapsedPlayTimeLabel->GetPositionY());
+			m_CheckElapsedHundredSec = true;
+		}
 
-	m_ElapsedPlayTimeLabel->SetString(m_PlayTimeString);
+		m_ElapsedPlayTimeLabel->SetString(m_PlayTimeString);
 
-	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_01)
-	{
-		m_LandedPoo1->SetVisible(true);
-	}
-	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_02)
-	{
-		m_LandedPoo2->SetVisible(true);
-	}
-	if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_03)
-	{
-		m_LandedPoo3->SetVisible(true);
-	}
+		//////////////////////////////////////////////////////
+		swprintf_s(m_AmmoString, _countof(m_AmmoString), L"%d",
+			NNBulletManager::GetInstance()->GetAmmoLeft());
 
+		m_AmmoLabel->SetString(m_AmmoString);
+
+		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_01)
+		{
+			m_LandedPoo1->SetVisible(true);
+		}
+		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_02)
+		{
+			m_LandedPoo2->SetVisible(true);
+		}
+		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_03)
+		{
+			m_LandedPoo3->SetVisible(true);
+		}
+	}
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ",
 		NNApplication::GetInstance()->GetFPS());
 
 	m_FPSLabel->SetString(m_FPSString);
 
-	swprintf_s(m_AmmoString, _countof(m_AmmoString), L"%d",
-		NNBulletManager::GetInstance()->GetAmmoLeft());
 
-	m_AmmoLabel->SetString(m_AmmoString);
 }
