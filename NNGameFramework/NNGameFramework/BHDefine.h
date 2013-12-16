@@ -47,6 +47,13 @@
 #define PLAYER_ATLAS		L"Image/PC/PC_ATLAS.png"
 #define PLAYER_ZINDEX		2
 
+////아이템 지속시간
+#define DUALGUN_RUNTIME		10.f
+
+//////무기아이템 스프라이트
+#define NORMALGUN			L"Image/UI/NORMALGUN.png"
+#define DUALGUN				L"Image/UI/DUALGUN.png"
+
 #define PLAYER_STAND_TOP_R_00	L"Image/PC/STAND/STAND_R_00.png"
 #define PLAYER_STAND_TOP_R_01	L"Image/PC/STAND/STAND_R_01.png"
 #define PLAYER_STAND_TOP_R_02	L"Image/PC/STAND/STAND_R_02.png"
@@ -146,6 +153,8 @@
 #define UI_SPRITE			L"Image/UI_ATLAS.png"
 #define SKULL_SPRITE		L"Image/SKULL.png"
 
+#define SKILL_FIRST_BAR		L"Image/UI/SKILL_FIRST_BAR.png"
+#define SKILL_SECOND_BAR	L"Image/UI/SKILL_SECOND_BAR.png"
 /**********************************************************************///
 /////////////<새들의 속성들 값을 지정 >/////////////////////////////////////////////////////////////////////
 //////////////SMALL BIRD////////////////////////////////////////////////////////////////////////////////////

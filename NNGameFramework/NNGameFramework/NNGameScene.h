@@ -84,4 +84,9 @@ private:
 	NNSprite*		m_LeftEndPlayerSprite;
 	NNSprite*		m_RightEndPlayerSprite;
 
+	NNSprite*		m_SkillFirstBar;
+	NNSprite*		m_SkillSecondBar;
+
+	NNSprite*		m_ItemSprite[10];
+	NNSprite*		m_ItemGunSprite;
 };

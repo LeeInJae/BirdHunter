@@ -109,6 +109,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 
 	AddChild( NNMapManager::GetInstance() );
 	
+
 	//AddChild( m_Character );
 	//AddChild( m_CharacterBottom);
 	
@@ -188,7 +189,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	m_PlayerCharacterLeftDie->SetLoop( false );
 	
 	m_LeftEndPlayerSprite = NNSprite::Create( PLAYERCHARACTER_LEFT_DIE_SPRITE19 );
-	m_RightEndPlayerSprite = NNSprite::Create( PLAYERCHARACTER_RIGHT_DIE_SPRITE19 );
+	m_RightEndPlayerSprite     =                                                                  NNSprite::Create( PLAYERCHARACTER_RIGHT_DIE_SPRITE19 );
 	
 	m_LeftEndPlayerSprite->SetScale( 1.8f, 1.8f );
 	m_RightEndPlayerSprite->SetScale( 1.8f, 1.8f );
@@ -201,15 +202,48 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 
 	AddChild( m_LeftEndPlayerSprite );
 	AddChild( m_RightEndPlayerSprite );
+
+	
 }
 
 void NNGameScene::UIInit()
 {
+	m_SkillFirstBar		=	NNSprite::Create(SKILL_FIRST_BAR);
+	m_SkillSecondBar	=	NNSprite::Create(SKILL_SECOND_BAR);
+	m_SkillFirstBar->SetImageWidth( 80 );
+	m_SkillSecondBar->SetImageWidth( 80 );
+	m_SkillFirstBar->SetPosition(710.f, 471.f);
+	m_SkillSecondBar->SetPosition(710.f, 471.f);
+	AddChild(m_SkillFirstBar);
+	AddChild(m_SkillSecondBar);
+
+
+
+	/////////아이템 스프라이트 늘어나면 디파인 처리 할 것.
+	m_ItemSprite[0]=NNSprite::Create( NORMALGUN );
+	m_ItemSprite[0]->SetPosition( 673.f, 471.f );
+
+	m_ItemSprite[1]=NNSprite::Create( DUALGUN );
+	m_ItemSprite[1]->SetPosition( 673.f, 471.f );
+	
+	for(int i=0; i<2; ++i )
+	{
+		m_ItemSprite[i]->SetImageWidth( 30 );
+		m_ItemSprite[i]->SetVisible(true);
+		//AddChild( m_ItemSprite[i] );
+	}
+	m_ItemSprite[1]->SetScale(1.3f,1.3f);
+	m_ItemGunSprite=m_ItemSprite[0];
+	m_ItemGunSprite->SetVisible(true);
+	AddChild(m_ItemGunSprite);
+	/////////////////////////////////
+	
+	
 	m_ElapsedPlayTimeLabel = NNLabel::Create
 		(L"0.0", L"Feast of Flesh BB", 25.f, 0xAE3011);
 	m_ElapsedPlayTimeLabel->SetPosition(725.f, 380.f);
 	m_ElapsedPlayTimeLabel->SetZindex(0);
-	//AddChild(m_ElapsedPlayTimeLabel);
+	AddChild(m_ElapsedPlayTimeLabel);
 
 	m_LandedPoo1 = NNSprite::Create(NORMAL_POO_SPRITE);
 	m_LandedPoo1->SetPosition(675.f, 273.f);
@@ -261,7 +295,7 @@ void NNGameScene::Update( float dTime )
 	if(NNApplication::GetInstance()->GetElapsedTime() - 
 		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 10.f )
 	{
-		m_Character->SetAttackStatus( NORMAL );
+	//	m_Character->SetAttackStatus( NORMAL );
 	}
  	else if(NNApplication::GetInstance()->GetElapsedTime() -  m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 3.f )
 	{
@@ -281,7 +315,7 @@ void NNGameScene::Update( float dTime )
 		AddChild( NNBirdFactory::GetInstance() );
 		AddChild( NNEffectManager::GetInstance() );
 		AddChild(m_ElapsedPlayTimeLabel);
-		AddChild(m_AmmoLabel);
+		//AddChild(m_AmmoLabel);
 
 		m_CheckPlayingAddChild = true;
 		m_AppearTime = m_SumTime;
@@ -396,6 +430,38 @@ void NNGameScene::Render()
 
 void NNGameScene::UIUpdate( float dTime )
 {
+	if( m_Character->GetAttackStatus() != NORMAL )
+	{
+		switch( m_Character->GetAttackStatus() )
+		{
+		case DUAL_GUN:
+// 			m_ItemSprite[0]->SetVisible(false);
+// 			m_ItemSprite[1]->SetVisible(true);
+// 		
+			RemoveChild( m_ItemGunSprite, false );
+			//m_ItemSprite[0]->SetVisible(false);
+			m_ItemGunSprite=m_ItemSprite[1];
+			//m_ItemGunSprite->SetVisible(true);
+			AddChild( m_ItemGunSprite );
+			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME));
+			
+			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME) < 0.f )
+			{
+				m_SkillSecondBar->SetImageWidth( 80 );
+				m_Character->SetAttackStatus( NORMAL );
+
+				RemoveChild( m_ItemGunSprite, false );
+				m_ItemGunSprite=m_ItemSprite[0];
+				AddChild( m_ItemGunSprite );
+// 				m_ItemSprite[1]->SetVisible(false);
+// 				m_ItemSprite[0]->SetVisible(true);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	
 	if( !m_CheckGameOver )
 	{
 		if (NNApplication::GetInstance()->GetElapsedTime() - 
