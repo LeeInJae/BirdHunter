@@ -723,6 +723,24 @@ enum GOING_DIRECTION
 	RIGHT_GO,
 };
 
+
+enum ITEM_TYPE
+{
+	ITEM_DUAL_GUN,
+	ITEM_FIRE_SHOOTER,
+	ITEM_CLEANER,
+
+	ITEM_MAX_NUM
+};
+
+#define	ITEM_WIDTH	30.f
+#define	ITEM_HEIGHT	30.f
+#define	ITEM_SPEED	100
+#define	ITEM_ACCEL_SPEED	0.3f
+#define	ITEM_ZINDEX	2
+
+#define ITEM_DUAL_GUN_SPRITE	L"Image/ITEM/ITEM_DUAL_GUN.png"
+
 struct OBJECT_PROPERTY
 {
 	float			speed;
@@ -750,6 +768,12 @@ struct POO_PROPERTY : public OBJECT_PROPERTY
 struct BULLET_PROPERTY : public OBJECT_PROPERTY
 {
 	BULLET_TYPE		type;
+};
+
+struct ITEM_PROPERTY : public OBJECT_PROPERTY
+{
+	ITEM_TYPE	type;
+	NNAnimation*	animation;
 };
 
 struct HIT_RECT

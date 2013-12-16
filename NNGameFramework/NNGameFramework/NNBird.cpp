@@ -1,7 +1,6 @@
 #include "NNBird.h"
 #include "BHDefine.h"
 #include "NNPooManager.h"
-#include "NNAnimation.h"
 
 NNBird::NNBird(void)
 {
@@ -49,13 +48,9 @@ void NNBird::SetBirdProperty( BIRD_PROPERTY &bird_property )
 {
 	m_BirdProperty	=	bird_property;
 	
-	m_pBird				= bird_property.birdAnimation;
-	m_pBird->SetLoop(true);
-// 	m_pBird->SetScaleX(bird_property.imageHeight);
-// 	m_pBird->SetScaleY(bird_property.imageWidth);
-	//m_pBird			=	NNSprite::Create( bird_property.sprite_path );
-	//m_pBird->SetImageHeight( bird_property.imageHeight );
-	//m_pBird->SetImageWidth( bird_property.imageWidth );	
+	m_pBird			=	NNSprite::Create( bird_property.sprite_path );
+	m_pBird->SetImageHeight( bird_property.imageHeight );
+	m_pBird->SetImageWidth( bird_property.imageWidth );	
 	SetZindex( bird_property.zIndex );
 	//m_pBird->SetCenter( m_BirdProperty.position );
 	AddChild( m_pBird );

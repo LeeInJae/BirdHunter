@@ -308,6 +308,8 @@
       <Filter>BirdHunter\PlayerCharacter</Filter>
     </ClCompile>
     <ClCompile Include="NNAnimationManager.cpp" />
+    <ClCompile Include="NNItemManager.cpp" />
+    <ClCompile Include="NNItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -528,6 +530,8 @@
       <Filter>BirdHunter\PlayerCharacter</Filter>
     </ClInclude>
     <ClInclude Include="NNAnimationManager.h" />
+    <ClInclude Include="NNItemManager.h" />
+    <ClInclude Include="NNItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NNGameFramework.rc" />

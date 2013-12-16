@@ -123,6 +123,8 @@
     <ClCompile Include="NNEffect.cpp" />
     <ClCompile Include="NNEffectManager.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
+    <ClCompile Include="NNItem.cpp" />
+    <ClCompile Include="NNItemManager.cpp" />
     <ClCompile Include="NNLabel.cpp" />
     <ClCompile Include="NNGameScene.cpp" />
     <ClCompile Include="NNMap.cpp" />
@@ -203,6 +205,8 @@
     <ClInclude Include="NNEffectManager.h" />
     <ClInclude Include="NNIncludeSet.h" />
     <ClInclude Include="NNInputSystem.h" />
+    <ClInclude Include="NNItem.h" />
+    <ClInclude Include="NNItemManager.h" />
     <ClInclude Include="NNLabel.h" />
     <ClInclude Include="NNLibSet.h" />
     <ClInclude Include="NNMacroSet.h" />
