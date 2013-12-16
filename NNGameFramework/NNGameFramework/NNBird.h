@@ -2,7 +2,8 @@
 #include "NNObject.h"
 #include "BHDefine.h"
 
-class NNSprite;
+//class NNSprite;
+class NNAnimation;
 
 //몬스터 '새' 클래스
 
@@ -34,7 +35,8 @@ protected:
 	POO_TYPE		m_PooType;	
 	float			m_SpriteHeight;
 	float			m_SpriteWidth;
-	NNSprite*		m_pBird;
+	//NNSprite*		m_pBird;
+	NNAnimation*	m_pBird;
 	int				m_Zindex;
 
 };
