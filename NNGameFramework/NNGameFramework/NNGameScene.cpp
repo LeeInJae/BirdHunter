@@ -227,6 +227,8 @@ void NNGameScene::UIInit()
 	m_ItemSprite[1]=NNSprite::Create( DUALGUN );
 	m_ItemSprite[1]->SetPosition( 673.f, 471.f );
 	
+	m_ItemSprite[2]=NNSprite::Create( FIREGUN );
+	m_ItemSprite[2]->SetPosition( 673.f, 471.f );
 	for(int i=0; i<2; ++i )
 	{
 		m_ItemSprite[i]->SetImageWidth( 30 );
@@ -234,6 +236,7 @@ void NNGameScene::UIInit()
 		//AddChild( m_ItemSprite[i] );
 	}
 	m_ItemSprite[1]->SetScale(1.3f,1.3f);
+	m_ItemSprite[2]->SetScale(0.8f,0.8f);
 	m_ItemGunSprite=m_ItemSprite[0];
 	m_ItemGunSprite->SetVisible(true);
 	AddChild(m_ItemGunSprite);
@@ -400,7 +403,8 @@ void NNGameScene::Update( float dTime )
 
 	if ( NNItemManager::GetInstance()->HitCheck(m_Character) )
 	{
-		m_Character->SetAttackStatus( DUAL_GUN );
+		//m_Character->SetAttackStatus( DUAL_GUN ); 
+		m_Character->SetAttackStatus( FIRE );
 
 	}
 
@@ -446,13 +450,8 @@ void NNGameScene::UIUpdate( float dTime )
 		switch( m_Character->GetAttackStatus() )
 		{
 		case DUAL_GUN:
-// 			m_ItemSprite[0]->SetVisible(false);
-// 			m_ItemSprite[1]->SetVisible(true);
-// 		
 			RemoveChild( m_ItemGunSprite, false );
-			//m_ItemSprite[0]->SetVisible(false);
 			m_ItemGunSprite=m_ItemSprite[1];
-			//m_ItemGunSprite->SetVisible(true);
 			AddChild( m_ItemGunSprite );
 			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME));
 			
@@ -464,8 +463,22 @@ void NNGameScene::UIUpdate( float dTime )
 				RemoveChild( m_ItemGunSprite, false );
 				m_ItemGunSprite=m_ItemSprite[0];
 				AddChild( m_ItemGunSprite );
-// 				m_ItemSprite[1]->SetVisible(false);
-// 				m_ItemSprite[0]->SetVisible(true);
+			}
+			break;
+		case FIRE:
+			RemoveChild( m_ItemGunSprite, false );
+			m_ItemGunSprite=m_ItemSprite[2];
+			AddChild( m_ItemGunSprite );
+			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME));
+
+			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME) < 0.f )
+			{
+				m_SkillSecondBar->SetImageWidth( 80 );
+				m_Character->SetAttackStatus( NORMAL );
+
+				RemoveChild( m_ItemGunSprite, false );
+				m_ItemGunSprite=m_ItemSprite[0];
+				AddChild( m_ItemGunSprite );
 			}
 			break;
 		default:

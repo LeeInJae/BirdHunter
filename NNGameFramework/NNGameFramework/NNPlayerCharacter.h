@@ -38,6 +38,13 @@ private:
 	NNAnimation*	m_DualGunShotR;
 	NNAnimation*	m_DualGunShotL;
 
+	NNAnimation*	m_AmorStandingTopR;
+	NNAnimation*	m_AmorStandingTopL;
+	NNAnimation*	m_AmorRunningTopR;
+	NNAnimation*	m_AmorRunningTopL;
+	NNAnimation*	m_AmorShotR;
+	NNAnimation*	m_AmorShotL;
+
 	ATTACK_STATUS	m_AttackStatus;
 
 	void	PCAnimationInit(void);

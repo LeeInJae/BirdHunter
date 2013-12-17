@@ -44,7 +44,8 @@ void NNPlayerCharacter::Update( float dTime )
 			{
 			case NORMAL:
 				if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopR ||  m_pCharTop == m_StandingTopR
-					|| m_pCharTop == m_DualGunRunningTopR ||  m_pCharTop == m_DualGunStandingTopR )
+					|| m_pCharTop == m_DualGunRunningTopR ||  m_pCharTop == m_DualGunStandingTopR 
+					|| m_pCharTop == m_AmorRunningTopR	|| m_pCharTop == m_AmorStandingTopR )
 				{
 					isAttack = false;
 					RemoveChild(m_pCharTop, false);
@@ -60,7 +61,8 @@ void NNPlayerCharacter::Update( float dTime )
 
 			case DUAL_GUN:
 				if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopR ||  m_pCharTop == m_StandingTopR
-					|| m_pCharTop == m_DualGunRunningTopR ||  m_pCharTop == m_DualGunStandingTopR)
+					|| m_pCharTop == m_DualGunRunningTopR ||  m_pCharTop == m_DualGunStandingTopR
+					|| m_pCharTop == m_AmorRunningTopR	|| m_pCharTop == m_AmorStandingTopR )
 				{
 					isAttack = false;
 					RemoveChild(m_pCharTop, false);
@@ -75,6 +77,19 @@ void NNPlayerCharacter::Update( float dTime )
 				break;
 
 			default:
+				if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopR ||  m_pCharTop == m_StandingTopR
+					|| m_pCharTop == m_DualGunRunningTopR ||  m_pCharTop == m_DualGunStandingTopR
+					|| m_pCharTop == m_AmorRunningTopR	|| m_pCharTop == m_AmorStandingTopR )
+				{
+					isAttack = false;
+					RemoveChild(m_pCharTop, false);
+					m_pCharTop = m_AmorRunningTopL;
+					AddChild(m_pCharTop);
+				}
+				isLeft = true;
+
+				if( GetPositionX() - m_PlayerSpeed * dTime >= WINDOW_WIDTH_LEFT_EDGE )
+					SetPosition( GetPositionX() - m_PlayerSpeed * dTime, GetPositionY() );
 				break;
 			}
 			break;
@@ -84,7 +99,8 @@ void NNPlayerCharacter::Update( float dTime )
 			{
 			case NORMAL:
 				if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopL ||  m_pCharTop == m_StandingTopL 
-					|| m_pCharTop == m_DualGunRunningTopL ||  m_pCharTop == m_DualGunStandingTopL)
+					|| m_pCharTop == m_DualGunRunningTopL ||  m_pCharTop == m_DualGunStandingTopL
+					|| m_pCharTop == m_AmorRunningTopL	|| m_pCharTop == m_AmorStandingTopL)
 				{
 					isAttack = false;
 					RemoveChild(m_pCharTop, false);
@@ -100,7 +116,8 @@ void NNPlayerCharacter::Update( float dTime )
 
 			case DUAL_GUN:
 				if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopL ||  m_pCharTop == m_StandingTopL 
-					|| m_pCharTop == m_DualGunRunningTopL ||  m_pCharTop == m_DualGunStandingTopL)
+					|| m_pCharTop == m_DualGunRunningTopL ||  m_pCharTop == m_DualGunStandingTopL
+					|| m_pCharTop == m_AmorRunningTopL	|| m_pCharTop == m_AmorStandingTopL)
 				{
 					isAttack = false;
 					RemoveChild(m_pCharTop, false);
@@ -115,6 +132,20 @@ void NNPlayerCharacter::Update( float dTime )
 				break;
 
 			default:
+				if( m_pCharTop->IsAnimationEnded() || m_pCharTop == m_RunningTopL ||  m_pCharTop == m_StandingTopL 
+					|| m_pCharTop == m_DualGunRunningTopL ||  m_pCharTop == m_DualGunStandingTopL
+					|| m_pCharTop == m_AmorRunningTopL	|| m_pCharTop == m_AmorStandingTopL)
+				{
+					isAttack = false;
+					RemoveChild(m_pCharTop, false);
+					m_pCharTop = m_AmorRunningTopR;
+					AddChild(m_pCharTop);
+				}
+
+				isLeft = false;
+
+				if( GetPositionX() + m_PlayerSpeed * dTime <= WINDOW_WIDTH_RIGHT_EDGE - PLAYER_WIDTH )
+					SetPosition( GetPositionX() + m_PlayerSpeed * dTime, GetPositionY() );
 				break;
 			}
 
@@ -156,6 +187,20 @@ void NNPlayerCharacter::Update( float dTime )
 				}
 				break;
 			default:
+				isAttack = false;
+				if (m_pCharTop->IsAnimationEnded())
+				{
+					RemoveChild(m_pCharTop, false);
+					if (isLeft)
+					{
+						m_pCharTop = m_AmorStandingTopL;
+					}
+					else
+					{
+						m_pCharTop = m_AmorStandingTopR;
+					}
+					AddChild(m_pCharTop);
+				}
 				break;
 			}
 			break;			
@@ -220,6 +265,8 @@ void NNPlayerCharacter::Update( float dTime )
 				bulletPos.SetX( bulletPos.GetX() + 20 );
 				NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, bulletPos );
 				break;
+
+			
 			default:
 				break;
 			}
@@ -285,6 +332,33 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_03, 
 		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
 	m_DualGunRunningTopL->SetLoop(true);
+	/////////////////////////////////
+	//나머지 모든 무기 모션
+	m_AmorStandingTopR = NNAnimation::Create(0.2f, 60, 50, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
+		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
+		PLAYER_AMOR_STAND_TOP_R_07,PLAYER_AMOR_STAND_TOP_R_08,PLAYER_AMOR_STAND_TOP_R_09,PLAYER_AMOR_STAND_TOP_R_10,
+		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
+	m_AmorStandingTopR->SetLoop(true);
+
+	m_AmorRunningTopR = NNAnimation::Create(0.2f, 60, 50, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
+		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
+		PLAYER_AMOR_STAND_TOP_R_07,PLAYER_AMOR_STAND_TOP_R_08,PLAYER_AMOR_STAND_TOP_R_09,PLAYER_AMOR_STAND_TOP_R_10,
+		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
+	m_AmorRunningTopR->SetLoop(true);
+
+	m_AmorStandingTopL = NNAnimation::Create(0.2f, 60, 50, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
+		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
+		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
+		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
+	m_AmorStandingTopL->SetLoop(true);
+
+	m_AmorRunningTopL = NNAnimation::Create(0.2f, 60, 50, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
+		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
+		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
+		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
+	m_AmorRunningTopL->SetLoop(true);
+
+	
 }
 
 void NNPlayerCharacter::SetAttackStatus( ATTACK_STATUS status )
@@ -329,6 +403,46 @@ void NNPlayerCharacter::SetAttackStatus( ATTACK_STATUS status )
 		SetPosition( GetPositionX()+1, GetPositionY() - 49);
 	}
 	
+
+	if( m_AttackStatus == NORMAL && status == FIRE)
+	{
+		m_AttackStatus = status;
+		if( m_pCharTop == m_RunningTopL ||  m_pCharTop == m_StandingTopL ||  m_pCharTop == m_NormalShotL  )
+		{
+			isAttack = false;
+			RemoveChild(m_pCharTop, false);
+			m_pCharTop = m_AmorRunningTopL;
+			AddChild(m_pCharTop);
+		}
+		else if( m_pCharTop == m_RunningTopR ||  m_pCharTop == m_StandingTopR ||  m_pCharTop == m_NormalShotR )
+		{
+			isAttack = false;
+			RemoveChild(m_pCharTop, false);
+			m_pCharTop = m_AmorRunningTopR;
+			AddChild(m_pCharTop);
+		}
+		SetPosition( GetPositionX()-3, GetPositionY() + 51);
+	}
+	else if( m_AttackStatus == FIRE && status == NORMAL )
+	{
+		m_AttackStatus = status;
+
+		if( m_pCharTop == m_AmorRunningTopL ||  m_pCharTop == m_AmorStandingTopL ||  m_pCharTop == m_AmorShotL  )
+		{
+			isAttack = false;
+			RemoveChild(m_pCharTop, false);
+			m_pCharTop = m_RunningTopL;
+			AddChild(m_pCharTop);
+		}
+		else if( m_pCharTop == m_AmorRunningTopR ||  m_pCharTop == m_AmorStandingTopR ||  m_pCharTop == m_AmorShotR )
+		{
+			isAttack = false;
+			RemoveChild(m_pCharTop, false);
+			m_pCharTop = m_RunningTopR;
+			AddChild(m_pCharTop);
+		}
+		SetPosition( GetPositionX()+3, GetPositionY() - 51);
+	}
 }
 
 GOING_DIRECTION NNPlayerCharacter::GetPlayerDirection()

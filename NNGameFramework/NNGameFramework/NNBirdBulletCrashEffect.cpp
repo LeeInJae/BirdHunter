@@ -228,4 +228,5 @@ NNBirdBulletCrashEffect::NNBirdBulletCrashEffect( BIRD_TYPE type )
 
 NNBirdBulletCrashEffect::~NNBirdBulletCrashEffect(void)
 {
+
 }
