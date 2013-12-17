@@ -300,7 +300,7 @@ void NNGameScene::Update( float dTime )
 	}
  	else if(NNApplication::GetInstance()->GetElapsedTime() -  m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 3.f )
 	{
-		m_Character->SetAttackStatus( DUAL_GUN );
+		//m_Character->SetAttackStatus( DUAL_GUN );
 	}
 
 	NNSoundManager::GetInstance()->Update(dTime);
@@ -396,6 +396,12 @@ void NNGameScene::Update( float dTime )
 			m_DieEndCheck = true;
 		}
 		m_CheckGameOver = true;
+	}
+
+	if ( NNItemManager::GetInstance()->HitCheck(m_Character) )
+	{
+		m_Character->SetAttackStatus( DUAL_GUN );
+
 	}
 
 	if( !m_Character->GetPauseKey() )

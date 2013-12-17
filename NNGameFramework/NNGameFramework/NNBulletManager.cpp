@@ -151,7 +151,6 @@ void NNBulletManager::HitCheck()
 			}
 			else
 			{
-				
      			hitCheck = true;
 				float scaleX = pBird_Iter->GetScaleX();
 

@@ -1,7 +1,7 @@
 #include "NNItem.h"
 #include "NNAnimation.h"
 #include "NNSprite.h"
-
+#include "NNPlayerCharacter.h"
 
 NNItem::NNItem(void)
 {
@@ -42,4 +42,49 @@ void NNItem::Update( float dTime )
 	}
 	m_DropSpeed += m_DropAccelSpeed;
 }
+
+//bool NNItem::HitCheck( NNPlayerCharacter* player )
+//{
+// 	struct HIT_RECT item_rect, player_rect;
+// 
+// 	bool hitCheck;
+// 	ATTACK_STATUS attackStats =player->GetAttackStatus();
+// 	switch ( attackStats )
+// 	{
+// 	case NORMAL:
+// 		player_rect.left	=	player->GetPositionX() + 10;
+// 		player_rect.right	=	player_rect.left + 45;
+// 		player_rect.up		=	player->GetPositionY() + 63;
+// 		player_rect.down	=	player_rect.up + 71;
+// 		break;
+// 
+// 	case DUAL_GUN:
+// 		player_rect.left	=	player->GetPositionX();
+// 		player_rect.right	=	player_rect.left + 45;
+// 		player_rect.up		=	player->GetPositionY() + 13;
+// 		player_rect.down	=	player_rect.up + 71;
+// 		break;
+// 	default:
+// 		break;
+// 	}
+// 
+// 	player_rect.left	=	player->GetPositionX() + 10;
+// 	player_rect.right	=	player_rect.left + 45;
+// 	player_rect.up		=	player->GetPositionY() + 63;
+// 	player_rect.down	=	player_rect.up + 50;
+// 
+// 	item_rect.left	=	m_ItemSprite->GetPositionX();
+// 	item_rect.right	=	m_ItemSprite->GetPositionX() + m_Width;
+// 	item_rect.up	=	m_ItemSprite->GetPositionY();
+// 	item_rect.down	=	m_ItemSprite->GetPositionY() + m_Height;
+// 
+// 	hitCheck = false;
+// 
+// 	if( item_rect.HitCheck( player_rect ) )
+// 	{
+// 		return true;
+// 	}
+// 
+// 	return false;
+//}
 

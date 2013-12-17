@@ -75,7 +75,6 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 {
 	std::list< NNItem* >::iterator item_Iter = m_ItemList.begin();
 
-	//poo & player hitcheck
 	struct HIT_RECT item_rect, player_rect;
 
 	bool hitCheck;
@@ -122,6 +121,9 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 		}
 		else
 		{
+			auto pItem = *item_Iter;
+			item_Iter = m_ItemList.erase( item_Iter );
+			RemoveChild(pItem, true);
 			return true;
 		}
 	}
