@@ -14,7 +14,6 @@ NNItem::~NNItem(void)
 
 void NNItem::SetItemPosition( NNPoint BirdPosition )
 {
-	//m_ItemAnimation->SetPosition(BirdPosition);
 	m_ItemSprite->SetPosition(BirdPosition);
 }
 

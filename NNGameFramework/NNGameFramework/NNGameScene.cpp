@@ -14,6 +14,7 @@
 #include "NNStartScene.h"
 #include "NNPlayerCharacterBottom.h"
 #include "NNAnimation.h"
+#include "NNItemManager.h"
 
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(false), 
 	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
@@ -314,6 +315,7 @@ void NNGameScene::Update( float dTime )
 		AddChild( NNBulletManager::GetInstance() );
 		AddChild( NNBirdFactory::GetInstance() );
 		AddChild( NNEffectManager::GetInstance() );
+		AddChild( NNItemManager::GetInstance() );
 		AddChild(m_ElapsedPlayTimeLabel);
 		//AddChild(m_AmmoLabel);
 

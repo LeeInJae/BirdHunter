@@ -773,7 +773,6 @@ struct BULLET_PROPERTY : public OBJECT_PROPERTY
 struct ITEM_PROPERTY : public OBJECT_PROPERTY
 {
 	ITEM_TYPE	type;
-	NNAnimation*	animation;
 };
 
 struct HIT_RECT
