@@ -39,7 +39,7 @@ void NNItemManager::Update( float dTime )
 	RemoveCheck();
 }
 
-void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition )
+void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition, float scaleX )
 {
 	ITEM_PROPERTY itemProp;
 	itemProp.imageWidth		=	ITEM_WIDTH;
@@ -66,7 +66,11 @@ void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition )
 	NNItem* newItem;
 	newItem = new NNItem();
 	newItem->SetProperty(itemProp);
-	newItem->SetPosition(birdPosition.GetX() - 50, birdPosition.GetY() + 20 );
+	
+	( scaleX == 1) ?
+		newItem->SetPosition(birdPosition.GetX() - 50, birdPosition.GetY() + 20 ) :
+		newItem->SetPosition(birdPosition.GetX() - 50, birdPosition.GetY() + 20 );
+
 	m_ItemList.push_back(newItem);
 	AddChild(newItem);
 }

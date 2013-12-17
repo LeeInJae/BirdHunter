@@ -14,7 +14,7 @@ public:
 	static void ReleaseInstance();
 
 	void Update( float dTime );
-	void MakeItem( ITEM_TYPE itemType, NNPoint birdPosition );
+	void MakeItem( ITEM_TYPE itemType, NNPoint birdPosition, float scaleX );
 	bool HitCheck( NNPlayerCharacter* player);
 	std::list<NNItem*>&	GetItemList(void) {return m_ItemList;}
 
