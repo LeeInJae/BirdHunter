@@ -66,7 +66,7 @@ void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition )
 	NNItem* newItem;
 	newItem = new NNItem();
 	newItem->SetProperty(itemProp);
-	newItem->SetPosition(birdPosition);
+	newItem->SetPosition(birdPosition.GetX() - 50, birdPosition.GetY() + 20 );
 	m_ItemList.push_back(newItem);
 	AddChild(newItem);
 }
@@ -122,7 +122,8 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 		else
 		{
 			auto pItem = *item_Iter;
-			item_Iter = m_ItemList.erase( item_Iter );
+			item_Iter = m_ItemList.erase( item_Iter );
+
 			RemoveChild(pItem, true);
 			return true;
 		}

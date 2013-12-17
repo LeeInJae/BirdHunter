@@ -154,7 +154,11 @@ void NNBulletManager::HitCheck()
      			hitCheck = true;
 				float scaleX = pBird_Iter->GetScaleX();
 
-				NNItemManager::GetInstance()->MakeItem(ITEM_DUAL_GUN, pBird_Iter->GetPosition());
+				if( pBird_Iter->GetBirdType() == ITEM_KING_BIRD )
+				{
+					NNItemManager::GetInstance()->MakeItem(ITEM_DUAL_GUN, pBird_Iter->GetPosition());
+				}
+				
 
 				NNEffectManager::GetInstance()->MakeBirdBulletCrashEffect( pBird_Iter->GetPosition(), pBird_Iter->GetBirdProperty(), scaleX );
 				bird_Iter = bird_list.erase( bird_Iter );

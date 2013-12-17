@@ -414,12 +414,15 @@ void NNGameScene::Update( float dTime )
 		}
 		m_SumTime += dTime;
 
-		for( int i=0; i<BIRD_ALL_NUMBER; ++i )
+		if( !m_CheckGameOver )
 		{
-			if( m_SumTime >= m_BirdBornCheckArray[ i ].bornTime )
+			for( int i=0; i<BIRD_ALL_NUMBER; ++i )
 			{
- 				NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
-				m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
+				if( m_SumTime >= m_BirdBornCheckArray[ i ].bornTime )
+				{
+					NNBirdFactory::GetInstance()->MakeBird( m_BirdBornCheckArray[ i ].birdType );
+					m_BirdBornCheckArray[ i ].bornTime += m_BirdBornCheckArray[ i ].bornCoolTime;
+				}
 			}
 		}
 	}
