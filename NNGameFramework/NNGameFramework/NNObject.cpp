@@ -67,9 +67,10 @@ void NNObject::Update( float dTime )
 
 	for (const auto& child : m_ChildList)
 	{
-		child->Update( dTime );
+  		child->Update( dTime );
 	}
 }
+
 void NNObject::SortingChildByZindex()
 {
 	m_ChildList.sort([](const NNObject* object1, const NNObject* object2) -> bool {

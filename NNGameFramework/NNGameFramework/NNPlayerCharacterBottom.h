@@ -8,9 +8,10 @@ public:
 	~NNPlayerCharacterBottom(void);
 
 	void	Update( float dTime );
+	bool	IsLeft();
 	float	GetSpriteHeight()	{ return m_SpriteHeight; }
 	float	GetSpriteWidth()	{ return m_SpriteWidth; }
-
+	
 private:
 	NNAnimation*		m_pCharBottom;
 

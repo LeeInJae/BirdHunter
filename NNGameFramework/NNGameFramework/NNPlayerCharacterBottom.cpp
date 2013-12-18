@@ -122,3 +122,10 @@ void NNPlayerCharacterBottom::PCAnimationInit( void )
 // 	m_RunningBottomL->SetLoop(true);
 // 	m_RunningBottomL->SetFrameTime(0.1f);
 }
+
+bool NNPlayerCharacterBottom::IsLeft()
+{
+	if( isLeft )
+		return true;
+	return false;
+}

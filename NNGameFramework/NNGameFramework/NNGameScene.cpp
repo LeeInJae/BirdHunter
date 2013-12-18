@@ -326,7 +326,21 @@ void NNGameScene::Update( float dTime )
 		m_AppearTime = m_SumTime;
 	}
 
+	//test
 	
+// 	switch( m_Character->GetAttackStatus() )
+// 	{
+// 	case NORMAL:
+// 		( m_CharacterBottom->IsLeft() ) ? 
+// 			m_Character->SetPosition( m_CharacterBottom->GetPositionX() - 5, m_CharacterBottom->GetPositionY() - 85 ) : 
+// 			m_Character->SetPosition( m_CharacterBottom->GetPositionX() - 25, m_CharacterBottom->GetPositionY() - 85) ;
+// 		break;
+// 
+// 
+// 	default:
+// 		break;
+// 	}
+	//
 	if (m_CheckGameStart == false)
 	{
 		NNSoundManager::GetInstance()->PlayAndGetChannel(
