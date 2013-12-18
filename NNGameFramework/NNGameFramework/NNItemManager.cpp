@@ -6,7 +6,7 @@
 
 NNItemManager* NNItemManager::m_pInstance = nullptr;
 
-NNItemManager::NNItemManager(void)
+NNItemManager::NNItemManager(void) : m_ItemType(ITEM_MAX_NUM)
 {
 }
 
@@ -47,6 +47,7 @@ void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition, float sc
 	itemProp.speed			=	ITEM_SPEED;
 	itemProp.accel_speed	=	ITEM_ACCEL_SPEED;
 	itemProp.zIndex			=	ITEM_ZINDEX;
+	itemProp.type			=	itemType;
 
 	switch (itemType)
 	{
@@ -113,7 +114,7 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 
 		item_rect.left	=	pitem_Iter->GetPositionX();
 		item_rect.right	=	pitem_Iter->GetPositionX() + pitem_Iter->GetWidth();
-		item_rect.up		=	pitem_Iter->GetPositionY();
+		item_rect.up	=	pitem_Iter->GetPositionY();
 		item_rect.down	=	pitem_Iter->GetPositionY() + pitem_Iter->GetHeight();
 
 		hitCheck = false;
@@ -125,6 +126,9 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 		}
 		else
 		{
+			printf("%d", pitem_Iter->GetItemType());
+			SetItemType(pitem_Iter->GetItemType());
+
 			auto pItem = *item_Iter;
 			item_Iter = m_ItemList.erase( item_Iter );
 

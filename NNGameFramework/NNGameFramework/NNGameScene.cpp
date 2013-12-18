@@ -15,6 +15,7 @@
 #include "NNPlayerCharacterBottom.h"
 #include "NNAnimation.h"
 #include "NNItemManager.h"
+#include "NNItem.h"
 
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(false), 
 	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
@@ -415,13 +416,27 @@ void NNGameScene::Update( float dTime )
 		m_CheckGameOver = true;
 	}
 
-	if ( NNItemManager::GetInstance()->HitCheck(m_Character) )
+	if ( NNItemManager::GetInstance()->HitCheck( m_Character) )
 	{
+		switch (NNItemManager::GetInstance()->GetItemType())
+		{
+		case ITEM_DUAL_GUN:
+			m_Character->SetAttackStatus( DUAL_GUN ); 
+			break;
+		case ITEM_FIRE_SHOOTER:
+			m_Character->SetAttackStatus( FIRE );
+			break;
+		case ITEM_CLEANER:
+			break;
+		case ITEM_MAX_NUM:
+			break;
+		default:
+			break;
+		}
 		//m_Character->SetAttackStatus( DUAL_GUN ); 
-		m_Character->SetAttackStatus( FIRE );
-
+		//m_Character->SetAttackStatus( FIRE );
 	}
-
+	
 	if( !m_Character->GetPauseKey() )
 	{
 		NNScene::Update( dTime );

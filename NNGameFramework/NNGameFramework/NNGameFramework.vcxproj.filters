@@ -130,6 +130,9 @@
     <Filter Include="BirdHunter\Effect">
       <UniqueIdentifier>{de79b78a-61df-411c-a7da-322bc99e2b99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BirdHunter\Item">
+      <UniqueIdentifier>{ccb5a908-3e85-4a01-814d-f03b734a4a67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -308,8 +311,12 @@
       <Filter>BirdHunter\PlayerCharacter</Filter>
     </ClCompile>
     <ClCompile Include="NNAnimationManager.cpp" />
-    <ClCompile Include="NNItemManager.cpp" />
-    <ClCompile Include="NNItem.cpp" />
+    <ClCompile Include="NNItem.cpp">
+      <Filter>BirdHunter\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="NNItemManager.cpp">
+      <Filter>BirdHunter\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -530,8 +537,12 @@
       <Filter>BirdHunter\PlayerCharacter</Filter>
     </ClInclude>
     <ClInclude Include="NNAnimationManager.h" />
-    <ClInclude Include="NNItemManager.h" />
-    <ClInclude Include="NNItem.h" />
+    <ClInclude Include="NNItemManager.h">
+      <Filter>BirdHunter\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="NNItem.h">
+      <Filter>BirdHunter\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="NNGameFramework.rc" />

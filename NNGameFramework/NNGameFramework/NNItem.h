@@ -20,7 +20,7 @@ public:
 	float GetHeight(void) {return m_Height;}
 	//bool HitCheck( NNPlayerCharacter* player );
 	ITEM_TYPE GetItemType(void) {return m_Type;}
-
+	
 private:
 	//NNAnimation*	m_ItemAnimation;
 	NNSprite*		m_ItemSprite;

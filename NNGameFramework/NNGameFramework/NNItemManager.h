@@ -16,15 +16,21 @@ public:
 	void Update( float dTime );
 	void MakeItem( ITEM_TYPE itemType, NNPoint birdPosition, float scaleX );
 	bool HitCheck( NNPlayerCharacter* player);
+	//bool HitCheck( ITEM_TYPE iType, NNPlayerCharacter* player );
 	std::list<NNItem*>&	GetItemList(void) {return m_ItemList;}
+	ITEM_TYPE GetItemType(void){return m_ItemType;}
+	void SetItemType(ITEM_TYPE itype){m_ItemType = itype;}
 
 private:
 	NNItemManager(void);
 	~NNItemManager(void);
 
+	ITEM_TYPE m_ItemType;
+
 	std::list< NNItem* > m_ItemList;
 
 	static NNItemManager* m_pInstance;
 	void RemoveCheck(void);
+	
 };
 

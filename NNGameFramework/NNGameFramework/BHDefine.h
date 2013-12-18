@@ -834,11 +834,12 @@ enum ITEM_TYPE
 	ITEM_FIRE_SHOOTER,
 	ITEM_CLEANER,
 
+	
 	ITEM_MAX_NUM
 };
 
-#define	ITEM_WIDTH	30.f
-#define	ITEM_HEIGHT	30.f
+#define	ITEM_WIDTH	50.f
+#define	ITEM_HEIGHT	50.f
 #define	ITEM_SPEED	100
 #define	ITEM_ACCEL_SPEED	0.3f
 #define	ITEM_ZINDEX	2
