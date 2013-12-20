@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{960874C5-E4E1-40F8-8082-BEDD3CD77B0B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NNGameFramework</RootNamespace>
+    <ProjectName>BirdHunter</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <OutDir>$(SolutionDir)Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>.\Library\FMOD\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>fmodex_vc.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimationSample.cpp" />
+    <ClCompile Include="CameraSample.cpp" />
+    <ClCompile Include="FMODSoundSample.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Library\TinyXML\action_store.cpp" />
+    <ClCompile Include="Library\TinyXML\htmlutil.cpp" />
+    <ClCompile Include="Library\TinyXML\lex_util.cpp" />
+    <ClCompile Include="Library\TinyXML\node_set.cpp" />
+    <ClCompile Include="Library\TinyXML\tinystr.cpp" />
+    <ClCompile Include="Library\TinyXML\tinyxml.cpp" />
+    <ClCompile Include="Library\TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="Library\TinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="Library\TinyXML\tokenlist.cpp" />
+    <ClCompile Include="Library\TinyXML\xml_util.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_expression.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_processor.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_stack.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_static.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_stream.cpp" />
+    <ClCompile Include="Library\TinyXML\xpath_syntax.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NNAnimation.cpp" />
+    <ClCompile Include="NNAnimationManager.cpp" />
+    <ClCompile Include="NNApplication.cpp" />
+    <ClCompile Include="NNAudioSystem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="NNBird.cpp" />
+    <ClCompile Include="NNBirdBulletCrashEffect.cpp" />
+    <ClCompile Include="NNBirdFactory.cpp" />
+    <ClCompile Include="NNBullet.cpp" />
+    <ClCompile Include="NNBulletManager.cpp" />
+    <ClCompile Include="NNCamera.cpp" />
+    <ClCompile Include="NND2DRenderer.cpp" />
+    <ClCompile Include="NNEffect.cpp" />
+    <ClCompile Include="NNEffectManager.cpp" />
+    <ClCompile Include="NNInputSystem.cpp" />
+    <ClCompile Include="NNItem.cpp" />
+    <ClCompile Include="NNItemManager.cpp" />
+    <ClCompile Include="NNLabel.cpp" />
+    <ClCompile Include="NNGameScene.cpp" />
+    <ClCompile Include="NNMap.cpp" />
+    <ClCompile Include="NNMapManager.cpp" />
+    <ClCompile Include="NNObject.cpp" />
+    <ClCompile Include="NNplayerCharacter.cpp" />
+    <ClCompile Include="NNPlayerCharacterBottom.cpp" />
+    <ClCompile Include="NNPoint.cpp" />
+    <ClCompile Include="NNPoo.cpp" />
+    <ClCompile Include="NNPooBulletCrashEffect.cpp" />
+    <ClCompile Include="NNPooManager.cpp" />
+    <ClCompile Include="NNResourceManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="NNScene.cpp" />
+    <ClCompile Include="NNSceneDirector.cpp" />
+    <ClCompile Include="NNSize.cpp" />
+    <ClCompile Include="NNSound.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="NNSoundManager.cpp" />
+    <ClCompile Include="NNSprite.cpp" />
+    <ClCompile Include="NNSpriteAtlas.cpp" />
+    <ClCompile Include="NNSpriteNode.cpp" />
+    <ClCompile Include="NNStartScene.cpp" />
+    <ClCompile Include="NNTexture.cpp" />
+    <ClCompile Include="NNXML.cpp" />
+    <ClCompile Include="SpriteAtlasSample.cpp" />
+    <ClCompile Include="SpriteSample.cpp" />
+    <ClCompile Include="XMLSample.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimationSample.h" />
+    <ClInclude Include="BHDefine.h" />
+    <ClInclude Include="CameraSample.h" />
+    <ClInclude Include="FMODSoundSample.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Library\FMOD\inc\fmod.h" />
+    <ClInclude Include="Library\FMOD\inc\fmod.hpp" />
+    <ClInclude Include="Library\FMOD\inc\fmod_codec.h" />
+    <ClInclude Include="Library\FMOD\inc\fmod_common.h" />
+    <ClInclude Include="Library\FMOD\inc\fmod_dsp.h" />
+    <ClInclude Include="Library\FMOD\inc\fmod_errors.h" />
+    <ClInclude Include="Library\FMOD\inc\fmod_output.h" />
+    <ClInclude Include="Library\TinyXML\action_store.h" />
+    <ClInclude Include="Library\TinyXML\byte_stream.h" />
+    <ClInclude Include="Library\TinyXML\htmlutil.h" />
+    <ClInclude Include="Library\TinyXML\lex_token.h" />
+    <ClInclude Include="Library\TinyXML\lex_util.h" />
+    <ClInclude Include="Library\TinyXML\node_set.h" />
+    <ClInclude Include="Library\TinyXML\tinystr.h" />
+    <ClInclude Include="Library\TinyXML\tinyxml.h" />
+    <ClInclude Include="Library\TinyXML\tinyxpath_conf.h" />
+    <ClInclude Include="Library\TinyXML\tokenlist.h" />
+    <ClInclude Include="Library\TinyXML\xml_util.h" />
+    <ClInclude Include="Library\TinyXML\xpath_expression.h" />
+    <ClInclude Include="Library\TinyXML\xpath_processor.h" />
+    <ClInclude Include="Library\TinyXML\xpath_stack.h" />
+    <ClInclude Include="Library\TinyXML\xpath_static.h" />
+    <ClInclude Include="Library\TinyXML\xpath_stream.h" />
+    <ClInclude Include="Library\TinyXML\xpath_syntax.h" />
+    <ClInclude Include="NNAnimation.h" />
+    <ClInclude Include="NNAnimationManager.h" />
+    <ClInclude Include="NNApplication.h" />
+    <ClInclude Include="NNAudioSystem.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="NNBird.h" />
+    <ClInclude Include="NNBirdBulletCrashEffect.h" />
+    <ClInclude Include="NNBirdFactory.h" />
+    <ClInclude Include="NNBullet.h" />
+    <ClInclude Include="NNBulletManager.h" />
+    <ClInclude Include="NNCamera.h" />
+    <ClInclude Include="NNConfig.h" />
+    <ClInclude Include="NND2DRenderer.h" />
+    <ClInclude Include="NNEffect.h" />
+    <ClInclude Include="NNEffectManager.h" />
+    <ClInclude Include="NNIncludeSet.h" />
+    <ClInclude Include="NNInputSystem.h" />
+    <ClInclude Include="NNItem.h" />
+    <ClInclude Include="NNItemManager.h" />
+    <ClInclude Include="NNLabel.h" />
+    <ClInclude Include="NNLibSet.h" />
+    <ClInclude Include="NNMacroSet.h" />
+    <ClInclude Include="NNGameScene.h" />
+    <ClInclude Include="NNMap.h" />
+    <ClInclude Include="NNMapManager.h" />
+    <ClInclude Include="NNObject.h" />
+    <ClInclude Include="NNPlayerCharacter.h" />
+    <ClInclude Include="NNPlayerCharacterBottom.h" />
+    <ClInclude Include="NNPoint.h" />
+    <ClInclude Include="NNPoo.h" />
+    <ClInclude Include="NNPooBulletCrashEffect.h" />
+    <ClInclude Include="NNPooManager.h" />
+    <ClInclude Include="NNRenderer.h" />
+    <ClInclude Include="NNResourceManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="NNScene.h" />
+    <ClInclude Include="NNSceneDirector.h" />
+    <ClInclude Include="NNSize.h" />
+    <ClInclude Include="NNSound.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="NNSoundManager.h" />
+    <ClInclude Include="NNSprite.h" />
+    <ClInclude Include="NNSpriteAtlas.h" />
+    <ClInclude Include="NNSpriteNode.h" />
+    <ClInclude Include="NNStartScene.h" />
+    <ClInclude Include="NNTexture.h" />
+    <ClInclude Include="NNXML.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SpriteAtlasSample.h" />
+    <ClInclude Include="SpriteSample.h" />
+    <ClInclude Include="XMLSample.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NNGameFramework.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
