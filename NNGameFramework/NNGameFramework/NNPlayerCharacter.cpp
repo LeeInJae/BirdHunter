@@ -299,7 +299,7 @@ void NNPlayerCharacter::Update( float dTime )
 				break;
 
 
-LIGHT:
+			case LIGHT:
 				if (isLeft)
 				{
 					RemoveChild(m_pCharTop, false);
