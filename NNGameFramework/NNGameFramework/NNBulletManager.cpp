@@ -156,7 +156,8 @@ void NNBulletManager::HitCheck()
 
 				if( pBird_Iter->GetBirdType() == ITEM_KING_BIRD )
 				{
-					NNItemManager::GetInstance()->MakeItem(ITEM_DUAL_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					/*NNItemManager::GetInstance()->MakeItem(ITEM_DUAL_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );*/
+					NNItemManager::GetInstance()->MakeItem(ITEM_FIRE_SHOOTER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
 				}
 				
 

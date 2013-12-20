@@ -6,4 +6,9 @@ class NNFire :
 public:
 	NNFire( void );
 	~NNFire(void);
+	void	Update( float dTime );
+	void RemoveCheck();
+private:
+	float	m_FireSpeed ;
+	float	m_AccelSpeed;
 };

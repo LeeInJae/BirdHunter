@@ -87,6 +87,10 @@
 #define DUALGUN				L"Image/UI/DUALGUN.png"
 #define FIREGUN				L"Image/UI/FIRE.png"
 
+//
+#define LIGHT01 L"Image/EFFECT/LIGHT01.png"
+#define LIGHT02 L"Image/EFFECT/LIGHT02.png"
+#define LIGHT03 L"Image/EFFECT/LIGHT03.png"
 
 //Amor Sprite
 #define AMOR_SHOT_R_01 L"Image/PC/GUNSHOT/AMOR_RIGHT01.png"
@@ -257,8 +261,8 @@
 #define UI_SPRITE			L"Image/UI_ATLAS.png"
 #define SKULL_SPRITE		L"Image/SKULL.png"
 
-#define SKILL_FIRST_BAR		L"Image/UI/SKILL_FIRST_BAR.png"
-#define SKILL_SECOND_BAR	L"Image/UI/SKILL_SECOND_BAR.png"
+#define SKILL_FIRST_BAR		L"Image/UI/GAUGE1.png"
+#define SKILL_SECOND_BAR	L"Image/UI/GAUGE2.png"
 /**********************************************************************///
 /////////////<새들의 속성들 값을 지정 >/////////////////////////////////////////////////////////////////////
 //////////////SMALL BIRD////////////////////////////////////////////////////////////////////////////////////
@@ -701,7 +705,7 @@ enum BULLET_TYPE
 {
 	NORMAL_BULLET,
 	FIRE_BULLET,
-	STORM_BULLET,
+	LIGHT_BULLET,
 };
 
 enum BIRD_TYPE
@@ -783,11 +787,16 @@ enum BIRD_SPRITE
 #define ITEM_KING_BIRD_COOLTIME	30
 #define OLD_BIRD_COOLTIME		20
 
+#define EMPTY_VIEW L"Image/EFFECT/EMPTY.png"
+//무기 특성
+#define FIRE_SPEED
+#define FIRE_ACCELSPEED
 enum ATTACK_STATUS
 {
 	NORMAL,
 	DUAL_GUN,
 	FIRE,
+	LIGHT,
 };
 enum POO_TYPE
 {
@@ -834,12 +843,11 @@ enum ITEM_TYPE
 	ITEM_FIRE_SHOOTER,
 	ITEM_CLEANER,
 
-	
 	ITEM_MAX_NUM
 };
 
-#define	ITEM_WIDTH	50.f
-#define	ITEM_HEIGHT	50.f
+#define	ITEM_WIDTH	30.f
+#define	ITEM_HEIGHT	30.f
 #define	ITEM_SPEED	100
 #define	ITEM_ACCEL_SPEED	0.3f
 #define	ITEM_ZINDEX	2

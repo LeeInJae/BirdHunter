@@ -17,7 +17,7 @@ public:
 	void MakeBirdBulletCrashEffect(NNPoint birdPosition, BIRD_PROPERTY birdProperty, float scaleX );
 	//void MakeBirdBulletCrashEffect( NNPoint birdPosition );
 	void MakePooBulletCrashEffect( NNPoint pooPosition );
-
+	void MakeAmorEffect( NNPoint playerPos, ATTACK_STATUS status, bool isLeft );
 	std::list< NNEffect* >& GetEffectList(){ return m_HitEffect; }
 private:
 	NNEffectManager(void);
