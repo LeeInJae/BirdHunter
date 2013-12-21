@@ -21,13 +21,13 @@ NNStartScene::NNStartScene(void)
 
 
 
-	m_pTitle=NNSprite::Create( TITLE_SPRITE );
-	m_pTitle->SetImageWidth( TITLE_WIDTH );
-	m_pTitle->SetImageHeight( TITLE_HEIGHT );
-	position.SetX( 0 );
-	position.SetY( RESOLUTION_HEIGHT * 0.5 );
-	m_pTitle->SetPosition( position );
-	m_pTitle->SetZindex( TITLE_ZINDEX );
+// 	m_pTitle=NNSprite::Create( TITLE_SPRITE );
+// 	m_pTitle->SetImageWidth( TITLE_WIDTH );
+// 	m_pTitle->SetImageHeight( TITLE_HEIGHT );
+// 	position.SetX( 0 );
+// 	position.SetY( RESOLUTION_HEIGHT * 0.5 );
+// 	m_pTitle->SetPosition( position );
+// 	m_pTitle->SetZindex( TITLE_ZINDEX );
 
 	m_pFilter = NNSprite::Create( TITLE_FILTER_SPRITE );
 	m_pFilter->SetImageWidth( TITLE_FILTER_WIDTH );

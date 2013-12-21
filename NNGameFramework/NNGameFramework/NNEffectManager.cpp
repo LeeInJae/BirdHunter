@@ -3,6 +3,7 @@
 #include "NNPooBulletCrashEffect.h"
 #include "NNBird.h"
 #include "NNFire.h"
+#include "NNShotGun.h"
 
 NNEffectManager* NNEffectManager::m_pInstance = nullptr;
 
@@ -138,6 +139,19 @@ void NNEffectManager::MakeAmorEffect( NNPoint playerPos, ATTACK_STATUS status, b
 		AddChild( newEffect1 ); 
 		break;
 
+	case SHOT_GUN:
+		NNShotGun* newEffect2;
+
+		newEffect2 = new NNShotGun();
+		( isLeft ) ? playerPos.SetX( playerPos.GetX() - 10.f) : playerPos.SetX( playerPos.GetX() - 45.f);
+
+		playerPos.SetY( playerPos.GetY() - 280.f);
+		newEffect2->SetPosition( playerPos );
+		//newEffect1->SetScale( 2.f, 10.f );
+		newEffect2->SetZindex( 0 );
+		m_HitEffect.push_back( newEffect2 );
+		AddChild( newEffect2 ); 
+		break;
 // 	case LIGHT:
 // 		NNLight* newEffect2;
 // 

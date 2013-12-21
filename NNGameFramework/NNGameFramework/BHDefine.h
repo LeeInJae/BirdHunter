@@ -77,7 +77,20 @@
 #define FIRE24	L"Image/EFFECT/FIRE24.png"
 #define FIRE25	L"Image/EFFECT/FIRE25.png"
 #define FIRE26	L"Image/EFFECT/FIRE26.png"
-
+////////////////////////
+#define SHOTGUN01	L"Image/EFFECT/SHOTGUN01.png"
+#define SHOTGUN02	L"Image/EFFECT/SHOTGUN02.png"
+#define SHOTGUN03	L"Image/EFFECT/SHOTGUN03.png"
+#define SHOTGUN04	L"Image/EFFECT/SHOTGUN04.png"
+#define SHOTGUN05	L"Image/EFFECT/SHOTGUN05.png"
+#define SHOTGUN06	L"Image/EFFECT/SHOTGUN06.png"
+#define SHOTGUN07	L"Image/EFFECT/SHOTGUN07.png"
+#define SHOTGUN08	L"Image/EFFECT/SHOTGUN08.png"
+#define SHOTGUN09	L"Image/EFFECT/SHOTGUN09.png"
+#define SHOTGUN10	L"Image/EFFECT/SHOTGUN10.png"
+#define SHOTGUN11	L"Image/EFFECT/SHOTGUN11.png"
+#define SHOTGUN12	L"Image/EFFECT/SHOTGUN12.png"
+#define SHOTGUN13	L"Image/EFFECT/SHOTGUN13.png"
 ///////////
 ////아이템 지속시간
 #define DUALGUN_RUNTIME		10.f
@@ -796,6 +809,7 @@ enum ATTACK_STATUS
 	NORMAL,
 	DUAL_GUN,
 	FIRE,
+	SHOT_GUN,
 	LIGHT,
 };
 enum POO_TYPE
@@ -842,6 +856,7 @@ enum ITEM_TYPE
 	ITEM_DUAL_GUN,
 	ITEM_FIRE_SHOOTER,
 	ITEM_CLEANER,
+	ITEM_SHOT_GUN,
 
 	ITEM_MAX_NUM
 };

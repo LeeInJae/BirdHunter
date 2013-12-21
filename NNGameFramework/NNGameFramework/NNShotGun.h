@@ -3,17 +3,18 @@
 
 class NNSprite;
 
-class NNFire : public NNEffect
+class NNShotGun :
+	public NNEffect
 {
 public:
-	NNFire( void );
-	~NNFire(void);
-	void	Update( float dTime );
-	void RemoveCheck();
+	NNShotGun(void);
+	~NNShotGun(void);
 
-	
+	void	Update( float dTime );
+
 private:
-	float	m_FireSpeed ;
+	float	m_ShotGunSpeed ;
 	float	m_AccelSpeed;
 	NNSprite* m_CheckBox;
 };
+

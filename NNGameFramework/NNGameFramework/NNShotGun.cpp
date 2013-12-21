@@ -1,42 +1,42 @@
-#include "NNFire.h"
+#include "NNShotGun.h"
 #include "NNAnimation.h"
 #include "BHDefine.h"
-#include "NNBird.h"
+#include "NNEffectManager.h"
+#include "NNPooManager.h"
+#include "NNSoundManager.h"
 #include "NNBirdFactory.h"
 #include "NNItemManager.h"
-#include "NNEffectManager.h"
-#include "NNSoundManager.h"
 #include "NNPoo.h"
-#include "NNPooManager.h"
-#include "NNSprite.h"
 
 
-NNFire::NNFire(void)
+NNShotGun::NNShotGun(void)
 {
-	m_LifeTime = 0.07f * 15;
+	m_LifeTime = 0.08f * 13;
 	m_ElapsedTime = 0;
-	m_FireSpeed = 10;
+	m_ShotGunSpeed = 20;
 	m_AccelSpeed  = 5;
 	m_Animation = NNAnimation::Create
 		( 
-		0.05, 52*2,52*2,15,
-		FIRE01,FIRE02,FIRE03,FIRE04,FIRE05,FIRE06,FIRE07,FIRE08,FIRE09,FIRE10,
-		FIRE11,FIRE12,FIRE13,FIRE14,FIRE15 );
-	m_Animation->SetFrameTime( 0.07f);
-	m_CheckBox=NNSprite::Create(L"Image/RECT.png");
+		0.05, 81*2,150*2,13,
+		SHOTGUN01,SHOTGUN02,SHOTGUN03,SHOTGUN04,SHOTGUN05,SHOTGUN06,SHOTGUN07,SHOTGUN08,SHOTGUN09,SHOTGUN10,
+		SHOTGUN11,SHOTGUN12,SHOTGUN13 );
+
+	m_Animation->SetFrameTime( 0.08f);
+	//m_CheckBox=NNSprite::Create(L"Image/RECT.png");
 	//AddChild(m_CheckBox);
 	AddChild(m_Animation);
 }
 
-NNFire::~NNFire(void)
+
+NNShotGun::~NNShotGun(void)
 {
 }
 
-void NNFire::Update( float dTime )
+void NNShotGun::Update( float dTime )
 {
 	NNEffect::Update( dTime );
 
-	
+
 	//////////////////////////////////
 	//Bird & Bullet Hitcheck
 	std::list< NNBird* >::iterator bird_Iter;
@@ -48,26 +48,26 @@ void NNFire::Update( float dTime )
 	bool hitCheck = false;
 
 	bullet_rect.left	=	GetPositionX() + 25;
-	bullet_rect.right	=	bullet_rect.left + 54;
+	bullet_rect.right	=	bullet_rect.left + 100;
 	bullet_rect.up		=	GetPositionY() + 16;
-	bullet_rect.down	=	bullet_rect.up + 73;
+	bullet_rect.down	=	bullet_rect.up + 130;
 	///////////
-	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE - 25  ) 
+	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE   ) 
 	{
-		SetPosition( GetPositionX(), GetPositionY() - m_FireSpeed * dTime );
+		SetPosition( GetPositionX(), GetPositionY() - m_ShotGunSpeed * dTime );
 	}
-	else if( GetPositionY() < WINDOW_HEIGHT_UP_EDGE - 25  || bullet_rect.up <= WINDOW_HEIGHT_UP_EDGE )
+	else if( GetPositionY() < WINDOW_HEIGHT_UP_EDGE  || bullet_rect.up <= WINDOW_HEIGHT_UP_EDGE )
 	{
 		RemoveChild(m_Animation, true);
 		return;
 	}
 
-	m_FireSpeed += m_AccelSpeed;
+	m_ShotGunSpeed += m_AccelSpeed;
 	/////////
-// 	m_CheckBox->SetImageWidth( 54 );
-// 	m_CheckBox->SetImageHeight( 73 );
-// 
-// 	m_CheckBox->SetPosition(bullet_rect.left, bullet_rect.up	 );
+	 //	m_CheckBox->SetImageWidth( 100 );
+	 	//m_CheckBox->SetImageHeight( 130 );
+	// 
+	 	//m_CheckBox->SetPosition(bullet_rect.left, bullet_rect.up	 );
 	for( bird_Iter = bird_list.begin(); bird_Iter != bird_list.end(); )
 	{
 		auto pBird_Iter = *bird_Iter;
@@ -152,10 +152,4 @@ void NNFire::Update( float dTime )
 			break;
 		}
 	}
-	RemoveCheck();
-}
-
-void NNFire::RemoveCheck()
-{
-
 }

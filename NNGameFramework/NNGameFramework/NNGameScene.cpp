@@ -426,6 +426,9 @@ void NNGameScene::Update( float dTime )
 		case ITEM_FIRE_SHOOTER:
 			m_Character->SetAttackStatus( FIRE );
 			break;
+		case ITEM_SHOT_GUN:
+			m_Character->SetAttackStatus( SHOT_GUN );
+			break;
 		case ITEM_CLEANER:
 			break;
 		case ITEM_MAX_NUM:
@@ -495,6 +498,22 @@ void NNGameScene::UIUpdate( float dTime )
 			}
 			break;
 		case FIRE:
+			RemoveChild( m_ItemGunSprite, false );
+			m_ItemGunSprite=m_ItemSprite[2];
+			AddChild( m_ItemGunSprite );
+			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME));
+
+			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME) < 0.f )
+			{
+				m_SkillSecondBar->SetImageWidth( 80 );
+				m_Character->SetAttackStatus( NORMAL );
+
+				RemoveChild( m_ItemGunSprite, false );
+				m_ItemGunSprite=m_ItemSprite[0];
+				AddChild( m_ItemGunSprite );
+			}
+			break;
+		case SHOT_GUN:
 			RemoveChild( m_ItemGunSprite, false );
 			m_ItemGunSprite=m_ItemSprite[2];
 			AddChild( m_ItemGunSprite );
