@@ -317,6 +317,12 @@
     <ClCompile Include="NNItemManager.cpp">
       <Filter>BirdHunter\Item</Filter>
     </ClCompile>
+    <ClCompile Include="NNFire.cpp">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="NNShotGun.cpp">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -542,6 +548,12 @@
     </ClInclude>
     <ClInclude Include="NNItem.h">
       <Filter>BirdHunter\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="NNFire.h">
+      <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNShotGun.h">
+      <Filter>BirdHunter\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -122,6 +122,7 @@
     <ClCompile Include="NND2DRenderer.cpp" />
     <ClCompile Include="NNEffect.cpp" />
     <ClCompile Include="NNEffectManager.cpp" />
+    <ClCompile Include="NNFire.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNItem.cpp" />
     <ClCompile Include="NNItemManager.cpp" />
@@ -141,6 +142,7 @@
     </ClCompile>
     <ClCompile Include="NNScene.cpp" />
     <ClCompile Include="NNSceneDirector.cpp" />
+    <ClCompile Include="NNShotGun.cpp" />
     <ClCompile Include="NNSize.cpp" />
     <ClCompile Include="NNSound.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
@@ -203,6 +205,7 @@
     <ClInclude Include="NND2DRenderer.h" />
     <ClInclude Include="NNEffect.h" />
     <ClInclude Include="NNEffectManager.h" />
+    <ClInclude Include="NNFire.h" />
     <ClInclude Include="NNIncludeSet.h" />
     <ClInclude Include="NNInputSystem.h" />
     <ClInclude Include="NNItem.h" />
@@ -226,6 +229,7 @@
     </ClInclude>
     <ClInclude Include="NNScene.h" />
     <ClInclude Include="NNSceneDirector.h" />
+    <ClInclude Include="NNShotGun.h" />
     <ClInclude Include="NNSize.h" />
     <ClInclude Include="NNSound.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>

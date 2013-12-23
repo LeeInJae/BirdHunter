@@ -377,6 +377,12 @@ void NNGameScene::Update( float dTime )
 				case DUAL_GUN:
 					m_PlayerCharacterDie->SetPosition( playerPoint.GetX() + 10.f, playerPoint.GetY() + 5 );
 					break;
+				case FIRE:
+					m_PlayerCharacterDie->SetPosition( playerPoint.GetX() + 10.f, playerPoint.GetY() + 35 );
+					break;
+				case SHOT_GUN:
+					m_PlayerCharacterDie->SetPosition( playerPoint.GetX() + 10.f, playerPoint.GetY() + 39 );
+					break;
 				default:
 					break;
 				}

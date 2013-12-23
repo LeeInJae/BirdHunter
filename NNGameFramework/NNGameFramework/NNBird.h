@@ -35,6 +35,7 @@ protected:
 	float			m_SpriteHeight;
 	float			m_SpriteWidth;
 	NNSprite*		m_pBird;
+
 	int				m_Zindex;
 
 };

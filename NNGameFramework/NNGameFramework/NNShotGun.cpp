@@ -11,17 +11,17 @@
 
 NNShotGun::NNShotGun(void)
 {
-	m_LifeTime = 0.08f * 13;
+	m_LifeTime = 0.09f * 13;
 	m_ElapsedTime = 0;
-	m_ShotGunSpeed = 20;
-	m_AccelSpeed  = 5;
+	m_ShotGunSpeed = 40;
+	m_AccelSpeed  = 10;
 	m_Animation = NNAnimation::Create
 		( 
 		0.05, 81*2,150*2,13,
 		SHOTGUN01,SHOTGUN02,SHOTGUN03,SHOTGUN04,SHOTGUN05,SHOTGUN06,SHOTGUN07,SHOTGUN08,SHOTGUN09,SHOTGUN10,
 		SHOTGUN11,SHOTGUN12,SHOTGUN13 );
 
-	m_Animation->SetFrameTime( 0.08f);
+	m_Animation->SetFrameTime( 0.09f);
 	//m_CheckBox=NNSprite::Create(L"Image/RECT.png");
 	//AddChild(m_CheckBox);
 	AddChild(m_Animation);
@@ -52,11 +52,11 @@ void NNShotGun::Update( float dTime )
 	bullet_rect.up		=	GetPositionY() + 16;
 	bullet_rect.down	=	bullet_rect.up + 130;
 	///////////
-	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE   ) 
+	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE- 30   ) 
 	{
 		SetPosition( GetPositionX(), GetPositionY() - m_ShotGunSpeed * dTime );
 	}
-	else if( GetPositionY() < WINDOW_HEIGHT_UP_EDGE  || bullet_rect.up <= WINDOW_HEIGHT_UP_EDGE )
+	else if( GetPositionY() < WINDOW_HEIGHT_UP_EDGE - 30  || bullet_rect.up <= WINDOW_HEIGHT_UP_EDGE - 30 )
 	{
 		RemoveChild(m_Animation, true);
 		return;

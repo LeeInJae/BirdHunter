@@ -544,7 +544,7 @@ void NNPlayerCharacter::SetAttackStatus( ATTACK_STATUS status )
 
 GOING_DIRECTION NNPlayerCharacter::GetPlayerDirection()
 {
-	if( m_pCharTop == m_RunningTopL || m_pCharTop == m_StandingTopL || m_pCharTop == m_NormalShotL )
+	if( isLeft )
 		return LEFT_GO;
 	else
 		return RIGHT_GO;
