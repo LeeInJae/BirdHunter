@@ -5,6 +5,7 @@
 #include "NNSpriteAtlas.h"
 #include "NNAnimation.h"
 #include "NNEffectManager.h"
+#include "NNSoundManager.h"
 
 NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false), isAttack(false)
 {
@@ -302,7 +303,7 @@ void NNPlayerCharacter::Update( float dTime )
 				}
 				//NNEffectManager::GetInstance()->MakeAmorEffect( GetPosition(), FIRE, isLeft );
 				NNEffectManager::GetInstance()->MakeAmorEffect( GetPosition(), LIGHT, isLeft );
-
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_NormalGunShot[rand()%NNSoundManager::GetInstance()->SE_NormalGunShot.size()]);
 				bulletPos = GetPosition();
 				//playerPos.SetX( playerPos.GetX() + 23.f) : playerPos.SetX( playerPos.GetX() + 10.f)
 				( isLeft ) ? bulletPos.SetX( GetPositionX() + 23.f) : bulletPos.SetX( GetPositionX() + 10.f);
@@ -333,7 +334,7 @@ void NNPlayerCharacter::Update( float dTime )
 					AddChild(m_pCharTop);
 				}
 				NNEffectManager::GetInstance()->MakeAmorEffect( GetPosition(), FIRE, isLeft );
-
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_FireShooter);
 				bulletPos = GetPosition();
 				break;
 
@@ -359,7 +360,7 @@ void NNPlayerCharacter::Update( float dTime )
 					AddChild(m_pCharTop);
 				}
 				NNEffectManager::GetInstance()->MakeAmorEffect( GetPosition(), SHOT_GUN, isLeft );
-
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_ShotGun );
 				bulletPos = GetPosition();
 				break;
 			default:
