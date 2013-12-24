@@ -101,7 +101,8 @@ void NNStartScene::Update( float dTime )
 
 	if( NNInputSystem::GetInstance()->PressedKeyCheck() )
 	{
+ 		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
 		NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
-		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+  		return;
 	}
 }
