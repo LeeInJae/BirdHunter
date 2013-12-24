@@ -20,6 +20,7 @@
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(false), 
 	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
 {
+	NNPooManager::GetInstance()->SetLandedPoo(100);
 	m_CheckGameOver = false;
 	m_Character = new NNPlayerCharacter();
 	m_CharacterBottom = new NNPlayerCharacterBottom();
@@ -250,32 +251,33 @@ void NNGameScene::UIInit()
 	m_ElapsedPlayTimeLabel->SetZindex(0);
 	AddChild(m_ElapsedPlayTimeLabel);
 
-	m_LandedPoo1 = NNSprite::Create(NORMAL_POO_SPRITE);
+	m_LandedPoo1 = NNAnimation::Create(0.2f, 32.f, 27.f, 1, NORMAL_POO_SPRITE);
 	m_LandedPoo1->SetPosition(675.f, 273.f);
 	m_LandedPoo1->SetZindex(0);
-	m_LandedPoo1->SetImageWidth(32.f);
-	m_LandedPoo1->SetImageHeight(27.f);
+	// 	m_LandedPoo1->SetImageWidth(32.f);
+	// 	m_LandedPoo1->SetImageHeight(27.f);
 	m_LandedPoo1->SetVisible(false);
 	m_LandedPoo1->SetRotation(-11.f);
 	AddChild(m_LandedPoo1);
 
-	m_LandedPoo2 = NNSprite::Create(NORMAL_POO_SPRITE);
+	m_LandedPoo2 = NNAnimation::Create(0.2f, 32.f, 27.f, 1, NORMAL_POO_SPRITE);
 	m_LandedPoo2->SetPosition(711.f, 267.f);
 	m_LandedPoo2->SetZindex(0);
-	m_LandedPoo2->SetImageWidth(32.f);
-	m_LandedPoo2->SetImageHeight(27.f);
+	// 	m_LandedPoo2->SetImageWidth(32.f);
+	// 	m_LandedPoo2->SetImageHeight(27.f);
 	m_LandedPoo2->SetVisible(false);
 	m_LandedPoo2->SetRotation(-11.f);
 	AddChild(m_LandedPoo2);
 
-	m_LandedPoo3 = NNSprite::Create(NORMAL_POO_SPRITE);
+	m_LandedPoo3 = NNAnimation::Create(0.2f, 32.f, 27.f, 1, NORMAL_POO_SPRITE);
 	m_LandedPoo3->SetPosition(745.f, 261.f);
 	m_LandedPoo3->SetZindex(0);
-	m_LandedPoo3->SetImageWidth(32.f);
-	m_LandedPoo3->SetImageHeight(27.f);
+	// 	m_LandedPoo3->SetImageWidth(32.f);
+	// 	m_LandedPoo3->SetImageHeight(27.f);
 	m_LandedPoo3->SetVisible(false);
 	m_LandedPoo3->SetRotation(-11.f);
 	AddChild(m_LandedPoo3);
+
 
 	m_FPSLabel = NNLabel::Create(L"FPS : ", L"¸¼Àº °íµñ", 15.f);
 	m_FPSLabel->SetPosition(670.f, 1.f);
@@ -436,6 +438,9 @@ void NNGameScene::Update( float dTime )
 			m_Character->SetAttackStatus( SHOT_GUN );
 			break;
 		case ITEM_CLEANER:
+			NNPooManager::GetInstance()->SetLandedPoo(0);
+			break;
+		case ITEM_SHIELD:
 			break;
 		case ITEM_MAX_NUM:
 			break;
@@ -576,13 +581,25 @@ void NNGameScene::UIUpdate( float dTime )
 		{
 			m_LandedPoo1->SetVisible(true);
 		}
+		else
+		{
+			m_LandedPoo1->SetVisible(false);
+		}
 		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_02)
 		{
 			m_LandedPoo2->SetVisible(true);
 		}
+		else
+		{
+			m_LandedPoo2->SetVisible(false);
+		}
 		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_03)
 		{
 			m_LandedPoo3->SetVisible(true);
+		}
+		else
+		{
+			m_LandedPoo3->SetVisible(false);
 		}
 	}
 	swprintf_s(m_FPSString, _countof(m_FPSString), L"FPS : %0.1f ",

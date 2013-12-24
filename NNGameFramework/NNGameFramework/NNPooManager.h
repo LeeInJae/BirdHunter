@@ -15,6 +15,7 @@ public:
 	void	Update( float dTime );
 	void	MakePoo( BIRD_TYPE WhichPoo, NNPoint birdPosition );
 	int		GetLandedPoo( void ){ return m_LandedPoo; }
+	void	SetLandedPoo( int newPoo ){m_LandedPoo = newPoo;}
 	bool	HitCheckByPlayer( NNPlayerCharacter* player );
 	std::list< NNPoo* >& GetPooList() { return m_Poo; }
 

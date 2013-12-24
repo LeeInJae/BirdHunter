@@ -14,6 +14,8 @@ public:
 	void Update(float dTime);
 	void WarningCountInit(void);
 	int GetWarningLV(void){return m_CurrentWarningLV;}
+	int GetPollution(void){return m_Pollution;}
+	void SetPollution(int newPollution){m_Pollution = newPollution;}
 
 protected:
 	NNMapManager(void);
@@ -21,7 +23,7 @@ protected:
 	NNSprite* m_WarningFilter;
 
 private:
-	bool m_WarningFlag;
+	bool m_IsWarning;
 	static NNMapManager* m_pInstance;
 	int m_Pollution;
 	int m_CurrentWarningLV;

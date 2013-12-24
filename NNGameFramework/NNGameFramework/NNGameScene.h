@@ -43,9 +43,9 @@ protected:
 	NNLabel*			m_FPSLabel;
 	NNLabel*			m_AmmoLabel;
 
-	NNSprite*			m_LandedPoo1;
-	NNSprite*			m_LandedPoo2;
-	NNSprite*			m_LandedPoo3;
+	NNAnimation*			m_LandedPoo1;
+	NNAnimation*			m_LandedPoo2;
+	NNAnimation*			m_LandedPoo3;
 
 	NNSprite*			m_GameOver;
 

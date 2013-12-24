@@ -55,12 +55,16 @@ void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition, float sc
 		itemProp.sprite_path = ITEM_DUAL_GUN_SPRITE;
 		break;
 	case ITEM_FIRE_SHOOTER:
-		itemProp.sprite_path = ITEM_DUAL_GUN_SPRITE;
+		itemProp.sprite_path = ITEM_FIRE_SHOOTER_SPRITE;
 		break;
 	case ITEM_SHOT_GUN:
 		itemProp.sprite_path = ITEM_DUAL_GUN_SPRITE;
 		break;
 	case ITEM_CLEANER:
+		itemProp.sprite_path = ITEM_CLEANER_SPRITE;
+		break;
+	case ITEM_SHIELD:
+		itemProp.sprite_path = ITEM_SHIELD_SPRITE;
 		break;
 	case ITEM_MAX_NUM:
 		break;
