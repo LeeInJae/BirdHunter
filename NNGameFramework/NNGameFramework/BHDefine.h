@@ -94,12 +94,14 @@
 ///////////
 ////아이템 지속시간
 #define DUALGUN_RUNTIME		10.f
+#define FIREGUN_RUNTIME		10.f
+#define SHOTGUN_RUNTIME		10.f
 
 //////무기아이템 스프라이트
 #define NORMALGUN			L"Image/UI/NORMALGUN.png"
 #define DUALGUN				L"Image/UI/DUALGUN.png"
 #define FIREGUN				L"Image/UI/FIRE.png"
-
+#define SHOTGUN				L"Image/UI/SHOTGUN.png"
 //
 #define LIGHT01 L"Image/EFFECT/LIGHT01.png"
 #define LIGHT02 L"Image/EFFECT/LIGHT02.png"
