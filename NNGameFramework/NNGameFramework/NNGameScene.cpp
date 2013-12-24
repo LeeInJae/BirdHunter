@@ -231,9 +231,14 @@ void NNGameScene::UIInit()
 	
 	m_ItemSprite[2]=NNSprite::Create( FIREGUN );
 	m_ItemSprite[2]->SetPosition( 673.f, 471.f );
-	for(int i=0; i<2; ++i )
+
+	m_ItemSprite[3]=NNSprite::Create( SHOTGUN );
+	m_ItemSprite[3]->SetPosition( 673.f, 471.f );
+
+	for(int i=0; i<4; ++i )
 	{
 		m_ItemSprite[i]->SetImageWidth( 30 );
+		m_ItemSprite[i]->SetImageHeight( 30 );
 		m_ItemSprite[i]->SetVisible(true);
 		//AddChild( m_ItemSprite[i] );
 	}
@@ -422,6 +427,7 @@ void NNGameScene::Update( float dTime )
 			m_DieEndCheck = true;
 		}
 		m_CheckGameOver = true;
+		if( m_DieEndCheck )return;
 	}
 
 	if ( NNItemManager::GetInstance()->HitCheck( m_Character) )
@@ -512,9 +518,9 @@ void NNGameScene::UIUpdate( float dTime )
 			RemoveChild( m_ItemGunSprite, false );
 			m_ItemGunSprite=m_ItemSprite[2];
 			AddChild( m_ItemGunSprite );
-			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME));
+			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / FIREGUN_RUNTIME));
 
-			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME) < 0.f )
+			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / FIREGUN_RUNTIME) < 0.f )
 			{
 				m_SkillSecondBar->SetImageWidth( 80 );
 				m_Character->SetAttackStatus( NORMAL );
@@ -526,11 +532,11 @@ void NNGameScene::UIUpdate( float dTime )
 			break;
 		case SHOT_GUN:
 			RemoveChild( m_ItemGunSprite, false );
-			m_ItemGunSprite=m_ItemSprite[2];
+			m_ItemGunSprite=m_ItemSprite[3];
 			AddChild( m_ItemGunSprite );
-			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME));
+			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / SHOTGUN_RUNTIME));
 
-			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / DUALGUN_RUNTIME) < 0.f )
+			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / SHOTGUN_RUNTIME) < 0.f )
 			{
 				m_SkillSecondBar->SetImageWidth( 80 );
 				m_Character->SetAttackStatus( NORMAL );
