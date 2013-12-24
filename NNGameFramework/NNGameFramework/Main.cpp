@@ -17,7 +17,7 @@
 void main()
 {
 	WinMain(0, 0, 0, 3);
-}*/
+}*/ 
 
 //int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdParam, int nShowCmd )
 int main()
@@ -44,8 +44,13 @@ int main()
 // 		printf_s("%f %f\n", pos );
 // 
 // 	}
-		 
+	
+	
+		
 	NNSceneDirector::GetInstance()->ChangeScene( NNStartScene::Create() );
+	
+	//delete NNStartScene::Create();
+
 	 //NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
  	 //NNSceneDirector::GetInstance()->ChangeScene( AnimationSample::Create() );
@@ -55,7 +60,7 @@ int main()
 // 	// NNSceneDirector::GetInstance()->ChangeScene( FMODSoundSample::Create() );
 
 	Application->Run();
-	Application->Release();
+	//Application->Release();
 
 	//디버그 후 콘솔창 없앨 것
 	FreeConsole();
