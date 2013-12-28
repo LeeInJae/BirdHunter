@@ -398,10 +398,7 @@ void NNGameScene::Update( float dTime )
 			m_Character->SetVisible( false );
 			m_CharacterBottom->SetVisible( false );
 
-			FMOD::Channel* m_gameoverCh = nullptr;
-			NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
-			NNSoundManager::GetInstance()->SetVolume(m_gameoverCh, 1);
-			NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+			
 		}
 		 
 		if( m_PlayerCharacterDie->IsAnimationEnded() )
@@ -423,8 +420,18 @@ void NNGameScene::Update( float dTime )
 			}
 
 			m_PlayerCharacterDie->SetVisible( false );
-			m_DieEndCheck = true;
+			
+			if (m_DieEndCheck == false)
+			{
+				FMOD::Channel* m_gameoverCh = nullptr;
+				NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
+				NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+				NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_WarningChannel);
+				m_DieEndCheck = true;
+			}
+			
 		}
+		
 		m_CheckGameOver = true;
 		if( m_DieEndCheck )return;
 	}
