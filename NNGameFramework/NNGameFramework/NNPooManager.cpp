@@ -3,6 +3,7 @@
 #include "NNPlayerCharacter.h"
 #include "NNPoo.h"
 #include "NNGameScene.h"
+#include "NNEffectManager.h"
 
 
 NNPooManager* NNPooManager::m_pInstance = nullptr;
@@ -261,4 +262,44 @@ bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 	}
 	return false;
 }
+
+bool NNPooManager::HitCheckByShield( NNAnimation* shield )
+{
+	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
+
+	struct HIT_RECT poo_rect, shield_rect;
+
+	shield_rect.left	=	shield->GetPositionX();
+	shield_rect.right	=	shield_rect.left + 50;
+	shield_rect.up		=	shield->GetPositionY();
+	shield_rect.down	=	shield_rect.up + 8;
+
+	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
+	{
+		auto pPoo_Iter = *poo_Iter;
+
+		poo_rect.left	=	pPoo_Iter->GetPositionX();
+		poo_rect.right	=	pPoo_Iter->GetPositionX() + pPoo_Iter->GetSpriteWidth();
+		poo_rect.up		=	pPoo_Iter->GetPositionY();
+		poo_rect.down	=	pPoo_Iter->GetPositionY() + pPoo_Iter->GetSpriteHeight();
+
+
+		if( !poo_rect.HitCheck( shield_rect ) )
+		{
+			++poo_Iter;
+			continue;
+		}
+		else
+		{
+			if (shield->IsVisible())
+			{
+				NNEffectManager::GetInstance()->MakePooBulletCrashEffect( pPoo_Iter->GetPosition() );
+				RemoveChild(pPoo_Iter);
+			}
+			return true;
+		}
+	}
+	return false;
+}
+
 

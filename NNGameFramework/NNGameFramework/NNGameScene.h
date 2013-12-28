@@ -81,6 +81,9 @@ private:
 	NNAnimation*	m_PlayerCharacterRightDie;
 	NNAnimation*	m_PlayerCharacterLeftDie;
 	NNAnimation*	m_PlayerCharacterDie;
+
+	NNAnimation*	m_Shield;
+
 	NNSprite*		m_LeftEndPlayerSprite;
 	NNSprite*		m_RightEndPlayerSprite;
 

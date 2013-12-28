@@ -25,6 +25,11 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	m_Character = new NNPlayerCharacter();
 	m_CharacterBottom = new NNPlayerCharacterBottom();
 
+	m_Shield = NNAnimation::Create(0.2f, 50.f, 8.f, 1, SHIELD_SPRITE);
+	m_Shield->SetVisible(false);
+	m_Shield->SetZindex(1);
+	AddChild(m_Shield);
+
 	m_PauseTime	= 0;
 	m_SumTime = 0;
 	m_GameSceneStartTime	=	NNApplication::GetInstance()->GetElapsedTime();	
@@ -220,8 +225,6 @@ void NNGameScene::UIInit()
 	AddChild(m_SkillFirstBar);
 	AddChild(m_SkillSecondBar);
 
-
-
 	/////////아이템 스프라이트 늘어나면 디파인 처리 할 것.
 	m_ItemSprite[0]=NNSprite::Create( NORMALGUN );
 	m_ItemSprite[0]->SetPosition( 673.f, 471.f );
@@ -259,8 +262,6 @@ void NNGameScene::UIInit()
 	m_LandedPoo1 = NNAnimation::Create(0.2f, 32.f, 27.f, 1, NORMAL_POO_SPRITE);
 	m_LandedPoo1->SetPosition(675.f, 273.f);
 	m_LandedPoo1->SetZindex(0);
-	// 	m_LandedPoo1->SetImageWidth(32.f);
-	// 	m_LandedPoo1->SetImageHeight(27.f);
 	m_LandedPoo1->SetVisible(false);
 	m_LandedPoo1->SetRotation(-11.f);
 	AddChild(m_LandedPoo1);
@@ -268,8 +269,6 @@ void NNGameScene::UIInit()
 	m_LandedPoo2 = NNAnimation::Create(0.2f, 32.f, 27.f, 1, NORMAL_POO_SPRITE);
 	m_LandedPoo2->SetPosition(711.f, 267.f);
 	m_LandedPoo2->SetZindex(0);
-	// 	m_LandedPoo2->SetImageWidth(32.f);
-	// 	m_LandedPoo2->SetImageHeight(27.f);
 	m_LandedPoo2->SetVisible(false);
 	m_LandedPoo2->SetRotation(-11.f);
 	AddChild(m_LandedPoo2);
@@ -277,8 +276,6 @@ void NNGameScene::UIInit()
 	m_LandedPoo3 = NNAnimation::Create(0.2f, 32.f, 27.f, 1, NORMAL_POO_SPRITE);
 	m_LandedPoo3->SetPosition(745.f, 261.f);
 	m_LandedPoo3->SetZindex(0);
-	// 	m_LandedPoo3->SetImageWidth(32.f);
-	// 	m_LandedPoo3->SetImageHeight(27.f);
 	m_LandedPoo3->SetVisible(false);
 	m_LandedPoo3->SetRotation(-11.f);
 	AddChild(m_LandedPoo3);
@@ -304,6 +301,8 @@ void NNGameScene::Update( float dTime )
 {
 	//test
 	
+	m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() - 15.f);
+
 	if(NNApplication::GetInstance()->GetElapsedTime() - 
 		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 10.f )
 	{
@@ -447,6 +446,7 @@ void NNGameScene::Update( float dTime )
 			NNPooManager::GetInstance()->SetLandedPoo(0);
 			break;
 		case ITEM_SHIELD:
+			m_Shield->SetVisible(true);
 			break;
 		case ITEM_MAX_NUM:
 			break;
@@ -455,6 +455,11 @@ void NNGameScene::Update( float dTime )
 		}
 		//m_Character->SetAttackStatus( DUAL_GUN ); 
 		//m_Character->SetAttackStatus( FIRE );
+	}
+
+	if (m_Shield->IsVisible() && NNPooManager::GetInstance()->HitCheckByShield(m_Shield))
+	{
+		m_Shield->SetVisible(false);
 	}
 	
 	if( !m_Character->GetPauseKey() )
@@ -485,6 +490,7 @@ void NNGameScene::Update( float dTime )
  		m_Character->Update( dTime );
 		NNSoundManager::GetInstance()->Pause(NNSoundManager::GetInstance()->m_BgmChannel);
 	}
+
 }
 
 void NNGameScene::Render()

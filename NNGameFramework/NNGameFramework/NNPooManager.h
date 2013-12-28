@@ -17,6 +17,7 @@ public:
 	int		GetLandedPoo( void ){ return m_LandedPoo; }
 	void	SetLandedPoo( int newPoo ){m_LandedPoo = newPoo;}
 	bool	HitCheckByPlayer( NNPlayerCharacter* player );
+	bool	HitCheckByShield( NNAnimation* shield );
 	std::list< NNPoo* >& GetPooList() { return m_Poo; }
 
 private:
