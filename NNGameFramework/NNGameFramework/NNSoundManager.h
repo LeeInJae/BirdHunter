@@ -37,6 +37,9 @@ public:
 	FMOD::Channel*		m_BgmChannel;
 	FMOD::Channel*		m_WarningChannel;
 
+	FMOD::Sound*		SE_Fire;
+	FMOD::Sound*		SE_SHOTGUN;
+
 	std::vector<FMOD::Sound*> SE_BirdDie;
 	std::vector<FMOD::Sound*> SE_PooBoom;
 	std::vector<FMOD::Sound*> SE_NormalGunShot;

@@ -51,7 +51,7 @@ NND2DTexture::NND2DTexture( std::wstring path )
 		WICDecodeMetadataCacheOnDemand, &bitmapDecoder );
 
 	IWICBitmapFrameDecode* bitmapFrameDecode = nullptr;
-  	bitmapDecoder->GetFrame( 0, &bitmapFrameDecode );
+   	bitmapDecoder->GetFrame( 0, &bitmapFrameDecode );
 
 	g_pWICFactory->CreateFormatConverter( &m_FmtConverter );
 

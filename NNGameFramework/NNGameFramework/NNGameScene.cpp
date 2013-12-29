@@ -126,7 +126,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	//AddChild( NNBirdFactory::GetInstance() );
 	//AddChild( NNEffectManager::GetInstance() );
 	//AddChild( NNSoundManager::GetInstance() );
-
+ 
 	UIInit();
 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
 
