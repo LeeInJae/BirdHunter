@@ -25,7 +25,8 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	m_Character = new NNPlayerCharacter();
 	m_CharacterBottom = new NNPlayerCharacterBottom();
 
-	m_Shield = NNAnimation::Create(0.2f, 50.f, 8.f, 1, SHIELD_SPRITE);
+	//m_Shield = NNAnimation::Create(0.2f, 50.f, 8.f, 1, SHIELD_SPRITE);
+	m_Shield = NNAnimation::Create(0.2f, 70.f, 18.f, 1, SHIELD_SPRITE);
 	m_Shield->SetVisible(false);
 	m_Shield->SetZindex(1);
 	AddChild(m_Shield);
@@ -301,7 +302,9 @@ void NNGameScene::Update( float dTime )
 {
 	//test
 	
-	m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() - 15.f);
+	//m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() - 15.f);
+	
+	m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() + 20);
 
 	if(NNApplication::GetInstance()->GetElapsedTime() - 
 		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 10.f )
