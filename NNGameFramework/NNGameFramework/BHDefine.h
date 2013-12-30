@@ -806,6 +806,7 @@ enum BIRD_SPRITE
 //무기 특성
 #define FIRE_SPEED
 #define FIRE_ACCELSPEED
+
 enum ATTACK_STATUS
 {
 	NORMAL,
@@ -813,6 +814,7 @@ enum ATTACK_STATUS
 	FIRE,
 	SHOT_GUN,
 	LIGHT,
+	ATTACK_MAX,
 };
 enum POO_TYPE
 {

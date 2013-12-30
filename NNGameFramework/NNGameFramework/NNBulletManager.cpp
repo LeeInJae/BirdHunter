@@ -65,8 +65,6 @@ void NNBulletManager::MakeBullet( BULLET_TYPE type, NNPoint PlayerPosition )
 		bullet_property.position.SetPoint( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
 		newBullet->SetBulletProperty( bullet_property);
 		newBullet->SetPosition( PlayerPosition.GetX()+ GUN_WIDTH, PlayerPosition.GetY() );
-		//newBullet->SetCenter( (PlayerPosition.GetX()+ GUN_WIDTH) + bullet_property.imageWidth * 0.5, PlayerPosition.GetY() + bullet_property.imageHeight * 0.5 );
-		//newBullet->SetCenter( bullet_property.imageWidth * 0.5, bullet_property.imageHeight * 0.5 );
 		m_Bullet.push_back( newBullet );
 		AddChild( newBullet );
 		--m_AmmoLeft;
@@ -156,14 +154,7 @@ void NNBulletManager::HitCheck()
 
 				if( pBird_Iter->GetBirdType() == ITEM_KING_BIRD )
 				{
-					//NNItemManager::GetInstance()->MakeItem(ITEM_DUAL_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					//NNItemManager::GetInstance()->MakeItem(ITEM_FIRE_SHOOTER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					//NNItemManager::GetInstance()->MakeItem(ITEM_SHOT_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					//NNItemManager::GetInstance()->MakeItem(ITEM_CLEANER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					//NNItemManager::GetInstance()->MakeItem(ITEM_SHIELD, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					
-					//NNItemManager::GetInstance()->MakeItem(static_cast<ITEM_TYPE>(rand()%ITEM_MAX_NUM), pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					NNItemManager::GetInstance()->MakeItem(ITEM_SHIELD, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					NNItemManager::GetInstance()->MakeItem(static_cast<ITEM_TYPE>(rand()%ITEM_MAX_NUM), pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
 				}
 				
 

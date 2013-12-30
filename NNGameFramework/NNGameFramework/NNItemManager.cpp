@@ -2,6 +2,7 @@
 #include "NNPlayerCharacter.h"
 #include "NNPlayerCharacterBottom.h"
 #include "NNItem.h"
+#include "NNSoundManager.h"
 
 
 NNItemManager* NNItemManager::m_pInstance = nullptr;
@@ -92,6 +93,7 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 
 	bool hitCheck;
 	ATTACK_STATUS attackStats =player->GetAttackStatus();
+
 	switch ( attackStats )
 	{
 	case NORMAL:
@@ -137,8 +139,11 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 			printf("%d", pitem_Iter->GetItemType());
 			SetItemType(pitem_Iter->GetItemType());
 
+			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_ItemGetSound[pitem_Iter->GetItemType()]);
+
 			auto pItem = *item_Iter;
 			item_Iter = m_ItemList.erase( item_Iter );
+
 
 			RemoveChild(pItem, true);
 			return true;

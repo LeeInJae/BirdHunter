@@ -44,6 +44,7 @@ public:
 	std::vector<FMOD::Sound*> SE_PooBoom;
 	std::vector<FMOD::Sound*> SE_NormalGunShot;
 	std::array<FMOD::Sound*, SYSTEMSOUND_MAX> SE_SystemSound;
+	std::array<FMOD::Sound*, ITEM_MAX_NUM> SE_ItemGetSound;
 	FMOD::Sound*	SE_ShotGun;
 	FMOD::Sound*	SE_FireShooter;
 private:
