@@ -139,6 +139,7 @@ bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 			printf("%d", pitem_Iter->GetItemType());
 			SetItemType(pitem_Iter->GetItemType());
 
+	//		if( pitem_Iter->GetItemType() == ITEM_CLEANER )
 			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_ItemGetSound[pitem_Iter->GetItemType()]);
 
 			auto pItem = *item_Iter;

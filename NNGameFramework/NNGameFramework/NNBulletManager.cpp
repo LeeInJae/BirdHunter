@@ -154,7 +154,8 @@ void NNBulletManager::HitCheck()
 
 				if( pBird_Iter->GetBirdType() == ITEM_KING_BIRD )
 				{
-					NNItemManager::GetInstance()->MakeItem(static_cast<ITEM_TYPE>(rand()%ITEM_MAX_NUM), pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					//NNItemManager::GetInstance()->MakeItem(static_cast<ITEM_TYPE>(rand()%ITEM_MAX_NUM), pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					NNItemManager::GetInstance()->MakeItem(ITEM_CLEANER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
 				}
 				
 

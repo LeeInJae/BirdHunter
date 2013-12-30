@@ -39,8 +39,8 @@ void NNSoundManager::Init( void )
 	SE_ItemGetSound[ITEM_DUAL_GUN] =  CreateSound("Sound/DUAL_GUN.wav");
 	SE_ItemGetSound[ITEM_FIRE_SHOOTER] =  CreateSound("Sound/FIRE.wav");
 	SE_ItemGetSound[ITEM_SHOT_GUN] =  CreateSound("Sound/SHOT_GUN.wav");
-	SE_ItemGetSound[ITEM_CLEANER] =  CreateSound("Sound/SHOT_GUN.wav");
-	SE_ItemGetSound[ITEM_SHIELD] =  CreateSound("Sound/SHOT_GUN.wav");
+	SE_ItemGetSound[ITEM_CLEANER] =  CreateSound("Sound/CLEAR.mp3");
+	SE_ItemGetSound[ITEM_SHIELD] =  CreateSound("Sound/SHIELD.mp3");
 
 	SE_FireShooter = CreateSound("Sound/FIRESHOOTER.mp3");
 	SE_ShotGun = CreateSound("Sound/SHOTGUN.mp3");
