@@ -16,14 +16,16 @@
 #include "NNAnimation.h"
 #include "NNItemManager.h"
 #include "NNItem.h"
+#include "NNGameOver.h"
 
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(false), 
 	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
 {
-	NNPooManager::GetInstance()->SetLandedPoo(100);
+	//NNPooManager::GetInstance()->SetLandedPoo(100);
 	m_CheckGameOver = false;
-	m_Character = new NNPlayerCharacter();
 	m_CharacterBottom = new NNPlayerCharacterBottom();
+	m_Character = new NNPlayerCharacter();
+	
 
 	//m_Shield = NNAnimation::Create(0.2f, 50.f, 8.f, 1, SHIELD_SPRITE);
 	m_Shield = NNAnimation::Create(0.2f, 70.f, 18.f, 1, SHIELD_SPRITE);
@@ -117,17 +119,9 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	m_BirdBornCheckArray[ 14 ]	=	birdBornItem;
 
 	AddChild( NNMapManager::GetInstance() );
-	
 
-	//AddChild( m_Character );
-	//AddChild( m_CharacterBottom);
-	
-	//AddChild( NNPooManager::GetInstance() );
-	//AddChild( NNBulletManager::GetInstance() );
-	//AddChild( NNBirdFactory::GetInstance() );
-	//AddChild( NNEffectManager::GetInstance() );
-	//AddChild( NNSoundManager::GetInstance() );
- 
+	m_ChangeGameOVerTime = 0.f;
+
 	UIInit();
 	NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_SystemSound[GAMESTART]);
 
@@ -290,7 +284,6 @@ void NNGameScene::UIInit()
 	m_AmmoLabel = NNLabel::Create(L"Ready", L"Feast of Flesh BB", 30.f, 148, 84, 14);
 	m_AmmoLabel->SetPosition(685.f, 471.f);
 	m_AmmoLabel->SetZindex(3);
-	//AddChild(m_AmmoLabel);
 }
 
 NNGameScene::~NNGameScene(void)
@@ -302,19 +295,7 @@ void NNGameScene::Update( float dTime )
 {
 	//test
 	
-	//m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() - 15.f);
-	
 	m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() + 20);
-
-	if(NNApplication::GetInstance()->GetElapsedTime() - 
-		m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 10.f )
-	{
-	//	m_Character->SetAttackStatus( NORMAL );
-	}
- 	else if(NNApplication::GetInstance()->GetElapsedTime() -  m_PauseTime - m_AppearTime - m_GameSceneStartTime >= 3.f )
-	{
-		//m_Character->SetAttackStatus( DUAL_GUN );
-	}
 
 	NNSoundManager::GetInstance()->Update(dTime);
 
@@ -329,28 +310,11 @@ void NNGameScene::Update( float dTime )
 		AddChild( NNBirdFactory::GetInstance() );
 		AddChild( NNEffectManager::GetInstance() );
 		AddChild( NNItemManager::GetInstance() );
-		AddChild(m_ElapsedPlayTimeLabel);
-		//AddChild(m_AmmoLabel);
 
 		m_CheckPlayingAddChild = true;
 		m_AppearTime = m_SumTime;
 	}
 
-	//test
-	
-// 	switch( m_Character->GetAttackStatus() )
-// 	{
-// 	case NORMAL:
-// 		( m_CharacterBottom->IsLeft() ) ? 
-// 			m_Character->SetPosition( m_CharacterBottom->GetPositionX() - 5, m_CharacterBottom->GetPositionY() - 85 ) : 
-// 			m_Character->SetPosition( m_CharacterBottom->GetPositionX() - 25, m_CharacterBottom->GetPositionY() - 85) ;
-// 		break;
-// 
-// 
-// 	default:
-// 		break;
-// 	}
-	//
 	if (m_CheckGameStart == false)
 	{
 		NNSoundManager::GetInstance()->PlayAndGetChannel(
@@ -436,7 +400,19 @@ void NNGameScene::Update( float dTime )
 		}
 		
 		m_CheckGameOver = true;
-		if( m_DieEndCheck )return;
+
+		if( m_DieEndCheck ) 
+		{
+			m_ChangeGameOVerTime += dTime;
+		}
+		if( m_ChangeGameOVerTime >= 3.0f)
+		{
+			NNSceneDirector::GetInstance()->ChangeScene( new NNGameOver(NNApplication::GetInstance()->GetElapsedTime() - 
+				m_PauseTime - m_AppearTime - 
+				m_GameSceneStartTime, m_ChangeGameOVerTime) );
+			return
+;
+		}
 	}
 
 	if ( NNItemManager::GetInstance()->HitCheck( m_Character) )

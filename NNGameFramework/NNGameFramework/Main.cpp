@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "NNStartScene.h"
+#include "NNGameOver.h"
 
 /*
 void main()
@@ -47,9 +48,7 @@ int main()
 	
 	
 		
-	NNSceneDirector::GetInstance()->ChangeScene( NNStartScene::Create() );
-	
-	//delete NNStartScene::Create();
+	NNSceneDirector::GetInstance()->ChangeScene( new NNStartScene() );
 
 	 //NNSceneDirector::GetInstance()->ChangeScene( NNGameScene::Create() );
 //   //NNSceneDirector::GetInstance()->ChangeScene( SpriteSample::Create() );
@@ -60,7 +59,7 @@ int main()
 // 	// NNSceneDirector::GetInstance()->ChangeScene( FMODSoundSample::Create() );
 
 	Application->Run();
-	//Application->Release();
+	Application->Release();
 
 	//디버그 후 콘솔창 없앨 것
 	FreeConsole();

@@ -29,7 +29,6 @@ NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false), isAttack(false)
 
 NNPlayerCharacter::~NNPlayerCharacter(void)
 {
-
 }
 
 void NNPlayerCharacter::Update( float dTime )
@@ -190,11 +189,13 @@ void NNPlayerCharacter::Update( float dTime )
 					RemoveChild(m_pCharTop, false);
 					if (isLeft)
 					{
-						m_pCharTop = m_DualGunStandingTopL;
+						m_pCharTop = m_DualGunRunningTopL;
+						//m_pCharTop = m_DualGunStandingTopL;
 					}
 					else
 					{
-						m_pCharTop = m_DualGunStandingTopR;
+						m_pCharTop = m_DualGunRunningTopR;
+						//m_pCharTop = m_DualGunStandingTopR;
 					}
 					AddChild(m_pCharTop);
 				}
@@ -206,11 +207,13 @@ void NNPlayerCharacter::Update( float dTime )
 					RemoveChild(m_pCharTop, false);
 					if (isLeft)
 					{
-						m_pCharTop = m_AmorStandingTopL;
+						m_pCharTop = m_AmorRunningTopL;
+						//m_pCharTop = m_AmorStandingTopL;
 					}
 					else
 					{
-						m_pCharTop = m_AmorStandingTopR;
+						m_pCharTop = m_AmorRunningTopR;
+						//m_pCharTop = m_AmorStandingTopR;
 					}
 					AddChild(m_pCharTop);
 				}
@@ -416,22 +419,22 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
 	m_DualGunRunningTopL->SetLoop(true);
 
-	m_DualGunStandingTopR =  NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_R_00, 
-		PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_03, 
-		PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_00);
-	m_DualGunRunningTopR->SetLoop(true);
+// 	m_DualGunStandingTopR =  NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_R_00, 
+// 		PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_03, 
+// 		PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_00);
+// 	m_DualGunRunningTopR->SetLoop(true);
 
-	m_DualGunStandingTopL = NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_L_00, 
-		PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_03, 
-		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
-	m_DualGunRunningTopL->SetLoop(true);
+// 	m_DualGunStandingTopL = NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_L_00, 
+// 		PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_03, 
+// 		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
+// 	m_DualGunRunningTopL->SetLoop(true);
 	/////////////////////////////////
 	//나머지 모든 무기 모션
-	m_AmorStandingTopR = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
-		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
-		PLAYER_AMOR_STAND_TOP_R_07,PLAYER_AMOR_STAND_TOP_R_08,PLAYER_AMOR_STAND_TOP_R_09,PLAYER_AMOR_STAND_TOP_R_10,
-		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
-	m_AmorStandingTopR->SetLoop(true);
+// 	m_AmorStandingTopR = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
+// 		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
+// 		PLAYER_AMOR_STAND_TOP_R_07,PLAYER_AMOR_STAND_TOP_R_08,PLAYER_AMOR_STAND_TOP_R_09,PLAYER_AMOR_STAND_TOP_R_10,
+// 		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
+// 	m_AmorStandingTopR->SetLoop(true);
 
 	m_AmorRunningTopR = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
 		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
@@ -439,11 +442,11 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
 	m_AmorRunningTopR->SetLoop(true);
 
-	m_AmorStandingTopL = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
-		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
-		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
-		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
-	m_AmorStandingTopL->SetLoop(true);
+// 	m_AmorStandingTopL = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
+// 		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
+// 		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
+// 		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
+// 	m_AmorStandingTopL->SetLoop(true);
 
 	m_AmorRunningTopL = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
 		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
@@ -451,8 +454,9 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
 	m_AmorRunningTopL->SetLoop(true);
 
-	m_AmorStandingTopL->SetScale( 0.85f, 0.85f );
-	m_AmorStandingTopR->SetScale( 0.85f, 0.85f );
+	//m_AmorStandingTopL->SetScale( 0.85f, 0.85f );
+	//m_AmorStandingTopR->SetScale( 0.85f, 0.85f );
+
 	m_AmorRunningTopL->SetScale( 0.85f, 0.85f );
 	m_AmorRunningTopR->SetScale( 0.85f, 0.85f );
 }

@@ -123,6 +123,7 @@
     <ClCompile Include="NNEffect.cpp" />
     <ClCompile Include="NNEffectManager.cpp" />
     <ClCompile Include="NNFire.cpp" />
+    <ClCompile Include="NNGameOver.cpp" />
     <ClCompile Include="NNInputSystem.cpp" />
     <ClCompile Include="NNItem.cpp" />
     <ClCompile Include="NNItemManager.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="NNEffect.h" />
     <ClInclude Include="NNEffectManager.h" />
     <ClInclude Include="NNFire.h" />
+    <ClInclude Include="NNGameOver.h" />
     <ClInclude Include="NNIncludeSet.h" />
     <ClInclude Include="NNInputSystem.h" />
     <ClInclude Include="NNItem.h" />

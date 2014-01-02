@@ -323,6 +323,9 @@
     <ClCompile Include="NNShotGun.cpp">
       <Filter>BirdHunter\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="NNGameOver.cpp">
+      <Filter>BirdHunter\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NNApplication.h">
@@ -554,6 +557,9 @@
     </ClInclude>
     <ClInclude Include="NNShotGun.h">
       <Filter>BirdHunter\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="NNGameOver.h">
+      <Filter>BirdHunter\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

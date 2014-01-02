@@ -28,7 +28,6 @@ public:
 	NNGameScene(void);
 	~NNGameScene(void);
 	
-	NNCREATE_FUNC( NNGameScene );
 	(NNPlayerCharacter*)&	GetPlayerCharacter(){ return m_Character; }
 
 protected:
@@ -74,6 +73,7 @@ private:
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;
 	float			m_AppearTime;
+	float			m_ChangeGameOVerTime;
 	GOING_DIRECTION m_DieDirection;
 	bool			m_CheckLodingAddChild;
 	bool			m_CheckPlayingAddChild;

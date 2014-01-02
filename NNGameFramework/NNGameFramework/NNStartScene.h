@@ -11,7 +11,6 @@ public:
 	NNStartScene(void);
 	~NNStartScene(void);
 
-	NNCREATE_FUNC( NNStartScene );
 	virtual void	Render();
 	virtual void	Update( float dTime );
 	float GetStartSceneSumTime() { return m_Sumtime; }
