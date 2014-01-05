@@ -29,6 +29,6 @@ private:
 	
 	static NNPooManager* m_pInstance;
 	void RemoveCheck();
-	
+	void RemoveAll();
 	int m_LandedPoo;
 };
