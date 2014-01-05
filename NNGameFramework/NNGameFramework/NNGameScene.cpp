@@ -335,6 +335,9 @@ void NNGameScene::Update( float dTime )
 	{ 
 		if( !m_CheckGameOver )
 		{
+
+			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_Die );
+
 			NNPoint playerPoint;
 			playerPoint = m_Character->GetPosition();
 
