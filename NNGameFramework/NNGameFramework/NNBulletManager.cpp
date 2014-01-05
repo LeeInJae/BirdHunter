@@ -157,9 +157,11 @@ void NNBulletManager::HitCheck()
 					//NNItemManager::GetInstance()->MakeItem(static_cast<ITEM_TYPE>(rand()%ITEM_MAX_NUM), pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
 					//NNItemManager::GetInstance()->MakeItem(ITEM_DUAL_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
 					//NNItemManager::GetInstance()->MakeItem(ITEM_FIRE_SHOOTER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					NNItemManager::GetInstance()->MakeItem(ITEM_SHOT_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					
+					//NNItemManager::GetInstance()->MakeItem(ITEM_SHOT_GUN, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					
 					//NNItemManager::GetInstance()->MakeItem(ITEM_SHIELD, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
-					//NNItemManager::GetInstance()->MakeItem(ITEM_CLEANER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
+					NNItemManager::GetInstance()->MakeItem(ITEM_CLEANER, pBird_Iter->GetPosition(), pBird_Iter->GetScaleX() );
 				}
 				
 

@@ -433,6 +433,7 @@ void NNGameScene::Update( float dTime )
 			break;
 		case ITEM_CLEANER:
 			NNPooManager::GetInstance()->SetLandedPoo(0);
+			NNPooManager::GetInstance()->RemoveAll();
 			break;
 		case ITEM_SHIELD:
 			m_Shield->SetVisible(true);

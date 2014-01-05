@@ -302,4 +302,21 @@ bool NNPooManager::HitCheckByShield( NNAnimation* shield )
 	return false;
 }
 
+void NNPooManager::RemoveAll()
+{
+	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
+
+	//poo & bound hitcheck
+	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
+	{
+		auto pBullet = *poo_Iter;
+		// 리스트에서 삭제. 반환값은 다음 원소이다.
+		//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
+		poo_Iter =  m_Poo.erase( poo_Iter );	
+		// 객체 해제
+		RemoveChild(pBullet, true);
+	}
+}
+
+
 

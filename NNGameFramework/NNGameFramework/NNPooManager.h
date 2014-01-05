@@ -19,7 +19,7 @@ public:
 	bool	HitCheckByPlayer( NNPlayerCharacter* player );
 	bool	HitCheckByShield( NNAnimation* shield );
 	std::list< NNPoo* >& GetPooList() { return m_Poo; }
-
+	void RemoveAll();
 private:
 	NNPooManager(void);
 	~NNPooManager(void);
@@ -29,6 +29,6 @@ private:
 	
 	static NNPooManager* m_pInstance;
 	void RemoveCheck();
-	void RemoveAll();
+	
 	int m_LandedPoo;
 };
