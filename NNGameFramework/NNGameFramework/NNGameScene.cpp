@@ -636,7 +636,7 @@ void NNGameScene::UIUpdate( float dTime )
 
 		m_AmmoLabel->SetString(m_AmmoString);
 
-		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_01)
+		if (NNPooManager::GetInstance()->GetLandedPoo() >= POLLUTION_WARNING_LV_01)
 		{
 			m_LandedPoo1->SetVisible(true);
 		}
@@ -644,7 +644,7 @@ void NNGameScene::UIUpdate( float dTime )
 		{
 			m_LandedPoo1->SetVisible(false);
 		}
-		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_02)
+		if (NNPooManager::GetInstance()->GetLandedPoo() >= POLLUTION_WARNING_LV_02)
 		{
 			m_LandedPoo2->SetVisible(true);
 		}
@@ -652,7 +652,7 @@ void NNGameScene::UIUpdate( float dTime )
 		{
 			m_LandedPoo2->SetVisible(false);
 		}
-		if (NNPooManager::GetInstance()->GetLandedPoo() > POLLUTION_WARNING_LV_03)
+		if (NNPooManager::GetInstance()->GetLandedPoo() >= POLLUTION_WARNING_LV_03)
 		{
 			m_LandedPoo3->SetVisible(true);
 		}
