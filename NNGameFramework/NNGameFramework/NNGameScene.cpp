@@ -302,7 +302,7 @@ void NNGameScene::UIInit()
 
 NNGameScene::~NNGameScene(void)
 {
-
+	NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_WarningChannel);
 }
 
 void NNGameScene::Update( float dTime )
@@ -348,6 +348,7 @@ void NNGameScene::Update( float dTime )
 	//오염도 MAX로 게임오버
 	if (NNPooManager::GetInstance()->GetLandedPoo() >= POLLUTION_MAX)
 	{
+		NNPooManager::GetInstance()->RemoveAll();
 		if (m_CheckPollutionMax == false )
 		{
 			m_CheckPollutionMax = true;
@@ -369,7 +370,6 @@ void NNGameScene::Update( float dTime )
 
 	if (m_CheckGameOverByPollution && m_GameOverExplosion->IsAnimationEnded())
 	{
-		
 		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_WarningChannel);
 		FMOD::Channel* m_gameoverCh = nullptr;
 		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
@@ -606,14 +606,16 @@ void NNGameScene::UIUpdate( float dTime )
 	
 	if( !m_CheckGameOver )
 	{
-		if (NNApplication::GetInstance()->GetElapsedTime() - 
+		if (m_CheckElapsedTenSec == false && 
+			NNApplication::GetInstance()->GetElapsedTime() - 
 			m_PauseTime - m_AppearTime - 
-			m_GameSceneStartTime > 9.9f	&& 
-			m_CheckElapsedTenSec == false)
+			m_GameSceneStartTime > 9.9f	 
+			)
 		{
 			m_ElapsedPlayTimeLabel->SetPosition(708.f, 380.f);
 			m_CheckElapsedTenSec = true;
 		}
+
 		swprintf_s(m_PlayTimeString, _countof(m_PlayTimeString), L"%0.1f", 
 			NNApplication::GetInstance()->GetElapsedTime() - 
 			m_PauseTime - m_AppearTime - m_GameSceneStartTime );
@@ -623,7 +625,7 @@ void NNGameScene::UIUpdate( float dTime )
 			m_CheckElapsedHundredSec == false)
 		{
 			m_ElapsedPlayTimeLabel->SetPosition
-				(m_ElapsedPlayTimeLabel->GetPositionX()-8.5f, 
+				(m_ElapsedPlayTimeLabel->GetPositionX()-6.f, 
 				m_ElapsedPlayTimeLabel->GetPositionY());
 			m_CheckElapsedHundredSec = true;
 		}

@@ -15,6 +15,7 @@ public:
 	static void ReleaseInstance();
 	
 	void Init(void);
+	void Close(void);
 	void Update( float dTime );
 
 	FMOD::Sound* CreateSound( std::string path );

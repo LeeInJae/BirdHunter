@@ -51,6 +51,11 @@ void NNSoundManager::Init( void )
 	SE_GameOverExplosion = CreateSound("Sound/BOMB_EXPLOSION.wav");
 }
 
+void NNSoundManager::Close( void )
+{
+	m_System->close();
+}
+
 NNSoundManager* NNSoundManager::GetInstance()
 {
 	if (m_pInstance == nullptr)
@@ -142,6 +147,9 @@ void NNSoundManager::Update( float dTime )
 {
 	m_System->update();
 }
+
+
+
 
 
 
