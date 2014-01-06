@@ -41,6 +41,9 @@ public:
 	FMOD::Sound*		SE_SHOTGUN;
 	FMOD::Sound*		SE_Die;
 
+	FMOD::Sound*		SE_GameOverPooDrop;
+	FMOD::Sound*		SE_GameOverExplosion;
+
 	std::vector<FMOD::Sound*> SE_BirdDie;
 	std::vector<FMOD::Sound*> SE_PooBoom;
 	std::vector<FMOD::Sound*> SE_NormalGunShot;

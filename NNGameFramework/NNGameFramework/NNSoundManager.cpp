@@ -46,6 +46,9 @@ void NNSoundManager::Init( void )
 	SE_ShotGun = CreateSound("Sound/SHOTGUN.mp3");
 
 	SE_Die = CreateSound("Sound/CHARACTER_DIE.wav");
+
+	SE_GameOverPooDrop = CreateSound("Sound/BOMB_DROP.wav");
+	SE_GameOverExplosion = CreateSound("Sound/BOMB_EXPLOSION.wav");
 }
 
 NNSoundManager* NNSoundManager::GetInstance()

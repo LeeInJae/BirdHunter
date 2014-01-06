@@ -46,6 +46,10 @@ protected:
 	NNAnimation*			m_LandedPoo2;
 	NNAnimation*			m_LandedPoo3;
 
+	NNAnimation*		m_GameOverPoo;
+	float				m_GameOverPooSpeed;
+	float				m_GameOverPooAccelSpeed;
+	NNAnimation*		m_GameOverExplosion;
 	NNSprite*			m_GameOver;
 
 	virtual void	Render();
@@ -69,6 +73,8 @@ private:
 	bool			m_CheckElapsedHundredSec;
 	bool			m_CheckBgmStarted;
 	bool			m_CheckDie;
+	bool			m_CheckPollutionMax;
+	bool			m_CheckGameOverByPollution;
 	BIRD_BORN_TIME	m_BirdBornCheckArray[ BIRD_ALL_NUMBER ];
 	float			m_PauseTime;
 	float			m_GameSceneStartTime;

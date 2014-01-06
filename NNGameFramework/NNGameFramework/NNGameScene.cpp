@@ -19,7 +19,7 @@
 #include "NNGameOver.h"
 
 NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(false), 
-	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0)
+	m_CheckElapsedTenSec(false), m_CheckElapsedHundredSec(false), m_AppearTime(0), m_GameOverPooSpeed(100.f), m_GameOverPooAccelSpeed(0.5f), m_CheckPollutionMax(false), m_CheckGameOverByPollution(false)
 {
 	//NNPooManager::GetInstance()->SetLandedPoo(100);
 	m_CheckGameOver = false;
@@ -28,10 +28,24 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	
 
 	//m_Shield = NNAnimation::Create(0.2f, 50.f, 8.f, 1, SHIELD_SPRITE);
-	m_Shield = NNAnimation::Create(0.2f, 70.f, 18.f, 1, SHIELD_SPRITE);
+	//m_Shield = NNAnimation::Create(0.2f, 70.f, 18.f, 1, SHIELD_SPRITE);
+	m_Shield = NNAnimation::Create(0.1f, 100.f, 100.f, 9, SHIELD_SPRITE_00, SHIELD_SPRITE_01, SHIELD_SPRITE_02, SHIELD_SPRITE_03, SHIELD_SPRITE_04, SHIELD_SPRITE_05, SHIELD_SPRITE_06, SHIELD_SPRITE_07, SHIELD_SPRITE_08);
 	m_Shield->SetVisible(false);
-	m_Shield->SetZindex(1);
+	m_Shield->SetZindex(2);
 	AddChild(m_Shield);
+
+	m_GameOverPoo = NNAnimation::Create(0.05f, 100.f, 100.f, 11, BLACK_SMALL_BIRD_POO_SPRITE, ORANGE_SMALL_BIRD_POO_SPRITE, WHITE_SMALL_BIRD_POO_SPRITE, RED_SMALL_BIRD_POO_SPRITE, CARAMEL_MID_BIRD_POO_SPRITE, GREEN_MID_BIRD_POO_SPRITE, ICE_MID_BIRD_POO_SPRITE, YELLOW_MID_BIRD_POO_SPRITE, BROWN_BIG_BIRD_POO_SPRITE, PINK_BIG_BIRD_POO_SPRITE, ITEM_KING_BIRD_POO_SPRITE);
+	m_GameOverPoo->SetVisible(false);
+	m_GameOverPoo->SetZindex(2);
+	m_GameOverPoo->SetPosition(350.f, -100.f);
+	AddChild(m_GameOverPoo);
+
+	m_GameOverExplosion = NNAnimation::Create(0.1f, 400.f, 400.f, 15, GAMEOVER_EXPLOSION_00, GAMEOVER_EXPLOSION_01, GAMEOVER_EXPLOSION_02, GAMEOVER_EXPLOSION_03, GAMEOVER_EXPLOSION_04, GAMEOVER_EXPLOSION_05, GAMEOVER_EXPLOSION_06, GAMEOVER_EXPLOSION_07, GAMEOVER_EXPLOSION_08, GAMEOVER_EXPLOSION_09, GAMEOVER_EXPLOSION_10, GAMEOVER_EXPLOSION_11, GAMEOVER_EXPLOSION_12, GAMEOVER_EXPLOSION_13, GAMEOVER_EXPLOSION_14);
+	m_GameOverExplosion->SetPosition(200.f, WINDOW_HEIGHT_DOWN_EDGE - 440);
+	m_GameOverExplosion->SetLoop(false);
+	m_GameOverExplosion->SetVisible(false);
+	m_GameOverExplosion->SetZindex(6);
+	AddChild(m_GameOverExplosion);
 
 	m_PauseTime	= 0;
 	m_SumTime = 0;
@@ -295,7 +309,7 @@ void NNGameScene::Update( float dTime )
 {
 	//test
 	
-	m_Shield->SetPosition(m_Character->GetPositionX() - 5.f, m_Character->GetPositionY() + 20);
+	m_Shield->SetPosition(m_Character->GetPositionX() - 22.f, m_Character->GetPositionY() + 30);
 
 	NNSoundManager::GetInstance()->Update(dTime);
 
@@ -331,6 +345,48 @@ void NNGameScene::Update( float dTime )
 		m_CheckBgmStarted = true;
 	}
 
+	//오염도 MAX로 게임오버
+	if (NNPooManager::GetInstance()->GetLandedPoo() >= POLLUTION_MAX)
+	{
+		if (m_CheckPollutionMax == false )
+		{
+			m_CheckPollutionMax = true;
+			NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_GameOverPooDrop);
+			m_GameOverPoo->SetVisible(true);
+		}
+		m_GameOverPoo->SetPosition(m_GameOverPoo->GetPositionX(), m_GameOverPoo->GetPositionY() + m_GameOverPooSpeed * dTime);
+		m_GameOverPooSpeed += m_GameOverPooAccelSpeed;
+	}
+
+	if ( m_CheckGameOverByPollution == false && m_GameOverPoo->GetPositionY() > WINDOW_HEIGHT_DOWN_EDGE - 140)
+	{
+		NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_GameOverExplosion);
+		m_GameOverPoo->SetVisible(false);
+		m_GameOverExplosion->SetVisible(true);
+		m_CheckGameOverByPollution = true;
+	}
+
+	if (m_CheckGameOverByPollution && m_GameOverExplosion->IsAnimationEnded())
+	{
+		
+		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_WarningChannel);
+		FMOD::Channel* m_gameoverCh = nullptr;
+		NNSoundManager::GetInstance()->PlayAndGetChannel(NNSoundManager::GetInstance()->SE_SystemSound[GAMEOVER], &m_gameoverCh);
+		
+		m_ChangeGameOVerTime += dTime;
+
+		if( m_ChangeGameOVerTime >= 3.0f)
+		{
+			NNSceneDirector::GetInstance()->ChangeScene( new NNGameOver(NNApplication::GetInstance()->GetElapsedTime() - 
+				m_PauseTime - m_AppearTime - 
+				m_GameSceneStartTime, m_ChangeGameOVerTime) );
+			return;
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//똥에 맞고 게임오버
 	if( NNPooManager::GetInstance()->HitCheckByPlayer( m_Character ) || m_CheckGameOver )
 	{ 
 		if( !m_CheckGameOver )
@@ -418,6 +474,7 @@ void NNGameScene::Update( float dTime )
 		}
 	}
 
+	//아이템 충돌체크
 	if ( NNItemManager::GetInstance()->HitCheck( m_Character) )
 	{
 		switch (NNItemManager::GetInstance()->GetItemType())
