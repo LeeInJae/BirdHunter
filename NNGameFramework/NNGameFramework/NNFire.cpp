@@ -50,7 +50,7 @@ void NNFire::Update( float dTime )
 	bullet_rect.left	=	GetPositionX() + 25;
 	bullet_rect.right	=	bullet_rect.left + 54;
 	bullet_rect.up		=	GetPositionY() + 16;
-	bullet_rect.down	=	bullet_rect.up + 73;
+	bullet_rect.down	=	bullet_rect.up + 100;
 	///////////
 	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE - 25  ) 
 	{
@@ -120,10 +120,10 @@ void NNFire::Update( float dTime )
 
 	//bool hitCheck = false;
 
-	bullet_rect.left	=	GetPositionX() + 15;
-	bullet_rect.right	=	GetPositionX() + 26*2;
-	bullet_rect.up		=	GetPositionY() + 17;
-	bullet_rect.down	=	GetPositionY() + 22*2;
+// 	bullet_rect.left	=	GetPositionX() + 15;
+// 	bullet_rect.right	=	GetPositionX() + 26*2;
+// 	bullet_rect.up		=	GetPositionY() + 17;
+// 	bullet_rect.down	=	GetPositionY() + 22*2;
 
 	for( poo_Iter = poo_list.begin(); poo_Iter != poo_list.end(); )
 	{

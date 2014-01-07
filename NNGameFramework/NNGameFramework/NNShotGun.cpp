@@ -50,7 +50,7 @@ void NNShotGun::Update( float dTime )
 	bullet_rect.left	=	GetPositionX() + 10;
 	bullet_rect.right	=	bullet_rect.left + 100;
 	bullet_rect.up		=	GetPositionY() + 16;
-	bullet_rect.down	=	bullet_rect.up + 130;
+	bullet_rect.down	=	bullet_rect.up + 600;
 	///////////
 	if( GetPositionY() >= WINDOW_HEIGHT_UP_EDGE- 30   ) 
 	{
@@ -120,11 +120,16 @@ void NNShotGun::Update( float dTime )
 
 	//bool hitCheck = false;
 
-	bullet_rect.left	=	GetPositionX() +	10;
-	bullet_rect.right	=	bullet_rect.left + 100;
-	bullet_rect.up		=	GetPositionY() + 16;
-	bullet_rect.down	=	bullet_rect.up + 130;
+// 	bullet_rect.left	=	GetPositionX() +	10;
+// 	bullet_rect.right	=	bullet_rect.left + 100;
+// 	bullet_rect.up		=	GetPositionY() + 16;
+// 	bullet_rect.down	=	bullet_rect.up + 130;
 
+// 	bullet_rect.left	=	GetPositionX() + 10;
+// 	bullet_rect.right	=	bullet_rect.left + 100;
+// 	bullet_rect.up		=	GetPositionY() - 100;
+// 	bullet_rect.down	=	bullet_rect.up + 180;
+	
 	for( poo_Iter = poo_list.begin(); poo_Iter != poo_list.end(); )
 	{
 		auto pPoo_Iter = *poo_Iter;

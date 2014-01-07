@@ -244,7 +244,7 @@ void NNPlayerCharacter::Update( float dTime )
 			{
 			case NORMAL:
 			case SHIELD_STATE:
- 				if( m_SumTime - m_DelayTime[NORMAL] <= 0.3f )
+ 				if( m_SumTime - m_DelayTime[NORMAL] <= 0.2f )
 				{
 					break;
 				}

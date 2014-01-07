@@ -224,6 +224,9 @@ void NNPooManager::RemoveCheck()
 
 bool NNPooManager::HitCheckByPlayer( NNPlayerCharacter* player )
 {
+	if(m_Poo.empty())
+		return false;
+
 	std::list< NNPoo* >::iterator poo_Iter = m_Poo.begin();
 
 	//poo & player hitcheck

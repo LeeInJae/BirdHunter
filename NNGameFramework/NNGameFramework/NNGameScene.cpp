@@ -133,8 +133,8 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	m_BirdBornCheckArray[ 14 ]	=	birdBornItem;
 
 	
-	AddChild( NNMapManager::GetInstance() );
-
+	//AddChild( NNMapManager::GetInstance() );
+	
 	m_ChangeGameOVerTime = 0.f;
 
 	UIInit();
@@ -313,6 +313,13 @@ void NNGameScene::Update( float dTime )
 {
 	//test
 	
+	NNPooManager::GetInstance()->Update( dTime );
+	NNBulletManager::GetInstance()->Update( dTime );
+	NNBirdFactory::GetInstance()->Update( dTime );
+	NNEffectManager::GetInstance()->Update( dTime );
+	NNItemManager::GetInstance()->Update( dTime );
+	NNMapManager::GetInstance()->Update( dTime );
+
 	m_Shield->SetPosition(m_Character->GetPositionX() - 22.f, m_Character->GetPositionY() + 30);
 
 	NNSoundManager::GetInstance()->Update(dTime);
@@ -323,11 +330,12 @@ void NNGameScene::Update( float dTime )
 
 		AddChild( m_Character );
 		AddChild( m_CharacterBottom);
-		AddChild( NNPooManager::GetInstance() );
-		AddChild( NNBulletManager::GetInstance() );
-		AddChild( NNBirdFactory::GetInstance() );
-		AddChild( NNEffectManager::GetInstance() );
-		AddChild( NNItemManager::GetInstance() );
+		
+		//AddChild( NNPooManager::GetInstance() );
+		//AddChild( NNBulletManager::GetInstance() );
+		//AddChild( NNBirdFactory::GetInstance() );
+		//AddChild( NNEffectManager::GetInstance() );
+		//AddChild( NNItemManager::GetInstance() );
 
 		m_CheckPlayingAddChild = true;
 		m_AppearTime = m_SumTime;
@@ -468,19 +476,18 @@ void NNGameScene::Update( float dTime )
 		}
 		if( m_ChangeGameOVerTime >= 3.0f)
 		{
-// 			NNMapManager::ReleaseInstance();
-// 			NNPooManager::ReleaseInstance();
-// 			NNBirdFactory::ReleaseInstance();
-// 			NNBulletManager::ReleaseInstance();
-// 			NNEffectManager::ReleaseInstance();
-// 			NNItemManager::ReleaseInstance();
-// 			NNSoundManager::ReleaseInstance();
+			NNMapManager::ReleaseInstance();
+			NNPooManager::ReleaseInstance();
+			NNBirdFactory::ReleaseInstance();
+			NNBulletManager::ReleaseInstance();
+			NNEffectManager::ReleaseInstance();
+			NNItemManager::ReleaseInstance();
+			NNSoundManager::ReleaseInstance();
 
 			NNSceneDirector::GetInstance()->ChangeScene( new NNGameOver(NNApplication::GetInstance()->GetElapsedTime() - 
 				m_PauseTime - m_AppearTime - 
 				m_GameSceneStartTime, m_ChangeGameOVerTime) );
-			return
-;
+			return;
 		}
 	}
 
@@ -555,7 +562,14 @@ void NNGameScene::Update( float dTime )
 
 void NNGameScene::Render()
 {
+	NNMapManager::GetInstance()->Render();
 	NNScene::Render();
+	NNPooManager::GetInstance()->Render();
+	NNBulletManager::GetInstance()->Render();
+	NNBirdFactory::GetInstance()->Render();
+	NNEffectManager::GetInstance()->Render();
+	NNItemManager::GetInstance()->Render();
+	
 }
 
 void NNGameScene::UIUpdate( float dTime )

@@ -87,6 +87,9 @@ void NNItemManager::MakeItem( ITEM_TYPE itemType, NNPoint birdPosition, float sc
 
 bool NNItemManager::HitCheck( NNPlayerCharacter* player )
 {
+	if(m_ItemList.empty())
+		return false;
+
 	std::list< NNItem* >::iterator item_Iter = m_ItemList.begin();
 
 	struct HIT_RECT item_rect, player_rect;
