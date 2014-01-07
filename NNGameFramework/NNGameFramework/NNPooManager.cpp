@@ -4,6 +4,7 @@
 #include "NNPoo.h"
 #include "NNGameScene.h"
 #include "NNEffectManager.h"
+#include "NNSoundManager.h"
 
 
 NNPooManager* NNPooManager::m_pInstance = nullptr;
@@ -309,6 +310,7 @@ bool NNPooManager::HitCheckByShield( NNAnimation* shield )
 			if (shield->IsVisible())
 			{
 				NNEffectManager::GetInstance()->MakePooBulletCrashEffect( pPoo_Iter->GetPosition() );
+				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_PooBoom[rand()%NNSoundManager::GetInstance()->SE_PooBoom.size()]);
 				RemoveChild(pPoo_Iter);
 			}
 			return true;
