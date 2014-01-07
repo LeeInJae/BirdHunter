@@ -46,6 +46,7 @@ void NNGameOver::Update( float dTime )
 	if( NNInputSystem::GetInstance()->PressedKeyCheck() )
 	{
 		NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_BgmChannel);
+		exit(0);
 		NNSceneDirector::GetInstance()->ChangeScene( new NNStartScene() );
 		return;
 	}

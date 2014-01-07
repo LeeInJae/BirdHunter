@@ -132,6 +132,7 @@ NNGameScene::NNGameScene(void ) : m_CheckGameStart(false), m_CheckBgmStarted(fal
 	birdBornItem.bornCoolTime	=	OLD_BIRD_COOLTIME;
 	m_BirdBornCheckArray[ 14 ]	=	birdBornItem;
 
+	
 	AddChild( NNMapManager::GetInstance() );
 
 	m_ChangeGameOVerTime = 0.f;
@@ -247,7 +248,10 @@ void NNGameScene::UIInit()
 	m_ItemSprite[3]=NNSprite::Create( SHOTGUN );
 	m_ItemSprite[3]->SetPosition( 673.f, 471.f );
 
-	for(int i=0; i<4; ++i )
+	m_ItemSprite[4]=NNSprite::Create( SHIELD );
+	m_ItemSprite[4]->SetPosition( 673.f, 471.f );
+
+	for(int i=0; i<5; ++i )
 	{
 		m_ItemSprite[i]->SetImageWidth( 30 );
 		m_ItemSprite[i]->SetImageHeight( 30 );
@@ -391,7 +395,7 @@ void NNGameScene::Update( float dTime )
 	{ 
 		if( !m_CheckGameOver )
 		{
-
+			m_Character->IsGameOver();
 			NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_Die );
 
 			NNPoint playerPoint;
@@ -404,6 +408,7 @@ void NNGameScene::Update( float dTime )
 				switch ( m_Character->GetAttackStatus() )
 				{
 				case NORMAL:
+				case SHIELD_STATE:
 					m_PlayerCharacterDie->SetPosition( playerPoint.GetX() + 10.f, playerPoint.GetY() + 50.f );
 					break;
 				case DUAL_GUN:
@@ -423,8 +428,6 @@ void NNGameScene::Update( float dTime )
 			AddChild( m_PlayerCharacterDie );
 			m_Character->SetVisible( false );
 			m_CharacterBottom->SetVisible( false );
-
-			
 		}
 		 
 		if( m_PlayerCharacterDie->IsAnimationEnded() )
@@ -455,7 +458,6 @@ void NNGameScene::Update( float dTime )
 				NNSoundManager::GetInstance()->Stop(NNSoundManager::GetInstance()->m_WarningChannel);
 				m_DieEndCheck = true;
 			}
-			
 		}
 		
 		m_CheckGameOver = true;
@@ -466,6 +468,14 @@ void NNGameScene::Update( float dTime )
 		}
 		if( m_ChangeGameOVerTime >= 3.0f)
 		{
+// 			NNMapManager::ReleaseInstance();
+// 			NNPooManager::ReleaseInstance();
+// 			NNBirdFactory::ReleaseInstance();
+// 			NNBulletManager::ReleaseInstance();
+// 			NNEffectManager::ReleaseInstance();
+// 			NNItemManager::ReleaseInstance();
+// 			NNSoundManager::ReleaseInstance();
+
 			NNSceneDirector::GetInstance()->ChangeScene( new NNGameOver(NNApplication::GetInstance()->GetElapsedTime() - 
 				m_PauseTime - m_AppearTime - 
 				m_GameSceneStartTime, m_ChangeGameOVerTime) );
@@ -494,6 +504,8 @@ void NNGameScene::Update( float dTime )
 			break;
 		case ITEM_SHIELD:
 			m_Shield->SetVisible(true);
+			m_Character->SetAttackStatus( SHIELD_STATE );
+			
 			break;
 		case ITEM_MAX_NUM:
 			break;
@@ -503,10 +515,11 @@ void NNGameScene::Update( float dTime )
 		//m_Character->SetAttackStatus( DUAL_GUN ); 
 		//m_Character->SetAttackStatus( FIRE );
 	}
-
-	if (m_Shield->IsVisible() && NNPooManager::GetInstance()->HitCheckByShield(m_Shield))
+// 
+ 	if (m_Shield->IsVisible() )
 	{
-		m_Shield->SetVisible(false);
+		NNPooManager::GetInstance()->HitCheckByShield(m_Shield);
+ 	//	m_Shield->SetVisible(false);
 	}
 	
 	if( !m_Character->GetPauseKey() )
@@ -593,6 +606,23 @@ void NNGameScene::UIUpdate( float dTime )
 			{
 				m_SkillSecondBar->SetImageWidth( 80 );
 				m_Character->SetAttackStatus( NORMAL );
+
+				RemoveChild( m_ItemGunSprite, false );
+				m_ItemGunSprite=m_ItemSprite[0];
+				AddChild( m_ItemGunSprite );
+			}
+			break;
+		case SHIELD_STATE:
+			RemoveChild( m_ItemGunSprite, false );
+			m_ItemGunSprite=m_ItemSprite[4];
+			AddChild( m_ItemGunSprite );
+			m_SkillSecondBar->SetImageWidth( m_SkillSecondBar->GetImageWidth() - dTime*( 80  / SHIELD_RUNTIME));
+
+			if(m_SkillSecondBar->GetImageWidth() - dTime*( 80  / SHIELD_RUNTIME) < 0.f )
+			{
+				m_SkillSecondBar->SetImageWidth( 80 );
+				m_Character->SetAttackStatus( NORMAL );
+				m_Shield->SetVisible(false);
 
 				RemoveChild( m_ItemGunSprite, false );
 				m_ItemGunSprite=m_ItemSprite[0];

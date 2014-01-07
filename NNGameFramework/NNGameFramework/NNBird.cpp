@@ -38,7 +38,7 @@ void NNBird::Update( float dTime )
 
 	m_SumTime += dTime;
 
-	if( m_SumTime >= m_BirdProperty.pooCoolTime )
+	if( m_SumTime >= m_BirdProperty.pooCoolTime && m_BirdProperty.type != ITEM_KING_BIRD )
 	{
 		NNPooManager::GetInstance()->MakePoo( m_BirdProperty.type, GetPosition() );
 		m_SumTime = 0;

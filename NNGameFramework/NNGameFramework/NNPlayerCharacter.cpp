@@ -11,7 +11,7 @@ NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false), isAttack(false)
 {
 	m_PlayerSpeed	= INIT_PLAYERSPEED;
 	m_AttackStatus	=	NORMAL;
-
+	m_GameOver = false;
 	PCAnimationInit();
 
 	m_pCharTop = m_StandingTopR;
@@ -21,9 +21,11 @@ NNPlayerCharacter::NNPlayerCharacter(void): isLeft(false), isAttack(false)
 
 	SetPosition	( PLAYER_POSITION_X -2, PLAYER_POSITION_Y - 38 );
 	SetZindex	( PLAYER_ZINDEX + 1 );
-	m_SumTime = 0;
+	m_SumTime = 0.f;
 	m_PauseKey = false;
-
+	
+	for( int i=0; i<ITEM_MAX_NUM; ++i )
+		m_DelayTime[i] = 0.f;
 	AddChild(m_pCharTop);
 }
 
@@ -33,6 +35,9 @@ NNPlayerCharacter::~NNPlayerCharacter(void)
 
 void NNPlayerCharacter::Update( float dTime )
 {
+	if( m_GameOver ) return; 
+	m_SumTime += dTime;
+
 	NNPoint wich = GetPosition();
 
 	if( !m_PauseKey )
@@ -43,7 +48,9 @@ void NNPlayerCharacter::Update( float dTime )
 		case LEFT:
 			switch ( m_AttackStatus )
 			{
+
 			case NORMAL:
+			case SHIELD_STATE:
 				if( m_pCharTop->IsAnimationEnded() || !isLeft ) 
 				{
 					isAttack = false;
@@ -73,6 +80,7 @@ void NNPlayerCharacter::Update( float dTime )
 
 				break;
 
+			
 			default:
 
 				if( m_pCharTop->IsAnimationEnded() || !isLeft ) 
@@ -106,6 +114,7 @@ void NNPlayerCharacter::Update( float dTime )
 			switch ( m_AttackStatus )
 			{
 			case NORMAL:
+			case SHIELD_STATE:
 				if( m_pCharTop->IsAnimationEnded() || isLeft ) 
 				{
 					isAttack = false;
@@ -167,6 +176,7 @@ void NNPlayerCharacter::Update( float dTime )
 			switch ( m_AttackStatus )
 			{
 			case NORMAL:
+			case SHIELD_STATE:
 				isAttack = false;
 				if (m_pCharTop->IsAnimationEnded())
 				{
@@ -228,10 +238,16 @@ void NNPlayerCharacter::Update( float dTime )
 
 		switch( NNInputSystem::GetInstance()->CheckSpecialPressedKey() )
 		{
+			
 		case ATTACK:
 			switch ( m_AttackStatus )
 			{
 			case NORMAL:
+			case SHIELD_STATE:
+ 				if( m_SumTime - m_DelayTime[NORMAL] <= 0.3f )
+				{
+					break;
+				}
 
 				if (isLeft)
 				{
@@ -256,8 +272,15 @@ void NNPlayerCharacter::Update( float dTime )
 					bulletPos.SetX( bulletPos.GetX() + 20 );
 
 				NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, bulletPos );
+				m_DelayTime[NORMAL] = dTime;
+				m_SumTime = dTime;
 				break;
 			case DUAL_GUN:
+				if( m_SumTime - m_DelayTime[DUAL_GUN] <= 0.1f )
+				{
+					break;
+				}
+
 				if (isLeft)
 				{
 					RemoveChild(m_pCharTop, false);
@@ -280,6 +303,8 @@ void NNPlayerCharacter::Update( float dTime )
 				NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, bulletPos );
 				bulletPos.SetX( bulletPos.GetX() + 20 );
 				NNBulletManager::GetInstance()->MakeBullet( NORMAL_BULLET, bulletPos );
+				m_DelayTime[DUAL_GUN] = dTime;
+				m_SumTime = dTime;
 				break;
 
 
@@ -316,6 +341,11 @@ void NNPlayerCharacter::Update( float dTime )
 				break;
 
 			case FIRE:
+				if( m_SumTime - m_DelayTime[FIRE] <= 0.5f )
+				{
+					break;
+				}
+
 				if (isLeft)
 				{
 					RemoveChild(m_pCharTop, false);
@@ -339,9 +369,16 @@ void NNPlayerCharacter::Update( float dTime )
 				NNEffectManager::GetInstance()->MakeAmorEffect( GetPosition(), FIRE, isLeft );
 				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_FireShooter);
 				bulletPos = GetPosition();
+				m_DelayTime[FIRE] = dTime;
+				m_SumTime = dTime;
 				break;
 
 			case SHOT_GUN:
+				if( m_SumTime - m_DelayTime[SHOT_GUN] <= 0.5f )
+				{
+					break;
+				}
+
 				if (isLeft)
 				{
 					RemoveChild(m_pCharTop, false);
@@ -365,6 +402,8 @@ void NNPlayerCharacter::Update( float dTime )
 				NNEffectManager::GetInstance()->MakeAmorEffect( GetPosition(), SHOT_GUN, isLeft );
 				NNSoundManager::GetInstance()->Play(NNSoundManager::GetInstance()->SE_ShotGun );
 				bulletPos = GetPosition();
+				m_DelayTime[SHOT_GUN] = dTime;
+				m_SumTime = dTime;
 				break;
 			default:
 				break;
@@ -419,22 +458,6 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
 	m_DualGunRunningTopL->SetLoop(true);
 
-// 	m_DualGunStandingTopR =  NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_R_00, 
-// 		PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_03, 
-// 		PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_00);
-// 	m_DualGunRunningTopR->SetLoop(true);
-
-// 	m_DualGunStandingTopL = NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_L_00, 
-// 		PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_03, 
-// 		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
-// 	m_DualGunRunningTopL->SetLoop(true);
-	/////////////////////////////////
-	//나머지 모든 무기 모션
-// 	m_AmorStandingTopR = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
-// 		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
-// 		PLAYER_AMOR_STAND_TOP_R_07,PLAYER_AMOR_STAND_TOP_R_08,PLAYER_AMOR_STAND_TOP_R_09,PLAYER_AMOR_STAND_TOP_R_10,
-// 		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
-// 	m_AmorStandingTopR->SetLoop(true);
 
 	m_AmorRunningTopR = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
 		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
@@ -442,17 +465,36 @@ void NNPlayerCharacter::PCAnimationInit( void )
 		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
 	m_AmorRunningTopR->SetLoop(true);
 
-// 	m_AmorStandingTopL = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
-// 		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
-// 		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
-// 		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
-// 	m_AmorStandingTopL->SetLoop(true);
 
 	m_AmorRunningTopL = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
 		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
 		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
 		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
 	m_AmorRunningTopL->SetLoop(true);
+
+	// 	m_DualGunStandingTopR =  NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_R_00, 
+	// 		PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_03, 
+	// 		PLAYER_DUALGUN_STAND_TOP_R_02, PLAYER_DUALGUN_STAND_TOP_R_01, PLAYER_DUALGUN_STAND_TOP_R_00);
+	// 	m_DualGunRunningTopR->SetLoop(true);
+
+	// 	m_DualGunStandingTopL = NNAnimation::Create(0.2f, 60,65, 7, PLAYER_DUALGUN_STAND_TOP_L_00, 
+	// 		PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_03, 
+	// 		PLAYER_DUALGUN_STAND_TOP_L_02, PLAYER_DUALGUN_STAND_TOP_L_01, PLAYER_DUALGUN_STAND_TOP_L_00);
+	// 	m_DualGunRunningTopL->SetLoop(true);
+	/////////////////////////////////
+	//나머지 모든 무기 모션
+	// 	m_AmorStandingTopR = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_R_01,PLAYER_AMOR_STAND_TOP_R_02,
+	// 		PLAYER_AMOR_STAND_TOP_R_03,PLAYER_AMOR_STAND_TOP_R_04,PLAYER_AMOR_STAND_TOP_R_05,PLAYER_AMOR_STAND_TOP_R_06,
+	// 		PLAYER_AMOR_STAND_TOP_R_07,PLAYER_AMOR_STAND_TOP_R_08,PLAYER_AMOR_STAND_TOP_R_09,PLAYER_AMOR_STAND_TOP_R_10,
+	// 		PLAYER_AMOR_STAND_TOP_R_11,PLAYER_AMOR_STAND_TOP_R_12);
+	// 	m_AmorStandingTopR->SetLoop(true);
+
+
+	// 	m_AmorStandingTopL = NNAnimation::Create(0.2f, 100, 98, 12, PLAYER_AMOR_STAND_TOP_L_01,PLAYER_AMOR_STAND_TOP_L_02,
+	// 		PLAYER_AMOR_STAND_TOP_L_03,PLAYER_AMOR_STAND_TOP_L_04,PLAYER_AMOR_STAND_TOP_L_05,PLAYER_AMOR_STAND_TOP_L_06,
+	// 		PLAYER_AMOR_STAND_TOP_L_07,PLAYER_AMOR_STAND_TOP_L_08,PLAYER_AMOR_STAND_TOP_L_09,PLAYER_AMOR_STAND_TOP_L_10,
+	// 		PLAYER_AMOR_STAND_TOP_L_11,PLAYER_AMOR_STAND_TOP_L_12);
+	// 	m_AmorStandingTopL->SetLoop(true);
 
 	//m_AmorStandingTopL->SetScale( 0.85f, 0.85f );
 	//m_AmorStandingTopR->SetScale( 0.85f, 0.85f );
@@ -463,6 +505,21 @@ void NNPlayerCharacter::PCAnimationInit( void )
 
 void NNPlayerCharacter::SetAttackStatus( ATTACK_STATUS status )
 {
+	m_SumTime = 0.f;
+	for( int i=0; i<ITEM_MAX_NUM; ++i )
+		m_DelayTime[i] = 0.f;
+
+	if( status == SHIELD_STATE )
+	{
+		m_AttackStatus = status;
+		return;
+	}
+	else if( m_AttackStatus == SHIELD_STATE && status == NORMAL )
+	{
+		m_AttackStatus = status;
+		return;
+	}
+
 	if( m_AttackStatus == NORMAL && status == DUAL_GUN )
 	{
 		m_AttackStatus = status;

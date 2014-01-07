@@ -10,6 +10,7 @@ class NNMapManager :
 {
 public:
 	static NNMapManager* GetInstance();
+	static void ReleaseInstance();
 	~NNMapManager(void);
 	void Update(float dTime);
 	void WarningCountInit(void);

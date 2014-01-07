@@ -21,6 +21,7 @@ public:
 	ATTACK_STATUS GetAttackStatus() { 	return m_AttackStatus; }
 	GOING_DIRECTION GetPlayerDirection();
 	void SetAttackStatus( ATTACK_STATUS status );
+	void IsGameOver() { m_GameOver = true; }
 private:
 	NNAnimation*	m_pCharTop;
 
@@ -60,5 +61,7 @@ private:
 	bool		isLeft;
 	bool		m_PauseKey;
 	bool		isAttack;
+	float		m_DelayTime[ITEM_MAX_NUM];
+	bool		m_GameOver;
 	GOING_DIRECTION m_Direction;
 };

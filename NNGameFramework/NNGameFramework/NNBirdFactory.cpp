@@ -197,3 +197,33 @@ void NNBirdFactory::MakeBird( BIRD_TYPE type )
 
 	AddChild( p_newBird );
 }
+
+void NNBirdFactory::Update(float dTime)
+{
+	NNObject::Update( dTime );
+	RemoveCheck();
+}
+
+void NNBirdFactory::RemoveCheck()
+{
+	std::list< NNBird* >::iterator birdIter;
+
+	for( birdIter = m_Bird.begin(); birdIter != m_Bird.end(); )
+	{
+		if( (*birdIter)->GetBirdType() == ITEM_KING_BIRD && (*birdIter)->GetSumTime() >= 10.f && ( (*birdIter)->GetPositionX() < 0 || (*birdIter)->GetPositionX() > RESOLUTION_WIDTH ) )
+		{
+			auto pBird = *birdIter;
+
+			// 리스트에서 삭제. 반환값은 다음 원소이다.
+			//생성하고 넣고, -> 빼고 해제하고  항상 역순이되어야 함
+			birdIter =  m_Bird.erase( birdIter );	
+
+			// 객체 해제
+			RemoveChild(pBird,true);
+		}
+		else
+		{
+			++birdIter;
+		}
+	}
+}

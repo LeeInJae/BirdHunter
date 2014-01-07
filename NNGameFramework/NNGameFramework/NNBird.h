@@ -17,6 +17,7 @@ public:
 	float	GetSpriteHeight()			{ return m_BirdProperty.imageHeight; }
 	float	GetSpriteWidth()			{ return m_BirdProperty.imageWidth; }
 	GOING_DIRECTION GetBirdDirection()	{ return m_BirdProperty.goingDirection; }
+	float GetSumTime()					{ return m_SumTime; }
 	BIRD_TYPE	GetBirdType()			{ return m_BirdProperty.type; }
 	BIRD_PROPERTY	GetBirdProperty()		{ return m_BirdProperty; }
 	void	Update( float dTime );

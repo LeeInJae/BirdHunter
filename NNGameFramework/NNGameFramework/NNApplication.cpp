@@ -113,7 +113,7 @@ bool NNApplication::Run()
 
 			m_Renderer->Begin();
 			m_Renderer->Clear();
-			m_pSceneDirector->RenderScene();
+  			m_pSceneDirector->RenderScene();
 			m_Renderer->End();
 
 			if ( NNInputSystem::GetInstance()->GetKeyState( VK_ESCAPE ) == KEY_DOWN )

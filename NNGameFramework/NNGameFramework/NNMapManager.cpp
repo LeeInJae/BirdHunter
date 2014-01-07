@@ -35,6 +35,16 @@ NNMapManager* NNMapManager::GetInstance()
 	return m_pInstance;
 }
 
+void NNMapManager::ReleaseInstance()
+{
+	m_pInstance = nullptr;
+	/*
+	if(m_pInstance != nullptr){
+		delete m_pInstance;
+		m_pInstance = nullptr;
+	}*/
+}
+
 void NNMapManager::WarningCountInit( void )
 {
 	m_WarningCount.push_back(0);
