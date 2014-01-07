@@ -313,12 +313,7 @@ void NNGameScene::Update( float dTime )
 {
 	//test
 	
-	NNPooManager::GetInstance()->Update( dTime );
-	NNBulletManager::GetInstance()->Update( dTime );
-	NNBirdFactory::GetInstance()->Update( dTime );
-	NNEffectManager::GetInstance()->Update( dTime );
-	NNItemManager::GetInstance()->Update( dTime );
-	NNMapManager::GetInstance()->Update( dTime );
+
 
 	m_Shield->SetPosition(m_Character->GetPositionX() - 22.f, m_Character->GetPositionY() + 30);
 
@@ -533,6 +528,12 @@ void NNGameScene::Update( float dTime )
 	{
 		NNScene::Update( dTime );
 		UIUpdate( dTime );
+		NNPooManager::GetInstance()->Update( dTime );
+		NNBulletManager::GetInstance()->Update( dTime );
+		NNBirdFactory::GetInstance()->Update( dTime );
+		NNEffectManager::GetInstance()->Update( dTime );
+		NNItemManager::GetInstance()->Update( dTime );
+		NNMapManager::GetInstance()->Update( dTime );
 		if (m_CheckBgmStarted == true)
 		{
 			NNSoundManager::GetInstance()->Resume(NNSoundManager::GetInstance()->m_BgmChannel);

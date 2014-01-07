@@ -119,7 +119,7 @@
 #define DUALGUN				L"Image/UI/DUALGUN.png"
 #define FIREGUN				L"Image/UI/FIRE.png"
 #define SHOTGUN				L"Image/UI/SHOTGUN.png"
-#define SHIELD				L"Image/ITEM/SHIELD.png"
+#define SHIELD				L"Image/UI/SHIELD.png"
 //
 #define LIGHT01 L"Image/EFFECT/LIGHT01.png"
 #define LIGHT02 L"Image/EFFECT/LIGHT02.png"
