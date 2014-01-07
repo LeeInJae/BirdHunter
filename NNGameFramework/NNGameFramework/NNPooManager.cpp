@@ -285,9 +285,9 @@ bool NNPooManager::HitCheckByShield( NNAnimation* shield )
 	struct HIT_RECT poo_rect, shield_rect;
 
 	shield_rect.left	=	shield->GetPositionX() - 3;
-	shield_rect.right	=	shield_rect.left + 90;
+	shield_rect.right	=	shield_rect.left + 106;
 	shield_rect.up		=	shield->GetPositionY();
-	shield_rect.down	=	shield_rect.up + 8;
+	shield_rect.down	=	shield_rect.up + 110;
 
 	for( poo_Iter = m_Poo.begin(); poo_Iter != m_Poo.end(); )
 	{
