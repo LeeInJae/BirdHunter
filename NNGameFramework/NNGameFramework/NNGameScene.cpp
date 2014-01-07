@@ -385,6 +385,14 @@ void NNGameScene::Update( float dTime )
 
 		if( m_ChangeGameOVerTime >= 3.0f)
 		{
+			NNMapManager::ReleaseInstance();
+			NNPooManager::ReleaseInstance();
+			NNBirdFactory::ReleaseInstance();
+			NNBulletManager::ReleaseInstance();
+			NNEffectManager::ReleaseInstance();
+			NNItemManager::ReleaseInstance();
+			NNSoundManager::ReleaseInstance();
+
 			NNSceneDirector::GetInstance()->ChangeScene( new NNGameOver(NNApplication::GetInstance()->GetElapsedTime() - 
 				m_PauseTime - m_AppearTime - 
 				m_GameSceneStartTime, m_ChangeGameOVerTime) );
